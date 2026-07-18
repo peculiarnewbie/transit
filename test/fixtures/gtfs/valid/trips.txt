@@ -1,0 +1,4 @@
+trip_id,route_id,service_id,trip_headsign,direction_id,shape_id
+T1,R1,DAILY,Outbound,0,S1
+T2,R1,DAILY,Outbound,0,S1
+T3,R1,DAILY,Branch,0,S2
