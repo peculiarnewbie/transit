@@ -12,7 +12,7 @@ import { ArtifactStore } from "./artifact-store.js";
 
 const baseUrl = "https://transit.test/artifacts/";
 const manifestUrl = `${baseUrl}active.json`;
-const activeArtifactVersion = "bus-transjakarta-20260629-v1";
+const activeArtifactVersion = "bus-transjakarta-20260630-v2";
 const manifest = readFileSync("public/artifacts/active.json", "utf8");
 const snapshot = readFileSync("public/artifacts/bus-demo-20260718-v1.network.json", "utf8");
 const geometry = readFileSync("public/artifacts/bus-demo-20260718-v1.geometry.json", "utf8");

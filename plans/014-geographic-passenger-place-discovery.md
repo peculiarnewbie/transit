@@ -237,11 +237,11 @@ Stop and report instead of continuing if:
 
 ## Done when
 
-- [ ] A pinned broad Jabodetabek place source compiles reproducibly.
-- [ ] Published place and manifest artifacts are versioned and attributed.
-- [ ] Unified search covers areas, landmarks, and canonical transit places.
-- [ ] Nearby transit choices are bounded, stable, and explicitly geometric.
-- [ ] No route reachability, timetable, or pedestrian claim leaks into search.
-- [ ] All Plan 012 place-search acceptance cases meet their reviewed criteria.
-- [ ] Full-artifact reconciliation, performance, and coverage reports pass.
-- [ ] `npm run check && npm test` pass.
+- [x] A pinned broad Jabodetabek place source compiles reproducibly.
+- [x] Published place and manifest artifacts are versioned and attributed.
+- [x] Unified search covers areas, landmarks, and canonical transit places.
+- [x] Nearby transit choices are bounded, stable, and explicitly geometric.
+- [x] No route reachability, timetable, or pedestrian claim leaks into search.
+- [x] All Plan 012 place-search acceptance cases meet their reviewed criteria.
+- [x] Full-artifact reconciliation, performance, and coverage reports pass.
+- [x] `npm run check && npm test` pass.

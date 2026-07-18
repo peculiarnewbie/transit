@@ -79,7 +79,7 @@ route conflict.
 | 007  | Integrate the original bus-routing technical slice     |       P1 |      L | 002, 003, 004    | IN PROGRESS |
 | 012  | Define the usable bus route-helper contract and corpus |       P0 |      M | 001–007 baseline | DONE        |
 | 013  | Project canonical transit places and guidance evidence |       P0 |      L | 002, 012         | DONE        |
-| 014  | Build broad geographic passenger-place discovery       |       P0 |      L | 012, 013         | TODO        |
+| 014  | Build broad geographic passenger-place discovery       |       P0 |      L | 012, 013         | DONE        |
 | 015  | Build time-independent bus route guidance              |       P0 |     XL | 012, 013         | TODO        |
 | 016  | Integrate and release the usable bus route helper      |       P0 |     XL | 014, 015         | TODO        |
 | 008  | Build the protected station/topology editor            |       P1 |      L | 004, 006, 016    | TODO        |

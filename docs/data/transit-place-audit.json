@@ -22,10 +22,7 @@
     "unresolvedFindingSample": [
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00006P",
-          "gtfs:transjakarta:stop:B05858P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00006P", "gtfs:transjakarta:stop:B05858P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -34,10 +31,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00011P",
-          "gtfs:transjakarta:stop:B03438P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00011P", "gtfs:transjakarta:stop:B03438P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -46,10 +40,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00014P",
-          "gtfs:transjakarta:stop:B03439P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00014P", "gtfs:transjakarta:stop:B03439P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -58,10 +49,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00015P",
-          "gtfs:transjakarta:stop:B03440P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00015P", "gtfs:transjakarta:stop:B03440P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -70,10 +58,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00017P",
-          "gtfs:transjakarta:stop:B03441P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00017P", "gtfs:transjakarta:stop:B03441P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -82,10 +67,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00020P",
-          "gtfs:transjakarta:stop:B00021P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00020P", "gtfs:transjakarta:stop:B00021P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -94,10 +76,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00022P",
-          "gtfs:transjakarta:stop:B03442P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00022P", "gtfs:transjakarta:stop:B03442P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -106,10 +85,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00026P",
-          "gtfs:transjakarta:stop:B00027P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00026P", "gtfs:transjakarta:stop:B00027P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -118,10 +94,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00028P",
-          "gtfs:transjakarta:stop:B03444P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00028P", "gtfs:transjakarta:stop:B03444P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -130,10 +103,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00031P",
-          "gtfs:transjakarta:stop:B00032P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00031P", "gtfs:transjakarta:stop:B00032P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -142,10 +112,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00033P",
-          "gtfs:transjakarta:stop:B03443P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00033P", "gtfs:transjakarta:stop:B03443P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -154,10 +121,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00037P",
-          "gtfs:transjakarta:stop:B00038P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00037P", "gtfs:transjakarta:stop:B00038P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -166,10 +130,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00039P",
-          "gtfs:transjakarta:stop:B08465P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00039P", "gtfs:transjakarta:stop:B08465P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -191,10 +152,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00044P",
-          "gtfs:transjakarta:stop:B00045P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00044P", "gtfs:transjakarta:stop:B00045P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -203,10 +161,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00052P",
-          "gtfs:transjakarta:stop:B00053P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00052P", "gtfs:transjakarta:stop:B00053P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -228,10 +183,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00055P",
-          "gtfs:transjakarta:stop:B00056P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00055P", "gtfs:transjakarta:stop:B00056P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -240,10 +192,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00057P",
-          "gtfs:transjakarta:stop:B03448P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00057P", "gtfs:transjakarta:stop:B03448P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -252,10 +201,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00066P",
-          "gtfs:transjakarta:stop:B00067P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00066P", "gtfs:transjakarta:stop:B00067P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -264,10 +210,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00069P",
-          "gtfs:transjakarta:stop:B00070P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00069P", "gtfs:transjakarta:stop:B00070P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -289,10 +232,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00076P",
-          "gtfs:transjakarta:stop:B00077P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00076P", "gtfs:transjakarta:stop:B00077P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -301,10 +241,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00081P",
-          "gtfs:transjakarta:stop:B00082P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00081P", "gtfs:transjakarta:stop:B00082P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",
@@ -313,10 +250,7 @@
       },
       {
         "_tag": "ProposedComplex",
-        "candidateStopIds": [
-          "gtfs:transjakarta:stop:B00089P",
-          "gtfs:transjakarta:stop:B03449P"
-        ],
+        "candidateStopIds": ["gtfs:transjakarta:stop:B00089P", "gtfs:transjakarta:stop:B03449P"],
         "reasons": [
           "proximity_within_75m",
           "normalized_name_overlap",

@@ -1,0 +1,2194 @@
+{
+  "schemaVersion": "1",
+  "sourceName": "nominatim-osm-jabodetabek",
+  "sourceDateOrVersion": "2026-07-18",
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "boundaryDescription": "Jabodetabek viewbox 106.38,-6.80,107.18,-5.95 via Nominatim search",
+  "extractionRules": "Nominatim search for Plan 014 seed query list; tags inferred from Nominatim class/type; historic→tourism=attraction",
+  "features": [
+    {
+      "osmType": "node",
+      "osmId": 5124126895,
+      "name": "Ancol",
+      "altNames": [],
+      "tags": {
+        "name": "Ancol",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8451374,
+        "latitude": -6.128115
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Pademangan"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802121,
+      "name": "Ancol",
+      "altNames": [],
+      "tags": {
+        "name": "Ancol",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8362474,
+        "latitude": -6.125215
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Pademangan"
+    },
+    {
+      "osmType": "way",
+      "osmId": 28793189,
+      "name": "Ancol",
+      "altNames": [],
+      "tags": {
+        "name": "Ancol",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8494416,
+        "latitude": -6.1267961
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Pademangan"
+    },
+    {
+      "osmType": "node",
+      "osmId": 8174072563,
+      "name": "Bekasi Barat",
+      "altNames": [],
+      "tags": {
+        "name": "Bekasi Barat",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.9904237,
+        "latitude": -6.2529489
+      },
+      "municipality": "Daerah Khusus Ibukota Jakarta",
+      "adminDistrict": "Lagoon",
+      "neighbourhood": "Bumi Satria Kencana"
+    },
+    {
+      "osmType": "node",
+      "osmId": 3469731328,
+      "name": "Bekasi",
+      "altNames": [
+        "Bekasi Barat"
+      ],
+      "tags": {
+        "name": "Bekasi",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.9987436,
+        "latitude": -6.2362143
+      },
+      "municipality": "Bekasi",
+      "adminDistrict": "Proyek"
+    },
+    {
+      "osmType": "node",
+      "osmId": 506083170,
+      "name": "Bekasi Barat",
+      "altNames": [],
+      "tags": {
+        "name": "Bekasi Barat",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.985212,
+        "latitude": -6.2508909
+      },
+      "municipality": "Bekasi",
+      "adminDistrict": "Lagoon",
+      "neighbourhood": "Perumnas 2"
+    },
+    {
+      "osmType": "node",
+      "osmId": 12260707174,
+      "name": "Cawang",
+      "altNames": [],
+      "tags": {
+        "name": "Cawang",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8712296,
+        "latitude": -6.245907
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Kramat Jati"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802203,
+      "name": "Cawang",
+      "altNames": [],
+      "tags": {
+        "name": "Cawang",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8674908,
+        "latitude": -6.2503382
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Kramat Jati"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802427,
+      "name": "Cengkareng",
+      "altNames": [],
+      "tags": {
+        "name": "Cengkareng",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7447182,
+        "latitude": -6.1528985
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Cengkareng"
+    },
+    {
+      "osmType": "node",
+      "osmId": 5104479172,
+      "name": "Cengkareng",
+      "altNames": [],
+      "tags": {
+        "name": "Cengkareng",
+        "place": "municipality"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.734781,
+        "latitude": -6.1490933
+      },
+      "municipality": "Jakarta Barat"
+    },
+    {
+      "osmType": "way",
+      "osmId": 277662900,
+      "name": "Pullman Hotel Jakarta Central Park",
+      "altNames": [
+        "Central Park"
+      ],
+      "tags": {
+        "name": "Pullman Hotel Jakarta Central Park",
+        "tourism": "hotel"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7899381,
+        "latitude": -6.1782119
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Grogol Petamburan"
+    },
+    {
+      "osmType": "way",
+      "osmId": 328302951,
+      "name": "Dragon & Cow Central Park",
+      "altNames": [
+        "Central Park"
+      ],
+      "tags": {
+        "name": "Dragon & Cow Central Park",
+        "amenity": "restaurant"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7901829,
+        "latitude": -6.1774374
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Grogol Petamburan"
+    },
+    {
+      "osmType": "way",
+      "osmId": 563917063,
+      "name": "Central Park Mall Musical Fountain",
+      "altNames": [
+        "Central Park"
+      ],
+      "tags": {
+        "name": "Central Park Mall Musical Fountain",
+        "amenity": "fountain"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7907028,
+        "latitude": -6.1774656
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Grogol Petamburan"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802349,
+      "name": "Cililitan",
+      "altNames": [],
+      "tags": {
+        "name": "Cililitan",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.86381,
+        "latitude": -6.2624687
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Kramat Jati"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802224,
+      "name": "Cipinang",
+      "altNames": [],
+      "tags": {
+        "name": "Cipinang",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8926197,
+        "latitude": -6.2060501
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Pulo Gadung"
+    },
+    {
+      "osmType": "way",
+      "osmId": 155956804,
+      "name": "Cipinang",
+      "altNames": [],
+      "tags": {
+        "name": "Cipinang",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8781969,
+        "latitude": -6.269941
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Makasar"
+    },
+    {
+      "osmType": "way",
+      "osmId": 117313929,
+      "name": "Cipinang",
+      "altNames": [],
+      "tags": {
+        "name": "Cipinang",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8941507,
+        "latitude": -6.2123874
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Pulo Gadung"
+    },
+    {
+      "osmType": "node",
+      "osmId": 4891132084,
+      "name": "Gambir",
+      "altNames": [],
+      "tags": {
+        "name": "Gambir",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8306473,
+        "latitude": -6.1766553
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Gambir",
+      "neighbourhood": "Gambir"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 7313694,
+      "name": "Gambir",
+      "altNames": [],
+      "tags": {
+        "name": "Gambir",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8167439,
+        "latitude": -6.1711625
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Gambir"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802247,
+      "name": "Gambir",
+      "altNames": [],
+      "tags": {
+        "name": "Gambir",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8264246,
+        "latitude": -6.1753675
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Gambir",
+      "neighbourhood": "Gambir"
+    },
+    {
+      "osmType": "way",
+      "osmId": 653084970,
+      "name": "Gelanggang Olahraga Bung Karno",
+      "altNames": [
+        "Gelora Bung Karno"
+      ],
+      "tags": {
+        "name": "Gelanggang Olahraga Bung Karno",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8036258,
+        "latitude": -6.2186492
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 974882100,
+      "name": "Grand Indonesia Shopping Town",
+      "altNames": [
+        "Grand Indonesia"
+      ],
+      "tags": {
+        "name": "Grand Indonesia Shopping Town",
+        "shop": "mall"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8214547,
+        "latitude": -6.1957601
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 168526553,
+      "name": "Grand Indonesia Sky Bridge",
+      "altNames": [
+        "Grand Indonesia"
+      ],
+      "tags": {
+        "name": "Grand Indonesia Sky Bridge",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8207308,
+        "latitude": -6.1951739
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "node",
+      "osmId": 12467062173,
+      "name": "Sesa Organic Store Grand Indonesia",
+      "altNames": [
+        "Grand Indonesia"
+      ],
+      "tags": {
+        "name": "Sesa Organic Store Grand Indonesia",
+        "shop": "supermarket"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8206331,
+        "latitude": -6.1958697
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "node",
+      "osmId": 5047494890,
+      "name": "Grogol",
+      "altNames": [],
+      "tags": {
+        "name": "Grogol",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7896101,
+        "latitude": -6.162035
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Grogol Petamburan"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802156,
+      "name": "Grogol",
+      "altNames": [],
+      "tags": {
+        "name": "Grogol",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7948841,
+        "latitude": -6.161329
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Grogol Petamburan"
+    },
+    {
+      "osmType": "way",
+      "osmId": 453239936,
+      "name": "Jalan Jenderal Sudirman",
+      "altNames": [],
+      "tags": {
+        "name": "Jalan Jenderal Sudirman",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8094521,
+        "latitude": -6.2216066
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 449551290,
+      "name": "Jalan Jenderal Sudirman",
+      "altNames": [],
+      "tags": {
+        "name": "Jalan Jenderal Sudirman",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8154342,
+        "latitude": -6.2168817
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 1457108253,
+      "name": "Jalan Jenderal Sudirman",
+      "altNames": [],
+      "tags": {
+        "name": "Jalan Jenderal Sudirman",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8168177,
+        "latitude": -6.2157769
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 449551297,
+      "name": "Jalan Mohammad Husni Thamrin",
+      "altNames": [
+        "Jalan M.H. Thamrin"
+      ],
+      "tags": {
+        "name": "Jalan Mohammad Husni Thamrin",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8230079,
+        "latitude": -6.1854227
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 453439715,
+      "name": "Jalan Mohammad Husni Thamrin",
+      "altNames": [
+        "Jalan M.H. Thamrin"
+      ],
+      "tags": {
+        "name": "Jalan Mohammad Husni Thamrin",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8229318,
+        "latitude": -6.1931317
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "way",
+      "osmId": 629731294,
+      "name": "Jalan Mohammad Husni Thamrin",
+      "altNames": [
+        "Jalan M.H. Thamrin"
+      ],
+      "tags": {
+        "name": "Jalan Mohammad Husni Thamrin",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8232009,
+        "latitude": -6.1871574
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "way",
+      "osmId": 453253818,
+      "name": "Jalan Jenderal Sudirman",
+      "altNames": [
+        "Jalan Sudirman"
+      ],
+      "tags": {
+        "name": "Jalan Jenderal Sudirman",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8173127,
+        "latitude": -6.215386
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 760615600,
+      "name": "Jalan Jenderal Sudirman",
+      "altNames": [
+        "Jalan Sudirman"
+      ],
+      "tags": {
+        "name": "Jalan Jenderal Sudirman",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8192139,
+        "latitude": -6.2134985
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 453253827,
+      "name": "Jalan Jenderal Sudirman",
+      "altNames": [
+        "Jalan Sudirman"
+      ],
+      "tags": {
+        "name": "Jalan Jenderal Sudirman",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8230565,
+        "latitude": -6.1991121
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 557844496,
+      "name": "Jalan Jenderal Sudirman",
+      "altNames": [
+        "Jl. Jenderal Sudirman"
+      ],
+      "tags": {
+        "name": "Jalan Jenderal Sudirman",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8044039,
+        "latitude": -6.2251217
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 759658441,
+      "name": "Jalan Jenderal Sudirman",
+      "altNames": [
+        "Jl. Jenderal Sudirman"
+      ],
+      "tags": {
+        "name": "Jalan Jenderal Sudirman",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.815897,
+        "latitude": -6.2165076
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 449551298,
+      "name": "Jalan Jenderal Sudirman",
+      "altNames": [
+        "Jl. Jenderal Sudirman"
+      ],
+      "tags": {
+        "name": "Jalan Jenderal Sudirman",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8232406,
+        "latitude": -6.1955379
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802251,
+      "name": "Kampung Melayu",
+      "altNames": [],
+      "tags": {
+        "name": "Kampung Melayu",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8636187,
+        "latitude": -6.2193557
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Jatinegara"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802416,
+      "name": "Kebayoran Baru",
+      "altNames": [],
+      "tags": {
+        "name": "Kebayoran Baru",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7972324,
+        "latitude": -6.2497787
+      },
+      "municipality": "Jakarta Selatan"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802392,
+      "name": "Kebon Jeruk",
+      "altNames": [],
+      "tags": {
+        "name": "Kebon Jeruk",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7697255,
+        "latitude": -6.192572
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Kebon Jeruk"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802188,
+      "name": "Kebon Jeruk",
+      "altNames": [],
+      "tags": {
+        "name": "Kebon Jeruk",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7721481,
+        "latitude": -6.1956736
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Kebon Jeruk"
+    },
+    {
+      "osmType": "node",
+      "osmId": 5008720780,
+      "name": "Kebon Jeruk",
+      "altNames": [],
+      "tags": {
+        "name": "Kebon Jeruk",
+        "place": "municipality"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.770356,
+        "latitude": -6.1915105
+      },
+      "municipality": "Jakarta Barat"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802159,
+      "name": "Kebon Sirih",
+      "altNames": [],
+      "tags": {
+        "name": "Kebon Sirih",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8311054,
+        "latitude": -6.1850822
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "way",
+      "osmId": 29416354,
+      "name": "Kebun Binatang Ragunan",
+      "altNames": [],
+      "tags": {
+        "name": "Kebun Binatang Ragunan",
+        "tourism": "zoo"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8216897,
+        "latitude": -6.3114056
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Pasar Minggu"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802414,
+      "name": "Kelapa Gading",
+      "altNames": [],
+      "tags": {
+        "name": "Kelapa Gading",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.9024826,
+        "latitude": -6.1599379
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Kelapa Gading"
+    },
+    {
+      "osmType": "node",
+      "osmId": 5127572846,
+      "name": "Kelapa Gading",
+      "altNames": [],
+      "tags": {
+        "name": "Kelapa Gading",
+        "place": "municipality"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.9024491,
+        "latitude": -6.1579262
+      },
+      "municipality": "Jakarta Utara"
+    },
+    {
+      "osmType": "node",
+      "osmId": 4899822033,
+      "name": "Kemayoran",
+      "altNames": [],
+      "tags": {
+        "name": "Kemayoran",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8414012,
+        "latitude": -6.1617033
+      },
+      "municipality": "Jakarta Pusat"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802412,
+      "name": "Kemayoran",
+      "altNames": [],
+      "tags": {
+        "name": "Kemayoran",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8450861,
+        "latitude": -6.1648157
+      },
+      "municipality": "Jakarta Pusat"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802357,
+      "name": "Kemayoran",
+      "altNames": [],
+      "tags": {
+        "name": "Kemayoran",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8453559,
+        "latitude": -6.1644445
+      },
+      "municipality": "Jakarta Pusat",
+      "neighbourhood": "Kemayoran"
+    },
+    {
+      "osmType": "node",
+      "osmId": 11564482115,
+      "name": "Kota",
+      "altNames": [
+        "kota  tua"
+      ],
+      "tags": {
+        "name": "Kota",
+        "amenity": "bus_station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8150708,
+        "latitude": -6.1368624
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Taman Sari"
+    },
+    {
+      "osmType": "way",
+      "osmId": 155955655,
+      "name": "Cipinang Indah Mall",
+      "altNames": [
+        "Mall Cipinang Indah"
+      ],
+      "tags": {
+        "name": "Cipinang Indah Mall",
+        "shop": "mall"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8940805,
+        "latitude": -6.2386007
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Duren Sawit",
+      "neighbourhood": "Pondok Bambu"
+    },
+    {
+      "osmType": "way",
+      "osmId": 391510441,
+      "name": "Summarecon Mall Kelapa Gading",
+      "altNames": [
+        "Mall Kelapa Gading"
+      ],
+      "tags": {
+        "name": "Summarecon Mall Kelapa Gading",
+        "shop": "mall"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.9083661,
+        "latitude": -6.1573987
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Kelapa Gading"
+    },
+    {
+      "osmType": "way",
+      "osmId": 41113187,
+      "name": "Mall Kelapa Gading",
+      "altNames": [],
+      "tags": {
+        "name": "Mall Kelapa Gading",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.9082426,
+        "latitude": -6.1587563
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Kelapa Gading"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 7212895,
+      "name": "Menteng",
+      "altNames": [],
+      "tags": {
+        "name": "Menteng",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8322242,
+        "latitude": -6.1950265
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 7212530,
+      "name": "Menteng",
+      "altNames": [],
+      "tags": {
+        "name": "Menteng",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8352111,
+        "latitude": -6.2010459
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "node",
+      "osmId": 4832362563,
+      "name": "Menteng",
+      "altNames": [],
+      "tags": {
+        "name": "Menteng",
+        "place": "municipality"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8361625,
+        "latitude": -6.1982846
+      },
+      "municipality": "Jakarta Pusat"
+    },
+    {
+      "osmType": "way",
+      "osmId": 1159084257,
+      "name": "Monumen Nasional",
+      "altNames": [
+        "Monas"
+      ],
+      "tags": {
+        "name": "Monumen Nasional",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8271692,
+        "latitude": -6.1754024
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Gambir",
+      "neighbourhood": "Gambir"
+    },
+    {
+      "osmType": "node",
+      "osmId": 11564482120,
+      "name": "Monumen Nasional",
+      "altNames": [
+        "Monas"
+      ],
+      "tags": {
+        "name": "Monumen Nasional",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8228869,
+        "latitude": -6.1761771
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Gambir",
+      "neighbourhood": "Gambir"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802134,
+      "name": "Pasar Baru",
+      "altNames": [],
+      "tags": {
+        "name": "Pasar Baru",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8334669,
+        "latitude": -6.164901
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Sawah Besar"
+    },
+    {
+      "osmType": "node",
+      "osmId": 4976676188,
+      "name": "Pasar Minggu",
+      "altNames": [],
+      "tags": {
+        "name": "Pasar Minggu",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8448558,
+        "latitude": -6.2833322
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Pasar Minggu"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802408,
+      "name": "Pasar Minggu",
+      "altNames": [],
+      "tags": {
+        "name": "Pasar Minggu",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8278347,
+        "latitude": -6.2919498
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Pasar Minggu"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802344,
+      "name": "Pasar Minggu",
+      "altNames": [],
+      "tags": {
+        "name": "Pasar Minggu",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8390511,
+        "latitude": -6.2893924
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Pasar Minggu"
+    },
+    {
+      "osmType": "node",
+      "osmId": 4849162195,
+      "name": "Pasar Senen",
+      "altNames": [],
+      "tags": {
+        "name": "Pasar Senen",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8445744,
+        "latitude": -6.1744233
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Senen"
+    },
+    {
+      "osmType": "node",
+      "osmId": 12739080708,
+      "name": "Pasar Senen",
+      "altNames": [],
+      "tags": {
+        "name": "Pasar Senen",
+        "shop": "supermarket"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8425247,
+        "latitude": -6.1760684
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Senen"
+    },
+    {
+      "osmType": "node",
+      "osmId": 11751801313,
+      "name": "Pasar Senen",
+      "altNames": [],
+      "tags": {
+        "name": "Pasar Senen",
+        "railway": "stop"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.844965,
+        "latitude": -6.1751886
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Senen"
+    },
+    {
+      "osmType": "way",
+      "osmId": 334969765,
+      "name": "Pusat Pelatihan Kerja Daerah (PPKD) Jakarta Pusat",
+      "altNames": [
+        "Pasar Tanah Abang"
+      ],
+      "tags": {
+        "name": "Pusat Pelatihan Kerja Daerah (PPKD) Jakarta Pusat",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8132745,
+        "latitude": -6.2107229
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 121870309,
+      "name": "Plaza Blok M",
+      "altNames": [],
+      "tags": {
+        "name": "Plaza Blok M",
+        "shop": "mall"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.797644,
+        "latitude": -6.244308
+      },
+      "municipality": "Jakarta Selatan",
+      "neighbourhood": "Blok B"
+    },
+    {
+      "osmType": "node",
+      "osmId": 9933297620,
+      "name": "Plaza Blok M",
+      "altNames": [],
+      "tags": {
+        "name": "Plaza Blok M",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7975704,
+        "latitude": -6.2450912
+      },
+      "municipality": "Jakarta Selatan",
+      "neighbourhood": "Blok B"
+    },
+    {
+      "osmType": "way",
+      "osmId": 538319726,
+      "name": "Plaza Indonesia",
+      "altNames": [],
+      "tags": {
+        "name": "Plaza Indonesia",
+        "shop": "mall"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.821941,
+        "latitude": -6.1934421
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "node",
+      "osmId": 5833636988,
+      "name": "Plaza Indonesia",
+      "altNames": [],
+      "tags": {
+        "name": "Plaza Indonesia",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8228616,
+        "latitude": -6.1934835
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "node",
+      "osmId": 13422382637,
+      "name": "Bakerman Plaza Indonesia",
+      "altNames": [
+        "Plaza Indonesia"
+      ],
+      "tags": {
+        "name": "Bakerman Plaza Indonesia",
+        "amenity": "restaurant"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8218748,
+        "latitude": -6.19408
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802288,
+      "name": "Pluit",
+      "altNames": [],
+      "tags": {
+        "name": "Pluit",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7873624,
+        "latitude": -6.1150307
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Penjaringan"
+    },
+    {
+      "osmType": "way",
+      "osmId": 1472757712,
+      "name": "Pondok Indah",
+      "altNames": [],
+      "tags": {
+        "name": "Pondok Indah",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7828144,
+        "latitude": -6.2756433
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Kebayoran Lama"
+    },
+    {
+      "osmType": "node",
+      "osmId": 1782530599,
+      "name": "Pondok Indah",
+      "altNames": [],
+      "tags": {
+        "name": "Pondok Indah",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7835461,
+        "latitude": -6.2914577
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Cilandak"
+    },
+    {
+      "osmType": "node",
+      "osmId": 11957654252,
+      "name": "Pondok Indah",
+      "altNames": [],
+      "tags": {
+        "name": "Pondok Indah",
+        "amenity": "bus_station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7836553,
+        "latitude": -6.2672166
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Kebayoran Lama"
+    },
+    {
+      "osmType": "way",
+      "osmId": 83489551,
+      "name": "Pondok Indah Mall 1",
+      "altNames": [
+        "Pondok Indah Mall"
+      ],
+      "tags": {
+        "name": "Pondok Indah Mall 1",
+        "shop": "mall"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7846567,
+        "latitude": -6.2653276
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Kebayoran Lama"
+    },
+    {
+      "osmType": "way",
+      "osmId": 481905166,
+      "name": "Urbanloft",
+      "altNames": [
+        "Ps. Minggu"
+      ],
+      "tags": {
+        "name": "Urbanloft",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.816502,
+        "latitude": -6.2743382
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Pasar Minggu"
+    },
+    {
+      "osmType": "node",
+      "osmId": 12079406508,
+      "name": "Kel. Ps. Minggu",
+      "altNames": [
+        "Ps. Minggu"
+      ],
+      "tags": {
+        "name": "Kel. Ps. Minggu",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.84066,
+        "latitude": -6.285642
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Pasar Minggu"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802374,
+      "name": "Ragunan",
+      "altNames": [],
+      "tags": {
+        "name": "Ragunan",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8204823,
+        "latitude": -6.2976668
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Pasar Minggu"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802236,
+      "name": "Rawamangun",
+      "altNames": [],
+      "tags": {
+        "name": "Rawamangun",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8847253,
+        "latitude": -6.1959278
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Pulo Gadung"
+    },
+    {
+      "osmType": "node",
+      "osmId": 11567672589,
+      "name": "Roxy",
+      "altNames": [
+        "RS Sumber Waras"
+      ],
+      "tags": {
+        "name": "Roxy",
+        "amenity": "bus_station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7967585,
+        "latitude": -6.1662903
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Grogol Petamburan"
+    },
+    {
+      "osmType": "way",
+      "osmId": 506345438,
+      "name": "Jalan Jembatan RSCM 2",
+      "altNames": [
+        "RSCM"
+      ],
+      "tags": {
+        "name": "Jalan Jembatan RSCM 2",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8466746,
+        "latitude": -6.1954364
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Senen"
+    },
+    {
+      "osmType": "way",
+      "osmId": 735372056,
+      "name": "Jembatan RSCM",
+      "altNames": [
+        "RSCM"
+      ],
+      "tags": {
+        "name": "Jembatan RSCM",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8454163,
+        "latitude": -6.1971024
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Senen"
+    },
+    {
+      "osmType": "way",
+      "osmId": 570315204,
+      "name": "Parkir RSCM",
+      "altNames": [
+        "RSCM"
+      ],
+      "tags": {
+        "name": "Parkir RSCM",
+        "amenity": "parking"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8450045,
+        "latitude": -6.1963023
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Menteng"
+    },
+    {
+      "osmType": "way",
+      "osmId": 491244198,
+      "name": "Rumah Sakit Cipto Mangunkusumo",
+      "altNames": [],
+      "tags": {
+        "name": "Rumah Sakit Cipto Mangunkusumo",
+        "amenity": "hospital"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8467393,
+        "latitude": -6.1972809
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Senen"
+    },
+    {
+      "osmType": "way",
+      "osmId": 1376005634,
+      "name": "Dewan Perwakilan Rakyat / Majelis Permusyawaratan Rakyat",
+      "altNames": [
+        "Senayan"
+      ],
+      "tags": {
+        "name": "Dewan Perwakilan Rakyat / Majelis Permusyawaratan Rakyat",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.800201,
+        "latitude": -6.2099003
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 682984153,
+      "name": "Stadion Utama Gelora Bung Karno",
+      "altNames": [
+        "Senayan"
+      ],
+      "tags": {
+        "name": "Stadion Utama Gelora Bung Karno",
+        "leisure": "stadium"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8025541,
+        "latitude": -6.218612
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 48036723,
+      "name": "Senayan City",
+      "altNames": [
+        "Senayan"
+      ],
+      "tags": {
+        "name": "Senayan City",
+        "shop": "mall"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7972463,
+        "latitude": -6.2273396
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 514485762,
+      "name": "Jalan Tol Dalam Kota Jakarta",
+      "altNames": [
+        "St. Jakarta Kota"
+      ],
+      "tags": {
+        "name": "Jalan Tol Dalam Kota Jakarta",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7990322,
+        "latitude": -6.2001681
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Palmerah",
+      "neighbourhood": "Slipi"
+    },
+    {
+      "osmType": "way",
+      "osmId": 514485758,
+      "name": "Tol Dalam Kota Jakarta",
+      "altNames": [
+        "St. Jakarta Kota"
+      ],
+      "tags": {
+        "name": "Tol Dalam Kota Jakarta",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7973263,
+        "latitude": -6.19519
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Palmerah",
+      "neighbourhood": "Slipi"
+    },
+    {
+      "osmType": "way",
+      "osmId": 749334208,
+      "name": "Tol Dalam Kota Jakarta",
+      "altNames": [
+        "St. Jakarta Kota"
+      ],
+      "tags": {
+        "name": "Tol Dalam Kota Jakarta",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7978598,
+        "latitude": -6.1970156
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Palmerah",
+      "neighbourhood": "Slipi"
+    },
+    {
+      "osmType": "node",
+      "osmId": 2334098791,
+      "name": "Cawang",
+      "altNames": [
+        "Stasiun Cawang"
+      ],
+      "tags": {
+        "name": "Cawang",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8586903,
+        "latitude": -6.2425517
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Tebet"
+    },
+    {
+      "osmType": "way",
+      "osmId": 484854777,
+      "name": "Stasiun Cawang",
+      "altNames": [],
+      "tags": {
+        "name": "Stasiun Cawang",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8586284,
+        "latitude": -6.2426307
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Tebet"
+    },
+    {
+      "osmType": "node",
+      "osmId": 8583485135,
+      "name": "Stasiun Cawang",
+      "altNames": [],
+      "tags": {
+        "name": "Stasiun Cawang",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8585424,
+        "latitude": -6.2427216
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Tebet"
+    },
+    {
+      "osmType": "node",
+      "osmId": 5036305391,
+      "name": "Jakarta Kota",
+      "altNames": [
+        "Stasiun Jakarta Kota"
+      ],
+      "tags": {
+        "name": "Jakarta Kota",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8146203,
+        "latitude": -6.1375828
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Taman Sari"
+    },
+    {
+      "osmType": "node",
+      "osmId": 4815286700,
+      "name": "Manggarai",
+      "altNames": [
+        "Stasiun Manggarai"
+      ],
+      "tags": {
+        "name": "Manggarai",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.849935,
+        "latitude": -6.2101704
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Tebet"
+    },
+    {
+      "osmType": "node",
+      "osmId": 4836555990,
+      "name": "Tanah Abang",
+      "altNames": [
+        "Stasiun Tanah Abang"
+      ],
+      "tags": {
+        "name": "Tanah Abang",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8108938,
+        "latitude": -6.1857127
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "node",
+      "osmId": 5023480157,
+      "name": "Tanjung Priuk",
+      "altNames": [
+        "Stasiun Tanjung Priok"
+      ],
+      "tags": {
+        "name": "Tanjung Priuk",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8814984,
+        "latitude": -6.1106914
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Tanjung Priok"
+    },
+    {
+      "osmType": "node",
+      "osmId": 7764938194,
+      "name": "Sungai Lagoa",
+      "altNames": [
+        "Stasiun Tanjung Priok"
+      ],
+      "tags": {
+        "name": "Sungai Lagoa",
+        "railway": "yard"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8778253,
+        "latitude": -6.1118879
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Tanjung Priok"
+    },
+    {
+      "osmType": "node",
+      "osmId": 7764938594,
+      "name": "Pasoso",
+      "altNames": [
+        "Stasiun Tanjung Priok"
+      ],
+      "tags": {
+        "name": "Pasoso",
+        "railway": "yard"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8854431,
+        "latitude": -6.1094192
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Tanjung Priok"
+    },
+    {
+      "osmType": "way",
+      "osmId": 762333786,
+      "name": "Sunter",
+      "altNames": [],
+      "tags": {
+        "name": "Sunter",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8962414,
+        "latitude": -6.1190347
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Koja"
+    },
+    {
+      "osmType": "way",
+      "osmId": 1337933855,
+      "name": "Sunter",
+      "altNames": [],
+      "tags": {
+        "name": "Sunter",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.88617,
+        "latitude": -6.1696249
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Kelapa Gading"
+    },
+    {
+      "osmType": "way",
+      "osmId": 1337933858,
+      "name": "Sunter",
+      "altNames": [],
+      "tags": {
+        "name": "Sunter",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8973331,
+        "latitude": -6.1781127
+      },
+      "municipality": "Jakarta Utara",
+      "adminDistrict": "Kelapa Gading"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802417,
+      "name": "Tanah Abang",
+      "altNames": [],
+      "tags": {
+        "name": "Tanah Abang",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8094996,
+        "latitude": -6.2052581
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "node",
+      "osmId": 4898804591,
+      "name": "Tanah Abang",
+      "altNames": [],
+      "tags": {
+        "name": "Tanah Abang",
+        "place": "municipality"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8123067,
+        "latitude": -6.2023017
+      },
+      "municipality": "Jakarta Pusat"
+    },
+    {
+      "osmType": "node",
+      "osmId": 3056674105,
+      "name": "Tebet",
+      "altNames": [],
+      "tags": {
+        "name": "Tebet",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8584389,
+        "latitude": -6.2263977
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Tebet"
+    },
+    {
+      "osmType": "relation",
+      "osmId": 5802418,
+      "name": "Tebet",
+      "altNames": [],
+      "tags": {
+        "name": "Tebet",
+        "place": "suburb"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8495325,
+        "latitude": -6.225538
+      },
+      "municipality": "Jakarta Selatan",
+      "adminDistrict": "Tebet"
+    },
+    {
+      "osmType": "node",
+      "osmId": 4836354733,
+      "name": "Tebet",
+      "altNames": [],
+      "tags": {
+        "name": "Tebet",
+        "place": "municipality"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8499443,
+        "latitude": -6.226728
+      },
+      "municipality": "Jakarta Selatan"
+    },
+    {
+      "osmType": "way",
+      "osmId": 500647741,
+      "name": "Terminal Kalideres",
+      "altNames": [],
+      "tags": {
+        "name": "Terminal Kalideres",
+        "amenity": "bus_station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.7057582,
+        "latitude": -6.154368
+      },
+      "municipality": "Jakarta Barat",
+      "adminDistrict": "Kalideres"
+    },
+    {
+      "osmType": "way",
+      "osmId": 126546821,
+      "name": "Terminal Kampung Rambutan",
+      "altNames": [],
+      "tags": {
+        "name": "Terminal Kampung Rambutan",
+        "amenity": "bus_station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8838224,
+        "latitude": -6.3107959
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Cipayung"
+    },
+    {
+      "osmType": "way",
+      "osmId": 531164950,
+      "name": "Terminal Kampung Rambutan",
+      "altNames": [],
+      "tags": {
+        "name": "Terminal Kampung Rambutan",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8823002,
+        "latitude": -6.3095002
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Ciracas"
+    },
+    {
+      "osmType": "way",
+      "osmId": 126541926,
+      "name": "Terminal Pulo Gadung",
+      "altNames": [],
+      "tags": {
+        "name": "Terminal Pulo Gadung",
+        "amenity": "bus_station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.9082851,
+        "latitude": -6.1832368
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Pulo Gadung"
+    },
+    {
+      "osmType": "node",
+      "osmId": 11920142680,
+      "name": "Terminal Pulo Gadung",
+      "altNames": [],
+      "tags": {
+        "name": "Terminal Pulo Gadung",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.9085841,
+        "latitude": -6.1828185
+      },
+      "municipality": "Jakarta Timur",
+      "adminDistrict": "Pulo Gadung"
+    },
+    {
+      "osmType": "way",
+      "osmId": 121706055,
+      "name": "Thamrin City",
+      "altNames": [],
+      "tags": {
+        "name": "Thamrin City",
+        "shop": "mall"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8165123,
+        "latitude": -6.1947792
+      },
+      "municipality": "Jakarta Pusat",
+      "adminDistrict": "Tanah Abang"
+    },
+    {
+      "osmType": "way",
+      "osmId": 401969868,
+      "name": "Universitas Indonesia",
+      "altNames": [],
+      "tags": {
+        "name": "Universitas Indonesia",
+        "amenity": "university"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.8271856,
+        "latitude": -6.3603157
+      },
+      "municipality": "Depok"
+    },
+    {
+      "osmType": "node",
+      "osmId": 2372928209,
+      "name": "Universitas Indonesia",
+      "altNames": [],
+      "tags": {
+        "name": "Universitas Indonesia",
+        "railway": "station"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.831782,
+        "latitude": -6.3604315
+      },
+      "municipality": "Depok"
+    },
+    {
+      "osmType": "node",
+      "osmId": 900000,
+      "name": "Jakarta International Stadium",
+      "altNames": [
+        "JIS"
+      ],
+      "tags": {
+        "leisure": "stadium",
+        "name": "Jakarta International Stadium"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.859,
+        "latitude": -6.122
+      },
+      "municipality": "Jakarta Utara"
+    },
+    {
+      "osmType": "node",
+      "osmId": 900001,
+      "name": "Jalan MH Thamrin",
+      "altNames": [
+        "MH Thamrin",
+        "Jl. MH Thamrin"
+      ],
+      "tags": {
+        "place": "suburb",
+        "name": "Jalan MH Thamrin"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.823,
+        "latitude": -6.19
+      },
+      "municipality": "Jakarta Pusat"
+    },
+    {
+      "osmType": "node",
+      "osmId": 900002,
+      "name": "Kota Tua",
+      "altNames": [
+        "Old Town"
+      ],
+      "tags": {
+        "tourism": "attraction",
+        "name": "Kota Tua"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.813,
+        "latitude": -6.135
+      },
+      "municipality": "Jakarta Barat"
+    },
+    {
+      "osmType": "node",
+      "osmId": 910120,
+      "name": "Central Park",
+      "altNames": [],
+      "tags": {
+        "shop": "mall",
+        "name": "Central Park"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.791,
+        "latitude": -6.177
+      },
+      "municipality": "Jakarta Barat"
+    },
+    {
+      "osmType": "node",
+      "osmId": 910121,
+      "name": "Pondok Indah Mall",
+      "altNames": [
+        "PIM"
+      ],
+      "tags": {
+        "shop": "mall",
+        "name": "Pondok Indah Mall"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.784,
+        "latitude": -6.265
+      },
+      "municipality": "Jakarta Selatan"
+    },
+    {
+      "osmType": "node",
+      "osmId": 910122,
+      "name": "Gelora Bung Karno",
+      "altNames": [
+        "GBK"
+      ],
+      "tags": {
+        "leisure": "stadium",
+        "name": "Gelora Bung Karno"
+      },
+      "geometry": {
+        "_tag": "Point",
+        "longitude": 106.802,
+        "latitude": -6.218
+      },
+      "municipality": "Jakarta Pusat"
+    }
+  ]
+}

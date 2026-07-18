@@ -1,0 +1,26 @@
+{
+  "accepted": 5,
+  "rejected": 1,
+  "exactDuplicatesMerged": 1,
+  "byType": {
+    "Area": 2,
+    "Landmark": 3
+  },
+  "byMunicipality": {
+    "Jakarta Barat": 1,
+    "Jakarta Pusat": 3,
+    "Depok": 1
+  },
+  "bySourceClassification": {
+    "place=neighbourhood": 1,
+    "shop=mall": 2,
+    "amenity=university": 1,
+    "place=suburb": 1,
+    "unclassified": 1,
+    "railway=station": 1
+  },
+  "byRejectionReason": {
+    "unsupported_classification": 1
+  },
+  "missingField": {}
+}

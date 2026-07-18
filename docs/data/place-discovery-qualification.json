@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1",
+  "placeArtifactVersion": "places-jabodetabek-20260718-v1",
+  "transitArtifactVersion": "bus-transjakarta-20260630-v2",
+  "placeCount": 113,
+  "transitPlaceCount": 7636,
+  "totalCases": 91,
+  "passed": 91,
+  "failed": 0,
+  "failures": []
+}

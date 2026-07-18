@@ -1,0 +1,158 @@
+{
+  "artifactVersion": "places-jabodetabek-fixture-v1",
+  "outputChecksum": "87d4427d3bfd536c607b1e01d2381099e131eb1d6de918808730fdc7bf64ac0f",
+  "places": [
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-fixture-v1",
+      "id": "place:area:node:3001",
+      "locality": {
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Menteng",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.194,
+        "longitude": 106.833
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:node:3001",
+          "retrievedAt": "2026-06-30T00:00:00.000Z",
+          "source": "osm-jabodetabek-fixture",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "Old Town"
+      ],
+      "areaKind": "Neighbourhood",
+      "artifactVersion": "places-jabodetabek-fixture-v1",
+      "bounds": {
+        "east": 106.82,
+        "north": -6.13,
+        "south": -6.14,
+        "west": 106.808
+      },
+      "id": "place:area:relation:1001",
+      "locality": {
+        "municipality": "Jakarta Barat",
+        "neighbourhood": "Pinangsia"
+      },
+      "primaryName": "Kota Tua",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.135,
+        "longitude": 106.813
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=neighbourhood",
+          "recordId": "osm:relation:1001",
+          "retrievedAt": "2026-06-30T00:00:00.000Z",
+          "source": "osm-jabodetabek-fixture",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Gambir",
+        "Gambir Station"
+      ],
+      "artifactVersion": "places-jabodetabek-fixture-v1",
+      "id": "place:landmark:node:4001",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Stasiun Gambir",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.176,
+        "longitude": 106.83
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:4001",
+          "retrievedAt": "2026-06-30T00:00:00.000Z",
+          "source": "osm-jabodetabek-fixture",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "GI"
+      ],
+      "artifactVersion": "places-jabodetabek-fixture-v1",
+      "id": "place:landmark:way:2001",
+      "landmarkKind": "Mall",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Grand Indonesia",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.195,
+        "longitude": 106.822
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:way:2001",
+          "retrievedAt": "2026-06-30T00:00:00.000Z",
+          "source": "osm-jabodetabek-fixture",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "UI"
+      ],
+      "artifactVersion": "places-jabodetabek-fixture-v1",
+      "id": "place:landmark:way:2002",
+      "landmarkKind": "Campus",
+      "locality": {
+        "municipality": "Depok"
+      },
+      "primaryName": "Universitas Indonesia",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.362,
+        "longitude": 106.827
+      },
+      "sourceRefs": [
+        {
+          "classification": "amenity=university",
+          "recordId": "osm:way:2002",
+          "retrievedAt": "2026-06-30T00:00:00.000Z",
+          "source": "osm-jabodetabek-fixture",
+          "system": "osm"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": "1",
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "boundaryDescription": "Representative Jabodetabek fixture for compiler tests (not the production extract).",
+    "compilerVersion": "1",
+    "dateOrVersion": "2026-06-30",
+    "inputChecksum": "fa1413287d7d3cb2323a0bb54bf56bd9e4dcb693ccddf2d8053dfd0758274c63",
+    "license": "ODbL-1.0",
+    "name": "osm-jabodetabek-fixture"
+  }
+}

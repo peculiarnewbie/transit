@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1",
+  "version": "places-jabodetabek-20260718-v1",
+  "artifactUrl": "./places-jabodetabek-20260718-v1.json",
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "inputChecksum": "0ae42eb24f106dfeeaad4d28682bb88d45da364e298c466448bb46c225d2ccf4",
+  "outputChecksum": "a377cfb5a25228c7ae56b849696a902fc3f940ed2d820064ad03d906e437a0ef",
+  "placeCount": 113
+}

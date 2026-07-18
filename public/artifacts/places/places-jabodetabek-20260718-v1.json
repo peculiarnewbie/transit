@@ -1,0 +1,3145 @@
+{
+  "artifactVersion": "places-jabodetabek-20260718-v1",
+  "outputChecksum": "a377cfb5a25228c7ae56b849696a902fc3f940ed2d820064ad03d906e437a0ef",
+  "places": [
+    {
+      "_tag": "Area",
+      "aliases": [
+        "PI"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:node:1782530599",
+      "locality": {
+        "adminDistrict": "Cilandak",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Pondok Indah",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2914577,
+        "longitude": 106.7835461
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:node:1782530599",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "Administrative",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:node:4832362563",
+      "locality": {
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Menteng",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1982846,
+        "longitude": 106.8361625
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=municipality",
+          "recordId": "osm:node:4832362563",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "Administrative",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:node:4836354733",
+      "locality": {
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Tebet",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.226728,
+        "longitude": 106.8499443
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=municipality",
+          "recordId": "osm:node:4836354733",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "TA"
+      ],
+      "areaKind": "Administrative",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:node:4898804591",
+      "locality": {
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Tanah Abang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2023017,
+        "longitude": 106.8123067
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=municipality",
+          "recordId": "osm:node:4898804591",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "KJ"
+      ],
+      "areaKind": "Administrative",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:node:5008720780",
+      "locality": {
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Kebon Jeruk",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1915105,
+        "longitude": 106.770356
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=municipality",
+          "recordId": "osm:node:5008720780",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "BB"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:node:506083170",
+      "locality": {
+        "adminDistrict": "Lagoon",
+        "municipality": "Bekasi",
+        "neighbourhood": "Perumnas 2"
+      },
+      "primaryName": "Bekasi Barat",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2508909,
+        "longitude": 106.985212
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:node:506083170",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "Administrative",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:node:5104479172",
+      "locality": {
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Cengkareng",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1490933,
+        "longitude": 106.734781
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=municipality",
+          "recordId": "osm:node:5104479172",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "KG"
+      ],
+      "areaKind": "Administrative",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:node:5127572846",
+      "locality": {
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Kelapa Gading",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1579262,
+        "longitude": 106.9024491
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=municipality",
+          "recordId": "osm:node:5127572846",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "Jl. MH Thamrin",
+        "JMT",
+        "MH Thamrin"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:node:900001",
+      "locality": {
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan MH Thamrin",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.19,
+        "longitude": 106.823
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:node:900001",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802156",
+      "locality": {
+        "adminDistrict": "Grogol Petamburan",
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Grogol",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.161329,
+        "longitude": 106.7948841
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802156",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "KS"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802159",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Kebon Sirih",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1850822,
+        "longitude": 106.8311054
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802159",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "KJ"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802188",
+      "locality": {
+        "adminDistrict": "Kebon Jeruk",
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Kebon Jeruk",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1956736,
+        "longitude": 106.7721481
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802188",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802203",
+      "locality": {
+        "adminDistrict": "Kramat Jati",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Cawang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2503382,
+        "longitude": 106.8674908
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802203",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802224",
+      "locality": {
+        "adminDistrict": "Pulo Gadung",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Cipinang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2060501,
+        "longitude": 106.8926197
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802224",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802236",
+      "locality": {
+        "adminDistrict": "Pulo Gadung",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Rawamangun",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1959278,
+        "longitude": 106.8847253
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802236",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802247",
+      "locality": {
+        "adminDistrict": "Gambir",
+        "municipality": "Jakarta Pusat",
+        "neighbourhood": "Gambir"
+      },
+      "primaryName": "Gambir",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1753675,
+        "longitude": 106.8264246
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802247",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "KM"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802251",
+      "locality": {
+        "adminDistrict": "Jatinegara",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Kampung Melayu",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2193557,
+        "longitude": 106.8636187
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802251",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802288",
+      "locality": {
+        "adminDistrict": "Penjaringan",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Pluit",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1150307,
+        "longitude": 106.7873624
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802288",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "PM"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802344",
+      "locality": {
+        "adminDistrict": "Pasar Minggu",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Pasar Minggu",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2893924,
+        "longitude": 106.8390511
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802344",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802349",
+      "locality": {
+        "adminDistrict": "Kramat Jati",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Cililitan",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2624687,
+        "longitude": 106.86381
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802349",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802357",
+      "locality": {
+        "municipality": "Jakarta Pusat",
+        "neighbourhood": "Kemayoran"
+      },
+      "primaryName": "Kemayoran",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1644445,
+        "longitude": 106.8453559
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802357",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "KJ"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802392",
+      "locality": {
+        "adminDistrict": "Kebon Jeruk",
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Kebon Jeruk",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.192572,
+        "longitude": 106.7697255
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802392",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "PM"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802408",
+      "locality": {
+        "adminDistrict": "Pasar Minggu",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Pasar Minggu",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2919498,
+        "longitude": 106.8278347
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802408",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802412",
+      "locality": {
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Kemayoran",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1648157,
+        "longitude": 106.8450861
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802412",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "KG"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802414",
+      "locality": {
+        "adminDistrict": "Kelapa Gading",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Kelapa Gading",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1599379,
+        "longitude": 106.9024826
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802414",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "KB"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802416",
+      "locality": {
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Kebayoran Baru",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2497787,
+        "longitude": 106.7972324
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802416",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802418",
+      "locality": {
+        "adminDistrict": "Tebet",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Tebet",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.225538,
+        "longitude": 106.8495325
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802418",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:5802427",
+      "locality": {
+        "adminDistrict": "Cengkareng",
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Cengkareng",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1528985,
+        "longitude": 106.7447182
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:5802427",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:7212530",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Menteng",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2010459,
+        "longitude": 106.8352111
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:7212530",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:7212895",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Menteng",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1950265,
+        "longitude": 106.8322242
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:7212895",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:relation:7313694",
+      "locality": {
+        "adminDistrict": "Gambir",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Gambir",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1711625,
+        "longitude": 106.8167439
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:relation:7313694",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:117313929",
+      "locality": {
+        "adminDistrict": "Pulo Gadung",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Cipinang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2123874,
+        "longitude": 106.8941507
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:117313929",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:1337933855",
+      "locality": {
+        "adminDistrict": "Kelapa Gading",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Sunter",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1696249,
+        "longitude": 106.88617
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:1337933855",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:1337933858",
+      "locality": {
+        "adminDistrict": "Kelapa Gading",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Sunter",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1781127,
+        "longitude": 106.8973331
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:1337933858",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "Senayan"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:1376005634",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Dewan Perwakilan Rakyat / Majelis Permusyawaratan Rakyat",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2099003,
+        "longitude": 106.800201
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:1376005634",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "JJS"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:1457108253",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jenderal Sudirman",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2157769,
+        "longitude": 106.8168177
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:1457108253",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "PI"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:1472757712",
+      "locality": {
+        "adminDistrict": "Kebayoran Lama",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Pondok Indah",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2756433,
+        "longitude": 106.7828144
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:1472757712",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:155956804",
+      "locality": {
+        "adminDistrict": "Makasar",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Cipinang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.269941,
+        "longitude": 106.8781969
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:155956804",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "JJS"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:449551290",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jenderal Sudirman",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2168817,
+        "longitude": 106.8154342
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:449551290",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "Jalan M.H. Thamrin",
+        "JMHT"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:449551297",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Mohammad Husni Thamrin",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1854227,
+        "longitude": 106.8230079
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:449551297",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "JJS"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:453239936",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jenderal Sudirman",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2216066,
+        "longitude": 106.8094521
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:453239936",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "Jalan M.H. Thamrin",
+        "JMHT"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:453439715",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Mohammad Husni Thamrin",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1931317,
+        "longitude": 106.8229318
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:453439715",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [
+        "Jalan M.H. Thamrin",
+        "JMHT"
+      ],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:629731294",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Mohammad Husni Thamrin",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1871574,
+        "longitude": 106.8232009
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:629731294",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Area",
+      "aliases": [],
+      "areaKind": "District",
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:area:way:762333786",
+      "locality": {
+        "adminDistrict": "Koja",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Sunter",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1190347,
+        "longitude": 106.8962414
+      },
+      "sourceRefs": [
+        {
+          "classification": "place=suburb",
+          "recordId": "osm:way:762333786",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Kota",
+        "KT"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:11564482115",
+      "landmarkKind": "Terminal",
+      "locality": {
+        "adminDistrict": "Taman Sari",
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Kota Tua",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1368624,
+        "longitude": 106.8150708
+      },
+      "sourceRefs": [
+        {
+          "classification": "amenity=bus_station",
+          "recordId": "osm:node:11564482115",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "MN",
+        "Monas"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:11564482120",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Gambir",
+        "municipality": "Jakarta Pusat",
+        "neighbourhood": "Gambir"
+      },
+      "primaryName": "Monumen Nasional",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1761771,
+        "longitude": 106.8228869
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:node:11564482120",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "RS Sumber Waras"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:11567672589",
+      "landmarkKind": "Terminal",
+      "locality": {
+        "adminDistrict": "Grogol Petamburan",
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Roxy",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1662903,
+        "longitude": 106.7967585
+      },
+      "sourceRefs": [
+        {
+          "classification": "amenity=bus_station",
+          "recordId": "osm:node:11567672589",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "TPG"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:11920142680",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Pulo Gadung",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Terminal Pulo Gadung",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1828185,
+        "longitude": 106.9085841
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:node:11920142680",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PI"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:11957654252",
+      "landmarkKind": "Terminal",
+      "locality": {
+        "adminDistrict": "Kebayoran Lama",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Pondok Indah",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2672166,
+        "longitude": 106.7836553
+      },
+      "sourceRefs": [
+        {
+          "classification": "amenity=bus_station",
+          "recordId": "osm:node:11957654252",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "KPM",
+        "Ps. Minggu"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:12079406508",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Pasar Minggu",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Kel. Ps. Minggu",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.285642,
+        "longitude": 106.84066
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:node:12079406508",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:12260707174",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Kramat Jati",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Cawang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.245907,
+        "longitude": 106.8712296
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:12260707174",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Stasiun Cawang"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:2334098791",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Tebet",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Cawang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2425517,
+        "longitude": 106.8586903
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:2334098791",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "UI"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:2372928209",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "municipality": "Depok"
+      },
+      "primaryName": "Universitas Indonesia",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.3604315,
+        "longitude": 106.831782
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:2372928209",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:3056674105",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Tebet",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Tebet",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2263977,
+        "longitude": 106.8584389
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:3056674105",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "BB",
+        "Bekasi"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:3469731328",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Proyek",
+        "municipality": "Bekasi"
+      },
+      "primaryName": "Bekasi Barat",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2362143,
+        "longitude": 106.9987436
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:3469731328",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Stasiun Manggarai"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:4815286700",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Tebet",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Manggarai",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2101704,
+        "longitude": 106.849935
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:4815286700",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Stasiun Tanah Abang",
+        "TA"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:4836555990",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Tanah Abang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1857127,
+        "longitude": 106.8108938
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:4836555990",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PS"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:4849162195",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Senen",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Pasar Senen",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1744233,
+        "longitude": 106.8445744
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:4849162195",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:4891132084",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Gambir",
+        "municipality": "Jakarta Pusat",
+        "neighbourhood": "Gambir"
+      },
+      "primaryName": "Gambir",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1766553,
+        "longitude": 106.8306473
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:4891132084",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:4899822033",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Kemayoran",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1617033,
+        "longitude": 106.8414012
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:4899822033",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PM"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:4976676188",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Pasar Minggu",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Pasar Minggu",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2833322,
+        "longitude": 106.8448558
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:4976676188",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Stasiun Tanjung Priok",
+        "TP"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:5023480157",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Tanjung Priok",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Tanjung Priuk",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1106914,
+        "longitude": 106.8814984
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:5023480157",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "JK",
+        "Stasiun Jakarta Kota"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:5036305391",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Taman Sari",
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Jakarta Kota",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1375828,
+        "longitude": 106.8146203
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:5036305391",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:5047494890",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Grogol Petamburan",
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Grogol",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.162035,
+        "longitude": 106.7896101
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:5047494890",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:5124126895",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Pademangan",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Ancol",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.128115,
+        "longitude": 106.8451374
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:5124126895",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PI"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:5833636988",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Plaza Indonesia",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1934835,
+        "longitude": 106.8228616
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:node:5833636988",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "BB"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:8174072563",
+      "landmarkKind": "RailStation",
+      "locality": {
+        "adminDistrict": "Lagoon",
+        "municipality": "Daerah Khusus Ibukota Jakarta",
+        "neighbourhood": "Bumi Satria Kencana"
+      },
+      "primaryName": "Bekasi Barat",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2529489,
+        "longitude": 106.9904237
+      },
+      "sourceRefs": [
+        {
+          "classification": "railway=station",
+          "recordId": "osm:node:8174072563",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "SC"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:8583485135",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tebet",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Stasiun Cawang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2427216,
+        "longitude": 106.8585424
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:node:8583485135",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "JIS"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:900000",
+      "landmarkKind": "Stadium",
+      "locality": {
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Jakarta International Stadium",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.122,
+        "longitude": 106.859
+      },
+      "sourceRefs": [
+        {
+          "classification": "leisure=stadium",
+          "recordId": "osm:node:900000",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "KT",
+        "Old Town"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:900002",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Kota Tua",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.135,
+        "longitude": 106.813
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:node:900002",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "CP"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:910120",
+      "landmarkKind": "Mall",
+      "locality": {
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Central Park",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.177,
+        "longitude": 106.791
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:node:910120",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PIM"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:910121",
+      "landmarkKind": "Mall",
+      "locality": {
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Pondok Indah Mall",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.265,
+        "longitude": 106.784
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:node:910121",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "GBK"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:910122",
+      "landmarkKind": "Stadium",
+      "locality": {
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Gelora Bung Karno",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.218,
+        "longitude": 106.802
+      },
+      "sourceRefs": [
+        {
+          "classification": "leisure=stadium",
+          "recordId": "osm:node:910122",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PBM"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:node:9933297620",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "municipality": "Jakarta Selatan",
+        "neighbourhood": "Blok B"
+      },
+      "primaryName": "Plaza Blok M",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2450912,
+        "longitude": 106.7975704
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:node:9933297620",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:relation:5802121",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Pademangan",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Ancol",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.125215,
+        "longitude": 106.8362474
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:relation:5802121",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PB"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:relation:5802134",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Sawah Besar",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Pasar Baru",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.164901,
+        "longitude": 106.8334669
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:relation:5802134",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:relation:5802374",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Pasar Minggu",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Ragunan",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2976668,
+        "longitude": 106.8204823
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:relation:5802374",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "TA"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:relation:5802417",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Tanah Abang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2052581,
+        "longitude": 106.8094996
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:relation:5802417",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "MN",
+        "Monas"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:1159084257",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Gambir",
+        "municipality": "Jakarta Pusat",
+        "neighbourhood": "Gambir"
+      },
+      "primaryName": "Monumen Nasional",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1754024,
+        "longitude": 106.8271692
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:1159084257",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "TC"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:121706055",
+      "landmarkKind": "Mall",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Thamrin City",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1947792,
+        "longitude": 106.8165123
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:way:121706055",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PBM"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:121870309",
+      "landmarkKind": "Mall",
+      "locality": {
+        "municipality": "Jakarta Selatan",
+        "neighbourhood": "Blok B"
+      },
+      "primaryName": "Plaza Blok M",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.244308,
+        "longitude": 106.797644
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:way:121870309",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "TPG"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:126541926",
+      "landmarkKind": "Terminal",
+      "locality": {
+        "adminDistrict": "Pulo Gadung",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Terminal Pulo Gadung",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1832368,
+        "longitude": 106.9082851
+      },
+      "sourceRefs": [
+        {
+          "classification": "amenity=bus_station",
+          "recordId": "osm:way:126541926",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "TKR"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:126546821",
+      "landmarkKind": "Terminal",
+      "locality": {
+        "adminDistrict": "Cipayung",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Terminal Kampung Rambutan",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.3107959,
+        "longitude": 106.8838224
+      },
+      "sourceRefs": [
+        {
+          "classification": "amenity=bus_station",
+          "recordId": "osm:way:126546821",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "CIM",
+        "Mall Cipinang Indah"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:155955655",
+      "landmarkKind": "Mall",
+      "locality": {
+        "adminDistrict": "Duren Sawit",
+        "municipality": "Jakarta Timur",
+        "neighbourhood": "Pondok Bambu"
+      },
+      "primaryName": "Cipinang Indah Mall",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2386007,
+        "longitude": 106.8940805
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:way:155955655",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "GISB",
+        "Grand Indonesia"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:168526553",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Grand Indonesia Sky Bridge",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1951739,
+        "longitude": 106.8207308
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:168526553",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:28793189",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Pademangan",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Ancol",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1267961,
+        "longitude": 106.8494416
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:28793189",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "KBR"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:29416354",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Pasar Minggu",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Kebun Binatang Ragunan",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.3114056,
+        "longitude": 106.8216897
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=zoo",
+          "recordId": "osm:way:29416354",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Pasar Tanah Abang"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:334969765",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Pusat Pelatihan Kerja Daerah (PPKD) Jakarta Pusat",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2107229,
+        "longitude": 106.8132745
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:334969765",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Mall Kelapa Gading",
+        "SMKG"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:391510441",
+      "landmarkKind": "Mall",
+      "locality": {
+        "adminDistrict": "Kelapa Gading",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Summarecon Mall Kelapa Gading",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1573987,
+        "longitude": 106.9083661
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:way:391510441",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "UI"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:401969868",
+      "landmarkKind": "Campus",
+      "locality": {
+        "municipality": "Depok"
+      },
+      "primaryName": "Universitas Indonesia",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.3603157,
+        "longitude": 106.8271856
+      },
+      "sourceRefs": [
+        {
+          "classification": "amenity=university",
+          "recordId": "osm:way:401969868",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "MKG"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:41113187",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Kelapa Gading",
+        "municipality": "Jakarta Utara"
+      },
+      "primaryName": "Mall Kelapa Gading",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1587563,
+        "longitude": 106.9082426
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:41113187",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "JJS",
+        "Jl. Jenderal Sudirman"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:449551298",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jenderal Sudirman",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1955379,
+        "longitude": 106.8232406
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:449551298",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Jalan Sudirman",
+        "JJS"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:453253818",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jenderal Sudirman",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.215386,
+        "longitude": 106.8173127
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:453253818",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Jalan Sudirman",
+        "JJS"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:453253827",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jenderal Sudirman",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1991121,
+        "longitude": 106.8230565
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:453253827",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "SC",
+        "Senayan"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:48036723",
+      "landmarkKind": "Mall",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Senayan City",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2273396,
+        "longitude": 106.7972463
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:way:48036723",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Ps. Minggu"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:481905166",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Pasar Minggu",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Urbanloft",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2743382,
+        "longitude": 106.816502
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:481905166",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "SC"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:484854777",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tebet",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Stasiun Cawang",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2426307,
+        "longitude": 106.8586284
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:484854777",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "RS Cipto Mangunkusumo",
+        "RSCM"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:491244198",
+      "landmarkKind": "Hospital",
+      "locality": {
+        "adminDistrict": "Senen",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Rumah Sakit Cipto Mangunkusumo",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1972809,
+        "longitude": 106.8467393
+      },
+      "sourceRefs": [
+        {
+          "classification": "amenity=hospital",
+          "recordId": "osm:way:491244198",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "TK"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:500647741",
+      "landmarkKind": "Terminal",
+      "locality": {
+        "adminDistrict": "Kalideres",
+        "municipality": "Jakarta Barat"
+      },
+      "primaryName": "Terminal Kalideres",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.154368,
+        "longitude": 106.7057582
+      },
+      "sourceRefs": [
+        {
+          "classification": "amenity=bus_station",
+          "recordId": "osm:way:500647741",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "JJR2",
+        "RSCM"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:506345438",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Senen",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jembatan RSCM 2",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1954364,
+        "longitude": 106.8466746
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:506345438",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "St. Jakarta Kota",
+        "TDKJ"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:514485758",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Palmerah",
+        "municipality": "Jakarta Barat",
+        "neighbourhood": "Slipi"
+      },
+      "primaryName": "Tol Dalam Kota Jakarta",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.19519,
+        "longitude": 106.7973263
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:514485758",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "JTDKJ",
+        "St. Jakarta Kota"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:514485762",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Palmerah",
+        "municipality": "Jakarta Barat",
+        "neighbourhood": "Slipi"
+      },
+      "primaryName": "Jalan Tol Dalam Kota Jakarta",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2001681,
+        "longitude": 106.7990322
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:514485762",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "TKR"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:531164950",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Ciracas",
+        "municipality": "Jakarta Timur"
+      },
+      "primaryName": "Terminal Kampung Rambutan",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.3095002,
+        "longitude": 106.8823002
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:531164950",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PI"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:538319726",
+      "landmarkKind": "Mall",
+      "locality": {
+        "adminDistrict": "Menteng",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Plaza Indonesia",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1934421,
+        "longitude": 106.821941
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:way:538319726",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "JJS",
+        "Jl. Jenderal Sudirman"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:557844496",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jenderal Sudirman",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2251217,
+        "longitude": 106.8044039
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:557844496",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Gelora Bung Karno",
+        "GOBK"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:653084970",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Gelanggang Olahraga Bung Karno",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2186492,
+        "longitude": 106.8036258
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:653084970",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Senayan",
+        "SUGBK"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:682984153",
+      "landmarkKind": "Stadium",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Stadion Utama Gelora Bung Karno",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.218612,
+        "longitude": 106.8025541
+      },
+      "sourceRefs": [
+        {
+          "classification": "leisure=stadium",
+          "recordId": "osm:way:682984153",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "JR",
+        "RSCM"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:735372056",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Senen",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jembatan RSCM",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1971024,
+        "longitude": 106.8454163
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:735372056",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "St. Jakarta Kota",
+        "TDKJ"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:749334208",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Palmerah",
+        "municipality": "Jakarta Barat",
+        "neighbourhood": "Slipi"
+      },
+      "primaryName": "Tol Dalam Kota Jakarta",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1970156,
+        "longitude": 106.7978598
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:749334208",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "JJS",
+        "Jl. Jenderal Sudirman"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:759658441",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jenderal Sudirman",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2165076,
+        "longitude": 106.815897
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:759658441",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "Jalan Sudirman",
+        "JJS"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:760615600",
+      "landmarkKind": "Landmark",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Jalan Jenderal Sudirman",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2134985,
+        "longitude": 106.8192139
+      },
+      "sourceRefs": [
+        {
+          "classification": "tourism=attraction",
+          "recordId": "osm:way:760615600",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "PIM1",
+        "Pondok Indah Mall"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:83489551",
+      "landmarkKind": "Mall",
+      "locality": {
+        "adminDistrict": "Kebayoran Lama",
+        "municipality": "Jakarta Selatan"
+      },
+      "primaryName": "Pondok Indah Mall 1",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.2653276,
+        "longitude": 106.7846567
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:way:83489551",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    },
+    {
+      "_tag": "Landmark",
+      "aliases": [
+        "GIST",
+        "Grand Indonesia"
+      ],
+      "artifactVersion": "places-jabodetabek-20260718-v1",
+      "id": "place:landmark:way:974882100",
+      "landmarkKind": "Mall",
+      "locality": {
+        "adminDistrict": "Tanah Abang",
+        "municipality": "Jakarta Pusat"
+      },
+      "primaryName": "Grand Indonesia Shopping Town",
+      "representativeLocation": {
+        "_tag": "Placed",
+        "latitude": -6.1957601,
+        "longitude": 106.8214547
+      },
+      "sourceRefs": [
+        {
+          "classification": "shop=mall",
+          "recordId": "osm:way:974882100",
+          "retrievedAt": "2026-07-18T00:00:00.000Z",
+          "source": "nominatim-osm-jabodetabek",
+          "system": "osm"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": "1",
+  "source": {
+    "attribution": "© OpenStreetMap contributors",
+    "boundaryDescription": "Jabodetabek viewbox 106.38,-6.80,107.18,-5.95 via Nominatim search",
+    "compilerVersion": "1",
+    "dateOrVersion": "2026-07-18",
+    "inputChecksum": "0ae42eb24f106dfeeaad4d28682bb88d45da364e298c466448bb46c225d2ccf4",
+    "license": "ODbL-1.0",
+    "name": "nominatim-osm-jabodetabek"
+  }
+}

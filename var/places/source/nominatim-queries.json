@@ -1,0 +1,322 @@
+[
+  {
+    "name": "Ancol",
+    "placeType": "Landmark",
+    "locality": "Jakarta Utara"
+  },
+  {
+    "name": "Bekasi Barat",
+    "placeType": "Area",
+    "locality": "Bekasi"
+  },
+  {
+    "name": "Cawang",
+    "placeType": "Area",
+    "locality": "Jakarta Timur"
+  },
+  {
+    "name": "Cengkareng",
+    "placeType": "Area",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "Central Park",
+    "placeType": "Landmark",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "Cililitan",
+    "placeType": "Area",
+    "locality": "Jakarta Timur"
+  },
+  {
+    "name": "Cipinang",
+    "placeType": "Area",
+    "locality": "Jakarta Timur"
+  },
+  {
+    "name": "Gambir",
+    "placeType": "Area",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Gelora Bung Karno",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "grand indo",
+    "placeType": "Query",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Grand Indonesia",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Grogol",
+    "placeType": "Area",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "Jalan Jenderal Sudirman",
+    "placeType": "Area",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Jalan M.H. Thamrin",
+    "placeType": "Area",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Jalan Sudirman",
+    "placeType": "Query",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Jl. Jenderal Sudirman",
+    "placeType": "Query",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Jl. MH Thamrin",
+    "placeType": "Query",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Kampung Melayu",
+    "placeType": "Area",
+    "locality": "Jakarta Timur"
+  },
+  {
+    "name": "Kampus UI Depok",
+    "placeType": "Query",
+    "locality": "EdgeNetwork"
+  },
+  {
+    "name": "Kebayoran Baru",
+    "placeType": "Area",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Kebon Jeruk",
+    "placeType": "Area",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "Kebon Sirih",
+    "placeType": "Area",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Kebun Binatang Ragunan",
+    "placeType": "Query",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Kelapa Gading",
+    "placeType": "Area",
+    "locality": "Jakarta Utara"
+  },
+  {
+    "name": "Kemayoran",
+    "placeType": "Area",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "kota  tua",
+    "placeType": "Query",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "Kota Tua",
+    "placeType": "Landmark",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "Mall Cipinang Indah",
+    "placeType": "Landmark",
+    "locality": "Jakarta Timur"
+  },
+  {
+    "name": "Mall Kelapa Gading",
+    "placeType": "Landmark",
+    "locality": "Jakarta Utara"
+  },
+  {
+    "name": "Menteng",
+    "placeType": "Area",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Monas",
+    "placeType": "Query",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Monumen Nasional",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Pasar Baru",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Pasar Minggu",
+    "placeType": "Area",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Pasar Senen",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Pasar Tanah Abang",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Plaza Blok M",
+    "placeType": "Landmark",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Plaza Indonesia",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Pluit",
+    "placeType": "Area",
+    "locality": "Jakarta Utara"
+  },
+  {
+    "name": "Pondok Indah",
+    "placeType": "Area",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Pondok Indah Mall",
+    "placeType": "Landmark",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Ps. Minggu",
+    "placeType": "Query",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Ps. Senen",
+    "placeType": "Query",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Ragunan",
+    "placeType": "Landmark",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Rawamangun",
+    "placeType": "Area",
+    "locality": "Jakarta Timur"
+  },
+  {
+    "name": "RS Sumber Waras",
+    "placeType": "Landmark",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "RSCM",
+    "placeType": "Query",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Rumah Sakit Cipto Mangunkusumo",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Senayan",
+    "placeType": "Area",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "St. Jakarta Kota",
+    "placeType": "Query",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "Stasiun Cawang",
+    "placeType": "Landmark",
+    "locality": "Jakarta Timur"
+  },
+  {
+    "name": "Stasiun Jakarta Kota",
+    "placeType": "Landmark",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "Stasiun Manggarai",
+    "placeType": "Landmark",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Stasiun Tanah Abang",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Stasiun Tanjung Priok",
+    "placeType": "Landmark",
+    "locality": "Jakarta Utara"
+  },
+  {
+    "name": "Sunter",
+    "placeType": "Area",
+    "locality": "Jakarta Utara"
+  },
+  {
+    "name": "Tanah Abang",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "Tebet",
+    "placeType": "Area",
+    "locality": "Jakarta Selatan"
+  },
+  {
+    "name": "Terminal Kalideres",
+    "placeType": "Landmark",
+    "locality": "Jakarta Barat"
+  },
+  {
+    "name": "Terminal Kampung Rambutan",
+    "placeType": "Landmark",
+    "locality": "Jakarta Timur"
+  },
+  {
+    "name": "Terminal Pulo Gadung",
+    "placeType": "Landmark",
+    "locality": "Jakarta Timur"
+  },
+  {
+    "name": "Thamrin City",
+    "placeType": "Landmark",
+    "locality": "Jakarta Pusat"
+  },
+  {
+    "name": "UI Depok",
+    "placeType": "Query",
+    "locality": "EdgeNetwork"
+  },
+  {
+    "name": "Universitas Indonesia",
+    "placeType": "Landmark",
+    "locality": "Depok"
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "accepted": 113,
+  "rejected": 10,
+  "exactDuplicatesMerged": 0,
+  "byType": {
+    "Landmark": 69,
+    "Area": 44
+  },
+  "byMunicipality": {
+    "Jakarta Utara": 13,
+    "Daerah Khusus Ibukota Jakarta": 1,
+    "Bekasi": 2,
+    "Jakarta Timur": 13,
+    "Jakarta Barat": 16,
+    "Jakarta Pusat": 44,
+    "Jakarta Selatan": 22,
+    "Depok": 2
+  },
+  "bySourceClassification": {
+    "railway=station": 16,
+    "tourism=attraction": 31,
+    "place=suburb": 38,
+    "place=municipality": 6,
+    "tourism=hotel": 1,
+    "amenity=restaurant": 2,
+    "amenity=fountain": 1,
+    "shop=mall": 10,
+    "shop=supermarket": 2,
+    "tourism=zoo": 1,
+    "amenity=bus_station": 6,
+    "railway=stop": 1,
+    "amenity=parking": 1,
+    "amenity=hospital": 1,
+    "leisure=stadium": 3,
+    "railway=yard": 2,
+    "amenity=university": 1
+  },
+  "byRejectionReason": {
+    "unsupported_classification": 10
+  },
+  "missingField": {}
+}
