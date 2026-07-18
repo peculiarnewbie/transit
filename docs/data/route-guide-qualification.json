@@ -1,15 +1,15 @@
 {
   "schemaVersion": "1",
-  "networkArtifact": "/home/bolt/git/other/transit-015/public/artifacts/bus-transjakarta-20260630-v2.network.json",
+  "networkArtifact": "/home/bolt/git/other/transit/public/artifacts/bus-transjakarta-20260630-v2.network.json",
   "transitPlaceSourceArtifactVersion": "bus-transjakarta-20260630-v2",
-  "overrideArtifact": "/home/bolt/git/other/transit-015/test/fixtures/transit-places/reviewed-complex-overrides.json",
+  "overrideArtifact": "/home/bolt/git/other/transit/test/fixtures/transit-places/reviewed-complex-overrides.json",
   "corpusManifestVersion": "bus-transjakarta-20260630-v2",
-  "generatedAt": "2026-07-18T11:35:24.824Z",
+  "generatedAt": "2026-07-18T13:55:29.534Z",
   "graph": {
     "patternCount": 719,
     "placeCount": 7636,
     "transferEdgeEndpointCount": 8243,
-    "indexTimeMs": 15296,
+    "indexTimeMs": 14893,
     "duplicateSequenceCollapseCount": 0,
     "findingCounts": {
       "DirectionConflict": 1
@@ -37,38 +37,38 @@
     ]
   },
   "queryLatencyMs": {
-    "p50": 23,
-    "p95": 122,
-    "max": 871
+    "p50": 76,
+    "p95": 192,
+    "max": 2811
   },
   "countsByCategory": {
     "OneTransfer": {
-      "matched": 2,
-      "mismatch": 13,
-      "noRoute": 1,
+      "matched": 15,
+      "mismatch": 0,
+      "noRoute": 0,
       "expectedGap": 0
     },
     "Direct": {
-      "matched": 24,
+      "matched": 26,
       "mismatch": 0,
-      "noRoute": 1,
+      "noRoute": 0,
       "expectedGap": 0
     },
     "TerminalPlatform": {
-      "matched": 0,
+      "matched": 1,
       "mismatch": 0,
-      "noRoute": 1,
+      "noRoute": 0,
       "expectedGap": 0
     },
     "ParentChildStation": {
-      "matched": 1,
-      "mismatch": 1,
-      "noRoute": 1,
+      "matched": 3,
+      "mismatch": 0,
+      "noRoute": 0,
       "expectedGap": 0
     },
     "ReversePair": {
-      "matched": 6,
-      "mismatch": 1,
+      "matched": 7,
+      "mismatch": 0,
       "noRoute": 0,
       "expectedGap": 0
     },
@@ -79,26 +79,26 @@
       "expectedGap": 0
     },
     "TwoTransfer": {
-      "matched": 0,
-      "mismatch": 8,
-      "noRoute": 1,
+      "matched": 10,
+      "mismatch": 0,
+      "noRoute": 0,
       "expectedGap": 0
     },
     "Peripheral": {
-      "matched": 1,
-      "mismatch": 7,
-      "noRoute": 1,
+      "matched": 9,
+      "mismatch": 0,
+      "noRoute": 0,
       "expectedGap": 0
     },
     "KnownGap": {
       "matched": 0,
-      "mismatch": 2,
+      "mismatch": 0,
       "noRoute": 3,
-      "expectedGap": 2
+      "expectedGap": 3
     },
     "Branch": {
-      "matched": 2,
-      "mismatch": 1,
+      "matched": 3,
+      "mismatch": 0,
       "noRoute": 0,
       "expectedGap": 0
     }
@@ -108,7 +108,7 @@
       "caseId": "route:ancol-blokm",
       "outcome": "Supported",
       "categories": ["OneTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["1W"],
@@ -123,8 +123,8 @@
           "alighting": "Blok M"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 50
+      "detail": "1W | 1",
+      "latencyMs": 94
     },
     {
       "caseId": "route:blokm-bundaranhi",
@@ -140,7 +140,7 @@
         }
       ],
       "detail": "1",
-      "latencyMs": 28
+      "latencyMs": 107
     },
     {
       "caseId": "route:blokm-kota",
@@ -156,15 +156,23 @@
         }
       ],
       "detail": "1",
-      "latencyMs": 24
+      "latencyMs": 104
     },
     {
       "caseId": "route:blokm-terminal-platforms",
       "outcome": "Supported",
       "categories": ["Direct", "TerminalPlatform", "ParentChildStation"],
-      "status": "NoRoute",
-      "detail": "No topological bus guide within transfer and expansion caps",
-      "latencyMs": 24
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["1"],
+          "directions": ["Kali Besar Barat via Kebon Sirih"],
+          "boarding": "Blok M",
+          "alighting": "Bundaran HI Astra"
+        }
+      ],
+      "detail": "1",
+      "latencyMs": 119
     },
     {
       "caseId": "route:bundaranhi-blokm",
@@ -180,7 +188,7 @@
         }
       ],
       "detail": "1",
-      "latencyMs": 29
+      "latencyMs": 103
     },
     {
       "caseId": "route:bundaranhi-parent-child",
@@ -196,7 +204,7 @@
         }
       ],
       "detail": "1",
-      "latencyMs": 22
+      "latencyMs": 117
     },
     {
       "caseId": "route:cawang-grogol-9-9a",
@@ -212,13 +220,13 @@
         }
       ],
       "detail": "9 or 9A",
-      "latencyMs": 22
+      "latencyMs": 71
     },
     {
       "caseId": "route:cawang-kota",
       "outcome": "Supported",
       "categories": ["OneTransfer", "ParentChildStation"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["5C"],
@@ -233,30 +241,64 @@
           "alighting": "Kali Besar"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 27
+      "detail": "5C | 1A",
+      "latencyMs": 112
     },
     {
       "caseId": "route:cengkareng-kampung-rambutan",
       "outcome": "Supported",
       "categories": ["TwoTransfer", "Peripheral"],
-      "status": "NoRoute",
-      "detail": "No topological bus guide within transfer and expansion caps",
-      "latencyMs": 20
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["3"],
+          "directions": ["Juanda dan Kalideres"],
+          "boarding": "Kalideres",
+          "alighting": "Juanda"
+        },
+        {
+          "lines": ["7F"],
+          "directions": ["Juanda dan Kampung Rambutan"],
+          "boarding": "Juanda",
+          "alighting": "Kampung Rambutan"
+        }
+      ],
+      "detail": "3 | 7F",
+      "latencyMs": 192
     },
     {
       "caseId": "route:ciledug-bundaranhi",
       "outcome": "Supported",
-      "categories": ["OneTransfer"],
-      "status": "NoRoute",
-      "detail": "No topological bus guide within transfer and expansion caps",
-      "latencyMs": 20
+      "categories": ["TwoTransfer"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["13"],
+          "directions": ["Tegal Mampang dan Ciledug"],
+          "boarding": "CBD Ciledug",
+          "alighting": "Rawa Barat"
+        },
+        {
+          "lines": ["3F"],
+          "directions": ["Kalideres"],
+          "boarding": "Rawa Barat",
+          "alighting": "Senayan Bank Jakarta"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Bundaran Senayan dan Kali Besar Barat"],
+          "boarding": "Senayan Bank Jakarta",
+          "alighting": "Bundaran HI Astra"
+        }
+      ],
+      "detail": "13 | 3F | 1",
+      "latencyMs": 140
     },
     {
       "caseId": "route:ciledug-tanjung-priok",
       "outcome": "Supported",
       "categories": ["TwoTransfer", "Peripheral"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["13"],
@@ -277,8 +319,8 @@
           "alighting": "Tanjung Priok"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 39
+      "detail": "13 | 3F | 10H",
+      "latencyMs": 85
     },
     {
       "caseId": "route:ciledug-tegal-mampang",
@@ -294,7 +336,7 @@
         }
       ],
       "detail": "13",
-      "latencyMs": 21
+      "latencyMs": 68
     },
     {
       "caseId": "route:cililitan-grogol",
@@ -310,7 +352,7 @@
         }
       ],
       "detail": "9A",
-      "latencyMs": 19
+      "latencyMs": 69
     },
     {
       "caseId": "route:gap-across-barrier",
@@ -318,21 +360,21 @@
       "categories": ["KnownGap"],
       "status": "ExpectedGap",
       "detail": "No topological bus guide within transfer and expansion caps",
-      "latencyMs": 20
+      "latencyMs": 39
     },
     {
       "caseId": "route:gap-airport-soetta",
       "outcome": "KnownGap",
       "categories": ["KnownGap"],
       "status": "UnresolvedPlace",
-      "detail": "Could not resolve places for Bandara Soekarno-Hatta \u2192 Blok M",
-      "latencyMs": 14
+      "detail": "Could not resolve places for Bandara Soekarno-Hatta → Blok M",
+      "latencyMs": 34
     },
     {
       "caseId": "route:gap-disputed-headsign",
-      "outcome": "KnownGap",
-      "categories": ["KnownGap"],
-      "status": "UnexpectedSuccess",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["9"],
@@ -341,40 +383,32 @@
           "alighting": "Pluit"
         }
       ],
-      "detail": "KnownGap case returned a guide",
-      "latencyMs": 21
+      "detail": "9",
+      "latencyMs": 48
     },
     {
       "caseId": "route:gap-incomplete-topology",
       "outcome": "KnownGap",
       "categories": ["KnownGap"],
       "status": "UnresolvedPlace",
-      "detail": "Could not resolve places for Halte non-koridor terputus XYZ \u2192 Harmoni",
-      "latencyMs": 14
+      "detail": "Could not resolve places for Halte non-koridor terputus XYZ → Harmoni",
+      "latencyMs": 32
     },
     {
       "caseId": "route:gap-private-compound",
       "outcome": "KnownGap",
       "categories": ["KnownGap"],
       "status": "UnresolvedPlace",
-      "detail": "Could not resolve places for Komplek Angkatan Laut Pondok Dayung \u2192 Blok M",
-      "latencyMs": 12
+      "detail": "Could not resolve places for Komplek Angkatan Laut Pondok Dayung → Blok M",
+      "latencyMs": 33
     },
     {
       "caseId": "route:gap-same-place",
       "outcome": "KnownGap",
       "categories": ["KnownGap"],
-      "status": "UnexpectedSuccess",
-      "selectedSequence": [
-        {
-          "lines": ["1"],
-          "directions": ["Tosari dan Blok M"],
-          "boarding": "Blok M",
-          "alighting": "Blok M"
-        }
-      ],
-      "detail": "KnownGap case returned a guide",
-      "latencyMs": 19
+      "status": "ExpectedGap",
+      "detail": "InvalidCandidateSet",
+      "latencyMs": 30
     },
     {
       "caseId": "route:gap-ui-tanjung-priok",
@@ -382,13 +416,13 @@
       "categories": ["KnownGap"],
       "status": "ExpectedGap",
       "detail": "No topological bus guide within transfer and expansion caps",
-      "latencyMs": 21
+      "latencyMs": 56
     },
     {
       "caseId": "route:grogol-blokm",
       "outcome": "Supported",
       "categories": ["OneTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["3F"],
@@ -403,8 +437,8 @@
           "alighting": "Blok M"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 22
+      "detail": "3F | 1",
+      "latencyMs": 72
     },
     {
       "caseId": "route:grogol-cawang-9-9a",
@@ -420,7 +454,7 @@
         }
       ],
       "detail": "9 or 9A",
-      "latencyMs": 21
+      "latencyMs": 66
     },
     {
       "caseId": "route:grogol-cililitan",
@@ -436,7 +470,7 @@
         }
       ],
       "detail": "9A",
-      "latencyMs": 19
+      "latencyMs": 67
     },
     {
       "caseId": "route:harmoni-blokm",
@@ -452,13 +486,13 @@
         }
       ],
       "detail": "1",
-      "latencyMs": 18
+      "latencyMs": 66
     },
     {
       "caseId": "route:harmoni-ragunan",
       "outcome": "Supported",
       "categories": ["OneTransfer", "ReversePair"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["1"],
@@ -473,14 +507,14 @@
           "alighting": "Ragunan"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 23
+      "detail": "1 | 6V",
+      "latencyMs": 68
     },
     {
       "caseId": "route:jis-blokm",
       "outcome": "Supported",
       "categories": ["OneTransfer", "Peripheral"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["14A"],
@@ -495,30 +529,30 @@
           "alighting": "Blok M"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 22
+      "detail": "14A | 1",
+      "latencyMs": 90
     },
     {
       "caseId": "route:jis-harmoni",
       "outcome": "Supported",
       "categories": ["OneTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["14A"],
-          "directions": ["Juanda dan Jakarta International Stadium"],
+          "directions": ["Monumen Nasional dan JIS"],
           "boarding": "Jakarta International Stadium",
-          "alighting": "Juanda"
+          "alighting": "Monumen Nasional"
         },
         {
-          "lines": ["1A"],
-          "directions": ["Juanda dan Pantai Maju"],
-          "boarding": "Juanda",
+          "lines": ["1"],
+          "directions": ["Bundaran Senayan dan Kali Besar Barat"],
+          "boarding": "Monumen Nasional",
           "alighting": "Harmoni"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 21
+      "detail": "14A | 1",
+      "latencyMs": 84
     },
     {
       "caseId": "route:kalideres-bundaranhi",
@@ -540,13 +574,13 @@
         }
       ],
       "detail": "3 | 1",
-      "latencyMs": 24
+      "latencyMs": 114
     },
     {
       "caseId": "route:kalideres-kampung-rambutan",
       "outcome": "Supported",
       "categories": ["TwoTransfer", "Peripheral"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["3"],
@@ -561,8 +595,8 @@
           "alighting": "Kampung Rambutan"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 806
+      "detail": "3 | 7F",
+      "latencyMs": 155
     },
     {
       "caseId": "route:kalideres-monas",
@@ -578,7 +612,7 @@
         }
       ],
       "detail": "3",
-      "latencyMs": 21
+      "latencyMs": 83
     },
     {
       "caseId": "route:kalideres-pulogadung",
@@ -600,7 +634,7 @@
         }
       ],
       "detail": "3 | 2",
-      "latencyMs": 30
+      "latencyMs": 119
     },
     {
       "caseId": "route:kampung-melayu-ancol",
@@ -616,13 +650,13 @@
         }
       ],
       "detail": "5",
-      "latencyMs": 20
+      "latencyMs": 70
     },
     {
       "caseId": "route:kampung-rambutan-harmoni",
       "outcome": "Supported",
       "categories": ["OneTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["7F"],
@@ -637,8 +671,8 @@
           "alighting": "Harmoni"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 24
+      "detail": "7F | 1A",
+      "latencyMs": 76
     },
     {
       "caseId": "route:kampung-rambutan-kampung-melayu",
@@ -654,7 +688,7 @@
         }
       ],
       "detail": "7",
-      "latencyMs": 19
+      "latencyMs": 73
     },
     {
       "caseId": "route:kota-blokm",
@@ -670,13 +704,13 @@
         }
       ],
       "detail": "1",
-      "latencyMs": 23
+      "latencyMs": 108
     },
     {
       "caseId": "route:lebak-bulus-jis",
       "outcome": "Supported",
       "categories": ["TwoTransfer", "Peripheral"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["8"],
@@ -691,8 +725,8 @@
           "alighting": "Jakarta International Stadium"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 115
+      "detail": "8 | 14A",
+      "latencyMs": 176
     },
     {
       "caseId": "route:lebak-bulus-pasar-baru",
@@ -708,7 +742,7 @@
         }
       ],
       "detail": "8",
-      "latencyMs": 21
+      "latencyMs": 69
     },
     {
       "caseId": "route:monas-pulogadung",
@@ -724,13 +758,13 @@
         }
       ],
       "detail": "2",
-      "latencyMs": 31
+      "latencyMs": 135
     },
     {
       "caseId": "route:pinang-ranti-blokm",
       "outcome": "Supported",
       "categories": ["OneTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["9"],
@@ -745,30 +779,30 @@
           "alighting": "Blok M"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 23
+      "detail": "9 | 1",
+      "latencyMs": 72
     },
     {
       "caseId": "route:pinang-ranti-kalideres",
       "outcome": "Supported",
       "categories": ["OneTransfer", "Peripheral"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["9"],
-          "directions": ["Pluit via Tol Petamburan"],
+          "directions": ["Pluit via Tol Kemanggisan"],
           "boarding": "Pinang Ranti",
-          "alighting": "Gerbang Pemuda Arah Barat"
+          "alighting": "Grogol Reformasi"
         },
         {
           "lines": ["3F"],
-          "directions": ["Kalideres"],
-          "boarding": "Gerbang Pemuda Arah Barat",
+          "directions": ["Senayan Bank Jakarta dan Kalideres"],
+          "boarding": "Grogol Reformasi",
           "alighting": "Kalideres"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 22
+      "detail": "9 | 3F",
+      "latencyMs": 70
     },
     {
       "caseId": "route:pinang-ranti-pluit",
@@ -784,7 +818,7 @@
         }
       ],
       "detail": "9",
-      "latencyMs": 19
+      "latencyMs": 72
     },
     {
       "caseId": "route:pinang-ranti-short-pattern",
@@ -800,13 +834,13 @@
         }
       ],
       "detail": "9",
-      "latencyMs": 25
+      "latencyMs": 69
     },
     {
       "caseId": "route:pluit-blokm",
       "outcome": "Supported",
       "categories": ["OneTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["9"],
@@ -821,14 +855,14 @@
           "alighting": "Blok M"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 21
+      "detail": "9 | 1",
+      "latencyMs": 66
     },
     {
       "caseId": "route:pluit-kampung-rambutan",
       "outcome": "Supported",
       "categories": ["TwoTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["9"],
@@ -843,8 +877,8 @@
           "alighting": "Kampung Rambutan"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 71
+      "detail": "9 | 7",
+      "latencyMs": 111
     },
     {
       "caseId": "route:pluit-pinang-ranti",
@@ -860,13 +894,13 @@
         }
       ],
       "detail": "9",
-      "latencyMs": 24
+      "latencyMs": 87
     },
     {
       "caseId": "route:pulogadung-blokm",
       "outcome": "Supported",
       "categories": ["OneTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["2"],
@@ -881,14 +915,14 @@
           "alighting": "Blok M"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 31
+      "detail": "2 | 1",
+      "latencyMs": 123
     },
     {
       "caseId": "route:pulogadung-lebak-bulus",
       "outcome": "Supported",
       "categories": ["TwoTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["2"],
@@ -903,8 +937,8 @@
           "alighting": "Lebak Bulus"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 378
+      "detail": "2 | 8",
+      "latencyMs": 458
     },
     {
       "caseId": "route:pulogadung-monas",
@@ -920,7 +954,7 @@
         }
       ],
       "detail": "2",
-      "latencyMs": 23
+      "latencyMs": 135
     },
     {
       "caseId": "route:ragunan-branch-6a-6b",
@@ -936,7 +970,7 @@
         }
       ],
       "detail": "6B",
-      "latencyMs": 39
+      "latencyMs": 67
     },
     {
       "caseId": "route:ragunan-galunggung",
@@ -952,13 +986,13 @@
         }
       ],
       "detail": "6",
-      "latencyMs": 20
+      "latencyMs": 66
     },
     {
       "caseId": "route:ragunan-harmoni",
       "outcome": "Supported",
       "categories": ["OneTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["6V"],
@@ -973,14 +1007,14 @@
           "alighting": "Harmoni"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 26
+      "detail": "6V | 1",
+      "latencyMs": 71
     },
     {
       "caseId": "route:ragunan-kota",
       "outcome": "Supported",
       "categories": ["OneTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["6V"],
@@ -995,14 +1029,14 @@
           "alighting": "Kali Besar"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 26
+      "detail": "6V | 1",
+      "latencyMs": 105
     },
     {
       "caseId": "route:ragunan-tanjung-priok",
       "outcome": "Supported",
       "categories": ["TwoTransfer"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["6V"],
@@ -1017,8 +1051,8 @@
           "alighting": "Tanjung Priok"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 871
+      "detail": "6V | 10H",
+      "latencyMs": 2811
     },
     {
       "caseId": "route:tanjung-priok-pgc",
@@ -1034,7 +1068,7 @@
         }
       ],
       "detail": "10",
-      "latencyMs": 38
+      "latencyMs": 68
     },
     {
       "caseId": "route:tanjung-priok-pluit",
@@ -1050,13 +1084,13 @@
         }
       ],
       "detail": "12",
-      "latencyMs": 18
+      "latencyMs": 69
     },
     {
       "caseId": "route:tanjungpriok-lebakbulus",
       "outcome": "Supported",
       "categories": ["TwoTransfer", "Peripheral"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
           "lines": ["10H"],
@@ -1071,25 +1105,25 @@
           "alighting": "Lebak Bulus"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 122
+      "detail": "10H | 8",
+      "latencyMs": 584
     },
     {
       "caseId": "route:ui-blokm-edge",
       "outcome": "Supported",
       "categories": ["TwoTransfer", "Peripheral", "Branch"],
-      "status": "Mismatch",
+      "status": "Matched",
       "selectedSequence": [
         {
-          "lines": ["S21"],
-          "directions": ["CSW dan Ciputat"],
-          "boarding": "Kampus Uin 1",
-          "alighting": "Jln. Palatehan"
+          "lines": ["D21"],
+          "directions": ["Lebak Bulus dan Universitas Indonesia"],
+          "boarding": "Univ. Indonesia",
+          "alighting": "Masjid Ar-Raudhah"
         },
         {
           "lines": ["6N"],
           "directions": ["Blok M via Prapanca Raya"],
-          "boarding": "Jln. Palatehan",
+          "boarding": "Masjid Ar-Raudhah",
           "alighting": "Kejaksaan Agung"
         },
         {
@@ -1099,15 +1133,8 @@
           "alighting": "Blok M"
         }
       ],
-      "detail": "No alternative matched reviewed acceptable sequences",
-      "latencyMs": 45
+      "detail": "D21 | 6N | 1",
+      "latencyMs": 125
     }
-  ],
-  "qualificationNotes": [
-    "Plan 015 static guide engine compiles the full bus-transjakarta-20260630-v2 snapshot (719 patterns, 7636 places).",
-    "26/50 Supported corpus cases matched reviewed sequences; remaining Supported mismatches largely request transfer sequences that are not present as published transfers or source-station relationships (example: Ragunan\u2192Galunggung\u2192line 1 \u2014 line 1 does not serve Galunggung).",
-    "3 UnresolvedPlace cases are peripheral/gap labels outside the transit-place index.",
-    "Interchangeable 9/9A grouping is verified on production Cawang\u2192Grogol Reformasi.",
-    "Scheduled router was not modified; src/routing tests remain green."
   ]
 }

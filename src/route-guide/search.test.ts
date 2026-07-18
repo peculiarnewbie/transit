@@ -173,4 +173,15 @@ describe("route-guide search", () => {
       expect(["GuidesFound", "NoTopologicalRoute"]).toContain(result._tag);
     }),
   );
+
+  itEffect(
+    "rejects identical origin and destination place sets",
+    Effect.gen(function* () {
+      const graph = yield* compileGraph();
+      const result = yield* searchGuidePaths(graph, queryFor(graph, "stop:A", "stop:A"));
+      expect(result._tag).toBe("InvalidCandidateSet");
+      if (result._tag !== "InvalidCandidateSet") return;
+      expect(result.reason).toMatch(/same transit place/i);
+    }),
+  );
 });

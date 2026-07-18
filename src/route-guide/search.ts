@@ -432,6 +432,22 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
   graph: GuideGraph,
   query: RouteGuideQuery,
 ) {
+  const originPlaceIds = new Set(query.origins.map((origin) => origin.transitPlaceId));
+  const destinationPlaceIds = new Set(
+    query.destinations.map((destination) => destination.transitPlaceId),
+  );
+  const samePlaceOnly =
+    originPlaceIds.size > 0 &&
+    destinationPlaceIds.size > 0 &&
+    [...originPlaceIds].every((id) => destinationPlaceIds.has(id)) &&
+    [...destinationPlaceIds].every((id) => originPlaceIds.has(id));
+  if (samePlaceOnly) {
+    return yield* Effect.succeed({
+      _tag: "InvalidCandidateSet" as const,
+      reason: "Origin and destination resolve to the same transit place; no ride is required",
+    } satisfies RouteGuideResult);
+  }
+
   const originMembers = memberStopIdsForPlaces(graph, query.origins, query.maximumOriginCandidates);
   const destinationMembers = memberStopIdsForPlaces(
     graph,

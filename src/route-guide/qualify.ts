@@ -98,6 +98,22 @@ export interface PlaceLabelAlias {
   readonly alsoMatchPlaceNames: ReadonlyArray<string>;
 }
 
+/**
+ * Word-boundary-aware "starts with" check. Plain `String#startsWith` treats
+ * "kampus ui" as a prefix of "kampus uin 1" because "ui" is a character
+ * prefix of "uin" — that falsely resolved "Universitas Indonesia" (UI Depok)
+ * to "Kampus Uin 1/2" (an unrelated Islamic university campus). Comparing
+ * whitespace-delimited words instead of raw characters fixes that class of
+ * false positive while still matching genuine word-level prefixes (e.g.
+ * "blok m" against "blok m jalur 2").
+ */
+const startsWithWords = (haystack: string, needle: string): boolean => {
+  const haystackWords = haystack.split(" ");
+  const needleWords = needle.split(" ");
+  if (needleWords.length > haystackWords.length) return false;
+  return needleWords.every((word, index) => haystackWords[index] === word);
+};
+
 export const resolvePlacesByLabel = (
   graph: GuideGraph,
   label: string,
@@ -119,7 +135,7 @@ export const resolvePlacesByLabel = (
     for (const needle of needles) {
       if (primary === needle) score = Math.max(score, 100);
       else if (aliasNames.includes(needle)) score = Math.max(score, 90);
-      else if (primary.startsWith(needle) || needle.startsWith(primary))
+      else if (startsWithWords(primary, needle) || startsWithWords(needle, primary))
         score = Math.max(score, 70);
       else if (primary.includes(needle) || needle.includes(primary)) score = Math.max(score, 40);
       else if (aliasNames.some((alias) => alias.includes(needle) || needle.includes(alias))) {
@@ -143,6 +159,32 @@ export const resolvePlacesByLabel = (
     })
     .map((entry) => entry.place)
     .slice(0, 8);
+};
+
+/**
+ * Corpus cases can author multiple acceptable boarding/alighting labels
+ * (`requiredBoardingLabels`/`requiredAlightingLabels`) for a single origin or
+ * destination — e.g. a terminal-platform label alongside its parent stop
+ * label, or an area label alongside the corridor stop passengers actually
+ * board at. Resolve every declared label and merge the candidate places so
+ * qualification reflects the full set of boarding options the corpus author
+ * intended, not just `origin.label`/`destination.label`.
+ */
+const resolvePlacesByAnyLabel = (
+  graph: GuideGraph,
+  labels: ReadonlyArray<string>,
+  aliases: ReadonlyArray<PlaceLabelAlias>,
+): ReadonlyArray<TransitPlace> => {
+  const seen = new Set<string>();
+  const merged: Array<TransitPlace> = [];
+  for (const label of labels) {
+    for (const place of resolvePlacesByLabel(graph, label, aliases)) {
+      if (seen.has(place.id)) continue;
+      seen.add(place.id);
+      merged.push(place);
+    }
+  }
+  return merged;
 };
 
 const sequenceFromAlternative = (alternative: GuideAlternative) =>
@@ -245,8 +287,16 @@ export const qualifyRouteGuide = Effect.fn("RouteGuide.qualify")(function* (
   const aliases = options.placeLabelAliases ?? [];
   for (const routeCase of corpus.routeGuideCases) {
     const started = Date.now();
-    const origins = resolvePlacesByLabel(graph, routeCase.origin.label, aliases);
-    const destinations = resolvePlacesByLabel(graph, routeCase.destination.label, aliases);
+    const origins = resolvePlacesByAnyLabel(
+      graph,
+      [routeCase.origin.label, ...routeCase.requiredBoardingLabels],
+      aliases,
+    );
+    const destinations = resolvePlacesByAnyLabel(
+      graph,
+      [routeCase.destination.label, ...routeCase.requiredAlightingLabels],
+      aliases,
+    );
     if (origins.length === 0 || destinations.length === 0) {
       const latencyMs = Date.now() - started;
       latencies.push(latencyMs);

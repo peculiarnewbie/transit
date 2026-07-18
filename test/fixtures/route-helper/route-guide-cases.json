@@ -223,12 +223,38 @@
             "intermediateStopLabels": ["Semanggi", "Bank Indonesia"]
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "6V",
+                "headsign": "Senayan BANK Jakarta dan Ragunan"
+              }
+            ],
+            "boardingPlaceLabel": "Ragunan",
+            "alightingPlaceLabel": "Rawa Barat",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Kota"
+              }
+            ],
+            "boardingPlaceLabel": "Rawa Barat",
+            "alightingPlaceLabel": "Harmoni",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Ragunan"],
     "requiredAlightingLabels": ["Harmoni"],
-    "rationale": "Reviewed Ragunan → Harmoni against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Ragunan → Harmoni against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 1 never serves Galunggung and 6A/6B never reach Harmoni directly; the real 1-transfer path uses 6V via Rawa Barat.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -273,12 +299,38 @@
             "intermediateStopLabels": ["Bundaran HI Astra"]
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "14A",
+                "headsign": "Monumen Nasional dan JIS"
+              }
+            ],
+            "boardingPlaceLabel": "Jakarta International Stadium",
+            "alightingPlaceLabel": "Monumen Nasional",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Blok M"
+              }
+            ],
+            "boardingPlaceLabel": "Monumen Nasional",
+            "alightingPlaceLabel": "Blok M",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Jakarta International Stadium"],
     "requiredAlightingLabels": ["Blok M"],
-    "rationale": "Reviewed Jakarta International Stadium → Blok M against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Jakarta International Stadium → Blok M against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 14B is a Tanjung Priok<->Senen feeder and never reaches JIS; 14A is the real JIS-connecting line via Monumen Nasional.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -376,12 +428,75 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "10",
+                "headsign": "PGC"
+              }
+            ],
+            "boardingPlaceLabel": "Tanjung Priok",
+            "alightingPlaceLabel": "Cawang Sentral",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "5C",
+                "headsign": "Monas dan Cililitan"
+              }
+            ],
+            "boardingPlaceLabel": "Cawang Sentral",
+            "alightingPlaceLabel": "Juanda",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "8",
+                "headsign": "Lebak Bulus via Cideng"
+              }
+            ],
+            "boardingPlaceLabel": "Juanda",
+            "alightingPlaceLabel": "Lebak Bulus",
+            "intermediateStopLabels": []
+          }
+        ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "10H",
+                "headsign": "Bundaran Senayan dan Tanjung Priok"
+              }
+            ],
+            "boardingPlaceLabel": "Tanjung Priok",
+            "alightingPlaceLabel": "Juanda",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "8",
+                "headsign": "Lebak Bulus via Cideng"
+              }
+            ],
+            "boardingPlaceLabel": "Juanda",
+            "alightingPlaceLabel": "Lebak Bulus",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Tanjung Priok"],
     "requiredAlightingLabels": ["Lebak Bulus"],
-    "rationale": "Reviewed Tanjung Priok → Lebak Bulus against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Tanjung Priok → Lebak Bulus against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): the real PGC-corridor 10 pattern connects via Cawang Sentral, not Kampung Melayu on line 7/7A.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -456,12 +571,38 @@
             "intermediateStopLabels": ["Pasar Baru"]
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "5C",
+                "headsign": "Juanda"
+              }
+            ],
+            "boardingPlaceLabel": "Cawang",
+            "alightingPlaceLabel": "Juanda",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1A",
+                "headsign": "Kali Besar"
+              }
+            ],
+            "boardingPlaceLabel": "Juanda",
+            "alightingPlaceLabel": "Kali Besar",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Cawang"],
     "requiredAlightingLabels": ["Kota"],
-    "rationale": "Reviewed Cawang → Kota against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Cawang → Kota against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): added line 1A (a real branch of line 1) to the Juanda->Kota leg's line options.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1006,12 +1147,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "6V",
+                "headsign": "Senayan BANK Jakarta dan Ragunan"
+              }
+            ],
+            "boardingPlaceLabel": "Ragunan",
+            "alightingPlaceLabel": "Rawa Barat",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Kota"
+              }
+            ],
+            "boardingPlaceLabel": "Rawa Barat",
+            "alightingPlaceLabel": "Kota",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Ragunan"],
     "requiredAlightingLabels": ["Kota"],
-    "rationale": "Reviewed Ragunan → Kota against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Ragunan → Kota against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 1 never serves Galunggung on this snapshot; the real 1-transfer path uses 6V via Rawa Barat.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1056,12 +1223,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "9",
+                "headsign": "Pluit via Tol Petamburan"
+              }
+            ],
+            "boardingPlaceLabel": "Pinang Ranti",
+            "alightingPlaceLabel": "Petamburan",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Blok M"
+              }
+            ],
+            "boardingPlaceLabel": "Petamburan",
+            "alightingPlaceLabel": "Blok M",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Pinang Ranti"],
     "requiredAlightingLabels": ["Blok M"],
-    "rationale": "Reviewed Pinang Ranti → Blok M against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Pinang Ranti → Blok M against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 6N never serves Cawang on this snapshot; the real 1-transfer path uses line 9 via Petamburan.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1102,12 +1295,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "9",
+                "headsign": "Cawang Sentral dan Pluit"
+              }
+            ],
+            "boardingPlaceLabel": "Pluit",
+            "alightingPlaceLabel": "Petamburan",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Blok M"
+              }
+            ],
+            "boardingPlaceLabel": "Petamburan",
+            "alightingPlaceLabel": "Blok M",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Pluit"],
     "requiredAlightingLabels": ["Blok M"],
-    "rationale": "Reviewed Pluit → Blok M against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Pluit → Blok M against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 1 never serves Semanggi on this snapshot; the real 1-transfer path uses Petamburan.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1194,12 +1413,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "2",
+                "headsign": "Monas via Veteran"
+              }
+            ],
+            "boardingPlaceLabel": "Pulo Gadung",
+            "alightingPlaceLabel": "Monumen Nasional",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Blok M"
+              }
+            ],
+            "boardingPlaceLabel": "Monumen Nasional",
+            "alightingPlaceLabel": "Blok M",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Pulo Gadung"],
     "requiredAlightingLabels": ["Blok M"],
-    "rationale": "Reviewed Pulo Gadung → Blok M against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Pulo Gadung → Blok M against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 1 never serves Galunggung on this snapshot; the real 1-transfer path uses line 2 via Monumen Nasional.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1240,12 +1485,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "1W",
+                "headsign": "Blok M"
+              }
+            ],
+            "boardingPlaceLabel": "Ancol",
+            "alightingPlaceLabel": "Kejaksaan Agung",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Blok M"
+              }
+            ],
+            "boardingPlaceLabel": "Kejaksaan Agung",
+            "alightingPlaceLabel": "Blok M",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Ancol"],
     "requiredAlightingLabels": ["Blok M"],
-    "rationale": "Reviewed Ancol → Blok M against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Ancol → Blok M against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 5 never serves Pasar Baru on this snapshot (5 = Ancol<->Kampung Melayu only); 1W->1 via Kejaksaan Agung is a real 1-transfer alternative.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1290,12 +1561,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "7F",
+                "headsign": "Juanda dan Kampung Rambutan"
+              }
+            ],
+            "boardingPlaceLabel": "Kampung Rambutan",
+            "alightingPlaceLabel": "Juanda",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1A",
+                "headsign": "Juanda dan Pantai Maju"
+              }
+            ],
+            "boardingPlaceLabel": "Juanda",
+            "alightingPlaceLabel": "Harmoni",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Kampung Rambutan"],
     "requiredAlightingLabels": ["Harmoni"],
-    "rationale": "Reviewed Kampung Rambutan → Harmoni against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Kampung Rambutan → Harmoni against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 5/5C never serves Harmoni on this snapshot (confirmed: no 5-family pattern touches Harmoni), so the Kampung Melayu transfer premise is topologically impossible; a real 1-transfer path exists via Juanda on lines 7F/1A.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1309,7 +1606,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": ["OneTransfer"],
+    "categories": ["TwoTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1336,12 +1633,49 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "13",
+                "headsign": "Tegal Mampang dan Ciledug"
+              }
+            ],
+            "boardingPlaceLabel": "Ciledug",
+            "alightingPlaceLabel": "Rawa Barat",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "3F",
+                "headsign": "Kalideres"
+              }
+            ],
+            "boardingPlaceLabel": "Rawa Barat",
+            "alightingPlaceLabel": "Senayan Bank Jakarta",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Bundaran Senayan dan Kali Besar Barat"
+              }
+            ],
+            "boardingPlaceLabel": "Senayan Bank Jakarta",
+            "alightingPlaceLabel": "Bundaran HI Astra",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
-    "maximumTransferCount": 1,
+    "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Ciledug"],
     "requiredAlightingLabels": ["Bundaran HI", "Bundaran HI Astra"],
-    "rationale": "Reviewed Ciledug → Bundaran HI against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Ciledug → Bundaran HI against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 1 never serves Tegal Mampang on this snapshot; the real path needs 2 transfers via Rawa Barat and Senayan Bank Jakarta (bumped maximumTransferCount 1->2).",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1386,12 +1720,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "3F",
+                "headsign": "Senayan Bank Jakarta dan Kalideres"
+              }
+            ],
+            "boardingPlaceLabel": "Grogol Reformasi",
+            "alightingPlaceLabel": "Senayan Bank Jakarta",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Blok M"
+              }
+            ],
+            "boardingPlaceLabel": "Senayan Bank Jakarta",
+            "alightingPlaceLabel": "Blok M",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Grogol Reformasi"],
     "requiredAlightingLabels": ["Blok M"],
-    "rationale": "Reviewed Grogol Reformasi → Blok M against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Grogol Reformasi → Blok M against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 1 never serves Semanggi on this snapshot; the real 1-transfer path uses 3F via Senayan Bank Jakarta.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1436,12 +1796,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "14A",
+                "headsign": "Monumen Nasional dan JIS"
+              }
+            ],
+            "boardingPlaceLabel": "Jakarta International Stadium",
+            "alightingPlaceLabel": "Monumen Nasional",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Bundaran Senayan dan Kali Besar Barat"
+              }
+            ],
+            "boardingPlaceLabel": "Monumen Nasional",
+            "alightingPlaceLabel": "Harmoni",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Jakarta International Stadium"],
     "requiredAlightingLabels": ["Harmoni"],
-    "rationale": "Reviewed Jakarta International Stadium → Harmoni against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Jakarta International Stadium → Harmoni against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 14B never reaches JIS; 14A is the real JIS-connecting line via Monumen Nasional.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1482,12 +1868,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "9",
+                "headsign": "Pluit via Tol Kemanggisan"
+              }
+            ],
+            "boardingPlaceLabel": "Pinang Ranti",
+            "alightingPlaceLabel": "Grogol Reformasi",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "3F",
+                "headsign": "Senayan Bank Jakarta dan Kalideres"
+              }
+            ],
+            "boardingPlaceLabel": "Grogol Reformasi",
+            "alightingPlaceLabel": "Kalideres",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Pinang Ranti"],
     "requiredAlightingLabels": ["Kalideres"],
-    "rationale": "Reviewed Pinang Ranti → Kalideres against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Pinang Ranti → Kalideres against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): the transfer line to Kalideres is 3F (a branch of line 3), not plain line 3.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1539,12 +1951,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "3",
+                "headsign": "Juanda dan Kalideres"
+              }
+            ],
+            "boardingPlaceLabel": "Kalideres",
+            "alightingPlaceLabel": "Juanda",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "7F",
+                "headsign": "Juanda dan Kampung Rambutan"
+              }
+            ],
+            "boardingPlaceLabel": "Juanda",
+            "alightingPlaceLabel": "Kampung Rambutan",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Kalideres"],
     "requiredAlightingLabels": ["Kampung Rambutan"],
-    "rationale": "Reviewed Kalideres → Kampung Rambutan against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Kalideres → Kampung Rambutan against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 5 never serves Monumen Nasional on this snapshot; a real 1-transfer path exists via Juanda on lines 3/7F.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1596,12 +2034,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "9",
+                "headsign": "Cawang Sentral dan Pluit"
+              }
+            ],
+            "boardingPlaceLabel": "Pluit",
+            "alightingPlaceLabel": "Cawang",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "7",
+                "headsign": "Kampung Rambutan via Tol Hek"
+              }
+            ],
+            "boardingPlaceLabel": "Cawang",
+            "alightingPlaceLabel": "Kampung Rambutan",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Pluit"],
     "requiredAlightingLabels": ["Kampung Rambutan"],
-    "rationale": "Reviewed Pluit → Kampung Rambutan against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Pluit → Kampung Rambutan against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): a simpler real 1-transfer path exists directly via Cawang, without routing through Kampung Melayu.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1657,12 +2121,49 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "13",
+                "headsign": "Tegal Mampang dan Ciledug"
+              }
+            ],
+            "boardingPlaceLabel": "Ciledug",
+            "alightingPlaceLabel": "Rawa Barat",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "3F",
+                "headsign": "Kalideres"
+              }
+            ],
+            "boardingPlaceLabel": "Rawa Barat",
+            "alightingPlaceLabel": "Senayan Bank Jakarta",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "10H",
+                "headsign": "Bundaran Senayan dan Tanjung Priok"
+              }
+            ],
+            "boardingPlaceLabel": "Senayan Bank Jakarta",
+            "alightingPlaceLabel": "Tanjung Priok",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Ciledug"],
     "requiredAlightingLabels": ["Tanjung Priok"],
-    "rationale": "Reviewed Ciledug → Tanjung Priok against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Ciledug → Tanjung Priok against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 9/9A never serves Tegal Mampang on this snapshot; the real 2-transfer path uses 3F/9C via Rawa Barat and 10H via Senayan Bank Jakarta.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1714,12 +2215,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "8",
+                "headsign": "Pasar Baru"
+              }
+            ],
+            "boardingPlaceLabel": "Lebak Bulus",
+            "alightingPlaceLabel": "Juanda",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "14A",
+                "headsign": "Juanda dan Jakarta International Stadium"
+              }
+            ],
+            "boardingPlaceLabel": "Juanda",
+            "alightingPlaceLabel": "Jakarta International Stadium",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Lebak Bulus"],
     "requiredAlightingLabels": ["Jakarta International Stadium"],
-    "rationale": "Reviewed Lebak Bulus → Jakarta International Stadium against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Lebak Bulus → Jakarta International Stadium against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 14B never reaches JIS; a real 1-transfer path exists via Juanda on lines 8/14A.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1771,12 +2298,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "6V",
+                "headsign": "Senayan BANK Jakarta dan Ragunan"
+              }
+            ],
+            "boardingPlaceLabel": "Ragunan",
+            "alightingPlaceLabel": "Senayan Bank Jakarta",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "10H",
+                "headsign": "Bundaran Senayan dan Tanjung Priok"
+              }
+            ],
+            "boardingPlaceLabel": "Senayan Bank Jakarta",
+            "alightingPlaceLabel": "Tanjung Priok",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Ragunan"],
     "requiredAlightingLabels": ["Tanjung Priok"],
-    "rationale": "Reviewed Ragunan → Tanjung Priok against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Ragunan → Tanjung Priok against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 6/6N never serves Cawang on this snapshot; a real, simpler 1-transfer path exists via Senayan Bank Jakarta on 6V/10H.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1828,12 +2381,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "2",
+                "headsign": "Monas via Veteran"
+              }
+            ],
+            "boardingPlaceLabel": "Pulo Gadung",
+            "alightingPlaceLabel": "Juanda",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "8",
+                "headsign": "Lebak Bulus via Cideng"
+              }
+            ],
+            "boardingPlaceLabel": "Juanda",
+            "alightingPlaceLabel": "Lebak Bulus",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Pulo Gadung"],
     "requiredAlightingLabels": ["Lebak Bulus"],
-    "rationale": "Reviewed Pulo Gadung → Lebak Bulus against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Pulo Gadung → Lebak Bulus against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 1 never serves Galunggung on this snapshot; a real 1-transfer path exists via Juanda on lines 2/8.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1878,12 +2457,49 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "D21",
+                "headsign": "Lebak Bulus dan Universitas Indonesia"
+              }
+            ],
+            "boardingPlaceLabel": "Universitas Indonesia",
+            "alightingPlaceLabel": "Masjid Ar-Raudhah",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "6N",
+                "headsign": "Blok M via Prapanca Raya"
+              }
+            ],
+            "boardingPlaceLabel": "Masjid Ar-Raudhah",
+            "alightingPlaceLabel": "Kejaksaan Agung",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Blok M"
+              }
+            ],
+            "boardingPlaceLabel": "Kejaksaan Agung",
+            "alightingPlaceLabel": "Blok M",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Universitas Indonesia"],
     "requiredAlightingLabels": ["Blok M"],
-    "rationale": "Edge campus to Blok M via reviewed feeder/trunk topology options in the supplied network.",
+    "rationale": "Edge campus to Blok M via reviewed feeder/trunk topology options in the supplied network. WIDEN (Plan 015 triage): after fixing \"Universitas Indonesia\" place resolution (was matching the wrong UIN campus), the real D21 corridor connects via Masjid Ar-Raudhah and 6N, not directly to Lebak Bulus.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1935,12 +2551,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "3",
+                "headsign": "Juanda dan Kalideres"
+              }
+            ],
+            "boardingPlaceLabel": "Kalideres",
+            "alightingPlaceLabel": "Juanda",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "7F",
+                "headsign": "Juanda dan Kampung Rambutan"
+              }
+            ],
+            "boardingPlaceLabel": "Juanda",
+            "alightingPlaceLabel": "Kampung Rambutan",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 2,
     "requiredBoardingLabels": ["Cengkareng", "Kalideres"],
     "requiredAlightingLabels": ["Kampung Rambutan"],
-    "rationale": "Area origin resolves to Kalideres corridor boarding before eastbound transfers.",
+    "rationale": "Area origin resolves to Kalideres corridor boarding before eastbound transfers. WIDEN (Plan 015 triage): with requiredBoardingLabels now honored (Kalideres resolves), a real 1-transfer path exists via Juanda on lines 3/7F.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -2089,12 +2731,38 @@
             "intermediateStopLabels": []
           }
         ]
+      },
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "1",
+                "headsign": "Blok M"
+              }
+            ],
+            "boardingPlaceLabel": "Harmoni",
+            "alightingPlaceLabel": "Kejaksaan Agung",
+            "intermediateStopLabels": []
+          },
+          {
+            "lineOptions": [
+              {
+                "line": "6V",
+                "headsign": "Ragunan"
+              }
+            ],
+            "boardingPlaceLabel": "Kejaksaan Agung",
+            "alightingPlaceLabel": "Ragunan",
+            "intermediateStopLabels": []
+          }
+        ]
       }
     ],
     "maximumTransferCount": 1,
     "requiredBoardingLabels": ["Harmoni"],
     "requiredAlightingLabels": ["Ragunan"],
-    "rationale": "Reviewed Harmoni → Ragunan against bus-transjakarta-20260630-v2.",
+    "rationale": "Reviewed Harmoni → Ragunan against bus-transjakarta-20260630-v2. WIDEN (Plan 015 triage): line 1 never serves Galunggung on this snapshot (only plain line 6 does); the real 1-transfer path uses 6V via Kejaksaan Agung.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances.",
     "reverseOfCaseId": "route:ragunan-harmoni"
   },
@@ -2339,13 +3007,29 @@
       "label": "Pluit via disputed short-turn",
       "locality": "Jakarta Utara"
     },
-    "outcome": "KnownGap",
-    "categories": ["KnownGap"],
-    "acceptableSequences": [],
+    "outcome": "Supported",
+    "categories": ["Direct"],
+    "acceptableSequences": [
+      {
+        "steps": [
+          {
+            "lineOptions": [
+              {
+                "line": "9",
+                "headsign": "Cawang Sentral dan Pluit"
+              }
+            ],
+            "boardingPlaceLabel": "Cawang",
+            "alightingPlaceLabel": "Pluit",
+            "intermediateStopLabels": []
+          }
+        ]
+      }
+    ],
     "maximumTransferCount": 0,
     "requiredBoardingLabels": [],
     "requiredAlightingLabels": [],
-    "rationale": "Short-turn/headsign conflict cannot yield a single defensible passenger direction without Plan 015 policy evidence.",
+    "rationale": "Short-turn/headsign conflict cannot yield a single defensible passenger direction without Plan 015 policy evidence. WIDEN (Plan 015 triage): reclassified KnownGap->Supported. Line 9's \"Cawang Sentral dan Pluit\" direction is unambiguous in the current snapshot; the disputed-headsign concern no longer applies.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
