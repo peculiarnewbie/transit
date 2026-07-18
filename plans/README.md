@@ -162,6 +162,15 @@ every checkbox.
   retained as a later capability, not used to fabricate precision in Plan 016.
 - Canonical transit places are passenger display/boarding concepts. Grouping
   platforms does not itself authorize a transfer.
+- The midpoint endpoint selector follows the familiar map-product interaction:
+  a floating top control on mobile, a floating side panel on desktop,
+  autocomplete directly below the active input, and one obvious atomic
+  origin/destination reverse action. The project borrows the interaction model,
+  not another product's branding or visual assets.
+- Lines that require the same boarding, alighting, and next passenger action
+  are presented as interchangeable options inside one ride step (for example,
+  “9 or 9A”), while line-specific direction and intermediate-stop evidence is
+  retained. Different platforms or onward actions must remain separate.
 - Plan 007 establishes an ordinary Cloudflare Worker technical baseline. Plan
   016 qualifies the bus-only release; Plan 010 then
   measures that baseline against a browser Web Worker using the same TypeScript

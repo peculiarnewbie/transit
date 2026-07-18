@@ -124,6 +124,11 @@ must delegate to the Plan 014 discovery and Plan 015 route-guide services via
 runtime layers; they must not contain fuzzy matching, candidate selection,
 pathfinding, grouping, or headsign fallback rules.
 
+The route-guide success schema must preserve Plan 015's ride-step `lineOptions`
+as structured data. The API/runtime layer must not flatten an interchangeable
+group into separate alternatives or discard option-specific headsign and stop
+details.
+
 Use stable selected-place IDs plus artifact version. Preserve both passenger
 selections on every result. Return tagged success, recognized-place/no-route,
 no-place-match, stale-selection, validation, artifact, and transient server
@@ -140,14 +145,35 @@ failure redaction without losing useful recovery context.
 
 Replace stop-only origin/destination inputs with a unified searchable place
 control accepting areas, landmarks, transit places, and exact stop/station
-names. The control must:
+names. Use the proven Google Maps interaction model as the behavioral
+reference, without copying Google branding, icons, visual assets, or
+pixel-for-pixel trade dress:
+
+- on phone-sized viewports, place one compact origin/destination control card
+  floating over the top of the map/content;
+- on wider desktop viewports, place the same control as a floating side panel,
+  leaving the map/result context visible beside it;
+- choose layout from responsive viewport/container behavior, not user-agent
+  detection, and preserve typed text/selections across breakpoint changes;
+- when an input receives text, show its autocomplete list immediately below
+  that input in the same floating surface—never navigate to a separate search
+  screen or open an unrelated modal;
+- keep the list visually anchored while the active input remains visible above
+  the mobile keyboard; constrain list height and scroll the list itself when
+  necessary;
+- provide one obvious origin/destination reverse button between the inputs.
+  Reversal swaps stable selected IDs, typed labels, nearby-transit choices, and
+  endpoint-specific state atomically, then invalidates/recomputes the guide
+  without clearing either endpoint.
+
+The control must also:
 
 - distinguish ambiguous results using type and locality;
 - preserve stable selection IDs rather than only labels;
 - allow keyboard, touch, and screen-reader operation;
 - show loading, empty, offline/failure, and retry states without clearing the
   other endpoint;
-- support endpoint swap and editing after a result;
+- support editing either endpoint after a result while retaining the other;
 - optionally accept a map point or device coordinate only after an explicit
   user action and permission;
 - work completely without opening the map or granting location permission.
@@ -161,9 +187,13 @@ Keep line preference/require/lock controls out of the primary flow. If retained
 for expert use, place them in a clearly secondary advanced section and ensure
 the ordinary task never depends on them.
 
-**Verify**: component/state tests cover search, ambiguity, select, clear, swap,
-map/device opt-in denial, stale selection, endpoint recovery, and recognized
-place with no supported route.
+**Verify**: component/state tests cover anchored results below each active
+input, phone top overlay, desktop side panel, breakpoint changes without state
+loss, keyboard/list scrolling, atomic reverse (including nearby-choice state),
+search, ambiguity, select, clear, map/device opt-in denial, stale selection,
+endpoint recovery, and recognized place with no supported route. Visual tests
+cover at least narrow phone, phone with software keyboard, tablet, and desktop
+viewports.
 
 ### Step 4: Present actionable bus guidance
 
@@ -180,6 +210,15 @@ transfer count, and alighting place. Expanded detail must show:
   codes;
 - bus-only coverage and source artifact freshness.
 
+Render Plan 015's interchangeable line options as one shared ride step. Put all
+acceptable line badges in the primary instruction with explicit “or” semantics
+(for example, `9 atau 9A` / `9 or 9A`), one shared boarding and alighting action,
+and no duplicate alternative card. If option headsigns or intermediate stops
+differ, the expanded step lists those details under the corresponding line;
+never imply that their complete routes are identical. Lines that require a
+different platform, alighting point, or next transfer remain separate steps or
+alternatives.
+
 Do not show departure, arrival, wait, trip, or walk minutes. Do not label a
 straight connector as a walking leg. If route geometry is available, draw the
 transit legs and stop markers; avoid drawing unverified pedestrian connectors.
@@ -190,8 +229,9 @@ transfers or a different boarding place) and must not expose duplicate
 underlying patterns that require identical passenger actions.
 
 **Verify**: component tests and visual review cover direct, one-transfer,
-two-transfer, branch/direction fallback, platform unknown, no geometry, and
-multiple nearby boarding choices.
+two-transfer, branch/direction fallback, platform unknown, no geometry,
+multiple nearby boarding choices, a single `9 atau 9A` ride step, expanded
+line-specific detail, and negative cases that must not be grouped.
 
 ### Step 5: Design honest recovery and low-bandwidth behavior
 
@@ -255,7 +295,8 @@ place and route case against production composition. Record:
 
 The command must fail on an unexpected supported-case regression, artifact
 version mismatch, missing attribution/freshness metadata, accidental timetable
-field, pedestrian claim, or production fixture fallback.
+field, pedestrian claim, production fixture fallback, or expansion of an
+expected interchangeable-line step into duplicate result cards.
 
 **Verify**: `npm run check && npm test && npm run build` plus the qualification
 command all exit 0 using the release-candidate artifact set.
@@ -273,6 +314,12 @@ to controls, or choose the journey. Record for every task:
   alighting place, and transfer action;
 - wrong turns, hesitation points, and recovery success;
 - completion time as usability evidence, not a transit estimate.
+
+Observe without prompting whether participants understand that grouped line
+badges mean any listed line is acceptable, can reverse origin/destination, and
+look immediately below the active input for search results. Run both mobile and
+desktop layouts across the participant set; mobile tests must use the floating
+top control and desktop tests the floating side panel.
 
 Use Plan 012's pre-agreed release threshold: at least four of five participants
 complete each core task without presenter assistance, and no participant may
@@ -306,6 +353,11 @@ Stop and report instead of continuing if:
       honest, recoverable selection paths.
 - [ ] Every successful leg clearly states line, direction, board/alight place,
       intermediate stops, and transfers.
+- [ ] Phone and desktop endpoint controls follow the specified floating
+      top/side interaction, with autocomplete directly below the active input
+      and one obvious atomic reverse action.
+- [ ] Interchangeable lines such as 9/9A render as one ride step with explicit
+      “or” semantics and truthful option-specific detail.
 - [ ] Timetable, live, fare, and pedestrian-routing claims are absent.
 - [ ] Text guidance works without the map and under the agreed low-bandwidth
       budgets.

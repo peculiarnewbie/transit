@@ -100,8 +100,9 @@ must contain:
 
 - the selected origin and destination transit places;
 - an ordered sequence of transit legs;
-- line/route identity and passenger-facing name;
-- direction/headsign with evidence/fallback classification;
+- a non-empty set of interchangeable line options for each ride step, each
+  retaining route identity, passenger-facing name, direction/headsign, evidence
+  classification, and option-specific intermediate-stop sequence;
 - exact boarding and alighting transit places plus member stop/platform when
   known;
 - ordered intermediate passenger-facing transit places;
@@ -156,15 +157,33 @@ policy documented and tested. At minimum account for:
 5. less direction/platform ambiguity;
 6. deterministic stable-ID tie-breaking.
 
-Do not use fictional minutes to combine these factors. Deduplicate alternatives
-that give the passenger the same ordered lines, directions, boarding places,
-transfer places, and alighting place even if several underlying patterns or
-trips realize them. Preserve genuinely different boarding choices or branches
-when they change what the passenger must do.
+Do not use fictional minutes to combine these factors. First collapse identical
+underlying pattern/trip realizations. Then group line options into one
+`InterchangeableRideStep` when the passenger can board any listed option at the
+same canonical boarding member/platform, alight at the same canonical
+place/member, and perform the same next transfer or finish the journey without
+another action. Treat that group as one guide step and one ranked alternative,
+not one result card per line.
+
+The lines need not share their complete route outside the ridden segment, and
+their intermediate stops within the segment may differ. Preserve each option's
+ordered intermediate stops and direction evidence so expanded detail remains
+truthful. Use a shared direction label only when the evidence is genuinely
+equivalent; otherwise attach a direction/headsign to each line option.
+
+Do not group services merely because they share a route name, geometry, parent
+station, origin/destination place, or nearby platforms. Keep them separate when
+the passenger must use a different boarding member/platform, alight
+differently, make a different transfer, obey different boarding/alighting
+policy, or understand a materially different action. Preserve genuinely
+different boarding choices or branches when they change what the passenger
+must do.
 
 **Verify**: property/fixture tests prove deterministic output, bounded search,
-direct-over-transfer preference, meaningful deduplication, and stable behavior
-when candidate order is permuted.
+direct-over-transfer preference, meaningful deduplication/grouping, and stable
+behavior when candidate or line-option order is permuted. Include the
+production 9/9A case as one ride step with two line options, plus negative cases
+whose platforms, alighting points, or next transfers differ.
 
 ### Step 4: Select defensible passenger directions
 
@@ -197,9 +216,16 @@ names and the source transfer evidence. Do not manufacture walking language,
 distance, or time. Geometry is display evidence only and must not imply a
 pedestrian connection.
 
+For an interchangeable ride step, generate shared copy for the common action
+and retain an ordered list of acceptable line badges/names. The instruction
+must be expressible as “take 9 or 9A” while expandable detail can show each
+line's own direction and intermediate stops. Stable ordering follows documented
+passenger-facing line ordering, then stable ID—not search discovery order.
+
 **Verify**: golden instruction tests cover a direct ride, one transfer, two
-transfers, parent/platform detail, differently named transfer endpoints, and
-unknown platform detail.
+transfers, parent/platform detail, differently named transfer endpoints,
+unknown platform detail, one 9/9A-style interchangeable-line step, and
+lookalike lines that must remain separate.
 
 ### Step 6: Qualify against the production network and route corpus
 
@@ -215,6 +241,8 @@ route-guide case. Emit a deterministic report containing:
   worst-case queries;
 - direction evidence/fallback counts and unresolved ambiguity;
 - duplicate-sequence collapse counts;
+- interchangeable-line group counts, member lines, and rejected grouping
+  candidates with reasons;
 - all unsupported cases without rewriting them into false success.
 
 Every `Supported` corpus case must return an acceptable actionable guide in
@@ -245,9 +273,10 @@ Stop and report instead of continuing if:
       distinct and traceable.
 - [ ] Returned alternatives are bounded, deterministic, deduplicated, and
       actionable.
+- [ ] Interchangeable lines are one passenger step with truthful option-specific
+      direction and intermediate-stop detail.
 - [ ] Every leg identifies line, direction, board/alight place, and stop order.
 - [ ] All supported Plan 012 route cases return acceptable sequences.
 - [ ] Known gaps and ambiguous evidence remain visible.
 - [ ] Existing scheduled-router tests remain green.
 - [ ] `npm run check && npm test` pass.
-

@@ -129,6 +129,11 @@ normatively:
   graph cannot route to it.
 - Every returned transit leg must identify the route/line, direction or
   headsign, boarding place, alighting place, and ordered intermediate stops.
+- When several lines require the same passenger action—board at the same
+  boarding point, alight at the same place, and continue with the same next
+  action—the guide groups them into one ride step and clearly says that any of
+  the listed lines is usable. It retains line-specific direction and stop
+  details instead of pretending the services are operationally identical.
 - Results rank meaningful route sequences, not scheduled trip instances.
 - Exact departure, arrival, wait, trip, and walking time are absent.
 - Failure preserves both passenger inputs, identifies whether place discovery
@@ -153,8 +158,9 @@ Under `src/acceptance/route-helper/`, define schemas and parsers for:
   and rationale/source-review note.
 - `RouteGuideCase`: stable case ID, origin passenger place, destination
   passenger place, expected outcome (`Supported` or `KnownGap`), acceptable
-  ordered line/headsign sequences, maximum transfer count, required boarding
-  and alighting place labels, and rationale/source-review note.
+  ordered ride-step sequences (including expected interchangeable line-option
+  groups and line-specific headsigns), maximum transfer count, required
+  boarding and alighting place labels, and rationale/source-review note.
 - `UsabilityTask`: stable task ID, scenario stated without stop names, expected
   passenger goal, and objective completion criteria.
 - `CorpusManifest`: schema version, reviewed-at date, reviewer identifier or
@@ -167,8 +173,9 @@ JSON text/unknown values; do not add filesystem or network authority to the
 service.
 
 Reject duplicate IDs, empty acceptable sequences, a `KnownGap` with fake route
-instructions, corpus references to nonexistent task/case IDs, and manifests
-whose declared counts do not match decoded arrays.
+instructions, an interchangeable group with fewer than two distinct lines,
+corpus references to nonexistent task/case IDs, and manifests whose declared
+counts do not match decoded arrays.
 
 **Verify**: `npm test -- src/acceptance/route-helper` passes schema round-trip,
 duplicate-ID, count-mismatch, malformed-case, and deterministic-order tests.
@@ -216,7 +223,10 @@ Create at least 50 route cases distributed across:
 
 Include the audited pairs Blok M → Bundaran HI, Blok M → Kota, Ragunan →
 Harmoni, JIS → Blok M, Kalideres → Pulo Gadung, Tanjung Priok → Lebak Bulus,
-and Cawang → Kota. Do not automatically bless current API output: reviewers
+and Cawang → Kota. Include a reviewed production example where lines 9 and 9A
+can be taken for the same boarding-to-alighting passenger step; the expected
+result must be one step with both line options, not two duplicate guides. Do
+not automatically bless current API output: reviewers
 must classify each case and record the acceptable line/headsign sequence or a
 specific known gap.
 
@@ -238,6 +248,12 @@ name. Include:
 - an ambiguous place-name disambiguation;
 - a recognized but unsupported route and recovery;
 - use without opening the map.
+
+Across the tasks, explicitly exercise the responsive endpoint interaction:
+autocomplete results immediately below the active input, origin/destination
+swap, the floating top control on a phone viewport, and the side control on a
+desktop viewport. Include one result whose correct interpretation is “take 9
+or 9A” within a single ride step.
 
 Define the Plan 016 release threshold: at least five people unfamiliar with the
 implementation attempt at least three representative tasks; at least four of
