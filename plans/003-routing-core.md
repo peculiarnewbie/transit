@@ -63,6 +63,12 @@ Add routing-local boundary schemas for origin/destination stop candidates,
 service date/time, maximum transfers, maximum access/transfer walking seconds,
 and line constraints.
 
+The candidate arrays are a routing-core seam, not permission for V1 callers to
+infer pedestrian access. Until Plan 011, the passenger API must supply exactly
+one explicitly selected origin stop and one explicitly selected destination
+stop, each with zero access/egress walking seconds. Walking during the journey
+comes only from explicit transfer edges in the canonical snapshot.
+
 Line constraints must be a tagged union rather than interacting boolean flags:
 
 - no line constraint;
@@ -156,3 +162,6 @@ explicit layers and no network or real sleeps.
 
 Review algorithm correctness before micro-optimizing. Any future train behavior
 must enter through service-availability variants, not source-name conditionals.
+Plan 011 may populate the existing origin/destination candidate seam with
+street-routed pedestrian durations; earlier plans must not populate it from
+straight-line distance or unverified proximity.

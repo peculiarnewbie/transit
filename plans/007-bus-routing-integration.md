@@ -17,7 +17,7 @@
 
 ## Why this matters
 
-This is the first deployable product slice: choose two Jakarta locations/stops,
+This is the first deployable product slice: choose two Jakarta transit stops,
 receive TransJakarta alternatives, constrain actual lines, and inspect the
 result on the map. It is also the gate that proves compiler, router, and UI
 contracts agree before train complexity enters.
@@ -56,8 +56,9 @@ After prerequisites merge:
 - Train adapters or multimodal routing
 - Curation/admin files
 - New persistence tables
-- Geocoding provider integration; origin/destination may be stop or coordinate
-  candidates resolved to nearby stops
+- Geocoding or street-routing provider integration
+- Arbitrary-coordinate origin/destination endpoints or proximity-derived
+  pedestrian access/egress
 - Custom PMTiles basemap generation
 
 ## Git workflow
@@ -86,6 +87,11 @@ multiple queries.
 domain errors to stable error DTOs/status codes. `GET /api/stops` performs a
 bounded nearby/name search without returning the entire stop catalog.
 
+The public journey DTO accepts one selected origin stop ID and one selected
+destination stop ID. Map those to the routing core's candidate arrays with zero
+access/egress walking seconds. Do not expose caller-supplied walking seconds,
+coordinate candidates, or inferred nearby-stop access through the V1 API.
+
 No business logic belongs in handlers. Apply request size limits and bound all
 result counts/transfer limits.
 
@@ -99,6 +105,10 @@ real endpoints from the client after interaction, with cancellation when inputs
 change. Do not introduce SSR loaders or server-render journey state. Preserve
 list-first and map-failure behavior. Render only geometry for returned
 alternatives, loading full detail for the selected option when appropriate.
+
+Remove or disable the fixture-only free-coordinate `MapPoint` endpoint flow.
+Map interaction may choose a rendered stop marker; clicking empty map space must
+not create a V1 journey endpoint.
 
 **Verify**: integration test exercises endpoint selection through rendered
 itinerary cards and exact line constraints.
@@ -120,20 +130,23 @@ state; production build contains no `file_gtfs.zip`.
 
 Use a realistic fixture with branches and transfers. Cover endpoint selection,
 direct route, transfer route, excluded line, required line, locked leg,
-no-service time, and map-independent itinerary rendering.
+no-service time, rejection of arbitrary-coordinate endpoints, and
+map-independent itinerary rendering.
 
 **Verify**: `npm run check && npm test && npm run build` passes.
 
 ## Done criteria
 
-- [x] A deployed-style runtime answers bus journey requests.
-- [x] All API inputs/outputs are Schema-validated and bounded.
-- [x] Passenger UI uses the real adapter in production.
-- [x] TanStack Start remains in SPA mode with `defaultSsr: false`.
-- [x] Snapshot activation is atomic and versioned.
-- [x] Generated route tree is current.
-- [x] Acceptance tests cover line-selection features.
-- [x] Full verification passes.
+- [ ] A deployed-style runtime answers bus journey requests.
+- [ ] All API inputs/outputs are Schema-validated and bounded.
+- [ ] Passenger UI uses the real adapter in production.
+- [ ] Production journeys begin and end at explicitly selected transit stops;
+      no arbitrary-coordinate or inferred access/egress path is exposed.
+- [ ] TanStack Start remains in SPA mode with `defaultSsr: false`.
+- [ ] Snapshot activation is atomic and versioned.
+- [ ] Generated route tree is current.
+- [ ] Acceptance tests cover line-selection features.
+- [ ] Full verification passes.
 
 ## STOP conditions
 

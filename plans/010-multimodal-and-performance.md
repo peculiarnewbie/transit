@@ -75,6 +75,9 @@ After prerequisites:
 
 - New source scraping or curation tables
 - Guessing uncurated transfers
+- Arbitrary-coordinate origins/destinations, street-level pedestrian routing,
+  or access/egress outside the selected transit stops
+- Bicycle, motorcycle, car, taxi, or other personal-vehicle connector legs
 - Full offline city-map download
 - Sending query-specific graph fragments that can omit valid transfer paths
 - Maintaining separate browser and server routing algorithms
@@ -106,6 +109,12 @@ Preserve existing line exclusion/preference/requirement/locking across modes.
 Score `Scheduled`, `FrequencyOnly`, and `TopologyOnly` legs differently and
 surface uncertainty rather than turning it into fake exact times.
 
+Every V1 journey still begins and ends at an explicitly selected transit stop
+or station. Walking legs represent only published, reviewed transfer edges;
+geographic proximity must not create a transfer or walking estimate. Retain
+transfer direction, minimum duration, accessibility information, notes, and
+verification provenance in the composed network and returned journey.
+
 **Verify**: tests cover bus→train, train→bus, two transfers, directionality,
 unavailable service, excluded train line, and no inferred nearby transfer.
 
@@ -113,7 +122,8 @@ unavailable service, excluded train line, and no inferred nearby transfer.
 
 Return mode, provenance/freshness, uncertainty, station/boarding-point names,
 and transfer walking notes. The UI must explain when a train time is approximate
-or unavailable. Keep geometry detail lazy and bounded.
+or unavailable. It must also state the selected start and end stop/station so it
+does not imply door-to-door coverage. Keep geometry detail lazy and bounded.
 
 **Verify**: accessibility tests confirm uncertainty is conveyed in text, not
 color/icon alone.
@@ -215,6 +225,8 @@ still leave journey controls/results usable without the basemap.
 
 - [ ] One atomic canonical network serves bus and train routing.
 - [ ] Only curated transfers connect systems.
+- [ ] Journeys begin/end at selected stops or stations, and no street-routed or
+      proximity-estimated access/egress is implied.
 - [ ] Incomplete train timing is visible and typed end to end.
 - [ ] Passenger line controls work across modes.
 - [ ] Offline fixture performance suite enforces documented budgets.
@@ -246,4 +258,6 @@ Keep performance budgets tied to user outcomes: usable controls, small journey
 responses, bounded map work, and understandable degraded states. Revisit the
 PMTiles basemap only when hosted tile delivery is the measured bottleneck. The
 browser and server harnesses must import one routing core; environment adapters
-own artifact loading, caching, and transport concerns.
+own artifact loading, caching, and transport concerns. Plan 011 is the sole
+follow-up authorized to add arbitrary-coordinate pedestrian access/egress; it
+must preserve this station-only workflow as the independent fallback.

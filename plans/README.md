@@ -40,6 +40,9 @@ Phase 3 (parallel, after required Phase 1 merges)
 
 Phase 4 (serial)
   010 Add multimodal routing and choose the production routing runtime
+
+Phase 5 (optional, post-V1)
+  011 Add street-routed pedestrian access and egress
 ```
 
 Phase 1 plans intentionally own disjoint directories. They must not add
@@ -62,6 +65,7 @@ generated-route conflict.
 | 008  | Build the protected station/topology editor           |       P1 |      L | 004, 006, 007   | TODO   |
 | 009  | Project imported and curated trains into the network  |       P1 |      L | 005, 006        | TODO   |
 | 010  | Add multimodal routing and choose the routing runtime |       P2 |     XL | 007, 008, 009   | TODO   |
+| 011  | Add street-routed pedestrian access and egress        |       P3 |     XL | 010             | TODO   |
 
 Status values: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED: <reason>`, or
 `REJECTED: <reason>`.
@@ -88,6 +92,13 @@ Status values: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED: <reason>`, or
   serves the static app shell and API/server routes; page content is not SSR'd.
 - Bus routing ships before multimodal routing, while shared contracts remain
   mode-neutral.
+- The V1 passenger product routes between explicitly selected transit stops or
+  stations. Map clicks select transit markers, not arbitrary coordinates.
+  Access from an arbitrary origin and egress to an arbitrary destination are
+  deferred to Plan 011.
+- V1 walking legs come only from explicit published transfer edges. Geographic
+  proximity may bound stop display/search, but it must not create a transfer,
+  walking duration, or claim of pedestrian feasibility.
 - Plan 007 ships routing in an ordinary Cloudflare Worker first. Plan 010 then
   measures that baseline against a browser Web Worker using the same TypeScript
   core; a Cloudflare Container is the fallback only when both ordinary Worker
@@ -129,3 +140,7 @@ authorization policies.
   couples product validation to the least reliable data source.
 - **Edit scraped train JSON in the admin tool:** rejected because every refresh
   could destroy human work and erase provenance.
+- **Estimate pedestrian access with straight-line distance:** rejected because
+  rivers, toll roads, railway corridors, barriers, gates, and missing crossings
+  make geometric proximity an unsafe proxy for a Jakarta walking route. Plan
+  011 requires a routed pedestrian graph and has no straight-line fallback.

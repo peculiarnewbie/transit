@@ -92,7 +92,9 @@ and map failure does not remove them.
 
 ### Step 3: Build endpoint and line-choice interactions
 
-Allow origin/destination selection from typed stop suggestions and map clicks.
+Allow origin/destination selection from typed stop suggestions and transit-stop
+markers on the map. A map click may select a rendered stop/station marker, but
+must not create an arbitrary coordinate endpoint for the V1 journey contract.
 Render alternatives as cards showing line sequence, transfers, walking, and
 estimated time. Add controls to exclude, prefer, require, and lock a selected
 line/leg; they should update the fixture adapter query exactly once.
@@ -146,4 +148,8 @@ no obscured primary controls.
 ## Maintenance notes
 
 The hosted basemap is intentionally replaceable. A later PMTiles basemap can
-change the style/source without rewriting passenger state or route layers.
+change the style/source without rewriting passenger state or route layers. The
+completed fixture scaffold's `MapPoint` endpoint is not part of the V1 product
+contract; Plan 007 must remove or disable free-coordinate endpoint selection
+when it installs the production adapter. Plan 011 may restore arbitrary
+coordinate endpoints only with real street-routed pedestrian access/egress.
