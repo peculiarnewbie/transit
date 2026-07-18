@@ -1,9 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "transit",
+  "account_id": "3a855f7ef3ac127682a419eddeb9f884",
   "main": "@tanstack/solid-start/server-entry",
   "compatibility_date": "2026-07-18",
   "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": true,
   "routes": [
     {
       "pattern": "transit.peculiarnewbie.com",
