@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "id": 6,
+      "slug": "bundaran-hi",
+      "name": "Bundaran HI",
+      "object": {
+        "schedule": {
+          "start": "Lebak Bulus",
+          "weekdaysStart": "05:00:00;05:12:00",
+          "weekendsStart": "05:00:00;05:12:00"
+        }
+      }
+    }
+  ]
+}
