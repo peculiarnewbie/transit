@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "1",
+  "generatedAt": "2026-07-18T00:00:00.000Z",
+  "agencies": [
+    {
+      "id": "agency:transjakarta",
+      "sourceRefs": [],
+      "name": "TransJakarta",
+      "timezone": "Asia/Jakarta"
+    }
+  ],
+  "stops": [
+    {
+      "id": "tj:bundaran-hi",
+      "sourceRefs": [],
+      "name": "Bundaran HI Astra",
+      "location": { "_tag": "Placed", "latitude": -6.193, "longitude": 106.823 }
+    },
+    {
+      "id": "tj:tosari",
+      "sourceRefs": [],
+      "name": "Tosari",
+      "location": { "_tag": "Placed", "latitude": -6.1989, "longitude": 106.8232 }
+    },
+    {
+      "id": "tj:dukuh-atas",
+      "sourceRefs": [],
+      "name": "Dukuh Atas",
+      "location": { "_tag": "Placed", "latitude": -6.2057, "longitude": 106.8228 }
+    },
+    {
+      "id": "tj:semanggi",
+      "sourceRefs": [],
+      "name": "Semanggi",
+      "location": { "_tag": "Placed", "latitude": -6.2195, "longitude": 106.8096 }
+    },
+    {
+      "id": "tj:gbk",
+      "sourceRefs": [],
+      "name": "Gelora Bung Karno",
+      "location": { "_tag": "Placed", "latitude": -6.2242, "longitude": 106.8003 }
+    }
+  ],
+  "routes": [
+    {
+      "id": "tj:1",
+      "agencyId": "agency:transjakarta",
+      "sourceRefs": [],
+      "mode": "Bus",
+      "shortName": "1",
+      "longName": "Blok M — Kota",
+      "color": "c6312c"
+    },
+    {
+      "id": "tj:6B",
+      "agencyId": "agency:transjakarta",
+      "sourceRefs": [],
+      "mode": "Bus",
+      "shortName": "6B",
+      "longName": "Ragunan — Semanggi",
+      "color": "176b87"
+    },
+    {
+      "id": "tj:9C",
+      "agencyId": "agency:transjakarta",
+      "sourceRefs": [],
+      "mode": "Bus",
+      "shortName": "9C",
+      "longName": "Pinang Ranti — Bundaran Senayan",
+      "color": "e6ae23"
+    }
+  ],
+  "patterns": [
+    {
+      "id": "pattern:tj:1:south",
+      "routeId": "tj:1",
+      "sourceRefs": [],
+      "stopIds": ["tj:bundaran-hi", "tj:tosari", "tj:dukuh-atas", "tj:semanggi", "tj:gbk"],
+      "geometryId": "geometry:tj:1:south"
+    },
+    {
+      "id": "pattern:tj:6B:south",
+      "routeId": "tj:6B",
+      "sourceRefs": [],
+      "stopIds": ["tj:dukuh-atas", "tj:semanggi"],
+      "geometryId": "geometry:tj:6B:south"
+    },
+    {
+      "id": "pattern:tj:9C:west",
+      "routeId": "tj:9C",
+      "sourceRefs": [],
+      "stopIds": ["tj:semanggi", "tj:gbk"],
+      "geometryId": "geometry:tj:9C:west"
+    }
+  ],
+  "trips": [
+    {
+      "id": "trip:tj:1:frequent",
+      "patternId": "pattern:tj:1:south",
+      "serviceId": "service:daily",
+      "sourceRefs": [],
+      "availability": {
+        "_tag": "Scheduled",
+        "stopTimes": [
+          { "stopId": "tj:bundaran-hi", "sequence": 0, "arrivalSeconds": 0, "departureSeconds": 0 },
+          { "stopId": "tj:tosari", "sequence": 1, "arrivalSeconds": 300, "departureSeconds": 330 },
+          {
+            "stopId": "tj:dukuh-atas",
+            "sequence": 2,
+            "arrivalSeconds": 630,
+            "departureSeconds": 660
+          },
+          {
+            "stopId": "tj:semanggi",
+            "sequence": 3,
+            "arrivalSeconds": 1200,
+            "departureSeconds": 1230
+          },
+          { "stopId": "tj:gbk", "sequence": 4, "arrivalSeconds": 1530, "departureSeconds": 1530 }
+        ],
+        "frequencyWindows": [
+          { "startSeconds": 0, "endSeconds": 86400, "headwaySeconds": 600, "exactTimes": false }
+        ]
+      }
+    },
+    {
+      "id": "trip:tj:6B:frequent",
+      "patternId": "pattern:tj:6B:south",
+      "serviceId": "service:daily",
+      "sourceRefs": [],
+      "availability": {
+        "_tag": "Scheduled",
+        "stopTimes": [
+          { "stopId": "tj:dukuh-atas", "sequence": 0, "arrivalSeconds": 0, "departureSeconds": 0 },
+          { "stopId": "tj:semanggi", "sequence": 1, "arrivalSeconds": 540, "departureSeconds": 540 }
+        ],
+        "frequencyWindows": [
+          { "startSeconds": 0, "endSeconds": 86400, "headwaySeconds": 720, "exactTimes": false }
+        ]
+      }
+    },
+    {
+      "id": "trip:tj:9C:frequent",
+      "patternId": "pattern:tj:9C:west",
+      "serviceId": "service:daily",
+      "sourceRefs": [],
+      "availability": {
+        "_tag": "Scheduled",
+        "stopTimes": [
+          { "stopId": "tj:semanggi", "sequence": 0, "arrivalSeconds": 0, "departureSeconds": 0 },
+          { "stopId": "tj:gbk", "sequence": 1, "arrivalSeconds": 420, "departureSeconds": 420 }
+        ],
+        "frequencyWindows": [
+          { "startSeconds": 0, "endSeconds": 86400, "headwaySeconds": 720, "exactTimes": false }
+        ]
+      }
+    }
+  ],
+  "calendars": [
+    {
+      "id": "service:daily",
+      "sourceRefs": [],
+      "startDate": "2026-01-01",
+      "endDate": "2030-12-31",
+      "activeWeekdays": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "exceptions": []
+    }
+  ],
+  "transfers": []
+}

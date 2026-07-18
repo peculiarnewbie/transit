@@ -1,16 +1,14 @@
-import type { RouteId, StopId } from "../../domain/transit/index.js";
+import type { RouteId } from "../../domain/transit/index.js";
+import type {
+  Coordinate,
+  Journey,
+  LockedLeg,
+  StopSuggestion,
+  TransitJourneyLeg,
+  WalkJourneyLeg,
+} from "../../runtime/api-contracts.js";
 
-export interface Coordinate {
-  readonly longitude: number;
-  readonly latitude: number;
-}
-
-export interface StopSuggestion {
-  readonly id: StopId;
-  readonly name: string;
-  readonly area: string;
-  readonly coordinate: Coordinate;
-}
+export type { Coordinate, Journey, LockedLeg, StopSuggestion };
 
 export type JourneyEndpoint =
   | { readonly _tag: "Stop"; readonly stop: StopSuggestion }
@@ -21,12 +19,6 @@ export type LineConstraint =
   | { readonly _tag: "Prefer"; readonly routeId: RouteId }
   | { readonly _tag: "Require"; readonly routeId: RouteId };
 
-export interface LockedLeg {
-  readonly journeyId: string;
-  readonly legIndex: number;
-  readonly routeId: RouteId;
-}
-
 export interface RouteQuery {
   readonly origin: JourneyEndpoint;
   readonly destination: JourneyEndpoint;
@@ -34,38 +26,19 @@ export interface RouteQuery {
   readonly lockedLeg?: LockedLeg;
 }
 
-export interface TransitLeg {
-  readonly _tag: "Transit";
-  readonly routeId: RouteId;
-  readonly line: string;
-  readonly from: string;
-  readonly to: string;
-  readonly minutes: number;
-  readonly stops: number;
-  readonly tone: "red" | "blue" | "yellow" | "green";
-}
-
-export interface WalkLeg {
-  readonly _tag: "Walk";
-  readonly from: string;
-  readonly to: string;
-  readonly minutes: number;
-  readonly meters: number;
-}
-
+export type TransitLeg = TransitJourneyLeg;
+export type WalkLeg = WalkJourneyLeg;
 export type JourneyLeg = TransitLeg | WalkLeg;
 
-export interface Journey {
-  readonly id: string;
-  readonly label: string;
-  readonly minutes: number;
-  readonly walkingMinutes: number;
-  readonly transfers: number;
-  readonly legs: ReadonlyArray<JourneyLeg>;
-}
-
 export interface PassengerRoutingAdapter {
-  readonly search: (query: RouteQuery) => Promise<ReadonlyArray<Journey>>;
+  readonly search: (
+    query: RouteQuery,
+    options?: { readonly signal?: AbortSignal },
+  ) => Promise<ReadonlyArray<Journey>>;
+  readonly searchStops?: (
+    query?: string,
+    options?: { readonly signal?: AbortSignal },
+  ) => Promise<ReadonlyArray<StopSuggestion>>;
 }
 
 export type EndpointKind = "origin" | "destination";

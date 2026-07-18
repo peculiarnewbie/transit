@@ -84,13 +84,26 @@ describe("passenger state", () => {
     expect(excluded.lineConstraints).toEqual([{ _tag: "Exclude", routeId: fixtureRouteIds.one }]);
   });
 
+  it("keeps the query in one composable rule family", () => {
+    const preferred = setLineConstraint({
+      query,
+      routeId: fixtureRouteIds.one,
+      constraint: "Prefer",
+    });
+    const excluded = setLineConstraint({
+      query: preferred,
+      routeId: fixtureRouteIds.sixB,
+      constraint: "Exclude",
+    });
+
+    expect(excluded.lineConstraints).toEqual([{ _tag: "Exclude", routeId: fixtureRouteIds.sixB }]);
+  });
+
   it("sends one exact query when a journey leg is locked", async () => {
     const search = vi.fn(async () => searchFixtureJourneys(query));
-    const lockedLeg = {
-      journeyId: "direct-one",
-      legIndex: 1,
-      routeId: fixtureRouteIds.one,
-    };
+    const journey = searchFixtureJourneys(query)[0];
+    const lockedLeg = journey?.legs.find((leg) => leg._tag === "Transit")?.lock;
+    if (lockedLeg === undefined) throw new Error("Expected a lockable fixture leg");
     const refined = setLockedLeg({ query, lockedLeg });
 
     await runPassengerSearch({ adapter: { search }, query: refined, onState: () => undefined });

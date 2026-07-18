@@ -1,8 +1,18 @@
-import { For, Show, Suspense, createEffect, createMemo, createSignal, lazy } from "solid-js";
+import {
+  For,
+  Show,
+  Suspense,
+  createEffect,
+  createMemo,
+  createSignal,
+  lazy,
+  onCleanup,
+} from "solid-js";
 import * as stylex from "@stylexjs/stylex";
 
 import type { RouteId } from "../../domain/transit/index.js";
-import { fixturePassengerAdapter, fixtureStops } from "./fixtures.js";
+import { apiPassengerAdapter } from "./api-adapter.js";
+import { fixtureStops } from "./fixtures.js";
 import { runPassengerSearch, setLineConstraint, setLockedLeg } from "./passenger-state.js";
 import {
   endpointLabel,
@@ -27,11 +37,15 @@ export interface PassengerExplorerProps {
 }
 
 export default function PassengerExplorer(props: PassengerExplorerProps) {
-  const adapter = () => props.adapter ?? fixturePassengerAdapter;
+  const adapter = () => props.adapter ?? apiPassengerAdapter;
   const [origin, setOrigin] = createSignal<JourneyEndpoint>();
   const [destination, setDestination] = createSignal<JourneyEndpoint>();
   const [activeEndpoint, setActiveEndpoint] = createSignal<EndpointKind>();
   const [state, setState] = createSignal<PassengerState>({ _tag: "Idle" });
+  const [suggestions, setSuggestions] = createSignal<ReadonlyArray<StopSuggestion>>(
+    props.adapter === undefined ? [] : fixtureStops,
+  );
+  let searchController: AbortController | undefined;
   let statusHeading: HTMLHeadingElement | undefined;
 
   const canSearch = createMemo(() => origin() !== undefined && destination() !== undefined);
@@ -50,6 +64,18 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
       queueMicrotask(() => statusHeading?.focus());
     }
   });
+
+  createEffect(() => {
+    if (activeEndpoint() === undefined || adapter().searchStops === undefined) return;
+    const controller = new AbortController();
+    void adapter()
+      .searchStops?.("", { signal: controller.signal })
+      .then(setSuggestions)
+      .catch(() => undefined);
+    onCleanup(() => controller.abort());
+  });
+
+  onCleanup(() => searchController?.abort());
 
   const chooseEndpoint = (kind: EndpointKind) => {
     setActiveEndpoint(kind);
@@ -79,7 +105,16 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
 
   const search = async (query = currentQuery()) => {
     if (query === undefined) return;
-    await runPassengerSearch({ adapter: adapter(), query, onState: setState });
+    searchController?.abort();
+    const controller = new AbortController();
+    searchController = controller;
+    await runPassengerSearch({
+      adapter: adapter(),
+      query,
+      onState: setState,
+      signal: controller.signal,
+    });
+    if (searchController === controller) searchController = undefined;
   };
 
   const refineLine = async (routeId: RouteId, constraint: LineConstraint["_tag"]) => {
@@ -88,13 +123,13 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
     await search(setLineConstraint({ query, routeId, constraint }));
   };
 
-  const lockLeg = async (journey: Journey, leg: TransitLeg, legIndex: number) => {
+  const lockLeg = async (_journey: Journey, leg: TransitLeg, _legIndex: number) => {
     const query = currentQuery();
     if (query === undefined) return;
     await search(
       setLockedLeg({
         query,
-        lockedLeg: { journeyId: journey.id, routeId: leg.routeId, legIndex },
+        lockedLeg: leg.lock,
       }),
     );
   };
@@ -102,6 +137,14 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
   const selectedJourneyId = () => {
     const current = state();
     return current._tag === "Results" ? current.selectedJourneyId : undefined;
+  };
+
+  const selectedJourneyGeometry = () => {
+    const current = state();
+    if (current._tag !== "Results") return [];
+    return (
+      current.journeys.find((journey) => journey.id === current.selectedJourneyId)?.geometry ?? []
+    );
   };
 
   return (
@@ -151,7 +194,7 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
             <div {...stylex.props(styles.suggestions)}>
               <p {...stylex.props(styles.suggestionLabel)}>Nearby stops</p>
               <ul {...stylex.props(styles.suggestionList)}>
-                <For each={fixtureStops}>
+                <For each={suggestions()}>
                   {(stop) => (
                     <li>
                       <button
@@ -211,6 +254,7 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
                 props.mapStyleUrl ?? import.meta.env.VITE_MAP_STYLE_URL ?? defaultMapStyleUrl
               }
               selectedJourneyId={selectedJourneyId()}
+              selectedGeometry={selectedJourneyGeometry()}
               onMapEndpoint={selectMapPoint}
             />
           </Suspense>

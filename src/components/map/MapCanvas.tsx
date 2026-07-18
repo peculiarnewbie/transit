@@ -5,11 +5,11 @@ import { AttributionControl, Map, type GeoJSONSource } from "maplibre-gl";
 import * as stylex from "@stylexjs/stylex";
 
 import type { Coordinate } from "../../features/passenger/types.js";
-import { journeyGeometry } from "./map-geometry.js";
 
 export interface MapCanvasProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
+  readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
   readonly onMapEndpoint: (coordinate: Coordinate) => void;
   readonly onReady: () => void;
   readonly onFailure: () => void;
@@ -23,9 +23,7 @@ export default function MapCanvas(props: MapCanvasProps) {
   let ready = false;
 
   const selectedCoordinates = () =>
-    props.selectedJourneyId === undefined
-      ? emptyGeometry
-      : (journeyGeometry[props.selectedJourneyId] ?? emptyGeometry);
+    props.selectedJourneyId === undefined ? emptyGeometry : props.selectedGeometry;
 
   onMount(() => {
     const mapContainer = container();

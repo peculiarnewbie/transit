@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiJourneysRouteImport } from './routes/api/journeys'
+import { Route as ApiStopsRouteImport } from './routes/api/stops'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiJourneysRoute = ApiJourneysRouteImport.update({
+  id: '/api/journeys',
+  path: '/api/journeys',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiStopsRoute = ApiStopsRouteImport.update({
+  id: '/api/stops',
+  path: '/api/stops',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/journeys': typeof ApiJourneysRoute
+  '/api/stops': typeof ApiStopsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/journeys': typeof ApiJourneysRoute
+  '/api/stops': typeof ApiStopsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/journeys': typeof ApiJourneysRoute
+  '/api/stops': typeof ApiStopsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/journeys' | '/api/stops'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/journeys' | '/api/stops'
+  id: '__root__' | '/' | '/api/journeys' | '/api/stops'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiJourneysRoute: typeof ApiJourneysRoute
+  ApiStopsRoute: typeof ApiStopsRoute
 }
 
 declare module '@tanstack/solid-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/journeys': {
+      id: '/api/journeys'
+      path: '/api/journeys'
+      fullPath: '/api/journeys'
+      preLoaderRoute: typeof ApiJourneysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/stops': {
+      id: '/api/stops'
+      path: '/api/stops'
+      fullPath: '/api/stops'
+      preLoaderRoute: typeof ApiStopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiJourneysRoute: ApiJourneysRoute,
+  ApiStopsRoute: ApiStopsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

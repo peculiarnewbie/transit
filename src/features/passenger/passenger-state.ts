@@ -36,7 +36,9 @@ export const setLineConstraint = ({
 }): RouteQuery => ({
   ...query,
   lineConstraints: [
-    ...query.lineConstraints.filter((entry) => entry.routeId !== routeId),
+    ...query.lineConstraints.filter(
+      (entry) => entry.routeId !== routeId && entry._tag === constraint,
+    ),
     { _tag: constraint, routeId },
   ],
 });
@@ -49,6 +51,7 @@ export const setLockedLeg = ({
   lockedLeg: LockedLeg;
 }): RouteQuery => ({
   ...query,
+  lineConstraints: [],
   lockedLeg,
 });
 
@@ -56,16 +59,20 @@ export const runPassengerSearch = async ({
   adapter,
   query,
   onState,
+  signal,
 }: {
   readonly adapter: PassengerRoutingAdapter;
   readonly query: RouteQuery;
   readonly onState: (state: PassengerState) => void;
+  readonly signal?: AbortSignal;
 }): Promise<void> => {
   onState({ _tag: "Searching", query });
   try {
-    const journeys = await adapter.search(query);
+    const journeys =
+      signal === undefined ? await adapter.search(query) : await adapter.search(query, { signal });
     onState(toResultState(query, journeys));
   } catch (error) {
+    if (signal?.aborted) return;
     onState({
       _tag: "Failed",
       query,

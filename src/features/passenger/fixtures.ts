@@ -1,9 +1,16 @@
 import { Schema } from "effect";
 
-import { RouteId, StopId } from "../../domain/transit/index.js";
+import {
+  RouteId,
+  RoutePatternId,
+  ServiceDaySeconds,
+  StopId,
+  TripId,
+} from "../../domain/transit/index.js";
 import type {
   Journey,
   LineConstraint,
+  LockedLeg,
   PassengerRoutingAdapter,
   RouteQuery,
   StopSuggestion,
@@ -12,6 +19,33 @@ import type {
 
 const stopId = Schema.decodeUnknownSync(StopId);
 const routeId = Schema.decodeUnknownSync(RouteId);
+const patternId = Schema.decodeUnknownSync(RoutePatternId);
+const tripId = Schema.decodeUnknownSync(TripId);
+const seconds = Schema.decodeUnknownSync(ServiceDaySeconds);
+
+const lock = ({
+  routeId,
+  key,
+  from,
+  to,
+  departure,
+  arrival,
+}: {
+  readonly routeId: RouteId;
+  readonly key: string;
+  readonly from: string;
+  readonly to: string;
+  readonly departure: number;
+  readonly arrival: number;
+}): LockedLeg => ({
+  fromStopId: stopId(from),
+  toStopId: stopId(to),
+  routeId,
+  patternId: patternId(`fixture:pattern:${key}`),
+  tripId: tripId(`fixture:trip:${key}`),
+  departureSeconds: seconds(departure),
+  arrivalSeconds: seconds(arrival),
+});
 
 export const fixtureStops: ReadonlyArray<StopSuggestion> = [
   {
@@ -64,8 +98,22 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 17,
         stops: 6,
         tone: "red",
+        lock: lock({
+          routeId: fixtureRouteIds.one,
+          key: "one",
+          from: "tj:bundaran-hi",
+          to: "tj:gbk",
+          departure: 28_800,
+          arrival: 29_820,
+        }),
       },
       { _tag: "Walk", from: "Gelora Bung Karno", to: "Destination", minutes: 2, meters: 140 },
+    ],
+    geometry: [
+      [106.823, -6.193],
+      [106.8232, -6.1989],
+      [106.8228, -6.2057],
+      [106.8003, -6.2242],
     ],
   },
   {
@@ -85,6 +133,14 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 11,
         stops: 4,
         tone: "blue",
+        lock: lock({
+          routeId: fixtureRouteIds.sixB,
+          key: "six-b",
+          from: "tj:dukuh-atas",
+          to: "tj:semanggi",
+          departure: 28_800,
+          arrival: 29_460,
+        }),
       },
       {
         _tag: "Transit",
@@ -95,8 +151,21 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 9,
         stops: 3,
         tone: "yellow",
+        lock: lock({
+          routeId: fixtureRouteIds.nineC,
+          key: "nine-c",
+          from: "tj:semanggi",
+          to: "tj:gbk",
+          departure: 29_580,
+          arrival: 30_120,
+        }),
       },
       { _tag: "Walk", from: "Gelora Bung Karno", to: "Destination", minutes: 3, meters: 220 },
+    ],
+    geometry: [
+      [106.8228, -6.2057],
+      [106.8096, -6.2195],
+      [106.8003, -6.2242],
     ],
   },
   {
@@ -115,6 +184,14 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 9,
         stops: 3,
         tone: "blue",
+        lock: lock({
+          routeId: fixtureRouteIds.sixB,
+          key: "six-b-north",
+          from: "tj:dukuh-atas",
+          to: "tj:tosari",
+          departure: 28_800,
+          arrival: 29_340,
+        }),
       },
       {
         _tag: "Transit",
@@ -125,7 +202,20 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 22,
         stops: 7,
         tone: "red",
+        lock: lock({
+          routeId: fixtureRouteIds.one,
+          key: "one-south",
+          from: "tj:tosari",
+          to: "tj:gbk",
+          departure: 29_460,
+          arrival: 30_780,
+        }),
       },
+    ],
+    geometry: [
+      [106.8228, -6.2057],
+      [106.8232, -6.1989],
+      [106.8003, -6.2242],
     ],
   },
 ];
@@ -145,10 +235,14 @@ const matchesConstraint = (journey: Journey, constraint: LineConstraint): boolea
 export const searchFixtureJourneys = (query: RouteQuery): ReadonlyArray<Journey> => {
   const constrained = journeys.filter((journey) => {
     const lockedLeg = query.lockedLeg;
-    const candidateLeg = lockedLeg === undefined ? undefined : journey.legs[lockedLeg.legIndex];
     const matchesLock =
       lockedLeg === undefined ||
-      (candidateLeg?._tag === "Transit" && candidateLeg.routeId === lockedLeg.routeId);
+      transitLegs(journey).some(
+        (leg) =>
+          leg.lock.routeId === lockedLeg.routeId &&
+          leg.lock.fromStopId === lockedLeg.fromStopId &&
+          leg.lock.toStopId === lockedLeg.toStopId,
+      );
     return (
       matchesLock &&
       query.lineConstraints.every((constraint) => matchesConstraint(journey, constraint))

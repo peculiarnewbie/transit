@@ -8,6 +8,7 @@ const LazyMapCanvas = lazy(() => import("./MapCanvas.js"));
 export interface PassengerMapProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
+  readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
   readonly onMapEndpoint: (coordinate: Coordinate) => void;
 }
 
@@ -31,6 +32,7 @@ export default function PassengerMap(props: PassengerMapProps) {
           <LazyMapCanvas
             styleUrl={props.styleUrl}
             selectedJourneyId={props.selectedJourneyId}
+            selectedGeometry={props.selectedGeometry}
             onMapEndpoint={props.onMapEndpoint}
             onReady={() => setStatus("ready")}
             onFailure={() => setStatus("failed")}
