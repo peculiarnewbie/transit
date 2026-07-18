@@ -1,0 +1,29 @@
+# Dependencies and build output
+node_modules/
+dist/
+dist-ssr/
+.output/
+.vinxi/
+.nitro/
+.tanstack/
+
+# Cloudflare local state
+.wrangler/
+
+# Drizzle local database files (generated migrations stay committed)
+drizzle/*.sqlite
+drizzle/*.sqlite-*
+
+# Local configuration and secrets
+.dev.vars
+.env
+.env.*
+!.env.example
+*.local
+
+# Tooling and operating-system files
+coverage/
+.agents/
+skills-lock.json
+.DS_Store
+*.tsbuildinfo
