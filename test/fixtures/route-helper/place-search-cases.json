@@ -3,10 +3,7 @@
     "id": "place:kota-tua",
     "query": "Kota Tua",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Landmark",
-      "Neighbourhood"
-    ],
+    "categories": ["Landmark", "Neighbourhood"],
     "expectedPlaces": [
       {
         "name": "Kota Tua",
@@ -17,15 +14,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Historic old town area; not a GTFS stop name.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:grand-indonesia",
     "query": "Grand Indonesia",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Grand Indonesia",
@@ -36,15 +31,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Grand Indonesia.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:universitas-indonesia",
     "query": "Universitas Indonesia",
     "adminCoverage": "EdgeNetwork",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Universitas Indonesia",
@@ -55,17 +48,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Major campus on TransJakarta edge network / feeder coverage.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:blok-m",
     "query": "Blok M",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Landmark",
-      "ExactStop",
-      "Ambiguous"
-    ],
+    "categories": ["Landmark", "ExactStop", "Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Blok M",
@@ -73,21 +62,16 @@
         "locality": "Jakarta Selatan"
       }
     ],
-    "forbiddenDuplicateLabels": [
-      "Blok M"
-    ],
+    "forbiddenDuplicateLabels": ["Blok M"],
     "expectNoLocalResult": false,
     "rationale": "Terminal complex must appear once at primary search level.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:bundaran-hi",
     "query": "Bundaran HI",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Landmark",
-      "ExactStop"
-    ],
+    "categories": ["Landmark", "ExactStop"],
     "expectedPlaces": [
       {
         "name": "Bundaran HI",
@@ -98,17 +82,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Bundaran HI.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:tanah-abang",
     "query": "Tanah Abang",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Landmark",
-      "Neighbourhood",
-      "Ambiguous"
-    ],
+    "categories": ["Landmark", "Neighbourhood", "Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Tanah Abang",
@@ -124,16 +104,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Market/area and transit place share a name; locality/type must disambiguate.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:jis",
     "query": "Jakarta International Stadium",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "Landmark",
-      "ExactStop"
-    ],
+    "categories": ["Landmark", "ExactStop"],
     "expectedPlaces": [
       {
         "name": "Jakarta International Stadium",
@@ -144,16 +121,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Jakarta International Stadium.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:menteng",
     "query": "Menteng",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Menteng",
@@ -164,16 +138,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Menteng.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:gambir",
     "query": "Gambir",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Gambir",
@@ -184,16 +155,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Gambir.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:kebon-sirih",
     "query": "Kebon Sirih",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Kebon Sirih",
@@ -204,16 +172,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Kebon Sirih.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:kelapa-gading",
     "query": "Kelapa Gading",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Kelapa Gading",
@@ -224,16 +189,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Kelapa Gading.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:sunter",
     "query": "Sunter",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Sunter",
@@ -244,16 +206,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Sunter.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:ancol",
     "query": "Ancol",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "Landmark",
-      "AdministrativeCity"
-    ],
+    "categories": ["Landmark", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Ancol",
@@ -264,16 +223,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Ancol.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:grogol",
     "query": "Grogol",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Grogol",
@@ -284,16 +240,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Grogol.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:kebon-jeruk",
     "query": "Kebon Jeruk",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Kebon Jeruk",
@@ -304,16 +257,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Kebon Jeruk.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:cengkareng",
     "query": "Cengkareng",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Cengkareng",
@@ -324,16 +274,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Cengkareng.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:kebayoran-baru",
     "query": "Kebayoran Baru",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Kebayoran Baru",
@@ -344,16 +291,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Kebayoran Baru.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:tebet",
     "query": "Tebet",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Tebet",
@@ -364,16 +308,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Tebet.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:pasar-minggu",
     "query": "Pasar Minggu",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Pasar Minggu",
@@ -384,16 +325,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Pasar Minggu.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:cawang-area",
     "query": "Cawang",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Cawang",
@@ -404,16 +342,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Cawang.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:rawamangun",
     "query": "Rawamangun",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Rawamangun",
@@ -424,16 +359,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Rawamangun.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:cipinang",
     "query": "Cipinang",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Cipinang",
@@ -444,16 +376,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Cipinang.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:bekasi-barat-edge",
     "query": "Bekasi Barat",
     "adminCoverage": "EdgeNetwork",
-    "categories": [
-      "Neighbourhood",
-      "AdministrativeCity"
-    ],
+    "categories": ["Neighbourhood", "AdministrativeCity"],
     "expectedPlaces": [
       {
         "name": "Bekasi Barat",
@@ -464,15 +393,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Bekasi Barat.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:pasar-senen",
     "query": "Pasar Senen",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Pasar Senen",
@@ -483,15 +410,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Pasar Senen.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:pasar-tanah-abang",
     "query": "Pasar Tanah Abang",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Pasar Tanah Abang",
@@ -502,15 +427,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Pasar Tanah Abang.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:plaza-indonesia",
     "query": "Plaza Indonesia",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Plaza Indonesia",
@@ -521,15 +444,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Plaza Indonesia.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:thamrin-city",
     "query": "Thamrin City",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Thamrin City",
@@ -540,15 +461,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Thamrin City.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:rs-cipto",
     "query": "RSCM",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Rumah Sakit Cipto Mangunkusumo",
@@ -559,15 +478,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for RSCM.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:monas",
     "query": "Monas",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Monumen Nasional",
@@ -578,15 +495,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Monas.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:mall-kelapa-gading",
     "query": "Mall Kelapa Gading",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Mall Kelapa Gading",
@@ -597,15 +512,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Mall Kelapa Gading.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:st-tanjung-priok",
     "query": "Stasiun Tanjung Priok",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Stasiun Tanjung Priok",
@@ -616,15 +529,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Stasiun Tanjung Priok.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:term-kalideres",
     "query": "Terminal Kalideres",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Terminal Kalideres",
@@ -635,15 +546,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Terminal Kalideres.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:central-park",
     "query": "Central Park",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Central Park",
@@ -654,15 +563,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Central Park.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:rs-sumber-waras",
     "query": "RS Sumber Waras",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "RS Sumber Waras",
@@ -673,15 +580,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for RS Sumber Waras.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:pondok-indah-mall",
     "query": "Pondok Indah Mall",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Pondok Indah Mall",
@@ -692,15 +597,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Pondok Indah Mall.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:blok-m-plaza",
     "query": "Plaza Blok M",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Plaza Blok M",
@@ -711,15 +614,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Plaza Blok M.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:ragunan-zoo",
     "query": "Kebun Binatang Ragunan",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Ragunan",
@@ -730,15 +631,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Kebun Binatang Ragunan.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:st-manggarai",
     "query": "Stasiun Manggarai",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Stasiun Manggarai",
@@ -749,15 +648,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Stasiun Manggarai.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:term-kampung-rambutan",
     "query": "Terminal Kampung Rambutan",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Terminal Kampung Rambutan",
@@ -768,15 +665,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Terminal Kampung Rambutan.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:mall-cipinang",
     "query": "Mall Cipinang Indah",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Mall Cipinang Indah",
@@ -787,15 +682,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Mall Cipinang Indah.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:st-cawang-rail",
     "query": "Stasiun Cawang",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Stasiun Cawang",
@@ -806,15 +699,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Stasiun Cawang.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:term-pulo-gadung",
     "query": "Terminal Pulo Gadung",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Terminal Pulo Gadung",
@@ -825,15 +716,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Terminal Pulo Gadung.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:ui-depok-campus",
     "query": "Kampus UI Depok",
     "adminCoverage": "EdgeNetwork",
-    "categories": [
-      "Landmark"
-    ],
+    "categories": ["Landmark"],
     "expectedPlaces": [
       {
         "name": "Universitas Indonesia",
@@ -844,15 +733,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Kampus UI Depok.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:exact-harmoni",
     "query": "Harmoni",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "ExactStop"
-    ],
+    "categories": ["ExactStop"],
     "expectedPlaces": [
       {
         "name": "Harmoni",
@@ -863,15 +750,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Harmoni.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:exact-kota",
     "query": "Kota",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "ExactStop"
-    ],
+    "categories": ["ExactStop"],
     "expectedPlaces": [
       {
         "name": "Kota",
@@ -882,15 +767,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Kota.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:exact-pluit",
     "query": "Pluit",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "ExactStop"
-    ],
+    "categories": ["ExactStop"],
     "expectedPlaces": [
       {
         "name": "Pluit",
@@ -901,15 +784,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Pluit.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:exact-pinang-ranti",
     "query": "Pinang Ranti",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "ExactStop"
-    ],
+    "categories": ["ExactStop"],
     "expectedPlaces": [
       {
         "name": "Pinang Ranti",
@@ -920,15 +801,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Pinang Ranti.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:exact-cawang-tj",
     "query": "Cawang Sentral",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "ExactStop"
-    ],
+    "categories": ["ExactStop"],
     "expectedPlaces": [
       {
         "name": "Cawang Sentral",
@@ -939,15 +818,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Cawang Sentral.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:exact-gelora",
     "query": "Gelora Bung Karno",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "ExactStop"
-    ],
+    "categories": ["ExactStop"],
     "expectedPlaces": [
       {
         "name": "Gelora Bung Karno",
@@ -958,15 +835,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Gelora Bung Karno.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:abbr-st-hi",
     "query": "St. Bundaran HI",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Abbreviation"
-    ],
+    "categories": ["Abbreviation"],
     "expectedPlaces": [
       {
         "name": "Bundaran HI",
@@ -977,15 +852,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "St. expands in station/place context near Bundaran HI.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:abbr-st-kota",
     "query": "St. Jakarta Kota",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Abbreviation"
-    ],
+    "categories": ["Abbreviation"],
     "expectedPlaces": [
       {
         "name": "Stasiun Jakarta Kota",
@@ -996,15 +869,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "St. abbreviation for stasiun.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:abbr-jl-sudirman",
     "query": "Jl. Jenderal Sudirman",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Abbreviation"
-    ],
+    "categories": ["Abbreviation"],
     "expectedPlaces": [
       {
         "name": "Jalan Jenderal Sudirman",
@@ -1015,15 +886,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Jl. expands to Jalan.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:abbr-jl-thamrin",
     "query": "Jl. MH Thamrin",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Abbreviation"
-    ],
+    "categories": ["Abbreviation"],
     "expectedPlaces": [
       {
         "name": "Jalan M.H. Thamrin",
@@ -1034,15 +903,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Jl. abbreviation.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:abbr-ps-senen",
     "query": "Ps. Senen",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Abbreviation"
-    ],
+    "categories": ["Abbreviation"],
     "expectedPlaces": [
       {
         "name": "Pasar Senen",
@@ -1053,15 +920,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ps. expands to Pasar.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:abbr-ps-minggu",
     "query": "Ps. Minggu",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Abbreviation"
-    ],
+    "categories": ["Abbreviation"],
     "expectedPlaces": [
       {
         "name": "Pasar Minggu",
@@ -1072,15 +937,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ps. abbreviation.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:abbr-jalan-expanded",
     "query": "Jalan Sudirman",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Abbreviation"
-    ],
+    "categories": ["Abbreviation"],
     "expectedPlaces": [
       {
         "name": "Jalan Jenderal Sudirman",
@@ -1091,15 +954,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Expanded jalan form.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:abbr-stasiun-expanded",
     "query": "Stasiun Tanah Abang",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Abbreviation"
-    ],
+    "categories": ["Abbreviation"],
     "expectedPlaces": [
       {
         "name": "Stasiun Tanah Abang",
@@ -1110,15 +971,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Expanded stasiun form.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-blokm",
     "query": "blokm",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Blok M",
@@ -1129,15 +988,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for blokm.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-blok-m-dash",
     "query": "Blok-M",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Blok M",
@@ -1148,15 +1005,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Blok-M.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-bundaranhi",
     "query": "bundaran hi",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Bundaran HI",
@@ -1167,15 +1022,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for bundaran hi.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-bundaran-h-i",
     "query": "Bundaran H.I.",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Bundaran HI",
@@ -1186,15 +1039,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Bundaran H.I..",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-kota-tua-space",
     "query": "kota  tua",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Kota Tua",
@@ -1205,15 +1056,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for kota  tua.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-grandindo",
     "query": "grand indo",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Grand Indonesia",
@@ -1224,15 +1073,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for grand indo.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-ui",
     "query": "UI Depok",
     "adminCoverage": "EdgeNetwork",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Universitas Indonesia",
@@ -1243,15 +1090,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for UI Depok.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-jis-abbr",
     "query": "JIS",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Jakarta International Stadium",
@@ -1262,15 +1107,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for JIS.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-monumen-nasional",
     "query": "Monumen Nasional",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Monumen Nasional",
@@ -1281,15 +1124,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for Monumen Nasional.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-pulogadung",
     "query": "pulogadung",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Pulo Gadung",
@@ -1300,15 +1141,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for pulogadung.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-tanjungpriok",
     "query": "tanjung priok",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Tanjung Priok",
@@ -1319,15 +1158,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for tanjung priok.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:var-lebakbulus",
     "query": "lebak bulus",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "SpellingVariant"
-    ],
+    "categories": ["SpellingVariant"],
     "expectedPlaces": [
       {
         "name": "Lebak Bulus",
@@ -1338,15 +1175,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Reviewed passenger query for lebak bulus.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-cawang",
     "query": "Cawang",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Cawang",
@@ -1362,15 +1197,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Cawang' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-senayan",
     "query": "Senayan",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Senayan",
@@ -1386,15 +1219,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Senayan' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-kemayoran",
     "query": "Kemayoran",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Kemayoran",
@@ -1405,15 +1236,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Kemayoran' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-cililitan",
     "query": "Cililitan",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Cililitan",
@@ -1429,15 +1258,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Cililitan' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-grogol",
     "query": "Grogol",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Grogol",
@@ -1453,15 +1280,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Grogol' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-pasar-baru",
     "query": "Pasar Baru",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Pasar Baru",
@@ -1477,15 +1302,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Pasar Baru' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-kampung-melayu",
     "query": "Kampung Melayu",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Kampung Melayu",
@@ -1501,15 +1324,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Kampung Melayu' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-dukuh-atas",
     "query": "Dukuh Atas",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Dukuh Atas",
@@ -1520,15 +1341,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Dukuh Atas' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-pondok-indah",
     "query": "Pondok Indah",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Pondok Indah",
@@ -1544,15 +1363,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Pondok Indah' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-kebon-jeruk",
     "query": "Kebon Jeruk",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Kebon Jeruk",
@@ -1563,15 +1380,13 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Kebon Jeruk' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:amb-pluit",
     "query": "Pluit",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "Ambiguous"
-    ],
+    "categories": ["Ambiguous"],
     "expectedPlaces": [
       {
         "name": "Pluit",
@@ -1587,149 +1402,127 @@
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": false,
     "rationale": "Ambiguous passenger query 'Pluit' requires locality/type context.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-xyzzy",
     "query": "Xyzzy Transit Hub",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'Xyzzy Transit Hub'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-fake-mall",
     "query": "Mall Atlantis Jakarta Barat 99",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'Mall Atlantis Jakarta Barat 99'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-typo-gibberish",
     "query": "qqqzzz not a place",
     "adminCoverage": "Jakarta Selatan",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'qqqzzz not a place'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-foreign-city",
     "query": "Shinjuku Station",
     "adminCoverage": "EdgeNetwork",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'Shinjuku Station'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-random-code",
     "query": "TJ-ROUTE-9999",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'TJ-ROUTE-9999'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-emptyish",
     "query": "....",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query '....'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-madeup-kampung",
     "query": "Kampung Nirwana Sejahtera Abadi",
     "adminCoverage": "Jakarta Timur",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'Kampung Nirwana Sejahtera Abadi'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-coords-label",
     "query": "Waypoint Alpha-7",
     "adminCoverage": "Jakarta Pusat",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'Waypoint Alpha-7'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-closed-poi",
     "query": "Taman Impian Jaya Ancol Underwater Casino",
     "adminCoverage": "Jakarta Utara",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'Taman Impian Jaya Ancol Underwater Casino'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-misspelled-far",
     "query": "Bandar Udara Internasional Haluoleo",
     "adminCoverage": "EdgeNetwork",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'Bandar Udara Internasional Haluoleo'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   },
   {
     "id": "place:none-private-code",
     "query": "STOPID B99999Z",
     "adminCoverage": "Jakarta Barat",
-    "categories": [
-      "ExpectedNoResult"
-    ],
+    "categories": ["ExpectedNoResult"],
     "expectedPlaces": [],
     "forbiddenDuplicateLabels": [],
     "expectNoLocalResult": true,
     "rationale": "Intentionally unsupported local query 'STOPID B99999Z'.",
-    "sourceReviewNote": "Reviewed against bus-transjakarta-20260629-v1 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
+    "sourceReviewNote": "Reviewed against bus-transjakarta-20260630-v2 and independent Jakarta geographic reference. Expected places are passenger labels, not GTFS stop IDs."
   }
 ]

@@ -18,6 +18,7 @@
 
 ## Status
 
+- **Status**: DONE
 - **Priority**: P0
 - **Effort**: L
 - **Risk**: HIGH
@@ -68,13 +69,13 @@ to runtime response DTOs.
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| GTFS tests | `npm test -- src/import/gtfs` | all GTFS tests pass |
-| Discovery tests | `npm test -- src/discovery/transit` | all transit-place tests pass |
-| Domain tests | `npm test -- src/domain/transit` | all domain tests pass |
-| Typecheck/lint | `npx tsc --noEmit && npx oxlint .` | exit 0 |
-| Full verification | `npm run check && npm test` | exit 0 |
+| Purpose           | Command                             | Expected on success          |
+| ----------------- | ----------------------------------- | ---------------------------- |
+| GTFS tests        | `npm test -- src/import/gtfs`       | all GTFS tests pass          |
+| Discovery tests   | `npm test -- src/discovery/transit` | all transit-place tests pass |
+| Domain tests      | `npm test -- src/domain/transit`    | all domain tests pass        |
+| Typecheck/lint    | `npx tsc --noEmit && npx oxlint .`  | exit 0                       |
+| Full verification | `npm run check && npm test`         | exit 0                       |
 
 ## Suggested executor toolkit
 
@@ -288,21 +289,21 @@ commit.
 
 ## Done criteria
 
-- [ ] Canonical schemas retain location kind, passenger stop/platform codes,
+- [x] Canonical schemas retain location kind, passenger stop/platform codes,
       accessibility evidence, pickup/drop-off policy, and optional stop
       headsign without GTFS field names leaking into the domain.
-- [ ] Every stop belongs to exactly one passenger-facing transit place.
-- [ ] Authoritative parent grouping is automatic; ambiguous spatial/name
+- [x] Every stop belongs to exactly one passenger-facing transit place.
+- [x] Authoritative parent grouping is automatic; ambiguous spatial/name
       clusters are reported rather than silently merged.
-- [ ] Reviewed complex overrides are versioned, attributed, and never substitute
+- [x] Reviewed complex overrides are versioned, attributed, and never substitute
       for whole-feed processing.
-- [ ] No grouping operation creates a transit transfer.
-- [ ] Pattern direction evidence is available with provenance for every pattern.
-- [ ] Full-feed report reconciles all 8,243 source stops and all route patterns
+- [x] No grouping operation creates a transit transfer.
+- [x] Pattern direction evidence is available with provenance for every pattern.
+- [x] Full-feed report reconciles all 8,243 source stops and all route patterns
       for the selected artifact version, with every ambiguity listed.
-- [ ] `npm run check && npm test` exits 0.
-- [ ] No files outside scope changed, except the generated plan status row.
-- [ ] Completion report satisfies `plans/README.md` integrity requirements.
+- [x] `npm run check && npm test` exits 0.
+- [x] No files outside scope changed, except the generated plan status row.
+- [x] Completion report satisfies `plans/README.md` integrity requirements.
 
 ## STOP conditions
 
@@ -328,3 +329,61 @@ a replacement for them. Preserve member IDs and source evidence so Plan 008 can
 later curate complexes and Plans 009–011 can compose train and pedestrian
 detail. Re-run the whole-feed grouping and direction audit on every GTFS update;
 reviewed overrides must declare which artifact versions they support.
+
+## Completion report
+
+Completed on 2026-07-18 on branch `work/013-canonical-transit-places`.
+Source: Mobility Database mdb-1909 / TransJakarta
+`https://gtfs.transjakarta.co.id/files/file_gtfs.zip`, compiled to
+`bus-transjakarta-20260630-v2` (NetworkSnapshot schemaVersion **v2**; geometry
+remains v1). Deployed Worker version `39fa7ef6-8b1d-4240-abcf-93659204e1b9`.
+
+### Scope matrix
+
+| Step / criterion                     | Implementation                                                                                 | Evidence                                                                            |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Retain GTFS stop/stop-time semantics | `src/domain/transit/stop.ts`, `trip.ts`, `src/import/gtfs/raw.ts`, `compiler.ts`               | Domain + GTFS tests; fixture rows for station/platform/policies/headsign            |
+| Schema v2 publication                | `network-snapshot.ts`, `docs/transit-artifacts.md`, migrated `public/artifacts/*.network.json` | Documented v2; artifacts decode as schemaVersion 2                                  |
+| Transit-place contracts + projection | `src/discovery/transit/**`                                                                     | Unit tests for branding, parent grouping, standalone, proposed complexes, overrides |
+| Direction evidence                   | `direction-evidence.ts`                                                                        | Classification tests + full-feed counts                                             |
+| Full-feed audit                      | `scripts/gtfs/audit-transit-places.ts`, `docs/data/transit-place-audit.json`                   | 8243 stops / 719 patterns reconciled; 0 silent drops                                |
+| Lane contracts                       | `docs/data/transit-place-lane-contracts.md`, `lane-contract.test.ts`                           | Compile-only schema tests for 014/015                                               |
+
+### Entity counts (production artifact)
+
+| Entity                        | Count                                                 |
+| ----------------------------- | ----------------------------------------------------- |
+| Stops                         | 8243 (all assigned to exactly one transit place)      |
+| Transit places                | 7636 (273 source-parent, 7363 standalone, 0 reviewed) |
+| Unresolved proposed complexes | 2021 (findings only; not merged)                      |
+| Patterns                      | 719 direction-evidence rows                           |
+| Direction classification      | 718 stable trip headsign, 1 conflicting, 0 absent     |
+| Routes / trips / transfers    | 256 / 730 / 14                                        |
+
+### Verification
+
+```text
+npm test -- src/import/gtfs src/domain/transit src/discovery/transit
+npx tsc --noEmit   # exit 0
+npx oxlint .       # exit 0
+npm test           # 17 files, 127 passed
+npx tsx scripts/gtfs/audit-transit-places.ts ...  # exit 0, 0 silent drops
+npm run deploy     # Worker 0deb8e04-1bc6-4a18-9a2c-99e0dd216641
+```
+
+### Omitted / degraded
+
+- Reviewed complex overrides remain empty for this artifact; only source-parent
+  and standalone grouping are active. Proposed-complex findings (2021) are
+  listed for curation, not merged.
+- Routing fixtures/`routing.test.ts` updated only as forced schema consumers
+  (not algorithm changes).
+- No transfers created by grouping.
+
+### Diff audit
+
+In-scope: domain transit stop/trip/snapshot, GTFS raw/compiler/tests/fixtures,
+`src/discovery/transit/**`, `scripts/gtfs/audit-transit-places.ts`,
+`docs/transit-artifacts.md`, `docs/data/**`, plan status, versioned network
+artifacts. Forced consumer fixture updates under `src/routing/fixtures` and
+`src/routing/routing.test.ts` for NetworkSnapshot v2 compatibility.

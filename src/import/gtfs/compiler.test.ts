@@ -108,7 +108,7 @@ describe("GTFS compiler", () => {
       expect(compiled.summary).toEqual(
         expect.objectContaining({
           agencies: 1,
-          stops: 4,
+          stops: 9,
           routes: 1,
           patterns: 2,
           trips: 3,
@@ -186,6 +186,52 @@ describe("GTFS compiler", () => {
           expect.objectContaining({ _tag: "GtfsValidationError", code: "DANGLING_TRANSFER_STOP" }),
         );
       }
+    }),
+  );
+  itEffect(
+    "retains static stop and stop-time semantics through compile encode decode",
+    Effect.gen(function* () {
+      const input = yield* fixtureArchive;
+      const compiled = yield* compileGtfs({
+        input,
+        generatedAt,
+        sourceName: "fixture.zip",
+      });
+      const station = compiled.snapshot.stops.find(
+        (stop) => stop.id === "gtfs:transjakarta:stop:STATION",
+      );
+      const platform = compiled.snapshot.stops.find(
+        (stop) => stop.id === "gtfs:transjakarta:stop:PLAT1",
+      );
+      expect(station?.locationKind).toBe("Station");
+      expect(station?.stopCode).toBe("TERM");
+      expect(platform?.parentStopId).toBe("gtfs:transjakarta:stop:STATION");
+      expect(platform?.platformCode).toBe("1");
+      expect(platform?.wheelchairBoarding).toBe("Possible");
+
+      const forbiddenPickup = compiled.snapshot.trips
+        .flatMap((trip) =>
+          trip.availability._tag === "Scheduled" ? trip.availability.stopTimes : [],
+        )
+        .find((stopTime) => stopTime.pickupPolicy === "Forbidden");
+      const forbiddenDropOff = compiled.snapshot.trips
+        .flatMap((trip) =>
+          trip.availability._tag === "Scheduled" ? trip.availability.stopTimes : [],
+        )
+        .find((stopTime) => stopTime.dropOffPolicy === "Forbidden");
+      const headed = compiled.snapshot.trips
+        .flatMap((trip) =>
+          trip.availability._tag === "Scheduled" ? trip.availability.stopTimes : [],
+        )
+        .find((stopTime) => stopTime.stopHeadsign !== undefined);
+      expect(forbiddenPickup).toBeDefined();
+      expect(forbiddenDropOff).toBeDefined();
+      expect(headed?.stopHeadsign).toBe("Toward Charlie");
+
+      const encoded = yield* encodeSnapshot(compiled.snapshot);
+      const decoded = yield* Schema.decodeUnknownEffect(NetworkSnapshot)(encoded);
+      expect(decoded.schemaVersion).toBe("2");
+      expect(decoded.stops.find((stop) => stop.id === platform?.id)?.platformCode).toBe("1");
     }),
   );
 });

@@ -41,13 +41,13 @@ inside the later bus + train + street-walk product.
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| Route-guide tests | `npm test -- src/route-guide` | topology and instruction tests pass |
-| Scheduled-router regression | `npm test -- src/routing` | existing tests remain green |
-| Acceptance corpus | `npm test -- src/acceptance/route-helper --runInBand` | Plan 012 route cases pass |
-| Typecheck/lint | `npx tsc --noEmit && npx oxlint .` | exit 0 |
-| Full verification | `npm run check && npm test` | exit 0 |
+| Purpose                     | Command                                               | Expected on success                 |
+| --------------------------- | ----------------------------------------------------- | ----------------------------------- |
+| Route-guide tests           | `npm test -- src/route-guide`                         | topology and instruction tests pass |
+| Scheduled-router regression | `npm test -- src/routing`                             | existing tests remain green         |
+| Acceptance corpus           | `npm test -- src/acceptance/route-helper --runInBand` | Plan 012 route cases pass           |
+| Typecheck/lint              | `npx tsc --noEmit && npx oxlint .`                    | exit 0                              |
+| Full verification           | `npm run check && npm test`                           | exit 0                              |
 
 ## Suggested executor toolkit
 

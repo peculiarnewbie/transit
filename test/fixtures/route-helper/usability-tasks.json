@@ -9,17 +9,9 @@
       "Names boarding and alighting places"
     ],
     "viewport": "Phone",
-    "interactions": [
-      "FloatingTopControlPhone",
-      "AutocompleteBelowActiveInput"
-    ],
-    "relatedPlaceCaseIds": [
-      "place:blok-m",
-      "place:bundaran-hi"
-    ],
-    "relatedRouteCaseIds": [
-      "route:blokm-bundaranhi"
-    ]
+    "interactions": ["FloatingTopControlPhone", "AutocompleteBelowActiveInput"],
+    "relatedPlaceCaseIds": ["place:blok-m", "place:bundaran-hi"],
+    "relatedRouteCaseIds": ["route:blokm-bundaranhi"]
   },
   {
     "id": "task:area-landmark-nearby",
@@ -31,17 +23,9 @@
       "Completes a guide or clearly edits a boarding choice"
     ],
     "viewport": "Either",
-    "interactions": [
-      "AutocompleteBelowActiveInput",
-      "WithoutOpeningMap"
-    ],
-    "relatedPlaceCaseIds": [
-      "place:menteng",
-      "place:grand-indonesia"
-    ],
-    "relatedRouteCaseIds": [
-      "route:harmoni-blokm"
-    ]
+    "interactions": ["AutocompleteBelowActiveInput", "WithoutOpeningMap"],
+    "relatedPlaceCaseIds": ["place:menteng", "place:grand-indonesia"],
+    "relatedRouteCaseIds": ["route:harmoni-blokm"]
   },
   {
     "id": "task:transfer-journey",
@@ -53,16 +37,9 @@
       "Does not invent wait or walk minutes"
     ],
     "viewport": "Phone",
-    "interactions": [
-      "FloatingTopControlPhone",
-      "AutocompleteBelowActiveInput"
-    ],
-    "relatedPlaceCaseIds": [
-      "place:ragunan-zoo"
-    ],
-    "relatedRouteCaseIds": [
-      "route:ragunan-harmoni"
-    ]
+    "interactions": ["FloatingTopControlPhone", "AutocompleteBelowActiveInput"],
+    "relatedPlaceCaseIds": ["place:ragunan-zoo"],
+    "relatedRouteCaseIds": ["route:ragunan-harmoni"]
   },
   {
     "id": "task:ambiguous-disambiguation",
@@ -79,13 +56,8 @@
       "AutocompleteBelowActiveInput",
       "OriginDestinationSwap"
     ],
-    "relatedPlaceCaseIds": [
-      "place:amb-cawang",
-      "place:blok-m"
-    ],
-    "relatedRouteCaseIds": [
-      "route:cawang-kota"
-    ]
+    "relatedPlaceCaseIds": ["place:amb-cawang", "place:blok-m"],
+    "relatedRouteCaseIds": ["route:cawang-kota"]
   },
   {
     "id": "task:recognized-no-route",
@@ -97,16 +69,9 @@
       "Can change either endpoint without clearing both"
     ],
     "viewport": "Phone",
-    "interactions": [
-      "FloatingTopControlPhone",
-      "AutocompleteBelowActiveInput"
-    ],
-    "relatedPlaceCaseIds": [
-      "place:blok-m"
-    ],
-    "relatedRouteCaseIds": [
-      "route:gap-airport-soetta"
-    ]
+    "interactions": ["FloatingTopControlPhone", "AutocompleteBelowActiveInput"],
+    "relatedPlaceCaseIds": ["place:blok-m"],
+    "relatedRouteCaseIds": ["route:gap-airport-soetta"]
   },
   {
     "id": "task:without-map-and-9-9a",
@@ -124,12 +89,7 @@
       "InterchangeableLineStep",
       "AutocompleteBelowActiveInput"
     ],
-    "relatedPlaceCaseIds": [
-      "place:cawang-area",
-      "place:grogol"
-    ],
-    "relatedRouteCaseIds": [
-      "route:cawang-grogol-9-9a"
-    ]
+    "relatedPlaceCaseIds": ["place:cawang-area", "place:grogol"],
+    "relatedRouteCaseIds": ["route:cawang-grogol-9-9a"]
   }
 ]

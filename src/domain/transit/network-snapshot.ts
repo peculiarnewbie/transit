@@ -9,7 +9,7 @@ import { Transfer } from "./transfer.js";
 import { Trip } from "./trip.js";
 
 export const NetworkSnapshot = Schema.Struct({
-  schemaVersion: Schema.Literal("1"),
+  schemaVersion: Schema.Literal("2"),
   generatedAt: Schema.DateTimeUtcFromString,
   agencies: Schema.Array(Agency),
   stops: Schema.Array(Stop),

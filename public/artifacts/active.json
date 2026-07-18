@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1",
-  "version": "bus-transjakarta-20260629-v1",
-  "snapshotUrl": "./bus-transjakarta-20260629-v1.network.json",
-  "geometryUrl": "./bus-transjakarta-20260629-v1.network.geometry.json",
-  "routeMapUrl": "./bus-transjakarta-20260629-v1.routes-v1.geojson"
+  "version": "bus-transjakarta-20260630-v2",
+  "snapshotUrl": "./bus-transjakarta-20260630-v2.network.json",
+  "geometryUrl": "./bus-transjakarta-20260630-v2.network.geometry.json",
+  "routeMapUrl": "./bus-transjakarta-20260630-v2.routes-v1.geojson"
 }

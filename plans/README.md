@@ -68,24 +68,24 @@ route conflict.
 
 ## Execution order and status
 
-| Plan | Title                                                   | Priority | Effort | Depends on       | Status      |
-| ---- | ------------------------------------------------------- | -------: | -----: | ---------------- | ----------- |
-| 001  | Establish the Effect application foundation             |       P0 |      M | scaffold commit  | DONE        |
-| 002  | Compile TransJakarta GTFS into a canonical snapshot     |       P1 |      L | 001              | DONE        |
-| 003  | Implement constrained bus routing and alternatives      |       P1 |      L | 001              | DONE        |
-| 004  | Build the low-bandwidth passenger map shell             |       P1 |      L | 001              | DONE        |
-| 005  | Migrate official train-source adapters                  |       P1 |      L | 001              | DONE        |
-| 006  | Build revisioned curation persistence                   |       P1 |      L | 001              | DONE        |
-| 007  | Integrate the original bus-routing technical slice      |       P1 |      L | 002, 003, 004    | IN PROGRESS |
-| 012  | Define the usable bus route-helper contract and corpus   |       P0 |      M | 001–007 baseline | DONE        |
-| 013  | Project canonical transit places and guidance evidence  |       P0 |      L | 002, 012         | TODO        |
+| Plan | Title                                                  | Priority | Effort | Depends on       | Status      |
+| ---- | ------------------------------------------------------ | -------: | -----: | ---------------- | ----------- |
+| 001  | Establish the Effect application foundation            |       P0 |      M | scaffold commit  | DONE        |
+| 002  | Compile TransJakarta GTFS into a canonical snapshot    |       P1 |      L | 001              | DONE        |
+| 003  | Implement constrained bus routing and alternatives     |       P1 |      L | 001              | DONE        |
+| 004  | Build the low-bandwidth passenger map shell            |       P1 |      L | 001              | DONE        |
+| 005  | Migrate official train-source adapters                 |       P1 |      L | 001              | DONE        |
+| 006  | Build revisioned curation persistence                  |       P1 |      L | 001              | DONE        |
+| 007  | Integrate the original bus-routing technical slice     |       P1 |      L | 002, 003, 004    | IN PROGRESS |
+| 012  | Define the usable bus route-helper contract and corpus |       P0 |      M | 001–007 baseline | DONE        |
+| 013  | Project canonical transit places and guidance evidence |       P0 |      L | 002, 012         | DONE        |
 | 014  | Build broad geographic passenger-place discovery       |       P0 |      L | 012, 013         | TODO        |
-| 015  | Build time-independent bus route guidance               |       P0 |     XL | 012, 013         | TODO        |
-| 016  | Integrate and release the usable bus route helper       |       P0 |     XL | 014, 015         | TODO        |
-| 008  | Build the protected station/topology editor             |       P1 |      L | 004, 006, 016    | TODO        |
-| 009  | Project imported and curated trains into the network    |       P1 |      L | 005, 006, 016    | TODO        |
-| 010  | Add multimodal routing and choose the routing runtime   |       P2 |     XL | 008, 009, 016    | TODO        |
-| 011  | Add street-routed pedestrian access and egress          |       P3 |     XL | 010              | TODO        |
+| 015  | Build time-independent bus route guidance              |       P0 |     XL | 012, 013         | TODO        |
+| 016  | Integrate and release the usable bus route helper      |       P0 |     XL | 014, 015         | TODO        |
+| 008  | Build the protected station/topology editor            |       P1 |      L | 004, 006, 016    | TODO        |
+| 009  | Project imported and curated trains into the network   |       P1 |      L | 005, 006, 016    | TODO        |
+| 010  | Add multimodal routing and choose the routing runtime  |       P2 |     XL | 008, 009, 016    | TODO        |
+| 011  | Add street-routed pedestrian access and egress         |       P3 |     XL | 010              | TODO        |
 
 Status values: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED: <reason>`, or
 `REJECTED: <reason>`.

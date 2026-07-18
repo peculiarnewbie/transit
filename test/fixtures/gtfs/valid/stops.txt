@@ -1,5 +1,10 @@
-stop_id,stop_name,stop_lat,stop_lon,parent_station
-A,Alpha,-6.100001,106.800001,
-B,"Beta, Central",-6.110001,106.810001,
-C,Charlie,-6.120001,106.820001,
-D,Delta,-6.115001,106.815001,
+stop_id,stop_name,stop_lat,stop_lon,parent_station,location_type,stop_code,platform_code,wheelchair_boarding
+A,Alpha,-6.100001,106.800001,,0,A1,,1
+B,"Beta, Central",-6.110001,106.810001,,0,,,0
+C,Charlie,-6.120001,106.820001,,0,,,2
+D,Delta,-6.115001,106.815001,,0,,,0
+STATION,Terminal Station,-6.130001,106.830001,,1,TERM,,1
+PLAT1,Platform 1,-6.130101,106.830101,STATION,0,,1,1
+PLAT2,Platform 2,-6.130201,106.830201,STATION,0,,2,2
+ORPHAN,Orphan Pole,-6.140001,106.840001,,0,,,0
+HEADSIGN_STOP,Headsign Stop,-6.150001,106.850001,,0,,,0

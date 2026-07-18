@@ -2,12 +2,7 @@ import { Schema } from "effect";
 
 import { PlaceSearchCaseId } from "./ids.js";
 
-export const PassengerPlaceType = Schema.Literals([
-  "Area",
-  "Landmark",
-  "TransitPlace",
-  "StopName",
-]);
+export const PassengerPlaceType = Schema.Literals(["Area", "Landmark", "TransitPlace", "StopName"]);
 export type PassengerPlaceType = typeof PassengerPlaceType.Type;
 
 export const PlaceSearchCategory = Schema.Literals([
@@ -43,7 +38,9 @@ export const ExpectedRecognizedPlace = Schema.Struct({
   placeType: PassengerPlaceType,
   locality: Schema.String.check(Schema.isNonEmpty()),
 });
-export interface ExpectedRecognizedPlace extends Schema.Schema.Type<typeof ExpectedRecognizedPlace> {}
+export interface ExpectedRecognizedPlace extends Schema.Schema.Type<
+  typeof ExpectedRecognizedPlace
+> {}
 
 export const PlaceSearchCase = Schema.Struct({
   id: PlaceSearchCaseId,

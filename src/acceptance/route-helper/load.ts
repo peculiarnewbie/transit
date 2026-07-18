@@ -34,7 +34,8 @@ export interface RouteHelperCorpus {
   readonly usabilityTasks: ReadonlyArray<UsabilityTask>;
 }
 
-const prohibitedTimetableField = /(departure|arrival|waitMinutes|tripMinutes|walkMinutes|walkingMinutes|serviceDate|departureSeconds)/i;
+const prohibitedTimetableField =
+  /(departure|arrival|waitMinutes|tripMinutes|walkMinutes|walkingMinutes|serviceDate|departureSeconds)/i;
 
 const prohibitedStopHint =
   /\b(gtfs:|stop:[a-z0-9:_-]+|board at stop|boarding stop id|alight at stop id)\b/i;
@@ -88,10 +89,7 @@ const assertPlaceCaseInvariants = (cases: ReadonlyArray<PlaceSearchCase>) => {
         reason: `${placeCase.id} expects recognized places but lists none`,
       });
     }
-    if (
-      placeCase.expectNoLocalResult &&
-      !placeCase.categories.includes("ExpectedNoResult")
-    ) {
+    if (placeCase.expectNoLocalResult && !placeCase.categories.includes("ExpectedNoResult")) {
       return new CorpusInvariantError({
         reason: `${placeCase.id} expects no local result without ExpectedNoResult category`,
       });
@@ -211,9 +209,7 @@ const assertReversePairs = (cases: ReadonlyArray<RouteGuideCase>) => {
   return undefined;
 };
 
-export const load = Effect.fn("RouteHelperCorpus.load")(function* (
-  input: RouteHelperCorpusInput,
-) {
+export const load = Effect.fn("RouteHelperCorpus.load")(function* (input: RouteHelperCorpusInput) {
   const manifest = yield* decodeManifest(input.manifest);
   const placeSearchCases = yield* decodeArray(
     "placeSearchCases",
@@ -225,11 +221,7 @@ export const load = Effect.fn("RouteHelperCorpus.load")(function* (
     RouteGuideCase,
     input.routeGuideCases,
   );
-  const usabilityTasks = yield* decodeArray(
-    "usabilityTasks",
-    UsabilityTask,
-    input.usabilityTasks,
-  );
+  const usabilityTasks = yield* decodeArray("usabilityTasks", UsabilityTask, input.usabilityTasks);
 
   const duplicatePlace = assertUniqueIds(
     "place-search",

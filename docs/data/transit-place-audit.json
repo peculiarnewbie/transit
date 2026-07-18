@@ -1,0 +1,370 @@
+{
+  "schemaVersion": "1",
+  "sourceArtifactVersion": "bus-transjakarta-20260630-v2",
+  "snapshotPath": "/home/bolt/git/other/transit/public/artifacts/bus-transjakarta-20260630-v2.network.json",
+  "input": {
+    "stops": 8243,
+    "patterns": 719,
+    "trips": 730,
+    "routes": 256,
+    "transfers": 14
+  },
+  "stopsByLocationKind": {
+    "Stop": 7952,
+    "Station": 291
+  },
+  "projection": {
+    "placeCount": 7636,
+    "sourceParentGroupCount": 273,
+    "standaloneCount": 7363,
+    "reviewedComplexCount": 0,
+    "unresolvedFindingCount": 2021,
+    "unresolvedFindingSample": [
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00006P",
+          "gtfs:transjakarta:stop:B05858P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00011P",
+          "gtfs:transjakarta:stop:B03438P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00014P",
+          "gtfs:transjakarta:stop:B03439P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00015P",
+          "gtfs:transjakarta:stop:B03440P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00017P",
+          "gtfs:transjakarta:stop:B03441P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00020P",
+          "gtfs:transjakarta:stop:B00021P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00022P",
+          "gtfs:transjakarta:stop:B03442P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00026P",
+          "gtfs:transjakarta:stop:B00027P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00028P",
+          "gtfs:transjakarta:stop:B03444P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00031P",
+          "gtfs:transjakarta:stop:B00032P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00033P",
+          "gtfs:transjakarta:stop:B03443P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00037P",
+          "gtfs:transjakarta:stop:B00038P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00039P",
+          "gtfs:transjakarta:stop:B08465P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00042P",
+          "gtfs:transjakarta:stop:B00043P",
+          "gtfs:transjakarta:stop:B06824P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00044P",
+          "gtfs:transjakarta:stop:B00045P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00052P",
+          "gtfs:transjakarta:stop:B00053P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00054P",
+          "gtfs:transjakarta:stop:B03447P",
+          "gtfs:transjakarta:stop:B04920P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00055P",
+          "gtfs:transjakarta:stop:B00056P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00057P",
+          "gtfs:transjakarta:stop:B03448P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00066P",
+          "gtfs:transjakarta:stop:B00067P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00069P",
+          "gtfs:transjakarta:stop:B00070P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00073P",
+          "gtfs:transjakarta:stop:B00074P",
+          "gtfs:transjakarta:stop:B02222P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00076P",
+          "gtfs:transjakarta:stop:B00077P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00081P",
+          "gtfs:transjakarta:stop:B00082P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      },
+      {
+        "_tag": "ProposedComplex",
+        "candidateStopIds": [
+          "gtfs:transjakarta:stop:B00089P",
+          "gtfs:transjakarta:stop:B03449P"
+        ],
+        "reasons": [
+          "proximity_within_75m",
+          "normalized_name_overlap",
+          "overlapping_or_platform_evidence"
+        ]
+      }
+    ]
+  },
+  "policies": {
+    "pickupForbidden": 115,
+    "dropOffForbidden": 60,
+    "stopHeadsignCount": 26954,
+    "platformCodeCount": 589,
+    "wheelchairPossible": 102,
+    "wheelchairNotPossible": 7894,
+    "wheelchairUnknown": 247
+  },
+  "directionEvidence": {
+    "stableTripHeadsign": 718,
+    "conflictingTripHeadsigns": 1,
+    "stopHeadsignOnly": 0,
+    "finalStopFallback": 0,
+    "absent": 0
+  },
+  "duplicatePrimaryNames": [
+    {
+      "name": "jln. bangka x",
+      "count": 2
+    },
+    {
+      "name": "kota",
+      "count": 2
+    },
+    {
+      "name": "sdn 09 pagi dan petang",
+      "count": 2
+    }
+  ],
+  "reconciliation": {
+    "inputStops": 8243,
+    "assignedStops": 8243,
+    "silentlyDroppedStops": 0,
+    "inputPatterns": 719,
+    "directionEvidencePatterns": 719,
+    "silentlyDroppedPatterns": 0
+  },
+  "notes": [
+    "v2 topology migrated from published v1 defaults locationKind=Stop when GTFS source ZIP is unavailable; recompile from GTFS to restore station/platform kinds.",
+    "Unresolved proposed complexes are findings only and do not create membership or transfers."
+  ]
+}

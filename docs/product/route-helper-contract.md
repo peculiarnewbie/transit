@@ -178,12 +178,12 @@ caps.
 
 ## Parallel lane ownership
 
-| Plan | Owns | Consumes / publishes |
-| --- | --- | --- |
-| **013** | Canonical passenger-facing transit places and retained static boarding/direction evidence | Publishes `TransitPlace`, `TransitPlaceIndex`, boarding/alighting policy fields, and `PatternDirectionEvidence` |
-| **014** | Geographic place artifacts and unified place discovery | Consumes Plan 013 `TransitPlace` / coordinates / aliases / served-route summary; publishes place search + nearby transit choice results |
-| **015** | Time-independent topology routing and instruction generation | Consumes Plan 013 membership, policies, patterns, and direction evidence; publishes `RouteGuideQuery` / guide results with interchangeable `lineOptions` |
-| **016** | HTTP/UI integration, map behaviour, localization, performance, usability evidence, midpoint deployment | Consumes Plan 014 discovery and Plan 015 route-guide services; owns passenger APIs and UI |
+| Plan    | Owns                                                                                                   | Consumes / publishes                                                                                                                                     |
+| ------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **013** | Canonical passenger-facing transit places and retained static boarding/direction evidence              | Publishes `TransitPlace`, `TransitPlaceIndex`, boarding/alighting policy fields, and `PatternDirectionEvidence`                                          |
+| **014** | Geographic place artifacts and unified place discovery                                                 | Consumes Plan 013 `TransitPlace` / coordinates / aliases / served-route summary; publishes place search + nearby transit choice results                  |
+| **015** | Time-independent topology routing and instruction generation                                           | Consumes Plan 013 membership, policies, patterns, and direction evidence; publishes `RouteGuideQuery` / guide results with interchangeable `lineOptions` |
+| **016** | HTTP/UI integration, map behaviour, localization, performance, usability evidence, midpoint deployment | Consumes Plan 014 discovery and Plan 015 route-guide services; owns passenger APIs and UI                                                                |
 
 Plans **014** and **015** may run in parallel **only after** Plan 013’s public
 contracts merge. Neither may modify the other’s directories. Plan **016** is the

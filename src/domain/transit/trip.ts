@@ -8,11 +8,23 @@ export const ServiceDaySeconds = Schema.Int.check(
 ).pipe(Schema.brand("ServiceDaySeconds"));
 export type ServiceDaySeconds = typeof ServiceDaySeconds.Type;
 
+/** Pickup / drop-off policy retained from GTFS pickup_type / drop_off_type. */
+export const BoardingPolicy = Schema.Literals([
+  "Normal",
+  "Forbidden",
+  "PhoneAgency",
+  "CoordinateWithDriver",
+]);
+export type BoardingPolicy = typeof BoardingPolicy.Type;
+
 export const StopTime = Schema.Struct({
   stopId: StopId,
   sequence: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
   arrivalSeconds: ServiceDaySeconds,
   departureSeconds: ServiceDaySeconds,
+  pickupPolicy: BoardingPolicy,
+  dropOffPolicy: BoardingPolicy,
+  stopHeadsign: Schema.optionalKey(Schema.String.check(Schema.isNonEmpty())),
 });
 
 export interface StopTime extends Schema.Schema.Type<typeof StopTime> {}

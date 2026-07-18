@@ -50,6 +50,10 @@ export const RawStop = Schema.Struct({
   stop_lat: Schema.optionalKey(Schema.NumberFromString),
   stop_lon: Schema.optionalKey(Schema.NumberFromString),
   parent_station: Schema.optionalKey(NonEmptyString),
+  location_type: Schema.optionalKey(IntegerFromString),
+  stop_code: Schema.optionalKey(Schema.String),
+  platform_code: Schema.optionalKey(Schema.String),
+  wheelchair_boarding: Schema.optionalKey(IntegerFromString),
 });
 export interface RawStop extends Schema.Schema.Type<typeof RawStop> {}
 
@@ -69,6 +73,9 @@ export const RawStopTime = Schema.Struct({
   stop_id: NonEmptyString,
   arrival_time: NonEmptyString,
   departure_time: NonEmptyString,
+  pickup_type: Schema.optionalKey(IntegerFromString),
+  drop_off_type: Schema.optionalKey(IntegerFromString),
+  stop_headsign: Schema.optionalKey(Schema.String),
 });
 export interface RawStopTime extends Schema.Schema.Type<typeof RawStopTime> {}
 

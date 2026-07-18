@@ -40,13 +40,13 @@ available later when schedules or walking data are absent.
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| API/runtime tests | `npm test -- src/runtime src/routes` | all API contracts and handlers pass |
-| Passenger tests | `npm test -- src/features/passenger src/components` | state and component tests pass |
-| Full verification | `npm run check && npm test` | exit 0 |
-| Production build | `npm run build` | exit 0 with deployable Worker/assets |
-| Artifact qualification | project script added in Step 7 | exact production versions pass |
+| Purpose                | Command                                             | Expected on success                  |
+| ---------------------- | --------------------------------------------------- | ------------------------------------ |
+| API/runtime tests      | `npm test -- src/runtime src/routes`                | all API contracts and handlers pass  |
+| Passenger tests        | `npm test -- src/features/passenger src/components` | state and component tests pass       |
+| Full verification      | `npm run check && npm test`                         | exit 0                               |
+| Production build       | `npm run build`                                     | exit 0 with deployable Worker/assets |
+| Artifact qualification | project script added in Step 7                      | exact production versions pass       |
 
 ## Suggested executor toolkit
 

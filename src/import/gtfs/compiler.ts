@@ -114,6 +114,62 @@ const routeMode = (routeType: number): TransitMode | undefined => {
   }
 };
 
+const stopLocationKind = (
+  locationType: number | undefined,
+): "Stop" | "Station" | "EntranceExit" | "GenericNode" | "BoardingArea" | undefined => {
+  switch (locationType ?? 0) {
+    case 0:
+      return "Stop";
+    case 1:
+      return "Station";
+    case 2:
+      return "EntranceExit";
+    case 3:
+      return "GenericNode";
+    case 4:
+      return "BoardingArea";
+    default:
+      return undefined;
+  }
+};
+
+const wheelchairBoarding = (
+  value: number | undefined,
+): "Unknown" | "Possible" | "NotPossible" | undefined => {
+  switch (value ?? 0) {
+    case 0:
+      return "Unknown";
+    case 1:
+      return "Possible";
+    case 2:
+      return "NotPossible";
+    default:
+      return undefined;
+  }
+};
+
+const boardingPolicy = (
+  value: number | undefined,
+): "Normal" | "Forbidden" | "PhoneAgency" | "CoordinateWithDriver" | undefined => {
+  switch (value ?? 0) {
+    case 0:
+      return "Normal";
+    case 1:
+      return "Forbidden";
+    case 2:
+      return "PhoneAgency";
+    case 3:
+      return "CoordinateWithDriver";
+    default:
+      return undefined;
+  }
+};
+
+const optionalNonEmpty = (value: string | undefined) => {
+  const trimmed = value?.trim();
+  return trimmed === undefined || trimmed.length === 0 ? undefined : trimmed;
+};
+
 const loadArchive = (input: Uint8Array) =>
   Effect.try({
     try: () => {
@@ -225,8 +281,25 @@ export const compileGtfs = Effect.fn("Gtfs.compile")(function* (
       );
     }
   }
-  const stops = stopsRaw.map((stop) => {
-    return {
+  const stops = [];
+  for (const stop of stopsRaw) {
+    const locationKind = stopLocationKind(stop.location_type);
+    if (locationKind === undefined) {
+      return yield* failValidation(
+        "INVALID_LOCATION_TYPE",
+        `Stop ${stop.stop_id} has unsupported location_type ${String(stop.location_type)}`,
+      );
+    }
+    const accessibility = wheelchairBoarding(stop.wheelchair_boarding);
+    if (accessibility === undefined) {
+      return yield* failValidation(
+        "INVALID_WHEELCHAIR_BOARDING",
+        `Stop ${stop.stop_id} has unsupported wheelchair_boarding ${String(stop.wheelchair_boarding)}`,
+      );
+    }
+    const stopCode = optionalNonEmpty(stop.stop_code);
+    const platformCode = optionalNonEmpty(stop.platform_code);
+    stops.push({
       id: namespace("stop", stop.stop_id),
       sourceRefs: [sourceRef("stop", stop.stop_id, canonicalGeneratedAt, options.sourceName)],
       name: stop.stop_name,
@@ -238,11 +311,15 @@ export const compileGtfs = Effect.fn("Gtfs.compile")(function* (
               latitude: stop.stop_lat,
               longitude: stop.stop_lon,
             },
+      locationKind,
+      wheelchairBoarding: accessibility,
+      ...(stopCode === undefined ? {} : { stopCode }),
+      ...(platformCode === undefined ? {} : { platformCode }),
       ...(stop.parent_station === undefined
         ? {}
         : { parentStopId: namespace("stop", stop.parent_station) }),
-    };
-  });
+    });
+  }
   const stopIds = new Set(stopsRaw.map((stop) => stop.stop_id));
   for (const stop of stopsRaw) {
     if (stop.parent_station !== undefined && !stopIds.has(stop.parent_station)) {
@@ -546,11 +623,29 @@ export const compileGtfs = Effect.fn("Gtfs.compile")(function* (
           `Trip ${trip.trip_id} departs before it arrives at stop ${stopTime.stop_id}`,
         );
       }
+      const pickupPolicy = boardingPolicy(stopTime.pickup_type);
+      const dropOffPolicy = boardingPolicy(stopTime.drop_off_type);
+      if (pickupPolicy === undefined) {
+        return yield* failValidation(
+          "INVALID_PICKUP_TYPE",
+          `Trip ${trip.trip_id} stop ${stopTime.stop_id} has unsupported pickup_type ${String(stopTime.pickup_type)}`,
+        );
+      }
+      if (dropOffPolicy === undefined) {
+        return yield* failValidation(
+          "INVALID_DROP_OFF_TYPE",
+          `Trip ${trip.trip_id} stop ${stopTime.stop_id} has unsupported drop_off_type ${String(stopTime.drop_off_type)}`,
+        );
+      }
+      const stopHeadsign = optionalNonEmpty(stopTime.stop_headsign);
       stopTimes.push({
         stopId: namespace("stop", stopTime.stop_id),
         sequence: stopTime.stop_sequence,
         arrivalSeconds,
         departureSeconds,
+        pickupPolicy,
+        dropOffPolicy,
+        ...(stopHeadsign === undefined ? {} : { stopHeadsign }),
       });
     }
     const frequencyWindows = [];
@@ -620,7 +715,7 @@ export const compileGtfs = Effect.fn("Gtfs.compile")(function* (
   }
 
   const snapshot = yield* Schema.decodeUnknownEffect(NetworkSnapshot)({
-    schemaVersion: "1",
+    schemaVersion: "2",
     generatedAt: canonicalGeneratedAt,
     agencies: agencies.sort(byId),
     stops: stops.sort(byId),

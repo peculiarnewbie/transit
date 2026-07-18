@@ -9,7 +9,7 @@ export const mediumNetworkSize = {
 };
 
 export const mediumNetworkFixture = {
-  schemaVersion: "1",
+  schemaVersion: "2",
   generatedAt: "2026-07-18T00:00:00.000Z",
   agencies: [
     {
@@ -24,6 +24,8 @@ export const mediumNetworkFixture = {
     sourceRefs: [],
     name: `Benchmark stop ${index}`,
     location: { _tag: "Placed", latitude: -6.2, longitude: 106.8 },
+    locationKind: "Stop",
+    wheelchairBoarding: "Unknown",
   })),
   routes: Array.from({ length: ROUTE_COUNT }, (_, routeIndex) => ({
     id: `route:benchmark:${routeIndex}`,
@@ -53,6 +55,8 @@ export const mediumNetworkFixture = {
         sequence: stopIndex,
         arrivalSeconds: 28_800 + routeIndex * 60 + stopIndex * 180,
         departureSeconds: 28_800 + routeIndex * 60 + stopIndex * 180,
+        pickupPolicy: "Normal",
+        dropOffPolicy: "Normal",
       })),
       frequencyWindows: [],
     },

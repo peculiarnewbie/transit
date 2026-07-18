@@ -69,12 +69,12 @@ requirements but should not add production services itself.
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
+| Purpose             | Command                                   | Expected on success                  |
+| ------------------- | ----------------------------------------- | ------------------------------------ |
 | Corpus/schema tests | `npm test -- src/acceptance/route-helper` | all route-helper contract tests pass |
-| Typecheck | `npx tsc --noEmit` | exit 0, no errors |
-| Lint | `npx oxlint .` | exit 0 |
-| Full tests | `npm test` | all tests pass |
+| Typecheck           | `npx tsc --noEmit`                        | exit 0, no errors                    |
+| Lint                | `npx oxlint .`                            | exit 0                               |
+| Full tests          | `npm test`                                | all tests pass                       |
 
 ## Suggested executor toolkit
 
@@ -346,29 +346,29 @@ Completed on 2026-07-18 against source artifact
 
 ### Scope matrix
 
-| Step / done criterion | Implementation | Evidence |
-| --- | --- | --- |
-| Product contract with midpoint + multimodal destination | `docs/product/route-helper-contract.md` | Keyword verify for time-independent/headsign/nearby/must never/multimodal; ownership section present |
-| Corpus schemas + `RouteHelperCorpus.load` | `src/acceptance/route-helper/**` | Schema round-trip, invariant, and decode tests in `corpus.test.ts` |
-| ≥60 place-search cases + minima | `test/fixtures/route-helper/place-search-cases.json` | 91 cases; coverage test prints/enforces minima |
-| ≥50 route-guide cases + minima | `test/fixtures/route-helper/route-guide-cases.json` | 57 cases (50 Supported, 7 KnownGap); coverage test |
-| ≥6 usability tasks without stop hints | `test/fixtures/route-helper/usability-tasks.json` | 6 tasks; prohibited-hint rejection test |
-| No timetable/walk fields in expectations | loader + coverage assertions | Rejects prohibited JSON keys in sequences |
-| Parallel lane ownership | contract final section | Plans 013–016 ownership + shared schemas listed |
-| Status + integrity | `plans/README.md`, this report | Status `DONE` |
+| Step / done criterion                                   | Implementation                                       | Evidence                                                                                             |
+| ------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Product contract with midpoint + multimodal destination | `docs/product/route-helper-contract.md`              | Keyword verify for time-independent/headsign/nearby/must never/multimodal; ownership section present |
+| Corpus schemas + `RouteHelperCorpus.load`               | `src/acceptance/route-helper/**`                     | Schema round-trip, invariant, and decode tests in `corpus.test.ts`                                   |
+| ≥60 place-search cases + minima                         | `test/fixtures/route-helper/place-search-cases.json` | 91 cases; coverage test prints/enforces minima                                                       |
+| ≥50 route-guide cases + minima                          | `test/fixtures/route-helper/route-guide-cases.json`  | 57 cases (50 Supported, 7 KnownGap); coverage test                                                   |
+| ≥6 usability tasks without stop hints                   | `test/fixtures/route-helper/usability-tasks.json`    | 6 tasks; prohibited-hint rejection test                                                              |
+| No timetable/walk fields in expectations                | loader + coverage assertions                         | Rejects prohibited JSON keys in sequences                                                            |
+| Parallel lane ownership                                 | contract final section                               | Plans 013–016 ownership + shared schemas listed                                                      |
+| Status + integrity                                      | `plans/README.md`, this report                       | Status `DONE`                                                                                        |
 
 ### Entity counts exercised by review
 
-| Entity | Count / identity |
-| --- | --- |
-| Source artifact | `bus-transjakarta-20260629-v1` |
-| Place-search cases | 91 |
-| Place categories | Landmark 28, Neighbourhood 17, ExactStop 9, Ambiguous 13, AdministrativeCity 16, Abbreviation 8, SpellingVariant 12, ExpectedNoResult 11 |
-| Admin coverage | Pusat 30, Utara 12, Barat 14, Selatan 14, Timur 15, EdgeNetwork 6 |
-| Route-guide cases | 57 total; Supported 50; KnownGap 7 |
-| Route categories | Direct 25, OneTransfer 16, TwoTransfer 9, ReversePair 7, Peripheral 9, InterchangeableLines 2, Branch 3, ParentChildStation 3, TerminalPlatform 1 |
-| Audited pairs included | Blok M↔Bundaran HI, Blok M↔Kota, Ragunan→Harmoni, JIS→Blok M, Kalideres→Pulo Gadung, Tanjung Priok→Lebak Bulus, Cawang→Kota, Cawang↔Grogol 9/9A |
-| Usability tasks | 6 covering phone top control, desktop side panel, autocomplete, swap, no-map, 9/9A |
+| Entity                 | Count / identity                                                                                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Source artifact        | `bus-transjakarta-20260629-v1`                                                                                                                    |
+| Place-search cases     | 91                                                                                                                                                |
+| Place categories       | Landmark 28, Neighbourhood 17, ExactStop 9, Ambiguous 13, AdministrativeCity 16, Abbreviation 8, SpellingVariant 12, ExpectedNoResult 11          |
+| Admin coverage         | Pusat 30, Utara 12, Barat 14, Selatan 14, Timur 15, EdgeNetwork 6                                                                                 |
+| Route-guide cases      | 57 total; Supported 50; KnownGap 7                                                                                                                |
+| Route categories       | Direct 25, OneTransfer 16, TwoTransfer 9, ReversePair 7, Peripheral 9, InterchangeableLines 2, Branch 3, ParentChildStation 3, TerminalPlatform 1 |
+| Audited pairs included | Blok M↔Bundaran HI, Blok M↔Kota, Ragunan→Harmoni, JIS→Blok M, Kalideres→Pulo Gadung, Tanjung Priok→Lebak Bulus, Cawang→Kota, Cawang↔Grogol 9/9A   |
+| Usability tasks        | 6 covering phone top control, desktop side panel, autocomplete, swap, no-map, 9/9A                                                                |
 
 ### Verification commands
 

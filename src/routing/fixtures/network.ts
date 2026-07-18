@@ -3,6 +3,8 @@ const stop = (id: string) => ({
   sourceRefs: [],
   name: id,
   location: { _tag: "Placed", latitude: -6.2, longitude: 106.8 },
+  locationKind: "Stop",
+  wheelchairBoarding: "Unknown",
 });
 
 const route = (id: string) => ({
@@ -43,13 +45,15 @@ const scheduled = (
       sequence,
       arrivalSeconds,
       departureSeconds,
+      pickupPolicy: "Normal",
+      dropOffPolicy: "Normal",
     })),
     frequencyWindows,
   },
 });
 
 export const networkFixture = {
-  schemaVersion: "1",
+  schemaVersion: "2",
   generatedAt: "2026-07-18T00:00:00.000Z",
   agencies: [
     {

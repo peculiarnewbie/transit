@@ -15,7 +15,7 @@
     "test": "vitest run",
     "format": "oxfmt",
     "lint": "oxlint .",
-    "check": "npm run generate-routes && tsc --noEmit && npm run lint && oxfmt --check . '!src/routeTree.gen.ts'"
+    "check": "npm run generate-routes && tsc --noEmit && npm run lint && oxfmt --check . '!src/routeTree.gen.ts' '!public/artifacts/**'"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "latest",

@@ -6,6 +6,19 @@ share the same `generatedAt` value. Runtime acquisition fails before serving
 queries if either file is missing, malformed, or from a different compilation
 run.
 
+## Network snapshot schema versions
+
+- **v1**: Original stop/trip topology without location kind, accessibility,
+  platform codes, or boarding-policy fields on stop times.
+- **v2** (current): Adds passenger-facing stop location kind, optional stop and
+  platform codes, wheelchair boarding evidence (`Unknown | Possible |
+NotPossible`), and per-stop-time pickup/drop-off policy plus optional stop
+  headsign. Compilers emit `schemaVersion: "2"`. Do not reinterpret a v1 file
+  as if those fields were present; migrate or recompile to v2 explicitly.
+
+Geometry sidecars remain on their own `schemaVersion: "1"` and must still share
+`generatedAt` with the paired topology snapshot.
+
 ## Local compile and validation
 
 Compile the source ZIP outside `public/` so raw provider data can never enter a

@@ -45,7 +45,7 @@ describe("route helper corpus schemas", () => {
       expect(places.length).toBe(corpus.placeSearchCases.length);
       expect(routes.length).toBe(corpus.routeGuideCases.length);
       expect(tasks.length).toBe(corpus.usabilityTasks.length);
-      expect(manifest.sourceArtifactVersion).toBe("bus-transjakarta-20260629-v1");
+      expect(manifest.sourceArtifactVersion).toBe("bus-transjakarta-20260630-v2");
     }),
   );
 
@@ -293,8 +293,9 @@ describe("route helper corpus coverage minima", () => {
         total: corpus.placeSearchCases.length,
         byCategory: Object.fromEntries([...byCategory.entries()].sort()),
         byAdmin: Object.fromEntries([...byAdmin.entries()].sort()),
-        expectedNoResult: corpus.placeSearchCases.filter((placeCase) => placeCase.expectNoLocalResult)
-          .length,
+        expectedNoResult: corpus.placeSearchCases.filter(
+          (placeCase) => placeCase.expectNoLocalResult,
+        ).length,
         ambiguous: byCategory.get("Ambiguous") ?? 0,
         spellingVariant: byCategory.get("SpellingVariant") ?? 0,
       };
@@ -408,9 +409,7 @@ describe("route helper corpus coverage minima", () => {
     Effect.gen(function* () {
       const corpus = yield* loadReviewedCorpus();
       expect(corpus.usabilityTasks.length).toBeGreaterThanOrEqual(6);
-      const interactions = new Set(
-        corpus.usabilityTasks.flatMap((task) => [...task.interactions]),
-      );
+      const interactions = new Set(corpus.usabilityTasks.flatMap((task) => [...task.interactions]));
       for (const required of [
         "AutocompleteBelowActiveInput",
         "OriginDestinationSwap",

@@ -42,13 +42,13 @@ acceptance test, not the product database.
 
 ## Commands you will need
 
-| Purpose | Command | Expected on success |
-| --- | --- | --- |
-| Place import tests | `npm test -- src/import/osm-places` | import and artifact tests pass |
-| Discovery tests | `npm test -- src/discovery/place` | search and nearby-choice tests pass |
-| Acceptance corpus | `npm test -- src/acceptance/route-helper --runInBand` | all Plan 012 place cases pass |
-| Typecheck/lint | `npx tsc --noEmit && npx oxlint .` | exit 0 |
-| Full verification | `npm run check && npm test` | exit 0 |
+| Purpose            | Command                                               | Expected on success                 |
+| ------------------ | ----------------------------------------------------- | ----------------------------------- |
+| Place import tests | `npm test -- src/import/osm-places`                   | import and artifact tests pass      |
+| Discovery tests    | `npm test -- src/discovery/place`                     | search and nearby-choice tests pass |
+| Acceptance corpus  | `npm test -- src/acceptance/route-helper --runInBand` | all Plan 012 place cases pass       |
+| Typecheck/lint     | `npx tsc --noEmit && npx oxlint .`                    | exit 0                              |
+| Full verification  | `npm run check && npm test`                           | exit 0                              |
 
 ## Suggested executor toolkit
 
@@ -245,4 +245,3 @@ Stop and report instead of continuing if:
 - [ ] All Plan 012 place-search acceptance cases meet their reviewed criteria.
 - [ ] Full-artifact reconciliation, performance, and coverage reports pass.
 - [ ] `npm run check && npm test` pass.
-

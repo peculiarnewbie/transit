@@ -10,9 +10,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -38,14 +36,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Blok M"
-    ],
-    "requiredAlightingLabels": [
-      "Bundaran HI",
-      "Bundaran HI Astra"
-    ],
-    "rationale": "Reviewed Blok M → Bundaran HI against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Blok M"],
+    "requiredAlightingLabels": ["Bundaran HI", "Bundaran HI Astra"],
+    "rationale": "Reviewed Blok M → Bundaran HI against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -59,10 +52,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "ReversePair"
-    ],
+    "categories": ["Direct", "ReversePair"],
     "acceptableSequences": [
       {
         "steps": [
@@ -88,14 +78,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Bundaran HI",
-      "Bundaran HI Astra"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
-    "rationale": "Reviewed Bundaran HI → Blok M against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Bundaran HI", "Bundaran HI Astra"],
+    "requiredAlightingLabels": ["Blok M"],
+    "rationale": "Reviewed Bundaran HI → Blok M against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances.",
     "reverseOfCaseId": "route:blokm-bundaranhi"
   },
@@ -110,9 +95,7 @@
       "locality": "Jakarta Barat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -125,23 +108,15 @@
             ],
             "boardingPlaceLabel": "Blok M",
             "alightingPlaceLabel": "Kota",
-            "intermediateStopLabels": [
-              "Bundaran HI Astra",
-              "Monas",
-              "Glodok"
-            ]
+            "intermediateStopLabels": ["Bundaran HI Astra", "Monas", "Glodok"]
           }
         ]
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Blok M"
-    ],
-    "requiredAlightingLabels": [
-      "Kota"
-    ],
-    "rationale": "Reviewed Blok M → Kota against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Blok M"],
+    "requiredAlightingLabels": ["Kota"],
+    "rationale": "Reviewed Blok M → Kota against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -155,10 +130,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "ReversePair"
-    ],
+    "categories": ["Direct", "ReversePair"],
     "acceptableSequences": [
       {
         "steps": [
@@ -171,23 +143,15 @@
             ],
             "boardingPlaceLabel": "Kota",
             "alightingPlaceLabel": "Blok M",
-            "intermediateStopLabels": [
-              "Glodok",
-              "Monas",
-              "Bundaran HI Astra"
-            ]
+            "intermediateStopLabels": ["Glodok", "Monas", "Bundaran HI Astra"]
           }
         ]
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Kota"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
-    "rationale": "Reviewed Kota → Blok M against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Kota"],
+    "requiredAlightingLabels": ["Blok M"],
+    "rationale": "Reviewed Kota → Blok M against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances.",
     "reverseOfCaseId": "route:blokm-kota"
   },
@@ -202,9 +166,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -217,10 +179,7 @@
             ],
             "boardingPlaceLabel": "Ragunan",
             "alightingPlaceLabel": "Galunggung",
-            "intermediateStopLabels": [
-              "Jati Padang",
-              "Duren Tiga"
-            ]
+            "intermediateStopLabels": ["Jati Padang", "Duren Tiga"]
           },
           {
             "lineOptions": [
@@ -231,10 +190,7 @@
             ],
             "boardingPlaceLabel": "Galunggung",
             "alightingPlaceLabel": "Harmoni",
-            "intermediateStopLabels": [
-              "Bundaran HI Astra",
-              "Monas"
-            ]
+            "intermediateStopLabels": ["Bundaran HI Astra", "Monas"]
           }
         ]
       },
@@ -249,10 +205,7 @@
             ],
             "boardingPlaceLabel": "Ragunan",
             "alightingPlaceLabel": "Harmoni",
-            "intermediateStopLabels": [
-              "Kuningan",
-              "Semanggi"
-            ]
+            "intermediateStopLabels": ["Kuningan", "Semanggi"]
           }
         ]
       },
@@ -267,22 +220,15 @@
             ],
             "boardingPlaceLabel": "Ragunan",
             "alightingPlaceLabel": "Harmoni",
-            "intermediateStopLabels": [
-              "Semanggi",
-              "Bank Indonesia"
-            ]
+            "intermediateStopLabels": ["Semanggi", "Bank Indonesia"]
           }
         ]
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Ragunan"
-    ],
-    "requiredAlightingLabels": [
-      "Harmoni"
-    ],
-    "rationale": "Reviewed Ragunan → Harmoni against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Ragunan"],
+    "requiredAlightingLabels": ["Harmoni"],
+    "rationale": "Reviewed Ragunan → Harmoni against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -296,10 +242,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer",
-      "Peripheral"
-    ],
+    "categories": ["OneTransfer", "Peripheral"],
     "acceptableSequences": [
       {
         "steps": [
@@ -327,21 +270,15 @@
             ],
             "boardingPlaceLabel": "Senen",
             "alightingPlaceLabel": "Blok M",
-            "intermediateStopLabels": [
-              "Bundaran HI Astra"
-            ]
+            "intermediateStopLabels": ["Bundaran HI Astra"]
           }
         ]
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Jakarta International Stadium"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
-    "rationale": "Reviewed Jakarta International Stadium → Blok M against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Jakarta International Stadium"],
+    "requiredAlightingLabels": ["Blok M"],
+    "rationale": "Reviewed Jakarta International Stadium → Blok M against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -355,10 +292,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer",
-      "Peripheral"
-    ],
+    "categories": ["OneTransfer", "Peripheral"],
     "acceptableSequences": [
       {
         "steps": [
@@ -371,10 +305,7 @@
             ],
             "boardingPlaceLabel": "Kalideres",
             "alightingPlaceLabel": "Monumen Nasional",
-            "intermediateStopLabels": [
-              "Grogol",
-              "Harmoni"
-            ]
+            "intermediateStopLabels": ["Grogol", "Harmoni"]
           },
           {
             "lineOptions": [
@@ -385,22 +316,15 @@
             ],
             "boardingPlaceLabel": "Monumen Nasional",
             "alightingPlaceLabel": "Pulo Gadung",
-            "intermediateStopLabels": [
-              "Senen",
-              "Rawamangun"
-            ]
+            "intermediateStopLabels": ["Senen", "Rawamangun"]
           }
         ]
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Kalideres"
-    ],
-    "requiredAlightingLabels": [
-      "Pulo Gadung"
-    ],
-    "rationale": "Reviewed Kalideres → Pulo Gadung against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Kalideres"],
+    "requiredAlightingLabels": ["Pulo Gadung"],
+    "rationale": "Reviewed Kalideres → Pulo Gadung against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -414,10 +338,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "TwoTransfer",
-      "Peripheral"
-    ],
+    "categories": ["TwoTransfer", "Peripheral"],
     "acceptableSequences": [
       {
         "steps": [
@@ -430,9 +351,7 @@
             ],
             "boardingPlaceLabel": "Tanjung Priok",
             "alightingPlaceLabel": "PGC",
-            "intermediateStopLabels": [
-              "Cempaka Putih"
-            ]
+            "intermediateStopLabels": ["Cempaka Putih"]
           },
           {
             "lineOptions": [
@@ -460,13 +379,9 @@
       }
     ],
     "maximumTransferCount": 2,
-    "requiredBoardingLabels": [
-      "Tanjung Priok"
-    ],
-    "requiredAlightingLabels": [
-      "Lebak Bulus"
-    ],
-    "rationale": "Reviewed Tanjung Priok → Lebak Bulus against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Tanjung Priok"],
+    "requiredAlightingLabels": ["Lebak Bulus"],
+    "rationale": "Reviewed Tanjung Priok → Lebak Bulus against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -480,10 +395,7 @@
       "locality": "Jakarta Barat"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer",
-      "ParentChildStation"
-    ],
+    "categories": ["OneTransfer", "ParentChildStation"],
     "acceptableSequences": [
       {
         "steps": [
@@ -500,11 +412,7 @@
             ],
             "boardingPlaceLabel": "Cawang",
             "alightingPlaceLabel": "Grogol Reformasi",
-            "intermediateStopLabels": [
-              "Semanggi",
-              "Petamburan",
-              "Tanjung Duren Arah Barat"
-            ]
+            "intermediateStopLabels": ["Semanggi", "Petamburan", "Tanjung Duren Arah Barat"]
           },
           {
             "lineOptions": [
@@ -530,9 +438,7 @@
             ],
             "boardingPlaceLabel": "Cawang",
             "alightingPlaceLabel": "Juanda",
-            "intermediateStopLabels": [
-              "Matraman"
-            ]
+            "intermediateStopLabels": ["Matraman"]
           },
           {
             "lineOptions": [
@@ -547,21 +453,15 @@
             ],
             "boardingPlaceLabel": "Juanda",
             "alightingPlaceLabel": "Kota",
-            "intermediateStopLabels": [
-              "Pasar Baru"
-            ]
+            "intermediateStopLabels": ["Pasar Baru"]
           }
         ]
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Cawang"
-    ],
-    "requiredAlightingLabels": [
-      "Kota"
-    ],
-    "rationale": "Reviewed Cawang → Kota against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Cawang"],
+    "requiredAlightingLabels": ["Kota"],
+    "rationale": "Reviewed Cawang → Kota against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -575,10 +475,7 @@
       "locality": "Jakarta Barat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "InterchangeableLines"
-    ],
+    "categories": ["Direct", "InterchangeableLines"],
     "acceptableSequences": [
       {
         "steps": [
@@ -606,12 +503,8 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Cawang"
-    ],
-    "requiredAlightingLabels": [
-      "Grogol Reformasi"
-    ],
+    "requiredBoardingLabels": ["Cawang"],
+    "requiredAlightingLabels": ["Grogol Reformasi"],
     "rationale": "Shared corridor boarding/alighting: passenger may take 9 or 9A for the same action.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
@@ -626,11 +519,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "InterchangeableLines",
-      "ReversePair"
-    ],
+    "categories": ["Direct", "InterchangeableLines", "ReversePair"],
     "acceptableSequences": [
       {
         "steps": [
@@ -647,22 +536,15 @@
             ],
             "boardingPlaceLabel": "Grogol Reformasi",
             "alightingPlaceLabel": "Cawang",
-            "intermediateStopLabels": [
-              "Petamburan",
-              "Semanggi"
-            ]
+            "intermediateStopLabels": ["Petamburan", "Semanggi"]
           }
         ]
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Grogol Reformasi"
-    ],
-    "requiredAlightingLabels": [
-      "Cawang"
-    ],
-    "rationale": "Reviewed Grogol Reformasi → Cawang against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Grogol Reformasi"],
+    "requiredAlightingLabels": ["Cawang"],
+    "rationale": "Reviewed Grogol Reformasi → Cawang against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances.",
     "reverseOfCaseId": "route:cawang-grogol-9-9a"
   },
@@ -677,9 +559,7 @@
       "locality": "Jakarta Utara"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -698,13 +578,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Pinang Ranti"
-    ],
-    "requiredAlightingLabels": [
-      "Pluit"
-    ],
-    "rationale": "Reviewed Pinang Ranti → Pluit against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Pinang Ranti"],
+    "requiredAlightingLabels": ["Pluit"],
+    "rationale": "Reviewed Pinang Ranti → Pluit against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -718,9 +594,7 @@
       "locality": "Jakarta Barat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -739,13 +613,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Cililitan"
-    ],
-    "requiredAlightingLabels": [
-      "Grogol Reformasi"
-    ],
-    "rationale": "Reviewed Cililitan → Grogol Reformasi against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Cililitan"],
+    "requiredAlightingLabels": ["Grogol Reformasi"],
+    "rationale": "Reviewed Cililitan → Grogol Reformasi against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -759,9 +629,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -780,13 +648,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Pulo Gadung"
-    ],
-    "requiredAlightingLabels": [
-      "Monumen Nasional"
-    ],
-    "rationale": "Reviewed Pulo Gadung → Monumen Nasional against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Pulo Gadung"],
+    "requiredAlightingLabels": ["Monumen Nasional"],
+    "rationale": "Reviewed Pulo Gadung → Monumen Nasional against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -800,9 +664,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -821,13 +683,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Kalideres"
-    ],
-    "requiredAlightingLabels": [
-      "Monumen Nasional"
-    ],
-    "rationale": "Reviewed Kalideres → Monumen Nasional against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Kalideres"],
+    "requiredAlightingLabels": ["Monumen Nasional"],
+    "rationale": "Reviewed Kalideres → Monumen Nasional against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -841,9 +699,7 @@
       "locality": "Jakarta Utara"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -862,13 +718,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Kampung Melayu"
-    ],
-    "requiredAlightingLabels": [
-      "Ancol"
-    ],
-    "rationale": "Reviewed Kampung Melayu → Ancol against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Kampung Melayu"],
+    "requiredAlightingLabels": ["Ancol"],
+    "rationale": "Reviewed Kampung Melayu → Ancol against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -882,9 +734,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -903,13 +753,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Ragunan"
-    ],
-    "requiredAlightingLabels": [
-      "Galunggung"
-    ],
-    "rationale": "Reviewed Ragunan → Galunggung against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Ragunan"],
+    "requiredAlightingLabels": ["Galunggung"],
+    "rationale": "Reviewed Ragunan → Galunggung against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -923,9 +769,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -944,13 +788,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Kampung Rambutan"
-    ],
-    "requiredAlightingLabels": [
-      "Kampung Melayu"
-    ],
-    "rationale": "Reviewed Kampung Rambutan → Kampung Melayu against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Kampung Rambutan"],
+    "requiredAlightingLabels": ["Kampung Melayu"],
+    "rationale": "Reviewed Kampung Rambutan → Kampung Melayu against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -964,9 +804,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -985,13 +823,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Lebak Bulus"
-    ],
-    "requiredAlightingLabels": [
-      "Pasar Baru"
-    ],
-    "rationale": "Reviewed Lebak Bulus → Pasar Baru against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Lebak Bulus"],
+    "requiredAlightingLabels": ["Pasar Baru"],
+    "rationale": "Reviewed Lebak Bulus → Pasar Baru against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1005,9 +839,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1026,13 +858,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Tanjung Priok"
-    ],
-    "requiredAlightingLabels": [
-      "PGC"
-    ],
-    "rationale": "Reviewed Tanjung Priok → PGC against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Tanjung Priok"],
+    "requiredAlightingLabels": ["PGC"],
+    "rationale": "Reviewed Tanjung Priok → PGC against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1046,9 +874,7 @@
       "locality": "Jakarta Utara"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1067,13 +893,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Tanjung Priok"
-    ],
-    "requiredAlightingLabels": [
-      "Pluit"
-    ],
-    "rationale": "Reviewed Tanjung Priok → Pluit against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Tanjung Priok"],
+    "requiredAlightingLabels": ["Pluit"],
+    "rationale": "Reviewed Tanjung Priok → Pluit against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1087,9 +909,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1108,13 +928,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Ciledug"
-    ],
-    "requiredAlightingLabels": [
-      "Tegal Mampang"
-    ],
-    "rationale": "Reviewed Ciledug → Tegal Mampang against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Ciledug"],
+    "requiredAlightingLabels": ["Tegal Mampang"],
+    "rationale": "Reviewed Ciledug → Tegal Mampang against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1128,9 +944,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct"
-    ],
+    "categories": ["Direct"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1149,13 +963,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Harmoni"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
-    "rationale": "Reviewed Harmoni → Blok M against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Harmoni"],
+    "requiredAlightingLabels": ["Blok M"],
+    "rationale": "Reviewed Harmoni → Blok M against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1169,9 +979,7 @@
       "locality": "Jakarta Barat"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1201,13 +1009,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Ragunan"
-    ],
-    "requiredAlightingLabels": [
-      "Kota"
-    ],
-    "rationale": "Reviewed Ragunan → Kota against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Ragunan"],
+    "requiredAlightingLabels": ["Kota"],
+    "rationale": "Reviewed Ragunan → Kota against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1221,9 +1025,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1257,13 +1059,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Pinang Ranti"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
-    "rationale": "Reviewed Pinang Ranti → Blok M against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Pinang Ranti"],
+    "requiredAlightingLabels": ["Blok M"],
+    "rationale": "Reviewed Pinang Ranti → Blok M against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1277,9 +1075,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1309,13 +1105,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Pluit"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
-    "rationale": "Reviewed Pluit → Blok M against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Pluit"],
+    "requiredAlightingLabels": ["Blok M"],
+    "rationale": "Reviewed Pluit → Blok M against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1329,9 +1121,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1361,14 +1151,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Kalideres"
-    ],
-    "requiredAlightingLabels": [
-      "Bundaran HI",
-      "Bundaran HI Astra"
-    ],
-    "rationale": "Reviewed Kalideres → Bundaran HI against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Kalideres"],
+    "requiredAlightingLabels": ["Bundaran HI", "Bundaran HI Astra"],
+    "rationale": "Reviewed Kalideres → Bundaran HI against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1382,9 +1167,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1414,13 +1197,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Pulo Gadung"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
-    "rationale": "Reviewed Pulo Gadung → Blok M against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Pulo Gadung"],
+    "requiredAlightingLabels": ["Blok M"],
+    "rationale": "Reviewed Pulo Gadung → Blok M against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1434,9 +1213,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1466,13 +1243,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Ancol"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
-    "rationale": "Reviewed Ancol → Blok M against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Ancol"],
+    "requiredAlightingLabels": ["Blok M"],
+    "rationale": "Reviewed Ancol → Blok M against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1486,9 +1259,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1522,13 +1293,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Kampung Rambutan"
-    ],
-    "requiredAlightingLabels": [
-      "Harmoni"
-    ],
-    "rationale": "Reviewed Kampung Rambutan → Harmoni against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Kampung Rambutan"],
+    "requiredAlightingLabels": ["Harmoni"],
+    "rationale": "Reviewed Kampung Rambutan → Harmoni against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1542,9 +1309,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1574,14 +1339,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Ciledug"
-    ],
-    "requiredAlightingLabels": [
-      "Bundaran HI",
-      "Bundaran HI Astra"
-    ],
-    "rationale": "Reviewed Ciledug → Bundaran HI against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Ciledug"],
+    "requiredAlightingLabels": ["Bundaran HI", "Bundaran HI Astra"],
+    "rationale": "Reviewed Ciledug → Bundaran HI against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1595,9 +1355,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1631,13 +1389,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Grogol Reformasi"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
-    "rationale": "Reviewed Grogol Reformasi → Blok M against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Grogol Reformasi"],
+    "requiredAlightingLabels": ["Blok M"],
+    "rationale": "Reviewed Grogol Reformasi → Blok M against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1651,9 +1405,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer"
-    ],
+    "categories": ["OneTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1687,13 +1439,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Jakarta International Stadium"
-    ],
-    "requiredAlightingLabels": [
-      "Harmoni"
-    ],
-    "rationale": "Reviewed Jakarta International Stadium → Harmoni against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Jakarta International Stadium"],
+    "requiredAlightingLabels": ["Harmoni"],
+    "rationale": "Reviewed Jakarta International Stadium → Harmoni against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1707,10 +1455,7 @@
       "locality": "Jakarta Barat"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer",
-      "Peripheral"
-    ],
+    "categories": ["OneTransfer", "Peripheral"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1740,13 +1485,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Pinang Ranti"
-    ],
-    "requiredAlightingLabels": [
-      "Kalideres"
-    ],
-    "rationale": "Reviewed Pinang Ranti → Kalideres against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Pinang Ranti"],
+    "requiredAlightingLabels": ["Kalideres"],
+    "rationale": "Reviewed Pinang Ranti → Kalideres against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1760,10 +1501,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "TwoTransfer",
-      "Peripheral"
-    ],
+    "categories": ["TwoTransfer", "Peripheral"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1804,13 +1542,9 @@
       }
     ],
     "maximumTransferCount": 2,
-    "requiredBoardingLabels": [
-      "Kalideres"
-    ],
-    "requiredAlightingLabels": [
-      "Kampung Rambutan"
-    ],
-    "rationale": "Reviewed Kalideres → Kampung Rambutan against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Kalideres"],
+    "requiredAlightingLabels": ["Kampung Rambutan"],
+    "rationale": "Reviewed Kalideres → Kampung Rambutan against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1824,9 +1558,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "TwoTransfer"
-    ],
+    "categories": ["TwoTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1867,13 +1599,9 @@
       }
     ],
     "maximumTransferCount": 2,
-    "requiredBoardingLabels": [
-      "Pluit"
-    ],
-    "requiredAlightingLabels": [
-      "Kampung Rambutan"
-    ],
-    "rationale": "Reviewed Pluit → Kampung Rambutan against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Pluit"],
+    "requiredAlightingLabels": ["Kampung Rambutan"],
+    "rationale": "Reviewed Pluit → Kampung Rambutan against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1887,10 +1615,7 @@
       "locality": "Jakarta Utara"
     },
     "outcome": "Supported",
-    "categories": [
-      "TwoTransfer",
-      "Peripheral"
-    ],
+    "categories": ["TwoTransfer", "Peripheral"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1935,13 +1660,9 @@
       }
     ],
     "maximumTransferCount": 2,
-    "requiredBoardingLabels": [
-      "Ciledug"
-    ],
-    "requiredAlightingLabels": [
-      "Tanjung Priok"
-    ],
-    "rationale": "Reviewed Ciledug → Tanjung Priok against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Ciledug"],
+    "requiredAlightingLabels": ["Tanjung Priok"],
+    "rationale": "Reviewed Ciledug → Tanjung Priok against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -1955,10 +1676,7 @@
       "locality": "Jakarta Utara"
     },
     "outcome": "Supported",
-    "categories": [
-      "TwoTransfer",
-      "Peripheral"
-    ],
+    "categories": ["TwoTransfer", "Peripheral"],
     "acceptableSequences": [
       {
         "steps": [
@@ -1999,13 +1717,9 @@
       }
     ],
     "maximumTransferCount": 2,
-    "requiredBoardingLabels": [
-      "Lebak Bulus"
-    ],
-    "requiredAlightingLabels": [
-      "Jakarta International Stadium"
-    ],
-    "rationale": "Reviewed Lebak Bulus → Jakarta International Stadium against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Lebak Bulus"],
+    "requiredAlightingLabels": ["Jakarta International Stadium"],
+    "rationale": "Reviewed Lebak Bulus → Jakarta International Stadium against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -2019,9 +1733,7 @@
       "locality": "Jakarta Utara"
     },
     "outcome": "Supported",
-    "categories": [
-      "TwoTransfer"
-    ],
+    "categories": ["TwoTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2062,13 +1774,9 @@
       }
     ],
     "maximumTransferCount": 2,
-    "requiredBoardingLabels": [
-      "Ragunan"
-    ],
-    "requiredAlightingLabels": [
-      "Tanjung Priok"
-    ],
-    "rationale": "Reviewed Ragunan → Tanjung Priok against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Ragunan"],
+    "requiredAlightingLabels": ["Tanjung Priok"],
+    "rationale": "Reviewed Ragunan → Tanjung Priok against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -2082,9 +1790,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "TwoTransfer"
-    ],
+    "categories": ["TwoTransfer"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2125,13 +1831,9 @@
       }
     ],
     "maximumTransferCount": 2,
-    "requiredBoardingLabels": [
-      "Pulo Gadung"
-    ],
-    "requiredAlightingLabels": [
-      "Lebak Bulus"
-    ],
-    "rationale": "Reviewed Pulo Gadung → Lebak Bulus against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Pulo Gadung"],
+    "requiredAlightingLabels": ["Lebak Bulus"],
+    "rationale": "Reviewed Pulo Gadung → Lebak Bulus against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -2145,11 +1847,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "TwoTransfer",
-      "Peripheral",
-      "Branch"
-    ],
+    "categories": ["TwoTransfer", "Peripheral", "Branch"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2183,12 +1881,8 @@
       }
     ],
     "maximumTransferCount": 2,
-    "requiredBoardingLabels": [
-      "Universitas Indonesia"
-    ],
-    "requiredAlightingLabels": [
-      "Blok M"
-    ],
+    "requiredBoardingLabels": ["Universitas Indonesia"],
+    "requiredAlightingLabels": ["Blok M"],
     "rationale": "Edge campus to Blok M via reviewed feeder/trunk topology options in the supplied network.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
@@ -2203,10 +1897,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "TwoTransfer",
-      "Peripheral"
-    ],
+    "categories": ["TwoTransfer", "Peripheral"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2247,13 +1938,8 @@
       }
     ],
     "maximumTransferCount": 2,
-    "requiredBoardingLabels": [
-      "Cengkareng",
-      "Kalideres"
-    ],
-    "requiredAlightingLabels": [
-      "Kampung Rambutan"
-    ],
+    "requiredBoardingLabels": ["Cengkareng", "Kalideres"],
+    "requiredAlightingLabels": ["Kampung Rambutan"],
     "rationale": "Area origin resolves to Kalideres corridor boarding before eastbound transfers.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
@@ -2268,10 +1954,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "ReversePair"
-    ],
+    "categories": ["Direct", "ReversePair"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2290,13 +1973,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Pluit"
-    ],
-    "requiredAlightingLabels": [
-      "Pinang Ranti"
-    ],
-    "rationale": "Reviewed Pluit → Pinang Ranti against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Pluit"],
+    "requiredAlightingLabels": ["Pinang Ranti"],
+    "rationale": "Reviewed Pluit → Pinang Ranti against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances.",
     "reverseOfCaseId": "route:pinang-ranti-pluit"
   },
@@ -2311,10 +1990,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "ReversePair"
-    ],
+    "categories": ["Direct", "ReversePair"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2333,13 +2009,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Grogol Reformasi"
-    ],
-    "requiredAlightingLabels": [
-      "Cililitan"
-    ],
-    "rationale": "Reviewed Grogol Reformasi → Cililitan against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Grogol Reformasi"],
+    "requiredAlightingLabels": ["Cililitan"],
+    "rationale": "Reviewed Grogol Reformasi → Cililitan against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances.",
     "reverseOfCaseId": "route:cililitan-grogol"
   },
@@ -2354,10 +2026,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "ReversePair"
-    ],
+    "categories": ["Direct", "ReversePair"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2376,13 +2045,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Monumen Nasional"
-    ],
-    "requiredAlightingLabels": [
-      "Pulo Gadung"
-    ],
-    "rationale": "Reviewed Monumen Nasional → Pulo Gadung against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Monumen Nasional"],
+    "requiredAlightingLabels": ["Pulo Gadung"],
+    "rationale": "Reviewed Monumen Nasional → Pulo Gadung against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances.",
     "reverseOfCaseId": "route:pulogadung-monas"
   },
@@ -2397,10 +2062,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "Supported",
-    "categories": [
-      "OneTransfer",
-      "ReversePair"
-    ],
+    "categories": ["OneTransfer", "ReversePair"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2430,13 +2092,9 @@
       }
     ],
     "maximumTransferCount": 1,
-    "requiredBoardingLabels": [
-      "Harmoni"
-    ],
-    "requiredAlightingLabels": [
-      "Ragunan"
-    ],
-    "rationale": "Reviewed Harmoni → Ragunan against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Harmoni"],
+    "requiredAlightingLabels": ["Ragunan"],
+    "rationale": "Reviewed Harmoni → Ragunan against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances.",
     "reverseOfCaseId": "route:ragunan-harmoni"
   },
@@ -2451,10 +2109,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "Branch"
-    ],
+    "categories": ["Direct", "Branch"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2467,9 +2122,7 @@
             ],
             "boardingPlaceLabel": "Ragunan",
             "alightingPlaceLabel": "Balai Kota",
-            "intermediateStopLabels": [
-              "Kuningan"
-            ]
+            "intermediateStopLabels": ["Kuningan"]
           }
         ]
       },
@@ -2484,20 +2137,14 @@
             ],
             "boardingPlaceLabel": "Ragunan",
             "alightingPlaceLabel": "Balai Kota",
-            "intermediateStopLabels": [
-              "Semanggi"
-            ]
+            "intermediateStopLabels": ["Semanggi"]
           }
         ]
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Ragunan"
-    ],
-    "requiredAlightingLabels": [
-      "Balai Kota"
-    ],
+    "requiredBoardingLabels": ["Ragunan"],
+    "requiredAlightingLabels": ["Balai Kota"],
     "rationale": "Branch variants 6A vs 6B are separate acceptable sequences when intermediate corridors differ.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
@@ -2512,11 +2159,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "TerminalPlatform",
-      "ParentChildStation"
-    ],
+    "categories": ["Direct", "TerminalPlatform", "ParentChildStation"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2535,15 +2178,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Blok M",
-      "Blok M Jalur 2"
-    ],
-    "requiredAlightingLabels": [
-      "Bundaran HI",
-      "Bundaran HI Astra"
-    ],
-    "rationale": "Reviewed Blok M Jalur 2 → Bundaran HI against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Blok M", "Blok M Jalur 2"],
+    "requiredAlightingLabels": ["Bundaran HI", "Bundaran HI Astra"],
+    "rationale": "Reviewed Blok M Jalur 2 → Bundaran HI against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -2557,10 +2194,7 @@
       "locality": "Jakarta Barat"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "ParentChildStation"
-    ],
+    "categories": ["Direct", "ParentChildStation"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2579,13 +2213,9 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Bundaran HI Astra"
-    ],
-    "requiredAlightingLabels": [
-      "Kota"
-    ],
-    "rationale": "Reviewed Bundaran HI Astra → Kota against bus-transjakarta-20260629-v1.",
+    "requiredBoardingLabels": ["Bundaran HI Astra"],
+    "requiredAlightingLabels": ["Kota"],
+    "rationale": "Reviewed Bundaran HI Astra → Kota against bus-transjakarta-20260630-v2.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
   {
@@ -2599,10 +2229,7 @@
       "locality": "Jakarta Timur"
     },
     "outcome": "Supported",
-    "categories": [
-      "Direct",
-      "Branch"
-    ],
+    "categories": ["Direct", "Branch"],
     "acceptableSequences": [
       {
         "steps": [
@@ -2621,12 +2248,8 @@
       }
     ],
     "maximumTransferCount": 0,
-    "requiredBoardingLabels": [
-      "Pinang Ranti"
-    ],
-    "requiredAlightingLabels": [
-      "Cawang"
-    ],
+    "requiredBoardingLabels": ["Pinang Ranti"],
+    "requiredAlightingLabels": ["Cawang"],
     "rationale": "Short corridor segment on branched corridor 9 patterns.",
     "sourceReviewNote": "Reviewed using production artifact routes/patterns/headsigns; acceptable sequences are passenger actions, not timetable instances."
   },
@@ -2641,9 +2264,7 @@
       "locality": "Jakarta Utara"
     },
     "outcome": "KnownGap",
-    "categories": [
-      "KnownGap"
-    ],
+    "categories": ["KnownGap"],
     "acceptableSequences": [],
     "maximumTransferCount": 0,
     "requiredBoardingLabels": [],
@@ -2662,9 +2283,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "KnownGap",
-    "categories": [
-      "KnownGap"
-    ],
+    "categories": ["KnownGap"],
     "acceptableSequences": [],
     "maximumTransferCount": 0,
     "requiredBoardingLabels": [],
@@ -2683,9 +2302,7 @@
       "locality": "Jakarta Utara"
     },
     "outcome": "KnownGap",
-    "categories": [
-      "KnownGap"
-    ],
+    "categories": ["KnownGap"],
     "acceptableSequences": [],
     "maximumTransferCount": 0,
     "requiredBoardingLabels": [],
@@ -2704,9 +2321,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "KnownGap",
-    "categories": [
-      "KnownGap"
-    ],
+    "categories": ["KnownGap"],
     "acceptableSequences": [],
     "maximumTransferCount": 0,
     "requiredBoardingLabels": [],
@@ -2725,9 +2340,7 @@
       "locality": "Jakarta Utara"
     },
     "outcome": "KnownGap",
-    "categories": [
-      "KnownGap"
-    ],
+    "categories": ["KnownGap"],
     "acceptableSequences": [],
     "maximumTransferCount": 0,
     "requiredBoardingLabels": [],
@@ -2746,9 +2359,7 @@
       "locality": "Jakarta Pusat"
     },
     "outcome": "KnownGap",
-    "categories": [
-      "KnownGap"
-    ],
+    "categories": ["KnownGap"],
     "acceptableSequences": [],
     "maximumTransferCount": 0,
     "requiredBoardingLabels": [],
@@ -2767,9 +2378,7 @@
       "locality": "Jakarta Selatan"
     },
     "outcome": "KnownGap",
-    "categories": [
-      "KnownGap"
-    ],
+    "categories": ["KnownGap"],
     "acceptableSequences": [],
     "maximumTransferCount": 0,
     "requiredBoardingLabels": [],

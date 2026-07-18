@@ -60,6 +60,8 @@ describe("canonical transit contracts", () => {
         sourceRefs: [],
         name: "Unknown platform",
         location: { _tag: "Unplaced", reason: "Awaiting curation" },
+        locationKind: "Stop",
+        wheelchairBoarding: "Unknown",
       });
       expect(stop.location._tag).toBe("Unplaced");
     }),
@@ -73,6 +75,8 @@ describe("canonical transit contracts", () => {
         sourceRefs: [],
         name: "Invalid stop",
         location: { _tag: "Placed", latitude: -91, longitude: 106.8 },
+        locationKind: "Stop",
+        wheelchairBoarding: "Unknown",
       }).pipe(Effect.result);
       expect(Result.isFailure(result)).toBe(true);
     }),
@@ -83,6 +87,71 @@ describe("canonical transit contracts", () => {
     Effect.gen(function* () {
       const seconds = yield* Schema.decodeUnknownEffect(ServiceDaySeconds)(25 * 60 * 60 + 10 * 60);
       expect(seconds).toBe(90_600);
+    }),
+  );
+
+  itEffect(
+    "retains stop location kind, codes, and wheelchair evidence",
+    Effect.gen(function* () {
+      const stop = yield* Schema.decodeUnknownEffect(Stop)({
+        id: "stop:platform",
+        sourceRefs: [],
+        name: "Platform 1",
+        location: { _tag: "Placed", latitude: -6.2, longitude: 106.8 },
+        locationKind: "Stop",
+        stopCode: "P1",
+        platformCode: "1",
+        wheelchairBoarding: "Possible",
+        parentStopId: "stop:station",
+      });
+      expect(stop.locationKind).toBe("Stop");
+      expect(stop.platformCode).toBe("1");
+      expect(stop.wheelchairBoarding).toBe("Possible");
+      const encoded = yield* Schema.encodeEffect(Stop)(stop);
+      const roundTrip = yield* Schema.decodeUnknownEffect(Stop)(encoded);
+      expect(roundTrip).toEqual(stop);
+    }),
+  );
+
+  itEffect(
+    "keeps wheelchair unknown distinct from not-possible",
+    Effect.gen(function* () {
+      const unknown = yield* Schema.decodeUnknownEffect(Stop)({
+        id: "stop:unknown",
+        sourceRefs: [],
+        name: "Unknown access",
+        location: { _tag: "Unplaced", reason: "Awaiting curation" },
+        locationKind: "Station",
+        wheelchairBoarding: "Unknown",
+      });
+      expect(unknown.wheelchairBoarding).toBe("Unknown");
+    }),
+  );
+
+  itEffect(
+    "retains stop-time boarding policies and stop headsign",
+    Effect.gen(function* () {
+      const availability = yield* Schema.decodeUnknownEffect(ServiceAvailability)({
+        _tag: "Scheduled",
+        stopTimes: [
+          {
+            stopId: "stop:one",
+            sequence: 1,
+            arrivalSeconds: 0,
+            departureSeconds: 0,
+            pickupPolicy: "Forbidden",
+            dropOffPolicy: "CoordinateWithDriver",
+            stopHeadsign: "Toward Kota",
+          },
+        ],
+        frequencyWindows: [],
+      });
+      expect(availability._tag).toBe("Scheduled");
+      if (availability._tag === "Scheduled") {
+        expect(availability.stopTimes[0]?.pickupPolicy).toBe("Forbidden");
+        expect(availability.stopTimes[0]?.dropOffPolicy).toBe("CoordinateWithDriver");
+        expect(availability.stopTimes[0]?.stopHeadsign).toBe("Toward Kota");
+      }
     }),
   );
 
@@ -99,6 +168,8 @@ describe("canonical transit contracts", () => {
               sequence: 1,
               arrivalSeconds: 0,
               departureSeconds: 0,
+              pickupPolicy: "Normal",
+              dropOffPolicy: "Normal",
             },
           ],
           frequencyWindows: [],

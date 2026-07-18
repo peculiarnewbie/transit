@@ -2,7 +2,7 @@
   "schemaVersion": "1",
   "reviewedAt": "2026-07-18",
   "reviewer": "plan-012-executor",
-  "sourceArtifactVersion": "bus-transjakarta-20260629-v1",
+  "sourceArtifactVersion": "bus-transjakarta-20260630-v2",
   "counts": {
     "placeSearchCases": 91,
     "routeGuideCases": 57,
