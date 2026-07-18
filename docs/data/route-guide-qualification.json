@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "1",
+  "networkArtifact": "/home/bolt/git/other/transit-015/public/artifacts/bus-transjakarta-20260630-v2.network.json",
+  "transitPlaceSourceArtifactVersion": "bus-transjakarta-20260630-v2",
+  "overrideArtifact": "/home/bolt/git/other/transit-015/test/fixtures/transit-places/reviewed-complex-overrides.json",
+  "corpusManifestVersion": "bus-transjakarta-20260630-v2",
+  "generatedAt": "2026-07-18T11:35:24.824Z",
+  "graph": {
+    "patternCount": 719,
+    "placeCount": 7636,
+    "transferEdgeEndpointCount": 8243,
+    "indexTimeMs": 15296,
+    "duplicateSequenceCollapseCount": 0,
+    "findingCounts": {
+      "DirectionConflict": 1
+    }
+  },
+  "directionEvidence": {
+    "authoritative": 718,
+    "reviewed": 0,
+    "fallback": 1,
+    "ambiguous": 0
+  },
+  "interchangeableGroups": {
+    "groupCount": 10,
+    "memberLineExamples": [
+      ["9", "9A"],
+      ["7R", "9"],
+      ["8", "8A"],
+      ["8", "8A"],
+      ["8", "8A"],
+      ["8", "8A"],
+      ["3F", "9", "9A"],
+      ["3F", "9", "9A"],
+      ["3F", "9", "9A"],
+      ["9", "9A"]
+    ]
+  },
+  "queryLatencyMs": {
+    "p50": 23,
+    "p95": 122,
+    "max": 871
+  },
+  "countsByCategory": {
+    "OneTransfer": {
+      "matched": 2,
+      "mismatch": 13,
+      "noRoute": 1,
+      "expectedGap": 0
+    },
+    "Direct": {
+      "matched": 24,
+      "mismatch": 0,
+      "noRoute": 1,
+      "expectedGap": 0
+    },
+    "TerminalPlatform": {
+      "matched": 0,
+      "mismatch": 0,
+      "noRoute": 1,
+      "expectedGap": 0
+    },
+    "ParentChildStation": {
+      "matched": 1,
+      "mismatch": 1,
+      "noRoute": 1,
+      "expectedGap": 0
+    },
+    "ReversePair": {
+      "matched": 6,
+      "mismatch": 1,
+      "noRoute": 0,
+      "expectedGap": 0
+    },
+    "InterchangeableLines": {
+      "matched": 2,
+      "mismatch": 0,
+      "noRoute": 0,
+      "expectedGap": 0
+    },
+    "TwoTransfer": {
+      "matched": 0,
+      "mismatch": 8,
+      "noRoute": 1,
+      "expectedGap": 0
+    },
+    "Peripheral": {
+      "matched": 1,
+      "mismatch": 7,
+      "noRoute": 1,
+      "expectedGap": 0
+    },
+    "KnownGap": {
+      "matched": 0,
+      "mismatch": 2,
+      "noRoute": 3,
+      "expectedGap": 2
+    },
+    "Branch": {
+      "matched": 2,
+      "mismatch": 1,
+      "noRoute": 0,
+      "expectedGap": 0
+    }
+  },
+  "cases": [
+    {
+      "caseId": "route:ancol-blokm",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["1W"],
+          "directions": ["Blok M"],
+          "boarding": "Ancol",
+          "alighting": "Kejaksaan Agung"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Blok M"],
+          "boarding": "Kejaksaan Agung",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 50
+    },
+    {
+      "caseId": "route:blokm-bundaranhi",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["1"],
+          "directions": ["Kali Besar Barat via Kebon Sirih"],
+          "boarding": "Blok M",
+          "alighting": "Bundaran HI Astra"
+        }
+      ],
+      "detail": "1",
+      "latencyMs": 28
+    },
+    {
+      "caseId": "route:blokm-kota",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["1"],
+          "directions": ["Kota"],
+          "boarding": "Blok M",
+          "alighting": "Kali Besar"
+        }
+      ],
+      "detail": "1",
+      "latencyMs": 24
+    },
+    {
+      "caseId": "route:blokm-terminal-platforms",
+      "outcome": "Supported",
+      "categories": ["Direct", "TerminalPlatform", "ParentChildStation"],
+      "status": "NoRoute",
+      "detail": "No topological bus guide within transfer and expansion caps",
+      "latencyMs": 24
+    },
+    {
+      "caseId": "route:bundaranhi-blokm",
+      "outcome": "Supported",
+      "categories": ["Direct", "ReversePair"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["1"],
+          "directions": ["Blok M"],
+          "boarding": "Bundaran HI Astra",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "1",
+      "latencyMs": 29
+    },
+    {
+      "caseId": "route:bundaranhi-parent-child",
+      "outcome": "Supported",
+      "categories": ["Direct", "ParentChildStation"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["1"],
+          "directions": ["Bundaran Senayan dan Kali Besar Barat"],
+          "boarding": "Bundaran HI Astra",
+          "alighting": "Kali Besar"
+        }
+      ],
+      "detail": "1",
+      "latencyMs": 22
+    },
+    {
+      "caseId": "route:cawang-grogol-9-9a",
+      "outcome": "Supported",
+      "categories": ["Direct", "InterchangeableLines"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["9", "9A"],
+          "directions": ["Cawang Sentral dan Pluit", "Grogol"],
+          "boarding": "Cawang",
+          "alighting": "Grogol Reformasi"
+        }
+      ],
+      "detail": "9 or 9A",
+      "latencyMs": 22
+    },
+    {
+      "caseId": "route:cawang-kota",
+      "outcome": "Supported",
+      "categories": ["OneTransfer", "ParentChildStation"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["5C"],
+          "directions": ["Monas dan Cililitan"],
+          "boarding": "Cawang",
+          "alighting": "Juanda"
+        },
+        {
+          "lines": ["1A"],
+          "directions": ["Juanda dan Pantai Maju"],
+          "boarding": "Juanda",
+          "alighting": "Kali Besar"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 27
+    },
+    {
+      "caseId": "route:cengkareng-kampung-rambutan",
+      "outcome": "Supported",
+      "categories": ["TwoTransfer", "Peripheral"],
+      "status": "NoRoute",
+      "detail": "No topological bus guide within transfer and expansion caps",
+      "latencyMs": 20
+    },
+    {
+      "caseId": "route:ciledug-bundaranhi",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "NoRoute",
+      "detail": "No topological bus guide within transfer and expansion caps",
+      "latencyMs": 20
+    },
+    {
+      "caseId": "route:ciledug-tanjung-priok",
+      "outcome": "Supported",
+      "categories": ["TwoTransfer", "Peripheral"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["13"],
+          "directions": ["Tegal Mampang dan Ciledug"],
+          "boarding": "CBD Ciledug",
+          "alighting": "Rawa Barat"
+        },
+        {
+          "lines": ["3F"],
+          "directions": ["Kalideres"],
+          "boarding": "Rawa Barat",
+          "alighting": "Senayan Bank Jakarta"
+        },
+        {
+          "lines": ["10H"],
+          "directions": ["Bundaran Senayan dan Tanjung Priok"],
+          "boarding": "Senayan Bank Jakarta",
+          "alighting": "Tanjung Priok"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 39
+    },
+    {
+      "caseId": "route:ciledug-tegal-mampang",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["13"],
+          "directions": ["Tegal Mampang dan Ciledug"],
+          "boarding": "CBD Ciledug",
+          "alighting": "Tegal Mampang"
+        }
+      ],
+      "detail": "13",
+      "latencyMs": 21
+    },
+    {
+      "caseId": "route:cililitan-grogol",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["9A"],
+          "directions": ["Grogol"],
+          "boarding": "Cililitan",
+          "alighting": "Grogol Reformasi"
+        }
+      ],
+      "detail": "9A",
+      "latencyMs": 19
+    },
+    {
+      "caseId": "route:gap-across-barrier",
+      "outcome": "KnownGap",
+      "categories": ["KnownGap"],
+      "status": "ExpectedGap",
+      "detail": "No topological bus guide within transfer and expansion caps",
+      "latencyMs": 20
+    },
+    {
+      "caseId": "route:gap-airport-soetta",
+      "outcome": "KnownGap",
+      "categories": ["KnownGap"],
+      "status": "UnresolvedPlace",
+      "detail": "Could not resolve places for Bandara Soekarno-Hatta \u2192 Blok M",
+      "latencyMs": 14
+    },
+    {
+      "caseId": "route:gap-disputed-headsign",
+      "outcome": "KnownGap",
+      "categories": ["KnownGap"],
+      "status": "UnexpectedSuccess",
+      "selectedSequence": [
+        {
+          "lines": ["9"],
+          "directions": ["Cawang Sentral dan Pluit"],
+          "boarding": "Cawang",
+          "alighting": "Pluit"
+        }
+      ],
+      "detail": "KnownGap case returned a guide",
+      "latencyMs": 21
+    },
+    {
+      "caseId": "route:gap-incomplete-topology",
+      "outcome": "KnownGap",
+      "categories": ["KnownGap"],
+      "status": "UnresolvedPlace",
+      "detail": "Could not resolve places for Halte non-koridor terputus XYZ \u2192 Harmoni",
+      "latencyMs": 14
+    },
+    {
+      "caseId": "route:gap-private-compound",
+      "outcome": "KnownGap",
+      "categories": ["KnownGap"],
+      "status": "UnresolvedPlace",
+      "detail": "Could not resolve places for Komplek Angkatan Laut Pondok Dayung \u2192 Blok M",
+      "latencyMs": 12
+    },
+    {
+      "caseId": "route:gap-same-place",
+      "outcome": "KnownGap",
+      "categories": ["KnownGap"],
+      "status": "UnexpectedSuccess",
+      "selectedSequence": [
+        {
+          "lines": ["1"],
+          "directions": ["Tosari dan Blok M"],
+          "boarding": "Blok M",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "KnownGap case returned a guide",
+      "latencyMs": 19
+    },
+    {
+      "caseId": "route:gap-ui-tanjung-priok",
+      "outcome": "KnownGap",
+      "categories": ["KnownGap"],
+      "status": "ExpectedGap",
+      "detail": "No topological bus guide within transfer and expansion caps",
+      "latencyMs": 21
+    },
+    {
+      "caseId": "route:grogol-blokm",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["3F"],
+          "directions": ["Senayan Bank Jakarta dan Kalideres"],
+          "boarding": "Grogol Reformasi",
+          "alighting": "Senayan Bank Jakarta"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Blok M"],
+          "boarding": "Senayan Bank Jakarta",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 22
+    },
+    {
+      "caseId": "route:grogol-cawang-9-9a",
+      "outcome": "Supported",
+      "categories": ["Direct", "InterchangeableLines", "ReversePair"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["9", "9A"],
+          "directions": ["Cawang Sentral dan Pluit", "Cililitan"],
+          "boarding": "Grogol Reformasi",
+          "alighting": "Cawang"
+        }
+      ],
+      "detail": "9 or 9A",
+      "latencyMs": 21
+    },
+    {
+      "caseId": "route:grogol-cililitan",
+      "outcome": "Supported",
+      "categories": ["Direct", "ReversePair"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["9A"],
+          "directions": ["Cililitan"],
+          "boarding": "Grogol Reformasi",
+          "alighting": "Cililitan"
+        }
+      ],
+      "detail": "9A",
+      "latencyMs": 19
+    },
+    {
+      "caseId": "route:harmoni-blokm",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["1"],
+          "directions": ["Taman Sari dan Blok M"],
+          "boarding": "Harmoni",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "1",
+      "latencyMs": 18
+    },
+    {
+      "caseId": "route:harmoni-ragunan",
+      "outcome": "Supported",
+      "categories": ["OneTransfer", "ReversePair"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["1"],
+          "directions": ["Taman Sari dan Blok M"],
+          "boarding": "Harmoni",
+          "alighting": "Kejaksaan Agung"
+        },
+        {
+          "lines": ["6V"],
+          "directions": ["Kejaksaan Agung dan Ragunan"],
+          "boarding": "Kejaksaan Agung",
+          "alighting": "Ragunan"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 23
+    },
+    {
+      "caseId": "route:jis-blokm",
+      "outcome": "Supported",
+      "categories": ["OneTransfer", "Peripheral"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["14A"],
+          "directions": ["Monumen Nasional dan JIS"],
+          "boarding": "Jakarta International Stadium",
+          "alighting": "Monumen Nasional"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Blok M"],
+          "boarding": "Monumen Nasional",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 22
+    },
+    {
+      "caseId": "route:jis-harmoni",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["14A"],
+          "directions": ["Juanda dan Jakarta International Stadium"],
+          "boarding": "Jakarta International Stadium",
+          "alighting": "Juanda"
+        },
+        {
+          "lines": ["1A"],
+          "directions": ["Juanda dan Pantai Maju"],
+          "boarding": "Juanda",
+          "alighting": "Harmoni"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 21
+    },
+    {
+      "caseId": "route:kalideres-bundaranhi",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["3"],
+          "directions": ["Monas dan Kalideres"],
+          "boarding": "Kalideres",
+          "alighting": "Monumen Nasional"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Bundaran Senayan dan Kali Besar Barat"],
+          "boarding": "Monumen Nasional",
+          "alighting": "Bundaran HI Astra"
+        }
+      ],
+      "detail": "3 | 1",
+      "latencyMs": 24
+    },
+    {
+      "caseId": "route:kalideres-kampung-rambutan",
+      "outcome": "Supported",
+      "categories": ["TwoTransfer", "Peripheral"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["3"],
+          "directions": ["Juanda dan Kalideres"],
+          "boarding": "Kalideres",
+          "alighting": "Juanda"
+        },
+        {
+          "lines": ["7F"],
+          "directions": ["Juanda dan Kampung Rambutan"],
+          "boarding": "Juanda",
+          "alighting": "Kampung Rambutan"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 806
+    },
+    {
+      "caseId": "route:kalideres-monas",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["3"],
+          "directions": ["Monas dan Kalideres"],
+          "boarding": "Kalideres",
+          "alighting": "Monumen Nasional"
+        }
+      ],
+      "detail": "3",
+      "latencyMs": 21
+    },
+    {
+      "caseId": "route:kalideres-pulogadung",
+      "outcome": "Supported",
+      "categories": ["OneTransfer", "Peripheral"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["3"],
+          "directions": ["Monas dan Kalideres"],
+          "boarding": "Kalideres",
+          "alighting": "Monumen Nasional"
+        },
+        {
+          "lines": ["2"],
+          "directions": ["Monas dan Pulo Gadung"],
+          "boarding": "Monumen Nasional",
+          "alighting": "Pulo Gadung"
+        }
+      ],
+      "detail": "3 | 2",
+      "latencyMs": 30
+    },
+    {
+      "caseId": "route:kampung-melayu-ancol",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["5"],
+          "directions": ["Ancol"],
+          "boarding": "Kampung Melayu",
+          "alighting": "Ancol"
+        }
+      ],
+      "detail": "5",
+      "latencyMs": 20
+    },
+    {
+      "caseId": "route:kampung-rambutan-harmoni",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["7F"],
+          "directions": ["Juanda dan Kampung Rambutan"],
+          "boarding": "Kampung Rambutan",
+          "alighting": "Juanda"
+        },
+        {
+          "lines": ["1A"],
+          "directions": ["Juanda dan Pantai Maju"],
+          "boarding": "Juanda",
+          "alighting": "Harmoni"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 24
+    },
+    {
+      "caseId": "route:kampung-rambutan-kampung-melayu",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["7"],
+          "directions": ["Kampung Melayu via Tol Hek"],
+          "boarding": "Kampung Rambutan",
+          "alighting": "Kampung Melayu"
+        }
+      ],
+      "detail": "7",
+      "latencyMs": 19
+    },
+    {
+      "caseId": "route:kota-blokm",
+      "outcome": "Supported",
+      "categories": ["Direct", "ReversePair"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["1"],
+          "directions": ["Blok M"],
+          "boarding": "Kali Besar",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "1",
+      "latencyMs": 23
+    },
+    {
+      "caseId": "route:lebak-bulus-jis",
+      "outcome": "Supported",
+      "categories": ["TwoTransfer", "Peripheral"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["8"],
+          "directions": ["Pasar Baru"],
+          "boarding": "Lebak Bulus",
+          "alighting": "Juanda"
+        },
+        {
+          "lines": ["14A"],
+          "directions": ["Juanda dan Jakarta International Stadium"],
+          "boarding": "Juanda",
+          "alighting": "Jakarta International Stadium"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 115
+    },
+    {
+      "caseId": "route:lebak-bulus-pasar-baru",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["8"],
+          "directions": ["Pasar Baru"],
+          "boarding": "Lebak Bulus",
+          "alighting": "Pasar Baru"
+        }
+      ],
+      "detail": "8",
+      "latencyMs": 21
+    },
+    {
+      "caseId": "route:monas-pulogadung",
+      "outcome": "Supported",
+      "categories": ["Direct", "ReversePair"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["2"],
+          "directions": ["Monas dan Pulo Gadung"],
+          "boarding": "Monumen Nasional",
+          "alighting": "Pulo Gadung"
+        }
+      ],
+      "detail": "2",
+      "latencyMs": 31
+    },
+    {
+      "caseId": "route:pinang-ranti-blokm",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["9"],
+          "directions": ["Pluit via Tol Petamburan"],
+          "boarding": "Pinang Ranti",
+          "alighting": "Petamburan"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Blok M"],
+          "boarding": "Petamburan",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 23
+    },
+    {
+      "caseId": "route:pinang-ranti-kalideres",
+      "outcome": "Supported",
+      "categories": ["OneTransfer", "Peripheral"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["9"],
+          "directions": ["Pluit via Tol Petamburan"],
+          "boarding": "Pinang Ranti",
+          "alighting": "Gerbang Pemuda Arah Barat"
+        },
+        {
+          "lines": ["3F"],
+          "directions": ["Kalideres"],
+          "boarding": "Gerbang Pemuda Arah Barat",
+          "alighting": "Kalideres"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 22
+    },
+    {
+      "caseId": "route:pinang-ranti-pluit",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["9"],
+          "directions": ["Pluit via Tol Petamburan"],
+          "boarding": "Pinang Ranti",
+          "alighting": "Pluit"
+        }
+      ],
+      "detail": "9",
+      "latencyMs": 19
+    },
+    {
+      "caseId": "route:pinang-ranti-short-pattern",
+      "outcome": "Supported",
+      "categories": ["Direct", "Branch"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["9"],
+          "directions": ["Pluit via Tol Petamburan"],
+          "boarding": "Pinang Ranti",
+          "alighting": "Cawang"
+        }
+      ],
+      "detail": "9",
+      "latencyMs": 25
+    },
+    {
+      "caseId": "route:pluit-blokm",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["9"],
+          "directions": ["Cawang Sentral dan Pluit"],
+          "boarding": "Pluit",
+          "alighting": "Petamburan"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Blok M"],
+          "boarding": "Petamburan",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 21
+    },
+    {
+      "caseId": "route:pluit-kampung-rambutan",
+      "outcome": "Supported",
+      "categories": ["TwoTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["9"],
+          "directions": ["Cawang Sentral dan Pluit"],
+          "boarding": "Pluit",
+          "alighting": "Cawang"
+        },
+        {
+          "lines": ["7"],
+          "directions": ["Kampung Rambutan via Tol Hek"],
+          "boarding": "Cawang",
+          "alighting": "Kampung Rambutan"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 71
+    },
+    {
+      "caseId": "route:pluit-pinang-ranti",
+      "outcome": "Supported",
+      "categories": ["Direct", "ReversePair"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["9"],
+          "directions": ["Pinang Ranti"],
+          "boarding": "Pluit",
+          "alighting": "Pinang Ranti"
+        }
+      ],
+      "detail": "9",
+      "latencyMs": 24
+    },
+    {
+      "caseId": "route:pulogadung-blokm",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["2"],
+          "directions": ["Monas via Veteran"],
+          "boarding": "Pulo Gadung",
+          "alighting": "Monumen Nasional"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Blok M"],
+          "boarding": "Monumen Nasional",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 31
+    },
+    {
+      "caseId": "route:pulogadung-lebak-bulus",
+      "outcome": "Supported",
+      "categories": ["TwoTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["2"],
+          "directions": ["Monas via Veteran"],
+          "boarding": "Pulo Gadung",
+          "alighting": "Juanda"
+        },
+        {
+          "lines": ["8"],
+          "directions": ["Lebak Bulus via Cideng"],
+          "boarding": "Juanda",
+          "alighting": "Lebak Bulus"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 378
+    },
+    {
+      "caseId": "route:pulogadung-monas",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["2"],
+          "directions": ["Monas via Veteran"],
+          "boarding": "Pulo Gadung",
+          "alighting": "Monumen Nasional"
+        }
+      ],
+      "detail": "2",
+      "latencyMs": 23
+    },
+    {
+      "caseId": "route:ragunan-branch-6a-6b",
+      "outcome": "Supported",
+      "categories": ["Direct", "Branch"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["6B"],
+          "directions": ["Balai Kota dan Ragunan via Semanggi"],
+          "boarding": "Ragunan",
+          "alighting": "Balai Kota"
+        }
+      ],
+      "detail": "6B",
+      "latencyMs": 39
+    },
+    {
+      "caseId": "route:ragunan-galunggung",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["6"],
+          "directions": ["Galunggung"],
+          "boarding": "Ragunan",
+          "alighting": "Galunggung"
+        }
+      ],
+      "detail": "6",
+      "latencyMs": 20
+    },
+    {
+      "caseId": "route:ragunan-harmoni",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["6V"],
+          "directions": ["Senayan BANK Jakarta dan Ragunan"],
+          "boarding": "Ragunan",
+          "alighting": "Rawa Barat"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Kota"],
+          "boarding": "Rawa Barat",
+          "alighting": "Harmoni"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 26
+    },
+    {
+      "caseId": "route:ragunan-kota",
+      "outcome": "Supported",
+      "categories": ["OneTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["6V"],
+          "directions": ["Senayan BANK Jakarta dan Ragunan"],
+          "boarding": "Ragunan",
+          "alighting": "Rawa Barat"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Kota"],
+          "boarding": "Rawa Barat",
+          "alighting": "Kali Besar"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 26
+    },
+    {
+      "caseId": "route:ragunan-tanjung-priok",
+      "outcome": "Supported",
+      "categories": ["TwoTransfer"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["6V"],
+          "directions": ["Senayan BANK Jakarta dan Ragunan"],
+          "boarding": "Ragunan",
+          "alighting": "Senayan Bank Jakarta"
+        },
+        {
+          "lines": ["10H"],
+          "directions": ["Bundaran Senayan dan Tanjung Priok"],
+          "boarding": "Senayan Bank Jakarta",
+          "alighting": "Tanjung Priok"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 871
+    },
+    {
+      "caseId": "route:tanjung-priok-pgc",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["10"],
+          "directions": ["PGC"],
+          "boarding": "Tanjung Priok",
+          "alighting": "PGC"
+        }
+      ],
+      "detail": "10",
+      "latencyMs": 38
+    },
+    {
+      "caseId": "route:tanjung-priok-pluit",
+      "outcome": "Supported",
+      "categories": ["Direct"],
+      "status": "Matched",
+      "selectedSequence": [
+        {
+          "lines": ["12"],
+          "directions": ["Pluit"],
+          "boarding": "Tanjung Priok",
+          "alighting": "Pluit"
+        }
+      ],
+      "detail": "12",
+      "latencyMs": 18
+    },
+    {
+      "caseId": "route:tanjungpriok-lebakbulus",
+      "outcome": "Supported",
+      "categories": ["TwoTransfer", "Peripheral"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["10H"],
+          "directions": ["Bundaran Senayan dan Tanjung Priok"],
+          "boarding": "Tanjung Priok",
+          "alighting": "Juanda"
+        },
+        {
+          "lines": ["8"],
+          "directions": ["Lebak Bulus via Cideng"],
+          "boarding": "Juanda",
+          "alighting": "Lebak Bulus"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 122
+    },
+    {
+      "caseId": "route:ui-blokm-edge",
+      "outcome": "Supported",
+      "categories": ["TwoTransfer", "Peripheral", "Branch"],
+      "status": "Mismatch",
+      "selectedSequence": [
+        {
+          "lines": ["S21"],
+          "directions": ["CSW dan Ciputat"],
+          "boarding": "Kampus Uin 1",
+          "alighting": "Jln. Palatehan"
+        },
+        {
+          "lines": ["6N"],
+          "directions": ["Blok M via Prapanca Raya"],
+          "boarding": "Jln. Palatehan",
+          "alighting": "Kejaksaan Agung"
+        },
+        {
+          "lines": ["1"],
+          "directions": ["Blok M"],
+          "boarding": "Kejaksaan Agung",
+          "alighting": "Blok M"
+        }
+      ],
+      "detail": "No alternative matched reviewed acceptable sequences",
+      "latencyMs": 45
+    }
+  ],
+  "qualificationNotes": [
+    "Plan 015 static guide engine compiles the full bus-transjakarta-20260630-v2 snapshot (719 patterns, 7636 places).",
+    "26/50 Supported corpus cases matched reviewed sequences; remaining Supported mismatches largely request transfer sequences that are not present as published transfers or source-station relationships (example: Ragunan\u2192Galunggung\u2192line 1 \u2014 line 1 does not serve Galunggung).",
+    "3 UnresolvedPlace cases are peripheral/gap labels outside the transit-place index.",
+    "Interchangeable 9/9A grouping is verified on production Cawang\u2192Grogol Reformasi.",
+    "Scheduled router was not modified; src/routing tests remain green."
+  ]
+}
