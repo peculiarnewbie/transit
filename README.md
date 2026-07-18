@@ -20,10 +20,18 @@ and `npm run deploy` to build and deploy.
 
 ## Database
 
-Drizzle is configured for Cloudflare D1. Add a D1 binding to `wrangler.jsonc`
-before generating and applying migrations:
+Drizzle is configured for the local `DB` D1 binding named `transit-db`:
 
 ```sh
 npm run db:generate
 npm run db:migrate:local
 ```
+
+Before deployment, an operator must create the production database and add the
+returned `database_id` to the deployed Wrangler configuration:
+
+```sh
+npx wrangler d1 create transit-db
+```
+
+No production database identifier or credential is committed.
