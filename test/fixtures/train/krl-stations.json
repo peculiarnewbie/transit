@@ -1,0 +1,10 @@
+{
+  "status": 200,
+  "message": "OK",
+  "data": [
+    { "sta_id": "DU", "sta_name": "DURI", "group_wil": 0, "fg_enable": 1 },
+    { "sta_id": "GGL", "sta_name": "GROGOL", "group_wil": 0, "fg_enable": 0 },
+    { "sta_id": "PSG", "sta_name": "PESING", "group_wil": 0, "fg_enable": 1 },
+    { "sta_id": "TNG", "sta_name": "TANGERANG", "group_wil": 0, "fg_enable": 0 }
+  ]
+}
