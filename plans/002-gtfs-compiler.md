@@ -36,11 +36,11 @@ committed synthetic fixture.
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
-| Unit/integration tests | `npm test -- src/import/gtfs` | all pass |
+| Purpose                         | Command                                                                                                             | Expected result                                                  |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Unit/integration tests          | `npm test -- src/import/gtfs`                                                                                       | all pass                                                         |
 | Compile production feed locally | `npx tsx scripts/gtfs/compile.ts --input /home/bolt/git/other/file_gtfs.zip --output var/transit/transjakarta.json` | summary reports nonzero agencies, stops, routes, patterns, trips |
-| Full verification | `npm run check && npm test` | exit 0 |
+| Full verification               | `npm run check && npm test`                                                                                         | exit 0                                                           |
 
 ## Scope
 

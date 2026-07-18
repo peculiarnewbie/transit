@@ -40,10 +40,10 @@ The old project has uncommitted changes in `package-lock.json` and
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
-| Adapter tests | `npm test -- src/import/train` | all pass without network |
-| Verification | `npm run check && npm test` | exit 0 |
+| Purpose             | Command                                         | Expected result                                              |
+| ------------------- | ----------------------------------------------- | ------------------------------------------------------------ |
+| Adapter tests       | `npm test -- src/import/train`                  | all pass without network                                     |
+| Verification        | `npm run check && npm test`                     | exit 0                                                       |
 | Optional live smoke | `npx tsx src/import/train/cli.ts --systems mrt` | decoded snapshot and provenance summary, no committed output |
 
 ## Scope

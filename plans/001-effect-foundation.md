@@ -47,12 +47,12 @@ Follow `.agents/skills/effect/references/SCHEMA.md`,
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
+| Purpose                             | Command                                  | Expected result          |
+| ----------------------------------- | ---------------------------------------- | ------------------------ |
 | Install planned shared dependencies | `npm install maplibre-gl pmtiles fflate` | exit 0; lockfile updated |
-| Typecheck/lint/format | `npm run check` | exit 0 |
-| Tests | `npm test` | exit 0 |
-| Build | `npm run build` | exit 0 |
+| Typecheck/lint/format               | `npm run check`                          | exit 0                   |
+| Tests                               | `npm test`                               | exit 0                   |
+| Build                               | `npm run build`                          | exit 0                   |
 
 ## Scope
 
@@ -178,4 +178,3 @@ Run all checks and ensure no generated or build output is accidentally staged.
 Keep the domain layer independent of Drizzle rows and HTTP DTOs. Importers may
 reuse domain fields, but raw provider schemas belong beside their adapters.
 Reviewers should reject abstractions with only hypothetical consumers.
-

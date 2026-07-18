@@ -34,11 +34,11 @@ After prerequisites:
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
-| Multimodal tests | `npm test -- src/routing src/routes/api src/features/passenger` | all pass |
-| Full verification | `npm run check && npm test && npm run build` | exit 0 |
-| Performance suite | `npm run perf` | all documented budgets pass |
+| Purpose           | Command                                                         | Expected result             |
+| ----------------- | --------------------------------------------------------------- | --------------------------- |
+| Multimodal tests  | `npm test -- src/routing src/routes/api src/features/passenger` | all pass                    |
+| Full verification | `npm run check && npm test && npm run build`                    | exit 0                      |
+| Performance suite | `npm run perf`                                                  | all documented budgets pass |
 
 ## Scope
 
@@ -149,4 +149,3 @@ still leave journey controls/results usable without the basemap.
 Keep performance budgets tied to user outcomes: usable controls, small journey
 responses, bounded map work, and understandable degraded states. Revisit the
 PMTiles basemap only when hosted tile delivery is the measured bottleneck.
-

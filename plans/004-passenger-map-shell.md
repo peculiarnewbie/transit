@@ -31,11 +31,11 @@ Plan 001. The app runs as a SolidStart SPA on Cloudflare Workers through
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
-| Component tests | `npm test -- src/features/passenger src/components/map` | all pass |
-| Verification | `npm run check && npm test && npm run build` | exit 0 |
-| Manual preview | `npm run dev` | app available on port 3000 |
+| Purpose         | Command                                                 | Expected result            |
+| --------------- | ------------------------------------------------------- | -------------------------- |
+| Component tests | `npm test -- src/features/passenger src/components/map` | all pass                   |
+| Verification    | `npm run check && npm test && npm run build`            | exit 0                     |
+| Manual preview  | `npm run dev`                                           | app available on port 3000 |
 
 ## Scope
 

@@ -31,10 +31,10 @@ validated.
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
-| Projection tests | `npm test -- src/projection/train` | all pass |
-| Full verification | `npm run check && npm test` | exit 0 |
+| Purpose           | Command                            | Expected result |
+| ----------------- | ---------------------------------- | --------------- |
+| Projection tests  | `npm test -- src/projection/train` | all pass        |
+| Full verification | `npm run check && npm test`        | exit 0          |
 
 ## Scope
 
@@ -129,4 +129,3 @@ inputs must produce byte-identical topology output for fixed generated time.
 Every published train snapshot should be traceable to both an import hash and a
 curation revision. Treat source changes as new evidence, never as instructions
 to erase overrides.
-

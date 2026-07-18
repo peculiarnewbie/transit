@@ -30,11 +30,11 @@ routes. No authentication convention exists in the scaffold.
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
-| Generate routes | `npm run generate-routes` | admin routes appear in route tree |
-| Admin tests | `npm test -- src/features/admin src/routes/api/admin` | all pass |
-| Full verification | `npm run check && npm test && npm run build` | exit 0 |
+| Purpose           | Command                                               | Expected result                   |
+| ----------------- | ----------------------------------------------------- | --------------------------------- |
+| Generate routes   | `npm run generate-routes`                             | admin routes appear in route tree |
+| Admin tests       | `npm test -- src/features/admin src/routes/api/admin` | all pass                          |
+| Full verification | `npm run check && npm test && npm run build`          | exit 0                            |
 
 ## Scope
 
@@ -121,7 +121,7 @@ passenger published reads do not see uncommitted drafts.
 - [ ] All admin server routes require verified identity.
 - [ ] Admin pages remain SPA-only while admin APIs enforce server-side identity.
 - [ ] Editors can place stations, map identities, order branches, and define
-  explicit transfers.
+      explicit transfers.
 - [ ] Drafts use optimistic concurrency and preserve audit history.
 - [ ] Validation/preview precedes atomic publish.
 - [ ] No imported source data is edited in place.

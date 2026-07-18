@@ -37,12 +37,12 @@ SolidStart deploys to Cloudflare Workers and observability is enabled.
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
-| Generate migration | `npm run db:generate` | deterministic migration under `drizzle/` |
-| Apply locally | `npm run db:migrate:local` | exit 0 against local D1 |
-| Service tests | `npm test -- src/curation` | all pass |
-| Full verification | `npm run check && npm test` | exit 0 |
+| Purpose            | Command                     | Expected result                          |
+| ------------------ | --------------------------- | ---------------------------------------- |
+| Generate migration | `npm run db:generate`       | deterministic migration under `drizzle/` |
+| Apply locally      | `npm run db:migrate:local`  | exit 0 against local D1                  |
+| Service tests      | `npm test -- src/curation`  | all pass                                 |
+| Full verification  | `npm run check && npm test` | exit 0                                   |
 
 ## Scope
 
@@ -103,6 +103,11 @@ Wrap Drizzle/D1 in `Context.Service` repositories with named Effect methods and
 typed persistence/conflict/not-found/validation errors. Decode nontrivial rows
 through Schema. Keep provider/network work outside transactions.
 
+Use the pinned `drizzle-orm/d1` adapter. It is Promise-based; Drizzle's native
+Effect driver does not support D1. Convert its operations with `Effect.tryPromise`
+at the repository boundary and map failures into the repository's typed errors.
+Do not call `Effect.runPromise` inside repositories or services.
+
 Implement draft creation, optimistic revision editing, preview reads, validation,
 publish, and rollback-to-new-draft. Publishing is atomic: either one validated
 revision becomes current or nothing changes.
@@ -149,4 +154,3 @@ state.
 
 Never update imported source rows to apply a correction. New import runs and new
 curation revisions should make every published graph reproducible.
-

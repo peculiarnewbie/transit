@@ -33,11 +33,11 @@ After prerequisites merge:
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
-| Generate routes | `npm run generate-routes` | route tree includes passenger API routes |
-| Integration tests | `npm test -- src/routes/api src/features/passenger` | all pass |
-| Full verification | `npm run check && npm test && npm run build` | exit 0 |
+| Purpose           | Command                                             | Expected result                          |
+| ----------------- | --------------------------------------------------- | ---------------------------------------- |
+| Generate routes   | `npm run generate-routes`                           | route tree includes passenger API routes |
+| Integration tests | `npm test -- src/routes/api src/features/passenger` | all pass                                 |
+| Full verification | `npm run check && npm test && npm run build`        | exit 0                                   |
 
 ## Scope
 

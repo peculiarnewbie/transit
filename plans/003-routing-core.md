@@ -30,11 +30,11 @@ own small canonical fixtures.
 
 ## Commands
 
-| Purpose | Command | Expected result |
-|---|---|---|
-| Routing tests | `npm test -- src/routing` | all pass |
-| Type/lint/format | `npm run check` | exit 0 |
-| Full tests | `npm test` | exit 0 |
+| Purpose          | Command                   | Expected result |
+| ---------------- | ------------------------- | --------------- |
+| Routing tests    | `npm test -- src/routing` | all pass        |
+| Type/lint/format | `npm run check`           | exit 0          |
+| Full tests       | `npm test`                | exit 0          |
 
 ## Scope
 
@@ -156,4 +156,3 @@ explicit layers and no network or real sleeps.
 
 Review algorithm correctness before micro-optimizing. Any future train behavior
 must enter through service-availability variants, not source-name conditionals.
-

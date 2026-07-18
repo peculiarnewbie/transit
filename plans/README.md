@@ -50,18 +50,18 @@ generated-route conflict.
 
 ## Execution order and status
 
-| Plan | Title | Priority | Effort | Depends on | Status |
-|---|---|---:|---:|---|---|
-| 001 | Establish the Effect application foundation | P0 | M | scaffold commit | DONE |
-| 002 | Compile TransJakarta GTFS into a canonical snapshot | P1 | L | 001 | TODO |
-| 003 | Implement constrained bus routing and alternatives | P1 | L | 001 | TODO |
-| 004 | Build the low-bandwidth passenger map shell | P1 | L | 001 | TODO |
-| 005 | Migrate official train-source adapters | P1 | L | 001 | TODO |
-| 006 | Build revisioned curation persistence | P1 | L | 001 | TODO |
-| 007 | Integrate the bus-routing vertical slice | P1 | L | 002, 003, 004 | TODO |
-| 008 | Build the protected station/topology editor | P1 | L | 004, 006, 007 | TODO |
-| 009 | Project imported and curated trains into the network | P1 | L | 005, 006 | TODO |
-| 010 | Add multimodal routing and performance gates | P2 | L | 007, 008, 009 | TODO |
+| Plan | Title                                                | Priority | Effort | Depends on      | Status |
+| ---- | ---------------------------------------------------- | -------: | -----: | --------------- | ------ |
+| 001  | Establish the Effect application foundation          |       P0 |      M | scaffold commit | DONE   |
+| 002  | Compile TransJakarta GTFS into a canonical snapshot  |       P1 |      L | 001             | TODO   |
+| 003  | Implement constrained bus routing and alternatives   |       P1 |      L | 001             | TODO   |
+| 004  | Build the low-bandwidth passenger map shell          |       P1 |      L | 001             | TODO   |
+| 005  | Migrate official train-source adapters               |       P1 |      L | 001             | TODO   |
+| 006  | Build revisioned curation persistence                |       P1 |      L | 001             | TODO   |
+| 007  | Integrate the bus-routing vertical slice             |       P1 |      L | 002, 003, 004   | TODO   |
+| 008  | Build the protected station/topology editor          |       P1 |      L | 004, 006, 007   | TODO   |
+| 009  | Project imported and curated trains into the network |       P1 |      L | 005, 006        | TODO   |
+| 010  | Add multimodal routing and performance gates         |       P2 |      L | 007, 008, 009   | TODO   |
 
 Status values: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED: <reason>`, or
 `REJECTED: <reason>`.
