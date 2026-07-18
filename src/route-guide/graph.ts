@@ -81,6 +81,9 @@ export interface GuideGraph {
   readonly placesById: ReadonlyMap<string, TransitPlace>;
   readonly patterns: ReadonlyArray<GuidePattern>;
   readonly patternsByStopId: ReadonlyMap<string, ReadonlyArray<GuidePattern>>;
+  readonly boardableRouteIdsByStopId: ReadonlyMap<string, ReadonlySet<string>>;
+  readonly alightableRouteIdsByStopId: ReadonlyMap<string, ReadonlySet<string>>;
+  readonly predecessorRouteIdsByRouteId: ReadonlyMap<string, ReadonlySet<string>>;
   readonly transferEdgesFrom: ReadonlyMap<string, ReadonlyArray<TransferEdge>>;
   readonly siblingStopIdsByStopId: ReadonlyMap<string, ReadonlyArray<StopId>>;
   readonly findings: ReadonlyArray<GuideGraphValidationFinding>;
@@ -344,9 +347,37 @@ export const compileGuideGraph = Effect.fn("RouteGuide.compileGuideGraph")(funct
   }
 
   const patternsByStopId = new Map<string, Array<GuidePattern>>();
+  const boardableRouteIdsByStopId = new Map<string, Set<string>>();
+  const alightableRouteIdsByStopId = new Map<string, Set<string>>();
   for (const pattern of guidePatterns) {
-    for (const stopId of new Set(pattern.stopIds)) {
-      pushMap(patternsByStopId, stopId, pattern);
+    for (const stopId of new Set(pattern.stopIds)) pushMap(patternsByStopId, stopId, pattern);
+    for (let sequence = 0; sequence < pattern.stopIds.length; sequence += 1) {
+      const stopId = pattern.stopIds[sequence]!;
+      if (canBoard(pattern, sequence)) {
+        const routes = boardableRouteIdsByStopId.get(stopId) ?? new Set<string>();
+        routes.add(pattern.routeId);
+        boardableRouteIdsByStopId.set(stopId, routes);
+      }
+      if (canAlight(pattern, sequence)) {
+        const routes = alightableRouteIdsByStopId.get(stopId) ?? new Set<string>();
+        routes.add(pattern.routeId);
+        alightableRouteIdsByStopId.set(stopId, routes);
+      }
+    }
+  }
+
+  const predecessorRouteIdsByRouteId = new Map<string, Set<string>>();
+  for (const [fromStopId, edges] of transferEdgesFrom) {
+    const fromRoutes = alightableRouteIdsByStopId.get(fromStopId) ?? new Set<string>();
+    for (const edge of edges) {
+      const toRoutes = boardableRouteIdsByStopId.get(edge.toStopId) ?? new Set<string>();
+      for (const toRouteId of toRoutes) {
+        const predecessors = predecessorRouteIdsByRouteId.get(toRouteId) ?? new Set<string>();
+        for (const fromRouteId of fromRoutes) {
+          if (fromRouteId !== toRouteId) predecessors.add(fromRouteId);
+        }
+        predecessorRouteIdsByRouteId.set(toRouteId, predecessors);
+      }
     }
   }
 
@@ -360,6 +391,9 @@ export const compileGuideGraph = Effect.fn("RouteGuide.compileGuideGraph")(funct
     placesById: new Map(Object.entries(places.placesById)),
     patterns: guidePatterns,
     patternsByStopId,
+    boardableRouteIdsByStopId,
+    alightableRouteIdsByStopId,
+    predecessorRouteIdsByRouteId,
     transferEdgesFrom,
     siblingStopIdsByStopId,
     findings,

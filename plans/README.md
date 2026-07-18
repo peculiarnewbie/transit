@@ -81,7 +81,7 @@ route conflict.
 | 013  | Project canonical transit places and guidance evidence |       P0 |      L | 002, 012         | DONE        |
 | 014  | Build broad geographic passenger-place discovery       |       P0 |      L | 012, 013         | DONE        |
 | 015  | Build time-independent bus route guidance              |       P0 |     XL | 012, 013         | DONE        |
-| 016  | Integrate and release the usable bus route helper      |       P0 |     XL | 014, 015         | TODO        |
+| 016  | Integrate and release the usable bus route helper      |       P0 |     XL | 014, 015         | IN PROGRESS |
 | 008  | Build the protected station/topology editor            |       P1 |      L | 004, 006, 016    | TODO        |
 | 009  | Project imported and curated trains into the network   |       P1 |      L | 005, 006, 016    | TODO        |
 | 010  | Add multimodal routing and choose the routing runtime  |       P2 |     XL | 008, 009, 016    | TODO        |

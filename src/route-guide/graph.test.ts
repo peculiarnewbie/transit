@@ -69,6 +69,20 @@ describe("route-guide graph", () => {
   );
 
   itEffect(
+    "indexes route-level transfer predecessors for destination pruning",
+    Effect.gen(function* () {
+      const graph = yield* compileGuideGraph({
+        snapshot: topologyNetwork,
+        sourceArtifactVersion: "fixture-topology-v1",
+      });
+
+      expect(graph.boardableRouteIdsByStopId.get("stop:A")?.has("route:1")).toBe(true);
+      expect(graph.alightableRouteIdsByStopId.get("stop:F")?.has("route:2")).toBe(true);
+      expect(graph.predecessorRouteIdsByRouteId.get("route:2")?.has("route:1")).toBe(true);
+    }),
+  );
+
+  itEffect(
     "does not treat reviewed grouping alone as a transfer edge",
     Effect.gen(function* () {
       const graph = yield* compileGuideGraph({

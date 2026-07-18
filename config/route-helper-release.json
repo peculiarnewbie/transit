@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1",
+  "artifacts": {
+    "networkVersion": "bus-transjakarta-20260630-v2",
+    "placesVersion": "places-jabodetabek-20260718-v1",
+    "networkSnapshotChecksum": "2a1c634db6791f68b611d1bb895f676a8612690b456aa97d550f51c12fa5801d",
+    "networkGeometryChecksum": "37c0569e4b1840d3ab206620481151decc211735362f521636d4839c8fd8d49f",
+    "routeMapChecksum": "605593afdcde4025144d7731a38a39ef92508d48d96297afc29c6921d557fac3",
+    "placesArtifactChecksum": "1ef43a076ad143b3efb6e172afb54e615279d40cb45a5476adc6f525912ce007"
+  },
+  "budgets": {
+    "coldCompositionMs": 30000,
+    "warmPlaceQueryP95Ms": 250,
+    "guideIndexMs": 30000,
+    "guideQueryP95Ms": 500,
+    "guideQueryMaximumMs": 5000,
+    "maximumExpandedStates": 100000,
+    "placeResponseBytes": 65536,
+    "routeGuideResponseBytes": 524288,
+    "initialAssetsGzipBytes": 102400,
+    "lazyMapAssetsGzipBytes": 307200
+  }
+}

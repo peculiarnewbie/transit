@@ -12,17 +12,20 @@ import {
 import * as stylex from "@stylexjs/stylex";
 
 import type { Coordinate, EndpointKind, StopSuggestion } from "../../features/passenger/types.js";
+import type { PassengerGuideAlternative } from "../../runtime/route-helper-contracts.js";
 import { endpointFeatureCollection, stopSuggestionFromMapFeature } from "./map-markers.js";
 
 export interface MapCanvasProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
+  readonly selectedGuideSegments?: PassengerGuideAlternative["rideSegments"];
   readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
   readonly selectedColor: string;
   readonly origin?: Coordinate;
   readonly destination?: Coordinate;
   readonly selectionKind?: EndpointKind;
   readonly onStopSelect: (stop: StopSuggestion) => void;
+  readonly onMapPointSelect?: (coordinate: Coordinate) => void;
   readonly onReady: () => void;
   readonly onFailure: () => void;
 }
@@ -38,6 +41,15 @@ const overviewOpacity: ExpressionSpecification = [
   0.5,
 ];
 const fadedOverviewOpacity = 0.075;
+const routeOverviewOpacity = (
+  selectedJourneyId: string | undefined,
+  selectedGuideSegments: PassengerGuideAlternative["rideSegments"] | undefined,
+) =>
+  (selectedGuideSegments?.length ?? 0) > 0
+    ? 0
+    : selectedJourneyId === undefined
+      ? overviewOpacity
+      : fadedOverviewOpacity;
 
 const routeMapUrlFrom = (value: unknown): string | undefined => {
   if (typeof value !== "object" || value === null || !("routeMapUrl" in value)) return undefined;
@@ -64,6 +76,7 @@ const loadRouteMap = async (): Promise<GeoJSONSourceSpecification["data"] | unde
 
 export default function MapCanvas(props: MapCanvasProps) {
   const [container, setContainer] = createSignal<HTMLDivElement>();
+  const [mapReady, setMapReady] = createSignal(false);
   let map: Map | undefined;
   let ready = false;
   let readinessTimeout: ReturnType<typeof setTimeout> | undefined;
@@ -115,8 +128,10 @@ export default function MapCanvas(props: MapCanvasProps) {
                 source: "network-routes",
                 paint: {
                   "line-color": ["coalesce", ["get", "color"], "#31556f"],
-                  "line-opacity":
-                    props.selectedJourneyId === undefined ? overviewOpacity : fadedOverviewOpacity,
+                  "line-opacity": routeOverviewOpacity(
+                    props.selectedJourneyId,
+                    props.selectedGuideSegments,
+                  ),
                   "line-opacity-transition": { duration: 260 },
                   "line-width": ["interpolate", ["linear"], ["zoom"], 10, 0.7, 14, 2.2],
                 },
@@ -195,6 +210,26 @@ export default function MapCanvas(props: MapCanvasProps) {
           source: "selected-journey",
           paint: { "line-color": props.selectedColor, "line-width": 5.5 },
         });
+        map.addSource("selected-guide", {
+          type: "geojson",
+          data: guideFeatureCollection(props.selectedGuideSegments ?? []),
+        });
+        map.addLayer({
+          id: "selected-guide-shadow",
+          type: "line",
+          source: "selected-guide",
+          paint: { "line-color": "#fff8e8", "line-width": 9, "line-opacity": 0.9 },
+        });
+        map.addLayer({
+          id: "selected-guide",
+          type: "line",
+          source: "selected-guide",
+          paint: {
+            "line-color": ["coalesce", ["get", "color"], props.selectedColor],
+            "line-opacity": 0.96,
+            "line-width": 6.5,
+          },
+        });
         map.addSource("selected-endpoints", {
           type: "geojson",
           data: endpointFeatureCollection({
@@ -228,8 +263,13 @@ export default function MapCanvas(props: MapCanvasProps) {
         });
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) map.stop();
         ready = true;
+        setMapReady(true);
         clearTimeout(readinessTimeout);
         props.onReady();
+      });
+      map.on("click", (event) => {
+        if (props.selectionKind === undefined || props.onMapPointSelect === undefined) return;
+        props.onMapPointSelect({ latitude: event.lngLat.lat, longitude: event.lngLat.lng });
       });
     } catch {
       props.onFailure();
@@ -244,10 +284,35 @@ export default function MapCanvas(props: MapCanvasProps) {
       map.setPaintProperty(
         "network-routes",
         "line-opacity",
-        props.selectedJourneyId === undefined ? overviewOpacity : fadedOverviewOpacity,
+        routeOverviewOpacity(props.selectedJourneyId, props.selectedGuideSegments),
       );
     if (map?.getLayer("selected-journey") !== undefined)
       map.setPaintProperty("selected-journey", "line-color", props.selectedColor);
+  });
+
+  createEffect(() => {
+    if (!mapReady()) return;
+    const segments = props.selectedGuideSegments ?? [];
+    map?.getSource<GeoJSONSource>("selected-guide")?.setData(guideFeatureCollection(segments));
+    const coordinates = segments.flatMap((segment) => segment.coordinates);
+    if (coordinates.length < 2) return;
+    const longitudes = coordinates.map(([longitude]) => longitude);
+    const latitudes = coordinates.map(([, latitude]) => latitude);
+    const west = Math.min(...longitudes);
+    const east = Math.max(...longitudes);
+    const south = Math.min(...latitudes);
+    const north = Math.max(...latitudes);
+    map?.fitBounds(
+      [
+        [west, south],
+        [east, north],
+      ],
+      {
+        padding: { top: 180, right: 55, bottom: 180, left: 55 },
+        maxZoom: 14,
+        duration: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 550,
+      },
+    );
   });
 
   createEffect(() => {
@@ -289,10 +354,21 @@ const lineFeature = (coordinates: ReadonlyArray<readonly [number, number]>) => (
   },
 });
 
+const guideFeatureCollection = (segments: PassengerGuideAlternative["rideSegments"]) => ({
+  type: "FeatureCollection" as const,
+  features: segments.map((segment) => ({
+    type: "Feature" as const,
+    properties: { color: segment.color },
+    geometry: {
+      type: "LineString" as const,
+      coordinates: segment.coordinates.map(([longitude, latitude]) => [longitude, latitude]),
+    },
+  })),
+});
+
 const styles = stylex.create({
   canvas: {
     height: "100%",
-    minHeight: "18rem",
     width: "100%",
   },
 });

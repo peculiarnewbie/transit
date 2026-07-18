@@ -1,7 +1,9 @@
 {
   "schemaVersion": "1",
   "version": "places-jabodetabek-20260718-v1",
+  "networkArtifactVersion": "bus-transjakarta-20260630-v2",
   "artifactUrl": "./places-jabodetabek-20260718-v1.json",
+  "artifactChecksum": "1ef43a076ad143b3efb6e172afb54e615279d40cb45a5476adc6f525912ce007",
   "license": "ODbL-1.0",
   "attribution": "© OpenStreetMap contributors",
   "inputChecksum": "0ae42eb24f106dfeeaad4d28682bb88d45da364e298c466448bb46c225d2ccf4",

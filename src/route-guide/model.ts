@@ -143,17 +143,21 @@ export interface GuideAlternative extends Schema.Schema.Type<typeof GuideAlterna
 export const RouteGuideResult = Schema.TaggedUnion({
   GuidesFound: {
     alternatives: Schema.Array(GuideAlternative).check(Schema.isNonEmpty()),
+    expandedStates: Schema.optionalKey(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))),
   },
   NoTopologicalRoute: {
     originPlaceIds: Schema.Array(TransitPlaceId).check(Schema.isNonEmpty()),
     destinationPlaceIds: Schema.Array(TransitPlaceId).check(Schema.isNonEmpty()),
     reason: Schema.String.check(Schema.isNonEmpty()),
+    expandedStates: Schema.optionalKey(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))),
   },
   InvalidCandidateSet: {
     reason: Schema.String.check(Schema.isNonEmpty()),
+    expandedStates: Schema.optionalKey(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))),
   },
   DataValidationFailure: {
     reason: Schema.String.check(Schema.isNonEmpty()),
+    expandedStates: Schema.optionalKey(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))),
   },
 });
 export type RouteGuideResult = typeof RouteGuideResult.Type;
