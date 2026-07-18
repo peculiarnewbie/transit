@@ -3,6 +3,10 @@
 > **Executor instructions**: This plan may run in parallel with Plan 008 after
 > Plans 005 and 006 merge. It must not add file routes or edit
 > `src/routeTree.gen.ts`.
+> A projection of one hand-picked route or one train system is not completion.
+> The implementation must process every supported imported system (KRL, MRT,
+> and LRT) and every route/pattern present in the supplied snapshots, reporting
+> unresolved data rather than silently skipping it.
 >
 > **Drift check**: `git diff --stat 07703bb..HEAD -- src/import/train src/curation src/projection/train`
 
@@ -117,6 +121,14 @@ inputs must produce byte-identical topology output for fixed generated time.
 - [ ] Output is deterministic, versioned, and Schema-decodable.
 - [ ] No route/UI/runtime files changed.
 - [ ] `npm run check && npm test` passes.
+- [ ] A whole-artifact audit reports input and output counts by system, route,
+      pattern, station, service-precision variant, and transfer, plus every
+      skipped or unresolved record.
+- [ ] Representative integration evidence covers KRL, MRT, and LRT and more
+      than one route/pattern wherever the supplied source contains them; a
+      single-route or fixture-only projection keeps status `IN PROGRESS`.
+- [ ] A completion report satisfies the repository completion integrity
+      protocol and explains any count mismatch without silent filtering.
 
 ## STOP conditions
 

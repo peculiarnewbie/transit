@@ -5,6 +5,10 @@
 > independent fallback. This plan may add arbitrary-coordinate endpoints only
 > through a real pedestrian street graph; it must never estimate a user-facing
 > walk from straight-line distance.
+> Do not call this plan complete from one successful pedestrian route or a
+> provider demo. Completion requires the reviewed Jakarta correctness corpus,
+> failure and cost behavior, both access and egress, and the station-to-station
+> fallback to pass against the selected production runtime.
 >
 > **Drift check**: `git diff --stat HEAD -- src/domain src/street-routing src/runtime src/routes/api src/features/passenger src/components/map performance wrangler.jsonc`
 
@@ -240,6 +244,14 @@ layers and no live provider calls in ordinary CI.
 - [ ] Hosted/container failure degrades only door-to-door mode.
 - [ ] `npm run check && npm test && npm run build && npm run perf -- street-routing`
       passes.
+- [ ] The completion report publishes corpus coverage and pass/fail results for
+      every barrier category, both access and egress, provider failures, budget
+      exhaustion, and station-to-station fallback.
+- [ ] Evidence comes from the selected runtime and versioned pedestrian graph
+      or provider, not only mocks or one successful route.
+- [ ] A completion report satisfies the repository completion integrity
+      protocol and lists all excluded areas, unsupported cases, and known
+      correctness failures; unresolved in-scope failures prevent `DONE`.
 
 ## STOP conditions
 

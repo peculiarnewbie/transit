@@ -3,6 +3,10 @@
 > **Executor instructions**: Merge Plans 004, 006, and 007 first. This plan owns
 > all `/admin` routes, admin APIs, and route-tree generation. It edits curation
 > through the service from Plan 006; it never edits imported JSON.
+> Do not call this plan complete after implementing only one editor screen or
+> one mutation. Placement, identity mapping, topology/branches, transfers,
+> preview/validation, publication, and server-side authorization must each work
+> end to end through the UI, API, and curation service.
 >
 > **Drift check**: `git diff --stat 07703bb..HEAD -- src/routes/admin src/routes/api/admin src/features/admin src/routeTree.gen.ts wrangler.jsonc`
 
@@ -126,6 +130,12 @@ passenger published reads do not see uncommitted drafts.
 - [ ] Validation/preview precedes atomic publish.
 - [ ] No imported source data is edited in place.
 - [ ] Generated route tree and full verification pass.
+- [ ] A completion report satisfies the repository completion integrity
+      protocol and maps every admin workflow to UI, API, service, authorization,
+      and integration-test evidence.
+- [ ] The report identifies every planned admin workflow that remains stubbed,
+      fixture-only, or inaccessible; if any exists, status remains
+      `IN PROGRESS`.
 
 ## STOP conditions
 

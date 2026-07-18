@@ -5,6 +5,10 @@
 > the baseline until measurements justify a runtime change. This is an
 > integration and hardening plan, not permission to redesign working source
 > lanes or maintain two routing implementations.
+> Do not mark this plan complete from one bus/train interchange or one golden
+> query. Completion requires a versioned query corpus spanning multiple bus and
+> train routes, every supported mode transition and service-precision variant,
+> negative constraints, and all runtime candidates considered by the decision.
 >
 > **Drift check**: `git diff --stat 07703bb..HEAD -- src/runtime src/routing src/routes/api src/features/passenger src/components/map performance`
 
@@ -238,6 +242,13 @@ still leave journey controls/results usable without the basemap.
 - [ ] Initial controls do not download the routing graph or geometry.
 - [ ] Basemap/PMTiles decision is measurement-based.
 - [ ] `npm run check && npm test && npm run build && npm run perf` passes.
+- [ ] The completion report publishes the query-corpus matrix and results by
+      route, mode sequence, transfer count/direction, service-precision variant,
+      constraint, cold/warm state, and selected runtime.
+- [ ] Real composed artifacts are audited for coverage; a single interchange,
+      route, mode pair, or fixture-only happy path keeps status `IN PROGRESS`.
+- [ ] A completion report satisfies the repository completion integrity
+      protocol and lists every unsupported or degraded multimodal case.
 
 ## STOP conditions
 

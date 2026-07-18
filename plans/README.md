@@ -53,22 +53,58 @@ generated-route conflict.
 
 ## Execution order and status
 
-| Plan | Title                                                 | Priority | Effort | Depends on      | Status |
-| ---- | ----------------------------------------------------- | -------: | -----: | --------------- | ------ |
-| 001  | Establish the Effect application foundation           |       P0 |      M | scaffold commit | DONE   |
-| 002  | Compile TransJakarta GTFS into a canonical snapshot   |       P1 |      L | 001             | DONE   |
-| 003  | Implement constrained bus routing and alternatives    |       P1 |      L | 001             | DONE   |
-| 004  | Build the low-bandwidth passenger map shell           |       P1 |      L | 001             | DONE   |
-| 005  | Migrate official train-source adapters                |       P1 |      L | 001             | DONE   |
-| 006  | Build revisioned curation persistence                 |       P1 |      L | 001             | DONE   |
-| 007  | Integrate the bus-routing vertical slice              |       P1 |      L | 002, 003, 004   | DONE   |
-| 008  | Build the protected station/topology editor           |       P1 |      L | 004, 006, 007   | TODO   |
-| 009  | Project imported and curated trains into the network  |       P1 |      L | 005, 006        | TODO   |
-| 010  | Add multimodal routing and choose the routing runtime |       P2 |     XL | 007, 008, 009   | TODO   |
-| 011  | Add street-routed pedestrian access and egress        |       P3 |     XL | 010             | TODO   |
+| Plan | Title                                                 | Priority | Effort | Depends on      | Status      |
+| ---- | ----------------------------------------------------- | -------: | -----: | --------------- | ----------- |
+| 001  | Establish the Effect application foundation           |       P0 |      M | scaffold commit | DONE        |
+| 002  | Compile TransJakarta GTFS into a canonical snapshot   |       P1 |      L | 001             | DONE        |
+| 003  | Implement constrained bus routing and alternatives    |       P1 |      L | 001             | DONE        |
+| 004  | Build the low-bandwidth passenger map shell           |       P1 |      L | 001             | DONE        |
+| 005  | Migrate official train-source adapters                |       P1 |      L | 001             | DONE        |
+| 006  | Build revisioned curation persistence                 |       P1 |      L | 001             | DONE        |
+| 007  | Integrate the bus-routing vertical slice              |       P1 |      L | 002, 003, 004   | IN PROGRESS |
+| 008  | Build the protected station/topology editor           |       P1 |      L | 004, 006, 007   | TODO        |
+| 009  | Project imported and curated trains into the network  |       P1 |      L | 005, 006        | TODO        |
+| 010  | Add multimodal routing and choose the routing runtime |       P2 |     XL | 007, 008, 009   | TODO        |
+| 011  | Add street-routed pedestrian access and egress        |       P3 |     XL | 010             | TODO        |
 
 Status values: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED: <reason>`, or
 `REJECTED: <reason>`.
+
+## Completion integrity protocol
+
+Plan scope is a contract, not a theme. Executors must not narrow plural or
+system-wide requirements to one convenient example and then mark the plan
+`DONE`. A route, line, mode, provider, workflow, or source named in a plan is
+incomplete until the implementation and evidence cover the representative set
+defined by that plan.
+
+Before changing a plan to `DONE`, the executor must add a completion report to
+the plan containing:
+
+1. A scope matrix mapping every step and done criterion to implementation files
+   and verification evidence.
+2. Counts and identities for the real entities exercised where the plan works
+   with imported or production data: sources, systems, routes/lines, patterns,
+   stops/stations, transfers, and validation findings as applicable.
+3. The exact verification commands run and their results. A fixture-only unit
+   test is not evidence that a real-data integration requirement is complete.
+4. An explicit list of omitted, stubbed, fixture-only, hard-coded, manually
+   bypassed, or degraded behavior. Any in-scope item in this list keeps the plan
+   `IN PROGRESS` or makes it `BLOCKED`; it cannot be `DONE`.
+5. A diff audit confirming that no out-of-scope shortcut replaced the required
+   architecture or silently weakened an existing test/assertion.
+
+Passing tests is necessary but not sufficient. Tests that exercise only one
+route, line, mode, happy path, or hand-built fixture do not prove a plural or
+network-wide requirement. Executors must add representative integration tests
+and, when the plan consumes real artifacts, run a deterministic audit over the
+whole supplied artifact. Sampling is allowed only when the plan explicitly
+defines the sample and why it is representative.
+
+If most of a plan works but any done criterion does not, leave its status as
+`IN PROGRESS` and report the remaining gap precisely. Reviewers should reject a
+`DONE` transition when its completion report cannot independently substantiate
+every checkbox.
 
 ## Merge protocol
 
