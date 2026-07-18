@@ -4,7 +4,12 @@
   "main": "@tanstack/solid-start/server-entry",
   "compatibility_date": "2026-07-18",
   "compatibility_flags": ["nodejs_compat"],
-  "routes": ["transit.peculiarnewbie.com"],
+  "routes": [
+    {
+      "pattern": "transit.peculiarnewbie.com",
+      "custom_domain": true,
+    },
+  ],
   "assets": {
     "not_found_handling": "single-page-application",
   },
