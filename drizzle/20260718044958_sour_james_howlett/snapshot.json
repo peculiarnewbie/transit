@@ -1,0 +1,1469 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "id": "08ff4508-fd16-474a-9da7-f2d351cafc3c",
+  "prevIds": ["00000000-0000-0000-0000-000000000000"],
+  "ddl": [
+    {
+      "name": "boarding_points",
+      "entityType": "tables"
+    },
+    {
+      "name": "curated_lines",
+      "entityType": "tables"
+    },
+    {
+      "name": "curated_transfers",
+      "entityType": "tables"
+    },
+    {
+      "name": "curation_operations",
+      "entityType": "tables"
+    },
+    {
+      "name": "curation_revisions",
+      "entityType": "tables"
+    },
+    {
+      "name": "health_checks",
+      "entityType": "tables"
+    },
+    {
+      "name": "import_runs",
+      "entityType": "tables"
+    },
+    {
+      "name": "line_topologies",
+      "entityType": "tables"
+    },
+    {
+      "name": "physical_places",
+      "entityType": "tables"
+    },
+    {
+      "name": "source_station_mappings",
+      "entityType": "tables"
+    },
+    {
+      "name": "source_stations",
+      "entityType": "tables"
+    },
+    {
+      "name": "station_aliases",
+      "entityType": "tables"
+    },
+    {
+      "name": "station_placements",
+      "entityType": "tables"
+    },
+    {
+      "name": "topology_stops",
+      "entityType": "tables"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "revision_id",
+      "entityType": "columns",
+      "table": "boarding_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "boarding_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "place_id",
+      "entityType": "columns",
+      "table": "boarding_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "boarding_points"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "latitude_microdegrees",
+      "entityType": "columns",
+      "table": "boarding_points"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "longitude_microdegrees",
+      "entityType": "columns",
+      "table": "boarding_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "'Unknown'",
+      "generated": null,
+      "name": "accessibility",
+      "entityType": "columns",
+      "table": "boarding_points"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "''",
+      "generated": null,
+      "name": "notes",
+      "entityType": "columns",
+      "table": "boarding_points"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "curated_lines"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "mode",
+      "entityType": "columns",
+      "table": "curated_lines"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "curated_lines"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "table": "curated_lines"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "created_by",
+      "entityType": "columns",
+      "table": "curated_lines"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "revision_id",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "from_place_id",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "to_place_id",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "from_boarding_point_id",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "to_boarding_point_id",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "walking_duration_seconds",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "directionality",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "accessibility",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "verification_status",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "''",
+      "generated": null,
+      "name": "notes",
+      "entityType": "columns",
+      "table": "curated_transfers"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": true,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "curation_operations"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "revision_id",
+      "entityType": "columns",
+      "table": "curation_operations"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "base_version",
+      "entityType": "columns",
+      "table": "curation_operations"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "resulting_version",
+      "entityType": "columns",
+      "table": "curation_operations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "operation",
+      "entityType": "columns",
+      "table": "curation_operations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "actor",
+      "entityType": "columns",
+      "table": "curation_operations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "notes",
+      "entityType": "columns",
+      "table": "curation_operations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "table": "curation_operations"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": true,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "curation_revisions"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "parent_revision_id",
+      "entityType": "columns",
+      "table": "curation_revisions"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "0",
+      "generated": null,
+      "name": "version",
+      "entityType": "columns",
+      "table": "curation_revisions"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "status",
+      "entityType": "columns",
+      "table": "curation_revisions"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "actor",
+      "entityType": "columns",
+      "table": "curation_revisions"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "notes",
+      "entityType": "columns",
+      "table": "curation_revisions"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "table": "curation_revisions"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "published_at",
+      "entityType": "columns",
+      "table": "curation_revisions"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "health_checks"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "table": "health_checks"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "import_runs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "source",
+      "entityType": "columns",
+      "table": "import_runs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "content_hash",
+      "entityType": "columns",
+      "table": "import_runs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "artifact_ref",
+      "entityType": "columns",
+      "table": "import_runs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "retrieved_at",
+      "entityType": "columns",
+      "table": "import_runs"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "status",
+      "entityType": "columns",
+      "table": "import_runs"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "revision_id",
+      "entityType": "columns",
+      "table": "line_topologies"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "line_topologies"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "line_id",
+      "entityType": "columns",
+      "table": "line_topologies"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "branch",
+      "entityType": "columns",
+      "table": "line_topologies"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "direction",
+      "entityType": "columns",
+      "table": "line_topologies"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "true",
+      "generated": null,
+      "name": "active",
+      "entityType": "columns",
+      "table": "line_topologies"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "physical_places"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "table": "physical_places"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "created_by",
+      "entityType": "columns",
+      "table": "physical_places"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "revision_id",
+      "entityType": "columns",
+      "table": "source_station_mappings"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "source_station_id",
+      "entityType": "columns",
+      "table": "source_station_mappings"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "place_id",
+      "entityType": "columns",
+      "table": "source_station_mappings"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "source_stations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "import_run_id",
+      "entityType": "columns",
+      "table": "source_stations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "source",
+      "entityType": "columns",
+      "table": "source_stations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "source_record_id",
+      "entityType": "columns",
+      "table": "source_stations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "source_stations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "content_hash",
+      "entityType": "columns",
+      "table": "source_stations"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "artifact_ref",
+      "entityType": "columns",
+      "table": "source_stations"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "revision_id",
+      "entityType": "columns",
+      "table": "station_aliases"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "place_id",
+      "entityType": "columns",
+      "table": "station_aliases"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "alias",
+      "entityType": "columns",
+      "table": "station_aliases"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "revision_id",
+      "entityType": "columns",
+      "table": "station_placements"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "place_id",
+      "entityType": "columns",
+      "table": "station_placements"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "station_placements"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "latitude_microdegrees",
+      "entityType": "columns",
+      "table": "station_placements"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "longitude_microdegrees",
+      "entityType": "columns",
+      "table": "station_placements"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "placement_status",
+      "entityType": "columns",
+      "table": "station_placements"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "''",
+      "generated": null,
+      "name": "notes",
+      "entityType": "columns",
+      "table": "station_placements"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "revision_id",
+      "entityType": "columns",
+      "table": "topology_stops"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "topology_id",
+      "entityType": "columns",
+      "table": "topology_stops"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "sequence",
+      "entityType": "columns",
+      "table": "topology_stops"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "place_id",
+      "entityType": "columns",
+      "table": "topology_stops"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "boarding_point_id",
+      "entityType": "columns",
+      "table": "topology_stops"
+    },
+    {
+      "columns": ["revision_id"],
+      "tableTo": "curation_revisions",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_boarding_points_revision_id_curation_revisions_id_fk",
+      "entityType": "fks",
+      "table": "boarding_points"
+    },
+    {
+      "columns": ["place_id"],
+      "tableTo": "physical_places",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_boarding_points_place_id_physical_places_id_fk",
+      "entityType": "fks",
+      "table": "boarding_points"
+    },
+    {
+      "columns": ["revision_id"],
+      "tableTo": "curation_revisions",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_curated_transfers_revision_id_curation_revisions_id_fk",
+      "entityType": "fks",
+      "table": "curated_transfers"
+    },
+    {
+      "columns": ["from_place_id"],
+      "tableTo": "physical_places",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_curated_transfers_from_place_id_physical_places_id_fk",
+      "entityType": "fks",
+      "table": "curated_transfers"
+    },
+    {
+      "columns": ["to_place_id"],
+      "tableTo": "physical_places",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_curated_transfers_to_place_id_physical_places_id_fk",
+      "entityType": "fks",
+      "table": "curated_transfers"
+    },
+    {
+      "columns": ["revision_id", "from_boarding_point_id"],
+      "tableTo": "boarding_points",
+      "columnsTo": ["revision_id", "id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": true,
+      "name": "curated_transfers_from_boarding_point_fk",
+      "entityType": "fks",
+      "table": "curated_transfers"
+    },
+    {
+      "columns": ["revision_id", "to_boarding_point_id"],
+      "tableTo": "boarding_points",
+      "columnsTo": ["revision_id", "id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": true,
+      "name": "curated_transfers_to_boarding_point_fk",
+      "entityType": "fks",
+      "table": "curated_transfers"
+    },
+    {
+      "columns": ["revision_id"],
+      "tableTo": "curation_revisions",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_curation_operations_revision_id_curation_revisions_id_fk",
+      "entityType": "fks",
+      "table": "curation_operations"
+    },
+    {
+      "columns": ["parent_revision_id"],
+      "tableTo": "curation_revisions",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": true,
+      "name": "curation_revisions_parent_fk",
+      "entityType": "fks",
+      "table": "curation_revisions"
+    },
+    {
+      "columns": ["revision_id"],
+      "tableTo": "curation_revisions",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_line_topologies_revision_id_curation_revisions_id_fk",
+      "entityType": "fks",
+      "table": "line_topologies"
+    },
+    {
+      "columns": ["line_id"],
+      "tableTo": "curated_lines",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_line_topologies_line_id_curated_lines_id_fk",
+      "entityType": "fks",
+      "table": "line_topologies"
+    },
+    {
+      "columns": ["revision_id"],
+      "tableTo": "curation_revisions",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_source_station_mappings_revision_id_curation_revisions_id_fk",
+      "entityType": "fks",
+      "table": "source_station_mappings"
+    },
+    {
+      "columns": ["source_station_id"],
+      "tableTo": "source_stations",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_source_station_mappings_source_station_id_source_stations_id_fk",
+      "entityType": "fks",
+      "table": "source_station_mappings"
+    },
+    {
+      "columns": ["place_id"],
+      "tableTo": "physical_places",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_source_station_mappings_place_id_physical_places_id_fk",
+      "entityType": "fks",
+      "table": "source_station_mappings"
+    },
+    {
+      "columns": ["import_run_id"],
+      "tableTo": "import_runs",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_source_stations_import_run_id_import_runs_id_fk",
+      "entityType": "fks",
+      "table": "source_stations"
+    },
+    {
+      "columns": ["revision_id"],
+      "tableTo": "curation_revisions",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_station_aliases_revision_id_curation_revisions_id_fk",
+      "entityType": "fks",
+      "table": "station_aliases"
+    },
+    {
+      "columns": ["place_id"],
+      "tableTo": "physical_places",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_station_aliases_place_id_physical_places_id_fk",
+      "entityType": "fks",
+      "table": "station_aliases"
+    },
+    {
+      "columns": ["revision_id"],
+      "tableTo": "curation_revisions",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_station_placements_revision_id_curation_revisions_id_fk",
+      "entityType": "fks",
+      "table": "station_placements"
+    },
+    {
+      "columns": ["place_id"],
+      "tableTo": "physical_places",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_station_placements_place_id_physical_places_id_fk",
+      "entityType": "fks",
+      "table": "station_placements"
+    },
+    {
+      "columns": ["place_id"],
+      "tableTo": "physical_places",
+      "columnsTo": ["id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": false,
+      "name": "fk_topology_stops_place_id_physical_places_id_fk",
+      "entityType": "fks",
+      "table": "topology_stops"
+    },
+    {
+      "columns": ["revision_id", "topology_id"],
+      "tableTo": "line_topologies",
+      "columnsTo": ["revision_id", "id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": true,
+      "name": "topology_stops_topology_fk",
+      "entityType": "fks",
+      "table": "topology_stops"
+    },
+    {
+      "columns": ["revision_id", "boarding_point_id"],
+      "tableTo": "boarding_points",
+      "columnsTo": ["revision_id", "id"],
+      "onUpdate": "NO ACTION",
+      "onDelete": "RESTRICT",
+      "nameExplicit": true,
+      "name": "topology_stops_boarding_point_fk",
+      "entityType": "fks",
+      "table": "topology_stops"
+    },
+    {
+      "columns": ["revision_id", "id"],
+      "nameExplicit": false,
+      "name": "boarding_points_pk",
+      "entityType": "pks",
+      "table": "boarding_points"
+    },
+    {
+      "columns": ["revision_id", "id"],
+      "nameExplicit": false,
+      "name": "curated_transfers_pk",
+      "entityType": "pks",
+      "table": "curated_transfers"
+    },
+    {
+      "columns": ["revision_id", "id"],
+      "nameExplicit": false,
+      "name": "line_topologies_pk",
+      "entityType": "pks",
+      "table": "line_topologies"
+    },
+    {
+      "columns": ["revision_id", "source_station_id"],
+      "nameExplicit": false,
+      "name": "source_station_mappings_pk",
+      "entityType": "pks",
+      "table": "source_station_mappings"
+    },
+    {
+      "columns": ["revision_id", "place_id", "alias"],
+      "nameExplicit": false,
+      "name": "station_aliases_pk",
+      "entityType": "pks",
+      "table": "station_aliases"
+    },
+    {
+      "columns": ["revision_id", "place_id"],
+      "nameExplicit": false,
+      "name": "station_placements_pk",
+      "entityType": "pks",
+      "table": "station_placements"
+    },
+    {
+      "columns": ["revision_id", "topology_id", "sequence"],
+      "nameExplicit": false,
+      "name": "topology_stops_pk",
+      "entityType": "pks",
+      "table": "topology_stops"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "curated_lines_pk",
+      "table": "curated_lines",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "curation_operations_pk",
+      "table": "curation_operations",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "curation_revisions_pk",
+      "table": "curation_revisions",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "health_checks_pk",
+      "table": "health_checks",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "import_runs_pk",
+      "table": "import_runs",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "physical_places_pk",
+      "table": "physical_places",
+      "entityType": "pks"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "source_stations_pk",
+      "table": "source_stations",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        {
+          "value": "revision_id",
+          "isExpression": false
+        },
+        {
+          "value": "resulting_version",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "curation_operations_revision_version_unique",
+      "entityType": "indexes",
+      "table": "curation_operations"
+    },
+    {
+      "columns": [
+        {
+          "value": "status",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": "\"curation_revisions\".\"status\" = 'Published'",
+      "origin": "manual",
+      "name": "curation_revisions_single_published",
+      "entityType": "indexes",
+      "table": "curation_revisions"
+    },
+    {
+      "columns": [
+        {
+          "value": "source",
+          "isExpression": false
+        },
+        {
+          "value": "content_hash",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "import_runs_source_hash_unique",
+      "entityType": "indexes",
+      "table": "import_runs"
+    },
+    {
+      "columns": [
+        {
+          "value": "revision_id",
+          "isExpression": false
+        },
+        {
+          "value": "line_id",
+          "isExpression": false
+        },
+        {
+          "value": "branch",
+          "isExpression": false
+        },
+        {
+          "value": "direction",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "line_topologies_branch_direction_unique",
+      "entityType": "indexes",
+      "table": "line_topologies"
+    },
+    {
+      "columns": [
+        {
+          "value": "revision_id",
+          "isExpression": false
+        },
+        {
+          "value": "place_id",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "source_station_mappings_place_idx",
+      "entityType": "indexes",
+      "table": "source_station_mappings"
+    },
+    {
+      "columns": [
+        {
+          "value": "import_run_id",
+          "isExpression": false
+        },
+        {
+          "value": "source_record_id",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "source_stations_run_record_unique",
+      "entityType": "indexes",
+      "table": "source_stations"
+    },
+    {
+      "columns": [
+        {
+          "value": "source",
+          "isExpression": false
+        },
+        {
+          "value": "source_record_id",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "source_stations_identity_idx",
+      "entityType": "indexes",
+      "table": "source_stations"
+    },
+    {
+      "value": "length(\"name\") > 0",
+      "name": "boarding_points_name_nonempty",
+      "entityType": "checks",
+      "table": "boarding_points"
+    },
+    {
+      "value": "(\"latitude_microdegrees\" is null and \"longitude_microdegrees\" is null) or (\"latitude_microdegrees\" is not null and \"longitude_microdegrees\" is not null)",
+      "name": "boarding_points_coordinates_pair",
+      "entityType": "checks",
+      "table": "boarding_points"
+    },
+    {
+      "value": "\"latitude_microdegrees\" is null or \"latitude_microdegrees\" between -90000000 and 90000000",
+      "name": "boarding_points_latitude_range",
+      "entityType": "checks",
+      "table": "boarding_points"
+    },
+    {
+      "value": "\"longitude_microdegrees\" is null or \"longitude_microdegrees\" between -180000000 and 180000000",
+      "name": "boarding_points_longitude_range",
+      "entityType": "checks",
+      "table": "boarding_points"
+    },
+    {
+      "value": "\"from_place_id\" <> \"to_place_id\"",
+      "name": "curated_transfers_not_self",
+      "entityType": "checks",
+      "table": "curated_transfers"
+    },
+    {
+      "value": "\"walking_duration_seconds\" > 0",
+      "name": "curated_transfers_duration_positive",
+      "entityType": "checks",
+      "table": "curated_transfers"
+    },
+    {
+      "value": "\"resulting_version\" = \"base_version\" + 1",
+      "name": "curation_operations_version_increment",
+      "entityType": "checks",
+      "table": "curation_operations"
+    },
+    {
+      "value": "\"version\" >= 0",
+      "name": "curation_revisions_version_nonnegative",
+      "entityType": "checks",
+      "table": "curation_revisions"
+    },
+    {
+      "value": "length(\"content_hash\") > 0",
+      "name": "import_runs_content_hash_nonempty",
+      "entityType": "checks",
+      "table": "import_runs"
+    },
+    {
+      "value": "length(\"artifact_ref\") > 0",
+      "name": "import_runs_artifact_ref_nonempty",
+      "entityType": "checks",
+      "table": "import_runs"
+    },
+    {
+      "value": "length(\"source_record_id\") > 0",
+      "name": "source_stations_record_id_nonempty",
+      "entityType": "checks",
+      "table": "source_stations"
+    },
+    {
+      "value": "length(\"name\") > 0",
+      "name": "source_stations_name_nonempty",
+      "entityType": "checks",
+      "table": "source_stations"
+    },
+    {
+      "value": "length(trim(\"alias\")) > 0",
+      "name": "station_aliases_nonempty",
+      "entityType": "checks",
+      "table": "station_aliases"
+    },
+    {
+      "value": "length(\"name\") > 0",
+      "name": "station_placements_name_nonempty",
+      "entityType": "checks",
+      "table": "station_placements"
+    },
+    {
+      "value": "(\"latitude_microdegrees\" is null and \"longitude_microdegrees\" is null) or (\"latitude_microdegrees\" is not null and \"longitude_microdegrees\" is not null)",
+      "name": "station_placements_coordinates_pair",
+      "entityType": "checks",
+      "table": "station_placements"
+    },
+    {
+      "value": "\"latitude_microdegrees\" is null or \"latitude_microdegrees\" between -90000000 and 90000000",
+      "name": "station_placements_latitude_range",
+      "entityType": "checks",
+      "table": "station_placements"
+    },
+    {
+      "value": "\"longitude_microdegrees\" is null or \"longitude_microdegrees\" between -180000000 and 180000000",
+      "name": "station_placements_longitude_range",
+      "entityType": "checks",
+      "table": "station_placements"
+    },
+    {
+      "value": "(\"placement_status\" = 'Unresolved' and \"latitude_microdegrees\" is null) or (\"placement_status\" <> 'Unresolved' and \"latitude_microdegrees\" is not null)",
+      "name": "station_placements_unresolved_coordinates",
+      "entityType": "checks",
+      "table": "station_placements"
+    },
+    {
+      "value": "\"sequence\" >= 0",
+      "name": "topology_stops_sequence_nonnegative",
+      "entityType": "checks",
+      "table": "topology_stops"
+    }
+  ],
+  "renames": []
+}
