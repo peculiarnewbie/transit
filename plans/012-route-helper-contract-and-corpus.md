@@ -19,6 +19,7 @@
 
 ## Status
 
+- **Status**: DONE
 - **Priority**: P0
 - **Effort**: M
 - **Risk**: LOW
@@ -299,17 +300,17 @@ other active lane before merging.
 
 ## Done criteria
 
-- [ ] The route-helper contract explicitly preserves the final bus + train +
+- [x] The route-helper contract explicitly preserves the final bus + train +
       walk destination while defining the usable bus midpoint.
-- [ ] At least 60 reviewed place-search cases decode and meet category minima.
-- [ ] At least 50 reviewed route-guide cases decode and meet category minima.
-- [ ] At least six unfamiliar-user tasks decode and contain no stop-name hints.
-- [ ] No route-guide expected result contains timetable or walking-time fields.
-- [ ] Parallel lane ownership and shared contracts are explicit.
-- [ ] `npm test -- src/acceptance/route-helper` passes.
-- [ ] `npx tsc --noEmit && npx oxlint . && npm test` exits 0.
-- [ ] No production source file outside the in-scope paths changed.
-- [ ] `plans/README.md` status is updated and a completion report satisfies the
+- [x] At least 60 reviewed place-search cases decode and meet category minima.
+- [x] At least 50 reviewed route-guide cases decode and meet category minima.
+- [x] At least six unfamiliar-user tasks decode and contain no stop-name hints.
+- [x] No route-guide expected result contains timetable or walking-time fields.
+- [x] Parallel lane ownership and shared contracts are explicit.
+- [x] `npm test -- src/acceptance/route-helper` passes.
+- [x] `npx tsc --noEmit && npx oxlint . && npm test` exits 0.
+- [x] No production source file outside the in-scope paths changed.
+- [x] `plans/README.md` status is updated and a completion report satisfies the
       repository completion-integrity protocol.
 
 ## STOP conditions
@@ -336,3 +337,72 @@ before multimodal or street-routing changes. Never delete a difficult case to
 make a release pass; reclassify it with a reviewed rationale and preserve its
 history. Plans 010 and 011 must rerun the route-helper corpus to prove their
 fallback remains intact.
+
+## Completion report
+
+Completed on 2026-07-18 against source artifact
+`bus-transjakarta-20260629-v1` (active production pair). Branch:
+`work/012-route-helper-contract`.
+
+### Scope matrix
+
+| Step / done criterion | Implementation | Evidence |
+| --- | --- | --- |
+| Product contract with midpoint + multimodal destination | `docs/product/route-helper-contract.md` | Keyword verify for time-independent/headsign/nearby/must never/multimodal; ownership section present |
+| Corpus schemas + `RouteHelperCorpus.load` | `src/acceptance/route-helper/**` | Schema round-trip, invariant, and decode tests in `corpus.test.ts` |
+| ≥60 place-search cases + minima | `test/fixtures/route-helper/place-search-cases.json` | 91 cases; coverage test prints/enforces minima |
+| ≥50 route-guide cases + minima | `test/fixtures/route-helper/route-guide-cases.json` | 57 cases (50 Supported, 7 KnownGap); coverage test |
+| ≥6 usability tasks without stop hints | `test/fixtures/route-helper/usability-tasks.json` | 6 tasks; prohibited-hint rejection test |
+| No timetable/walk fields in expectations | loader + coverage assertions | Rejects prohibited JSON keys in sequences |
+| Parallel lane ownership | contract final section | Plans 013–016 ownership + shared schemas listed |
+| Status + integrity | `plans/README.md`, this report | Status `DONE` |
+
+### Entity counts exercised by review
+
+| Entity | Count / identity |
+| --- | --- |
+| Source artifact | `bus-transjakarta-20260629-v1` |
+| Place-search cases | 91 |
+| Place categories | Landmark 28, Neighbourhood 17, ExactStop 9, Ambiguous 13, AdministrativeCity 16, Abbreviation 8, SpellingVariant 12, ExpectedNoResult 11 |
+| Admin coverage | Pusat 30, Utara 12, Barat 14, Selatan 14, Timur 15, EdgeNetwork 6 |
+| Route-guide cases | 57 total; Supported 50; KnownGap 7 |
+| Route categories | Direct 25, OneTransfer 16, TwoTransfer 9, ReversePair 7, Peripheral 9, InterchangeableLines 2, Branch 3, ParentChildStation 3, TerminalPlatform 1 |
+| Audited pairs included | Blok M↔Bundaran HI, Blok M↔Kota, Ragunan→Harmoni, JIS→Blok M, Kalideres→Pulo Gadung, Tanjung Priok→Lebak Bulus, Cawang→Kota, Cawang↔Grogol 9/9A |
+| Usability tasks | 6 covering phone top control, desktop side panel, autocomplete, swap, no-map, 9/9A |
+
+### Verification commands
+
+```text
+npm test -- src/acceptance/route-helper
+# 13 passed
+
+npx tsc --noEmit
+# exit 0
+
+npx oxlint .
+# exit 0
+
+npm test
+# 15 files, 112 passed
+```
+
+### Omitted / stubbed / fixture-only behaviour
+
+- No production search, routing, HTTP, or UI implementation (out of scope; Plans 013–016).
+- Corpus expected sequences are reviewed acceptance evidence, not a claim that
+  current Plan 007 timetable APIs already satisfy them.
+- Geographic provider selection is deferred to Plan 014.
+- Usability participant sessions are defined here; execution is Plan 016.
+
+### Diff audit
+
+In-scope paths only:
+
+- `docs/product/route-helper-contract.md` (create)
+- `src/acceptance/route-helper/**` (create)
+- `test/fixtures/route-helper/**` (create)
+- `plans/012-route-helper-contract-and-corpus.md` (status/report)
+- `plans/README.md` (status row)
+
+No changes under `src/domain`, `src/routing`, `src/runtime`, `src/routes`,
+`src/features`, or `src/components`.

@@ -1,0 +1,135 @@
+[
+  {
+    "id": "task:landmark-direct",
+    "scenario": "You are near the Blok M shopping area and want to reach the hotel district around Bundaran HI. Use the route helper on your phone.",
+    "expectedGoal": "Receive a direct line 1 instruction with boarding and alighting places and direction toward Kota.",
+    "completionCriteria": [
+      "Selects origin and destination without being told a stop ID",
+      "States the line and direction",
+      "Names boarding and alighting places"
+    ],
+    "viewport": "Phone",
+    "interactions": [
+      "FloatingTopControlPhone",
+      "AutocompleteBelowActiveInput"
+    ],
+    "relatedPlaceCaseIds": [
+      "place:blok-m",
+      "place:bundaran-hi"
+    ],
+    "relatedRouteCaseIds": [
+      "route:blokm-bundaranhi"
+    ]
+  },
+  {
+    "id": "task:area-landmark-nearby",
+    "scenario": "You are staying in Menteng and want to visit Grand Indonesia. Choose the area, then pick a sensible nearby transit boarding place if asked.",
+    "expectedGoal": "Recognize both places, show nearby transit choices with geographic distance only, and produce a usable bus guide.",
+    "completionCriteria": [
+      "Finds Menteng and Grand Indonesia without stop names supplied",
+      "Understands nearby choices are not walking directions",
+      "Completes a guide or clearly edits a boarding choice"
+    ],
+    "viewport": "Either",
+    "interactions": [
+      "AutocompleteBelowActiveInput",
+      "WithoutOpeningMap"
+    ],
+    "relatedPlaceCaseIds": [
+      "place:menteng",
+      "place:grand-indonesia"
+    ],
+    "relatedRouteCaseIds": [
+      "route:harmoni-blokm"
+    ]
+  },
+  {
+    "id": "task:transfer-journey",
+    "scenario": "Plan a trip from the Ragunan zoo area to Harmoni using only the on-screen helper.",
+    "expectedGoal": "Follow a transfer journey and can restate each board/alight/transfer action.",
+    "completionCriteria": [
+      "Identifies at least one transfer",
+      "States each line and direction",
+      "Does not invent wait or walk minutes"
+    ],
+    "viewport": "Phone",
+    "interactions": [
+      "FloatingTopControlPhone",
+      "AutocompleteBelowActiveInput"
+    ],
+    "relatedPlaceCaseIds": [
+      "place:ragunan-zoo"
+    ],
+    "relatedRouteCaseIds": [
+      "route:ragunan-harmoni"
+    ]
+  },
+  {
+    "id": "task:ambiguous-disambiguation",
+    "scenario": "Search for Cawang as a destination from Blok M. Several similarly named results may appear.",
+    "expectedGoal": "Use locality/type context to pick the intended Cawang transit place or area.",
+    "completionCriteria": [
+      "Sees more than one contextualized result or clear disambiguation cues",
+      "Selects a stable result without asking for a stop code",
+      "Can reverse origin and destination afterward"
+    ],
+    "viewport": "Desktop",
+    "interactions": [
+      "FloatingSidePanelDesktop",
+      "AutocompleteBelowActiveInput",
+      "OriginDestinationSwap"
+    ],
+    "relatedPlaceCaseIds": [
+      "place:amb-cawang",
+      "place:blok-m"
+    ],
+    "relatedRouteCaseIds": [
+      "route:cawang-kota"
+    ]
+  },
+  {
+    "id": "task:recognized-no-route",
+    "scenario": "Choose Bandara Soekarno-Hatta as origin and Blok M as destination. The place should be recognized even if no bus guide is available.",
+    "expectedGoal": "Keep both places visible, understand coverage failed, and edit an endpoint.",
+    "completionCriteria": [
+      "Origin remains visible as recognized",
+      "Product explains no bus route rather than hiding the place",
+      "Can change either endpoint without clearing both"
+    ],
+    "viewport": "Phone",
+    "interactions": [
+      "FloatingTopControlPhone",
+      "AutocompleteBelowActiveInput"
+    ],
+    "relatedPlaceCaseIds": [
+      "place:blok-m"
+    ],
+    "relatedRouteCaseIds": [
+      "route:gap-airport-soetta"
+    ]
+  },
+  {
+    "id": "task:without-map-and-9-9a",
+    "scenario": "With the map closed, go from Cawang to Grogol and confirm whether 9 or 9A is acceptable for the same ride.",
+    "expectedGoal": "Complete guidance without opening the map and interpret a single ride step as take 9 or 9A.",
+    "completionCriteria": [
+      "Completes the task without opening the map",
+      "Sees one ride step with both line options",
+      "Can state boarding place, alighting place, and that either listed line works"
+    ],
+    "viewport": "Desktop",
+    "interactions": [
+      "WithoutOpeningMap",
+      "FloatingSidePanelDesktop",
+      "InterchangeableLineStep",
+      "AutocompleteBelowActiveInput"
+    ],
+    "relatedPlaceCaseIds": [
+      "place:cawang-area",
+      "place:grogol"
+    ],
+    "relatedRouteCaseIds": [
+      "route:cawang-grogol-9-9a"
+    ]
+  }
+]

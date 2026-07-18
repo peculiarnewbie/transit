@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1",
+  "reviewedAt": "2026-07-18",
+  "reviewer": "plan-012-executor",
+  "sourceArtifactVersion": "bus-transjakarta-20260629-v1",
+  "counts": {
+    "placeSearchCases": 91,
+    "routeGuideCases": 57,
+    "usabilityTasks": 6
+  },
+  "fixtures": {
+    "placeSearchCases": "test/fixtures/route-helper/place-search-cases.json",
+    "routeGuideCases": "test/fixtures/route-helper/route-guide-cases.json",
+    "usabilityTasks": "test/fixtures/route-helper/usability-tasks.json"
+  },
+  "releaseThreshold": {
+    "unfamiliarParticipants": 5,
+    "tasksPerParticipantMinimum": 3,
+    "requiredSuccessesPerCoreTask": 4
+  }
+}
