@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 
 import { renderToString } from "solid-js/web";
 import { ConfigProvider, Effect, Layer, ManagedRuntime, Result, Schema } from "effect";
@@ -13,9 +14,17 @@ import { ArtifactStore } from "./artifact-store.js";
 const baseUrl = "https://transit.test/artifacts/";
 const manifestUrl = `${baseUrl}active.json`;
 const activeArtifactVersion = "bus-transjakarta-20260630-v2";
-const manifest = readFileSync("public/artifacts/active.json", "utf8");
 const snapshot = readFileSync("public/artifacts/bus-demo-20260718-v1.network.json", "utf8");
 const geometry = readFileSync("public/artifacts/bus-demo-20260718-v1.geometry.json", "utf8");
+const checksum = (text: string) => createHash("sha256").update(text).digest("hex");
+const manifestFor = (snapshotBody: string, geometryBody: string, version = activeArtifactVersion) =>
+  JSON.stringify({
+    ...JSON.parse(readFileSync("public/artifacts/active.json", "utf8")),
+    version,
+    snapshotChecksum: checksum(snapshotBody),
+    geometryChecksum: checksum(geometryBody),
+  });
+const manifest = manifestFor(snapshot, geometry);
 
 const groupedStationSnapshot = (() => {
   const decoded = Schema.decodeUnknownSync(NetworkSnapshot)(JSON.parse(snapshot));
@@ -186,7 +195,12 @@ describe("bus vertical slice", () => {
     const runtime = ManagedRuntime.make(
       ApplicationRuntime.layerWith({
         manifestUrl,
-        fetch: artifactFetch([], geometry, manifest, groupedStationSnapshot),
+        fetch: artifactFetch(
+          [],
+          geometry,
+          manifestFor(groupedStationSnapshot, geometry),
+          groupedStationSnapshot,
+        ),
       }),
     );
     try {
@@ -215,7 +229,12 @@ describe("bus vertical slice", () => {
     const runtime = ManagedRuntime.make(
       ApplicationRuntime.layerWith({
         manifestUrl,
-        fetch: artifactFetch([], geometry, manifest, transferOnlySnapshot),
+        fetch: artifactFetch(
+          [],
+          geometry,
+          manifestFor(transferOnlySnapshot, geometry),
+          transferOnlySnapshot,
+        ),
       }),
     );
     try {
@@ -278,8 +297,8 @@ describe("bus vertical slice", () => {
     const first = await Effect.runPromise(
       ArtifactStore.load({ manifestUrl, fetch: artifactFetch(loaded) }),
     );
-    const nextManifest = manifest.replace(activeArtifactVersion, `${activeArtifactVersion}-next`);
     const nextGeometry = geometry.replace("2026-07-18T00:00:00.000Z", "2026-07-19T00:00:00.000Z");
+    const nextManifest = manifestFor(snapshot, nextGeometry, `${activeArtifactVersion}-next`);
     const switched = await Effect.runPromise(
       Effect.result(
         ArtifactStore.load({

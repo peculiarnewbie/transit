@@ -20,7 +20,12 @@ export default defineConfig({
       },
     },
     cloudflare({ viteEnvironment: { name: "ssr" } }),
-    stylex.vite(),
+    stylex.vite({
+      // Keep application layout CSS in the always-loaded shell. The default
+      // "first CSS asset" can be MapLibre's lazy chunk, leaving the controls
+      // unstyled until a passenger explicitly opens the map.
+      cssInjectionTarget: (fileName) => /(^|\/)styles-[^/]+\.css$/.test(fileName),
+    }),
     tanstackStart({ spa: { enabled: true } }),
     solidPlugin({ ssr: true }),
   ],

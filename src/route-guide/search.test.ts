@@ -46,6 +46,7 @@ describe("route-guide search", () => {
       if (result._tag !== "GuidesFound") return;
       expect(result.alternatives[0]?.metrics.transferCount).toBe(0);
       expect(result.alternatives[0]?.rideSteps[0]?.lineOptions[0]?.passengerLineName).toBe("1");
+      expect(result.expandedStates).toBeLessThan(50);
     }),
   );
 

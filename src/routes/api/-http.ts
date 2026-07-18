@@ -7,11 +7,32 @@ import {
   type StopSearchResponse,
   StopSearchResponse as StopSearchResponseSchema,
 } from "../../runtime/api-contracts.js";
+import {
+  type ArtifactVersionsResponse,
+  ArtifactVersionsResponse as ArtifactVersionsResponseSchema,
+  type NearbyTransitResponse,
+  NearbyTransitResponse as NearbyTransitResponseSchema,
+  type PlaceSearchResponse,
+  PlaceSearchResponse as PlaceSearchResponseSchema,
+  type RouteGuideResponse,
+  RouteGuideResponse as RouteGuideResponseSchema,
+  RouteHelperApiError,
+} from "../../runtime/route-helper-contracts.js";
 
 const jsonHeaders = { "cache-control": "no-store" } as const;
 
 export const errorResponse = (status: number, code: ApiError["error"]["code"], message: string) =>
   Response.json(ApiError.make({ error: { code, message } }), { status, headers: jsonHeaders });
+
+export const routeHelperErrorResponse = (
+  status: number,
+  code: RouteHelperApiError["error"]["code"],
+  message: string,
+) =>
+  Response.json(RouteHelperApiError.make({ error: { code, message } }), {
+    status,
+    headers: jsonHeaders,
+  });
 
 export const responseForError = (error: unknown) => {
   if (typeof error === "object" && error !== null && "_tag" in error) {
@@ -24,6 +45,38 @@ export const responseForError = (error: unknown) => {
     }
   }
   return errorResponse(503, "SERVICE_UNAVAILABLE", "Journey planning is temporarily unavailable.");
+};
+
+export const responseForRouteHelperError = (error: unknown) => {
+  if (typeof error === "object" && error !== null && "_tag" in error) {
+    switch (error._tag) {
+      case "RouteHelperQuery.InvalidQuery":
+      case "PassengerPlaceDiscovery.Failure":
+        return routeHelperErrorResponse(
+          400,
+          "INVALID_REQUEST",
+          "The place or route-guide request is not valid.",
+        );
+      case "RouteGuide.GuideSearchExceeded":
+        return routeHelperErrorResponse(
+          503,
+          "SERVICE_UNAVAILABLE",
+          "Route guidance is temporarily unavailable.",
+        );
+      case "RouteGuide.MalformedGuideGraph":
+      case "ArtifactStore.LoadError":
+        return routeHelperErrorResponse(
+          503,
+          "SERVICE_UNAVAILABLE",
+          "Route guidance is temporarily unavailable.",
+        );
+    }
+  }
+  return routeHelperErrorResponse(
+    503,
+    "SERVICE_UNAVAILABLE",
+    "Route guidance is temporarily unavailable.",
+  );
 };
 
 export const readBoundedJson = async (request: Request, maximumBytes = 32_768) => {
@@ -68,6 +121,36 @@ export const journeyResponse = async (response: JourneyResponse) => {
 export const stopResponse = async (response: StopSearchResponse) => {
   const validated = await Effect.runPromise(
     Schema.decodeUnknownEffect(StopSearchResponseSchema)(response),
+  );
+  return Response.json(validated, {
+    headers: { "cache-control": "public, max-age=60, stale-while-revalidate=300" },
+  });
+};
+
+export const placeSearchResponse = async (response: PlaceSearchResponse) => {
+  const validated = await Effect.runPromise(
+    Schema.decodeUnknownEffect(PlaceSearchResponseSchema)(response),
+  );
+  return Response.json(validated, { headers: jsonHeaders });
+};
+
+export const nearbyTransitResponse = async (response: NearbyTransitResponse) => {
+  const validated = await Effect.runPromise(
+    Schema.decodeUnknownEffect(NearbyTransitResponseSchema)(response),
+  );
+  return Response.json(validated, { headers: jsonHeaders });
+};
+
+export const routeGuideResponse = async (response: RouteGuideResponse) => {
+  const validated = await Effect.runPromise(
+    Schema.decodeUnknownEffect(RouteGuideResponseSchema)(response),
+  );
+  return Response.json(validated, { headers: jsonHeaders });
+};
+
+export const artifactVersionsResponse = async (response: ArtifactVersionsResponse) => {
+  const validated = await Effect.runPromise(
+    Schema.decodeUnknownEffect(ArtifactVersionsResponseSchema)(response),
   );
   return Response.json(validated, {
     headers: { "cache-control": "public, max-age=60, stale-while-revalidate=300" },

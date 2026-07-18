@@ -337,40 +337,17 @@ export const groupInterchangeablePaths = (
   return alternatives.sort(compareAlternatives);
 };
 
-const buildTransferHubs = (graph: GuideGraph): ReadonlySet<string> => {
-  const routeCountByStop = new Map<string, Set<string>>();
-  for (const pattern of graph.patterns) {
-    for (const stopId of pattern.stopIds) {
-      const routes = routeCountByStop.get(stopId) ?? new Set<string>();
-      routes.add(pattern.routeId);
-      routeCountByStop.set(stopId, routes);
-    }
-  }
-  const hubs = new Set<string>();
-  for (const [stopId, routes] of routeCountByStop) {
-    if (routes.size >= 2) hubs.add(stopId);
-  }
-  for (const [fromStopId, edges] of graph.transferEdgesFrom) {
-    for (const edge of edges) {
-      if (edge.evidence._tag === "PublishedTransfer" || edge.evidence._tag === "SourceStation") {
-        hubs.add(fromStopId);
-        hubs.add(edge.toStopId);
-      }
-    }
-  }
-  return hubs;
-};
-
 const expandRidesFromStop = (
   graph: GuideGraph,
   stopId: StopId,
   excludeRouteIds: ReadonlySet<string>,
+  allowedRouteIds: ReadonlySet<string>,
   alightTargets: ReadonlySet<string>,
 ): ReadonlyArray<RawRideLeg> => {
   const patterns = graph.patternsByStopId.get(stopId) ?? [];
   const rides: Array<RawRideLeg> = [];
   for (const pattern of patterns) {
-    if (excludeRouteIds.has(pattern.routeId)) continue;
+    if (excludeRouteIds.has(pattern.routeId) || !allowedRouteIds.has(pattern.routeId)) continue;
     for (let boardSequence = 0; boardSequence < pattern.stopIds.length; boardSequence += 1) {
       if (pattern.stopIds[boardSequence] !== stopId) continue;
       if (!canBoard(pattern, boardSequence)) continue;
@@ -394,6 +371,47 @@ const expandRidesFromStop = (
     }
   }
   return rides;
+};
+
+const routeSearchBounds = (
+  graph: GuideGraph,
+  destinationStopIds: ReadonlySet<string>,
+  maximumTransfers: number,
+) => {
+  const destinationRouteIds = new Set<string>();
+  for (const stopId of destinationStopIds) {
+    for (const routeId of graph.alightableRouteIdsByStopId.get(stopId) ?? [])
+      destinationRouteIds.add(routeId);
+  }
+
+  const allowedRoutesByTransfersRemaining: Array<ReadonlySet<string>> = [destinationRouteIds];
+  for (let remaining = 1; remaining <= maximumTransfers; remaining += 1) {
+    const routes = new Set(allowedRoutesByTransfersRemaining[remaining - 1]);
+    for (const routeId of allowedRoutesByTransfersRemaining[remaining - 1] ?? []) {
+      for (const predecessor of graph.predecessorRouteIdsByRouteId.get(routeId) ?? [])
+        routes.add(predecessor);
+    }
+    allowedRoutesByTransfersRemaining.push(routes);
+  }
+
+  const alightTargetsByTransfersRemaining: Array<ReadonlySet<string>> = [destinationStopIds];
+  for (let remaining = 1; remaining <= maximumTransfers; remaining += 1) {
+    const targets = new Set<string>(destinationStopIds);
+    const allowedNextRoutes = allowedRoutesByTransfersRemaining[remaining - 1]!;
+    for (const [fromStopId, edges] of graph.transferEdgesFrom) {
+      if (
+        edges.some((edge) =>
+          [...(graph.boardableRouteIdsByStopId.get(edge.toStopId) ?? [])].some((routeId) =>
+            allowedNextRoutes.has(routeId),
+          ),
+        )
+      )
+        targets.add(fromStopId);
+    }
+    alightTargetsByTransfersRemaining.push(targets);
+  }
+
+  return { allowedRoutesByTransfersRemaining, alightTargetsByTransfersRemaining };
 };
 
 const memberStopIdsForPlaces = (
@@ -445,6 +463,7 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     return yield* Effect.succeed({
       _tag: "InvalidCandidateSet" as const,
       reason: "Origin and destination resolve to the same transit place; no ride is required",
+      expandedStates: 0,
     } satisfies RouteGuideResult);
   }
 
@@ -458,6 +477,7 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     return yield* Effect.succeed({
       _tag: "InvalidCandidateSet" as const,
       reason: "No known transit-place members for the supplied candidates",
+      expandedStates: 0,
     } satisfies RouteGuideResult);
   }
 
@@ -476,10 +496,11 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
       .map((member) => [member.placeId, member.distance as number]),
   );
 
-  const hubs = buildTransferHubs(graph);
-  const alightTargets = new Set<string>([...destinationStopIds, ...hubs]);
+  const { allowedRoutesByTransfersRemaining, alightTargetsByTransfersRemaining } =
+    routeSearchBounds(graph, destinationStopIds, query.maximumTransfers);
 
   const queue: Array<SearchState> = [];
+  let queueIndex = 0;
   const bestAt = new Map<string, number>();
   let expandedStates = 0;
   const foundPaths: Array<RawPath> = [];
@@ -494,8 +515,9 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     });
   }
 
-  while (queue.length > 0) {
-    const state = queue.shift()!;
+  const maximumFoundPaths = Math.max(48, query.maximumAlternatives * 24);
+  while (queueIndex < queue.length) {
+    const state = queue[queueIndex++]!;
     expandedStates += 1;
     if (expandedStates > query.maximumExpandedStates) break;
 
@@ -515,6 +537,7 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
           legs: state.legs,
           transferEdges: state.transferEdges,
         });
+        if (foundPaths.length >= maximumFoundPaths) break;
       }
     }
 
@@ -526,8 +549,15 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     if (state.legs.length >= query.maximumTransfers + 1) continue;
 
     if (state.legs.length === 0) {
-      const targets = query.maximumTransfers === 0 ? destinationStopIds : alightTargets;
-      for (const ride of expandRidesFromStop(graph, state.stopId, new Set(), targets)) {
+      const allowedRoutes = allowedRoutesByTransfersRemaining[query.maximumTransfers]!;
+      const targets = alightTargetsByTransfersRemaining[query.maximumTransfers]!;
+      for (const ride of expandRidesFromStop(
+        graph,
+        state.stopId,
+        new Set(),
+        allowedRoutes,
+        targets,
+      )) {
         queue.push({
           stopId: ride.alightStopId,
           transfersUsed: 0,
@@ -542,13 +572,20 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     if (state.transfersUsed >= query.maximumTransfers) continue;
 
     const remainingTransfers = query.maximumTransfers - state.transfersUsed - 1;
-    const nextTargets = remainingTransfers <= 0 ? destinationStopIds : alightTargets;
+    const nextTargets = alightTargetsByTransfersRemaining[remainingTransfers]!;
+    const allowedRoutes = allowedRoutesByTransfersRemaining[remainingTransfers]!;
     const excludeRoutes = new Set(state.boardedRouteIds);
     const edges = graph.transferEdgesFrom.get(state.stopId) ?? [];
 
     // Prefer continuing after alighting: require a route change via transfer edges.
     for (const edge of edges) {
-      for (const ride of expandRidesFromStop(graph, edge.toStopId, excludeRoutes, nextTargets)) {
+      for (const ride of expandRidesFromStop(
+        graph,
+        edge.toStopId,
+        excludeRoutes,
+        allowedRoutes,
+        nextTargets,
+      )) {
         queue.push({
           stopId: ride.alightStopId,
           transfersUsed: state.transfersUsed + 1,
@@ -566,6 +603,7 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
       originPlaceIds: query.origins.map((candidate) => candidate.transitPlaceId),
       destinationPlaceIds: query.destinations.map((candidate) => candidate.transitPlaceId),
       reason: "No topological bus guide within transfer and expansion caps",
+      expandedStates,
     } satisfies RouteGuideResult);
   }
 
@@ -589,11 +627,13 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
       originPlaceIds: query.origins.map((candidate) => candidate.transitPlaceId),
       destinationPlaceIds: query.destinations.map((candidate) => candidate.transitPlaceId),
       reason: "Guide paths lacked actionable steps or a defensible direction label",
+      expandedStates,
     } satisfies RouteGuideResult);
   }
 
   return yield* Effect.succeed({
     _tag: "GuidesFound" as const,
     alternatives,
+    expandedStates,
   } satisfies RouteGuideResult);
 });

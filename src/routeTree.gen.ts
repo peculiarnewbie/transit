@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiArtifactVersionsRouteImport } from './routes/api/artifact-versions'
 import { Route as ApiJourneysRouteImport } from './routes/api/journeys'
+import { Route as ApiNearbyTransitRouteImport } from './routes/api/nearby-transit'
+import { Route as ApiPlacesRouteImport } from './routes/api/places'
+import { Route as ApiRouteGuideRouteImport } from './routes/api/route-guide'
 import { Route as ApiStopsRouteImport } from './routes/api/stops'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +22,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiArtifactVersionsRoute = ApiArtifactVersionsRouteImport.update({
+  id: '/api/artifact-versions',
+  path: '/api/artifact-versions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiJourneysRoute = ApiJourneysRouteImport.update({
   id: '/api/journeys',
   path: '/api/journeys',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiNearbyTransitRoute = ApiNearbyTransitRouteImport.update({
+  id: '/api/nearby-transit',
+  path: '/api/nearby-transit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPlacesRoute = ApiPlacesRouteImport.update({
+  id: '/api/places',
+  path: '/api/places',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRouteGuideRoute = ApiRouteGuideRouteImport.update({
+  id: '/api/route-guide',
+  path: '/api/route-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiStopsRoute = ApiStopsRouteImport.update({
@@ -31,31 +55,69 @@ const ApiStopsRoute = ApiStopsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/artifact-versions': typeof ApiArtifactVersionsRoute
   '/api/journeys': typeof ApiJourneysRoute
+  '/api/nearby-transit': typeof ApiNearbyTransitRoute
+  '/api/places': typeof ApiPlacesRoute
+  '/api/route-guide': typeof ApiRouteGuideRoute
   '/api/stops': typeof ApiStopsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/artifact-versions': typeof ApiArtifactVersionsRoute
   '/api/journeys': typeof ApiJourneysRoute
+  '/api/nearby-transit': typeof ApiNearbyTransitRoute
+  '/api/places': typeof ApiPlacesRoute
+  '/api/route-guide': typeof ApiRouteGuideRoute
   '/api/stops': typeof ApiStopsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/artifact-versions': typeof ApiArtifactVersionsRoute
   '/api/journeys': typeof ApiJourneysRoute
+  '/api/nearby-transit': typeof ApiNearbyTransitRoute
+  '/api/places': typeof ApiPlacesRoute
+  '/api/route-guide': typeof ApiRouteGuideRoute
   '/api/stops': typeof ApiStopsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/journeys' | '/api/stops'
+  fullPaths:
+    | '/'
+    | '/api/artifact-versions'
+    | '/api/journeys'
+    | '/api/nearby-transit'
+    | '/api/places'
+    | '/api/route-guide'
+    | '/api/stops'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/journeys' | '/api/stops'
-  id: '__root__' | '/' | '/api/journeys' | '/api/stops'
+  to:
+    | '/'
+    | '/api/artifact-versions'
+    | '/api/journeys'
+    | '/api/nearby-transit'
+    | '/api/places'
+    | '/api/route-guide'
+    | '/api/stops'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/artifact-versions'
+    | '/api/journeys'
+    | '/api/nearby-transit'
+    | '/api/places'
+    | '/api/route-guide'
+    | '/api/stops'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiArtifactVersionsRoute: typeof ApiArtifactVersionsRoute
   ApiJourneysRoute: typeof ApiJourneysRoute
+  ApiNearbyTransitRoute: typeof ApiNearbyTransitRoute
+  ApiPlacesRoute: typeof ApiPlacesRoute
+  ApiRouteGuideRoute: typeof ApiRouteGuideRoute
   ApiStopsRoute: typeof ApiStopsRoute
 }
 
@@ -68,11 +130,39 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/artifact-versions': {
+      id: '/api/artifact-versions'
+      path: '/api/artifact-versions'
+      fullPath: '/api/artifact-versions'
+      preLoaderRoute: typeof ApiArtifactVersionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/journeys': {
       id: '/api/journeys'
       path: '/api/journeys'
       fullPath: '/api/journeys'
       preLoaderRoute: typeof ApiJourneysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/nearby-transit': {
+      id: '/api/nearby-transit'
+      path: '/api/nearby-transit'
+      fullPath: '/api/nearby-transit'
+      preLoaderRoute: typeof ApiNearbyTransitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/places': {
+      id: '/api/places'
+      path: '/api/places'
+      fullPath: '/api/places'
+      preLoaderRoute: typeof ApiPlacesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/route-guide': {
+      id: '/api/route-guide'
+      path: '/api/route-guide'
+      fullPath: '/api/route-guide'
+      preLoaderRoute: typeof ApiRouteGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/stops': {
@@ -87,7 +177,11 @@ declare module '@tanstack/solid-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiArtifactVersionsRoute: ApiArtifactVersionsRoute,
   ApiJourneysRoute: ApiJourneysRoute,
+  ApiNearbyTransitRoute: ApiNearbyTransitRoute,
+  ApiPlacesRoute: ApiPlacesRoute,
+  ApiRouteGuideRoute: ApiRouteGuideRoute,
   ApiStopsRoute: ApiStopsRoute,
 }
 export const routeTree = rootRouteImport

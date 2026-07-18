@@ -2,18 +2,21 @@ import { lazy, onMount, Show, Suspense, createSignal } from "solid-js";
 import * as stylex from "@stylexjs/stylex";
 
 import type { Coordinate, EndpointKind, StopSuggestion } from "../../features/passenger/types.js";
+import type { PassengerGuideAlternative } from "../../runtime/route-helper-contracts.js";
 
 const LazyMapCanvas = lazy(() => import("./MapCanvas.js"));
 
 export interface PassengerMapProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
+  readonly selectedGuideSegments?: PassengerGuideAlternative["rideSegments"];
   readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
   readonly selectedColor: string;
   readonly origin?: Coordinate;
   readonly destination?: Coordinate;
   readonly selectionKind?: EndpointKind;
   readonly onStopSelect: (stop: StopSuggestion) => void;
+  readonly onMapPointSelect?: (coordinate: Coordinate) => void;
 }
 
 export default function PassengerMap(props: PassengerMapProps) {
@@ -36,12 +39,14 @@ export default function PassengerMap(props: PassengerMapProps) {
           <LazyMapCanvas
             styleUrl={props.styleUrl}
             selectedJourneyId={props.selectedJourneyId}
+            selectedGuideSegments={props.selectedGuideSegments}
             selectedGeometry={props.selectedGeometry}
             selectedColor={props.selectedColor}
             origin={props.origin}
             destination={props.destination}
             selectionKind={props.selectionKind}
             onStopSelect={props.onStopSelect}
+            onMapPointSelect={props.onMapPointSelect}
             onReady={() => setStatus("ready")}
             onFailure={() => setStatus("failed")}
           />
@@ -50,7 +55,7 @@ export default function PassengerMap(props: PassengerMapProps) {
       <Show when={props.selectionKind}>
         {(kind) => (
           <p {...stylex.props(styles.mapInstruction)}>
-            Zoom in, then choose {kind() === "origin" ? "From" : "To"} on the map
+            Perbesar, lalu pilih titik {kind() === "origin" ? "asal" : "tujuan"} pada peta
           </p>
         )}
       </Show>
@@ -65,10 +70,10 @@ const styles = stylex.create({
   frame: {
     backgroundColor: "#d8d2c0",
     border: "1px solid #152c3d",
-    flex: 1,
-    minHeight: "18rem",
+    height: "100%",
     overflow: "hidden",
     position: "relative",
+    width: "100%",
   },
   placeholder: {
     alignItems: "center",
