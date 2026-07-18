@@ -1,0 +1,5 @@
+stop_id,stop_name,stop_lat,stop_lon,parent_station
+A,Alpha,-6.100001,106.800001,
+B,"Beta, Central",-6.110001,106.810001,
+C,Charlie,-6.120001,106.820001,
+D,Delta,-6.115001,106.815001,

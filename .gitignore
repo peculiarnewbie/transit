@@ -27,3 +27,6 @@ coverage/
 skills-lock.json
 .DS_Store
 *.tsbuildinfo
+
+# Generated transit artifacts
+var/transit/**
