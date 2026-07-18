@@ -23,6 +23,7 @@ export default function MapCanvas(props: MapCanvasProps) {
   const [container, setContainer] = createSignal<HTMLDivElement>();
   let map: Map | undefined;
   let ready = false;
+  let readinessTimeout: ReturnType<typeof setTimeout> | undefined;
 
   const selectedCoordinates = () =>
     props.selectedJourneyId === undefined ? emptyGeometry : props.selectedGeometry;
@@ -53,6 +54,9 @@ export default function MapCanvas(props: MapCanvasProps) {
         attributionControl: false,
       });
       map.addControl(new AttributionControl({ compact: true }), "bottom-right");
+      readinessTimeout = setTimeout(() => {
+        if (!ready) props.onFailure();
+      }, 15_000);
       map.once("style.load", () => {
         if (map === undefined) return;
         map.addSource("selected-journey", {
@@ -104,10 +108,8 @@ export default function MapCanvas(props: MapCanvasProps) {
         });
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) map.stop();
         ready = true;
+        clearTimeout(readinessTimeout);
         props.onReady();
-      });
-      map.on("error", () => {
-        if (!ready) props.onFailure();
       });
     } catch {
       props.onFailure();
@@ -129,7 +131,10 @@ export default function MapCanvas(props: MapCanvasProps) {
     source?.setData(data);
   });
 
-  onCleanup(() => map?.remove());
+  onCleanup(() => {
+    clearTimeout(readinessTimeout);
+    map?.remove();
+  });
 
   return (
     <div
