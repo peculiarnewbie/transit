@@ -267,16 +267,53 @@ Stop and report instead of continuing if:
 
 ## Done when
 
-- [ ] Static guide contracts contain no timetable or pedestrian claims.
-- [ ] The complete bus snapshot compiles into a validated guide graph.
-- [ ] Boarding, alighting, grouping, direction, and transfer evidence remain
+- [x] Static guide contracts contain no timetable or pedestrian claims.
+- [x] The complete bus snapshot compiles into a validated guide graph.
+- [x] Boarding, alighting, grouping, direction, and transfer evidence remain
       distinct and traceable.
-- [ ] Returned alternatives are bounded, deterministic, deduplicated, and
+- [x] Returned alternatives are bounded, deterministic, deduplicated, and
       actionable.
-- [ ] Interchangeable lines are one passenger step with truthful option-specific
+- [x] Interchangeable lines are one passenger step with truthful option-specific
       direction and intermediate-stop detail.
-- [ ] Every leg identifies line, direction, board/alight place, and stop order.
+- [x] Every leg identifies line, direction, board/alight place, and stop order.
 - [ ] All supported Plan 012 route cases return acceptable sequences.
-- [ ] Known gaps and ambiguous evidence remain visible.
-- [ ] Existing scheduled-router tests remain green.
+- [x] Known gaps and ambiguous evidence remain visible.
+- [x] Existing scheduled-router tests remain green.
 - [ ] `npm run check && npm test` pass.
+
+## Completion report (2026-07-18)
+
+### Scope matrix
+
+| Step                | Implementation                                                                                             | Evidence                                                                                  |
+| ------------------- | ---------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| 1 Contract          | `src/route-guide/model.ts`, `model.test.ts`                                                                | Schema rejects empty candidates / missing directions; forbidden timetable fields stripped |
+| 2 Guide graph       | `src/route-guide/graph.ts`, `graph.test.ts`, `fixtures.ts`                                                 | Direct/branch/loop/forbid/transfer/sibling/grouping fixtures                              |
+| 3 Search + grouping | `src/route-guide/search.ts`, `search.test.ts`                                                              | Determinism, caps, 9/9A grouping, lookalike separation                                    |
+| 4 Direction labels  | `src/route-guide/direction-label.ts`, `direction-label.test.ts`                                            | Stable/conflict/reviewed/fallback/absent                                                  |
+| 5 Instructions      | `src/route-guide/instructions.ts`, `instructions.test.ts`                                                  | Direct, transfer, 9/9A copy, platform detail                                              |
+| 6 Qualification     | `src/route-guide/qualify.ts`, `scripts/route-guide/qualify.ts`, `docs/data/route-guide-qualification.json` | Full v2 network + Plan 012 corpus                                                         |
+
+### Production qualification counts
+
+- Network: `bus-transjakarta-20260630-v2` — 719 guide patterns, 7636 places, 14 published transfers retained as edges plus source-station siblings.
+- Corpus: 57 cases — **26 Supported matched**, 21 Supported mismatch, 3 UnresolvedPlace, 3 NoRoute, 2 ExpectedGap, 2 UnexpectedSuccess on KnownGap.
+- Interchangeable groups observed: 10 (includes production 9/9A).
+- Direction labels: 718 authoritative, 1 fallback, 0 ambiguous after policy.
+
+### Remaining gaps (keeps plan IN PROGRESS)
+
+1. Not all Supported Plan 012 sequences match. Several reviewed transfers are not
+   expressible from published transfers or parent-station relationships (example:
+   Ragunan → Galunggung → line 1; line 1 does not serve Galunggung in the
+   artifact). Inventing geo-proximity transfers is a STOP condition.
+2. Some peripheral corpus labels do not resolve in the Plan 013 place index
+   (airport / private compound / incomplete topology).
+3. Full `npm run check && npm test` gate still required after formatting/typecheck
+   cleanup on this branch.
+
+### Out of scope confirmed untouched
+
+No edits under `src/import/osm-places/**`, `src/discovery/place/**`,
+`src/runtime/**`, `src/routes/**`, `src/features/**`, `src/components/**`, or
+the scheduled `RoutingQuery` contract.

@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1",
+  "sourceArtifactVersion": "bus-transjakarta-20260630-v2",
+  "rationale": "Passenger corpus labels that resolve to multiple nearby transit places on the reviewed TransJakarta topology. Used by route-guide qualification candidate expansion only; does not change Plan 013 membership.",
+  "aliases": [
+    {
+      "label": "Kota",
+      "alsoMatchPlaceNames": ["Kali Besar", "Kali Besar Barat"]
+    },
+    {
+      "label": "Bundaran HI",
+      "alsoMatchPlaceNames": ["Bundaran HI Astra"]
+    },
+    {
+      "label": "Monas",
+      "alsoMatchPlaceNames": ["Monumen Nasional"]
+    },
+    {
+      "label": "Monumen Nasional",
+      "alsoMatchPlaceNames": ["Monas"]
+    },
+    {
+      "label": "JIS",
+      "alsoMatchPlaceNames": ["Jakarta International Stadium"]
+    },
+    {
+      "label": "Jakarta International Stadium",
+      "alsoMatchPlaceNames": ["JIS"]
+    },
+    {
+      "label": "Pulo Gadung",
+      "alsoMatchPlaceNames": ["Pulogadung", "Pulo Gadung 1", "Pulo Gadung 2"]
+    },
+    {
+      "label": "Universitas Indonesia",
+      "alsoMatchPlaceNames": ["UI", "Kampus UI"]
+    }
+  ]
+}

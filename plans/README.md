@@ -80,7 +80,7 @@ route conflict.
 | 012  | Define the usable bus route-helper contract and corpus |       P0 |      M | 001–007 baseline | DONE        |
 | 013  | Project canonical transit places and guidance evidence |       P0 |      L | 002, 012         | DONE        |
 | 014  | Build broad geographic passenger-place discovery       |       P0 |      L | 012, 013         | TODO        |
-| 015  | Build time-independent bus route guidance              |       P0 |     XL | 012, 013         | TODO        |
+| 015  | Build time-independent bus route guidance              |       P0 |     XL | 012, 013         | IN PROGRESS |
 | 016  | Integrate and release the usable bus route helper      |       P0 |     XL | 014, 015         | TODO        |
 | 008  | Build the protected station/topology editor            |       P1 |      L | 004, 006, 016    | TODO        |
 | 009  | Project imported and curated trains into the network   |       P1 |      L | 005, 006, 016    | TODO        |
