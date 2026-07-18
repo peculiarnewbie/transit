@@ -58,7 +58,7 @@ generated-route conflict.
 | 004  | Build the low-bandwidth passenger map shell           |       P1 |      L | 001             | DONE   |
 | 005  | Migrate official train-source adapters                |       P1 |      L | 001             | DONE   |
 | 006  | Build revisioned curation persistence                 |       P1 |      L | 001             | DONE   |
-| 007  | Integrate the bus-routing vertical slice              |       P1 |      L | 002, 003, 004   | TODO   |
+| 007  | Integrate the bus-routing vertical slice              |       P1 |      L | 002, 003, 004   | DONE   |
 | 008  | Build the protected station/topology editor           |       P1 |      L | 004, 006, 007   | TODO   |
 | 009  | Project imported and curated trains into the network  |       P1 |      L | 005, 006        | TODO   |
 | 010  | Add multimodal routing and choose the routing runtime |       P2 |     XL | 007, 008, 009   | TODO   |

@@ -5,12 +5,14 @@ import { AttributionControl, Map, type GeoJSONSource } from "maplibre-gl";
 import * as stylex from "@stylexjs/stylex";
 
 import type { Coordinate } from "../../features/passenger/types.js";
-import { journeyGeometry } from "./map-geometry.js";
+import { endpointFeatureCollection } from "./map-markers.js";
 
 export interface MapCanvasProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
-  readonly onMapEndpoint: (coordinate: Coordinate) => void;
+  readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
+  readonly origin?: Coordinate;
+  readonly destination?: Coordinate;
   readonly onReady: () => void;
   readonly onFailure: () => void;
 }
@@ -23,9 +25,7 @@ export default function MapCanvas(props: MapCanvasProps) {
   let ready = false;
 
   const selectedCoordinates = () =>
-    props.selectedJourneyId === undefined
-      ? emptyGeometry
-      : (journeyGeometry[props.selectedJourneyId] ?? emptyGeometry);
+    props.selectedJourneyId === undefined ? emptyGeometry : props.selectedGeometry;
 
   onMount(() => {
     const mapContainer = container();
@@ -71,13 +71,41 @@ export default function MapCanvas(props: MapCanvasProps) {
           source: "selected-journey",
           paint: { "line-color": "#e0442e", "line-width": 4 },
         });
+        map.addSource("selected-endpoints", {
+          type: "geojson",
+          data: endpointFeatureCollection({
+            origin: props.origin,
+            destination: props.destination,
+          }),
+        });
+        map.addLayer({
+          id: "selected-origin",
+          type: "circle",
+          source: "selected-endpoints",
+          filter: ["==", ["get", "kind"], "origin"],
+          paint: {
+            "circle-color": "#fff8e8",
+            "circle-radius": 8,
+            "circle-stroke-color": "#e0442e",
+            "circle-stroke-width": 5,
+          },
+        });
+        map.addLayer({
+          id: "selected-destination",
+          type: "circle",
+          source: "selected-endpoints",
+          filter: ["==", ["get", "kind"], "destination"],
+          paint: {
+            "circle-color": "#152c3d",
+            "circle-radius": 8,
+            "circle-stroke-color": "#fff8e8",
+            "circle-stroke-width": 4,
+          },
+        });
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) map.stop();
         ready = true;
         props.onReady();
       });
-      map.on("click", (event) =>
-        props.onMapEndpoint({ longitude: event.lngLat.lng, latitude: event.lngLat.lat }),
-      );
       map.on("error", () => {
         if (!ready) props.onFailure();
       });
@@ -90,6 +118,15 @@ export default function MapCanvas(props: MapCanvasProps) {
     const coordinates = selectedCoordinates();
     const source = map?.getSource<GeoJSONSource>("selected-journey");
     source?.setData(lineFeature(coordinates));
+  });
+
+  createEffect(() => {
+    const data = endpointFeatureCollection({
+      origin: props.origin,
+      destination: props.destination,
+    });
+    const source = map?.getSource<GeoJSONSource>("selected-endpoints");
+    source?.setData(data);
   });
 
   onCleanup(() => map?.remove());

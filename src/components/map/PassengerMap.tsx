@@ -8,7 +8,9 @@ const LazyMapCanvas = lazy(() => import("./MapCanvas.js"));
 export interface PassengerMapProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
-  readonly onMapEndpoint: (coordinate: Coordinate) => void;
+  readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
+  readonly origin?: Coordinate;
+  readonly destination?: Coordinate;
 }
 
 export default function PassengerMap(props: PassengerMapProps) {
@@ -31,14 +33,16 @@ export default function PassengerMap(props: PassengerMapProps) {
           <LazyMapCanvas
             styleUrl={props.styleUrl}
             selectedJourneyId={props.selectedJourneyId}
-            onMapEndpoint={props.onMapEndpoint}
+            selectedGeometry={props.selectedGeometry}
+            origin={props.origin}
+            destination={props.destination}
             onReady={() => setStatus("ready")}
             onFailure={() => setStatus("failed")}
           />
         </Suspense>
       </Show>
       <p {...stylex.props(styles.attribution)}>
-        © OpenStreetMap contributors · Select “From” or “To”, then tap the map
+        © OpenStreetMap contributors · Selected stops appear on the map
       </p>
     </section>
   );

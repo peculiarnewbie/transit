@@ -126,14 +126,14 @@ no-service time, and map-independent itinerary rendering.
 
 ## Done criteria
 
-- [ ] A deployed-style runtime answers bus journey requests.
-- [ ] All API inputs/outputs are Schema-validated and bounded.
-- [ ] Passenger UI uses the real adapter in production.
-- [ ] TanStack Start remains in SPA mode with `defaultSsr: false`.
-- [ ] Snapshot activation is atomic and versioned.
-- [ ] Generated route tree is current.
-- [ ] Acceptance tests cover line-selection features.
-- [ ] Full verification passes.
+- [x] A deployed-style runtime answers bus journey requests.
+- [x] All API inputs/outputs are Schema-validated and bounded.
+- [x] Passenger UI uses the real adapter in production.
+- [x] TanStack Start remains in SPA mode with `defaultSsr: false`.
+- [x] Snapshot activation is atomic and versioned.
+- [x] Generated route tree is current.
+- [x] Acceptance tests cover line-selection features.
+- [x] Full verification passes.
 
 ## STOP conditions
 

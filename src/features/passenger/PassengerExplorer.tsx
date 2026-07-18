@@ -1,8 +1,18 @@
-import { For, Show, Suspense, createEffect, createMemo, createSignal, lazy } from "solid-js";
+import {
+  For,
+  Show,
+  Suspense,
+  createEffect,
+  createMemo,
+  createSignal,
+  lazy,
+  onCleanup,
+} from "solid-js";
 import * as stylex from "@stylexjs/stylex";
 
 import type { RouteId } from "../../domain/transit/index.js";
-import { fixturePassengerAdapter, fixtureStops } from "./fixtures.js";
+import { apiPassengerAdapter } from "./api-adapter.js";
+import { fixtureStops } from "./fixtures.js";
 import { runPassengerSearch, setLineConstraint, setLockedLeg } from "./passenger-state.js";
 import {
   endpointLabel,
@@ -26,12 +36,27 @@ export interface PassengerExplorerProps {
   readonly mapStyleUrl?: string;
 }
 
+type StopSearchState =
+  | { readonly _tag: "Idle" }
+  | { readonly _tag: "Searching" }
+  | { readonly _tag: "Ready" }
+  | { readonly _tag: "Failed" };
+
+const coordinateForEndpoint = (endpoint: JourneyEndpoint | undefined): Coordinate | undefined =>
+  endpoint?._tag === "Stop" ? endpoint.stop.coordinate : endpoint?.coordinate;
+
 export default function PassengerExplorer(props: PassengerExplorerProps) {
-  const adapter = () => props.adapter ?? fixturePassengerAdapter;
+  const adapter = () => props.adapter ?? apiPassengerAdapter;
   const [origin, setOrigin] = createSignal<JourneyEndpoint>();
   const [destination, setDestination] = createSignal<JourneyEndpoint>();
   const [activeEndpoint, setActiveEndpoint] = createSignal<EndpointKind>();
   const [state, setState] = createSignal<PassengerState>({ _tag: "Idle" });
+  const [suggestions, setSuggestions] = createSignal<ReadonlyArray<StopSuggestion>>(
+    props.adapter === undefined ? [] : fixtureStops,
+  );
+  const [stopQuery, setStopQuery] = createSignal("");
+  const [stopSearchState, setStopSearchState] = createSignal<StopSearchState>({ _tag: "Idle" });
+  let searchController: AbortController | undefined;
   let statusHeading: HTMLHeadingElement | undefined;
 
   const canSearch = createMemo(() => origin() !== undefined && destination() !== undefined);
@@ -51,23 +76,34 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
     }
   });
 
+  createEffect(() => {
+    if (activeEndpoint() === undefined || adapter().searchStops === undefined) return;
+    const query = stopQuery().trim();
+    const controller = new AbortController();
+    setStopSearchState({ _tag: "Searching" });
+    void adapter()
+      .searchStops?.(query, { signal: controller.signal })
+      .then((stops) => {
+        if (controller.signal.aborted) return;
+        setSuggestions(stops);
+        setStopSearchState({ _tag: "Ready" });
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setStopSearchState({ _tag: "Failed" });
+      });
+    onCleanup(() => controller.abort());
+  });
+
+  onCleanup(() => searchController?.abort());
+
   const chooseEndpoint = (kind: EndpointKind) => {
+    setStopQuery("");
     setActiveEndpoint(kind);
     setState({ _tag: "ChoosingEndpoint", endpoint: kind });
   };
 
   const selectStop = (stop: StopSuggestion) => {
     setEndpoint(activeEndpoint() ?? "origin", { _tag: "Stop", stop });
-  };
-
-  const selectMapPoint = (coordinate: Coordinate) => {
-    const kind = activeEndpoint();
-    if (kind === undefined) return;
-    setEndpoint(kind, {
-      _tag: "MapPoint",
-      coordinate,
-      label: `Pinned at ${coordinate.latitude.toFixed(4)}, ${coordinate.longitude.toFixed(4)}`,
-    });
   };
 
   const setEndpoint = (kind: EndpointKind, endpoint: JourneyEndpoint) => {
@@ -79,7 +115,16 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
 
   const search = async (query = currentQuery()) => {
     if (query === undefined) return;
-    await runPassengerSearch({ adapter: adapter(), query, onState: setState });
+    searchController?.abort();
+    const controller = new AbortController();
+    searchController = controller;
+    await runPassengerSearch({
+      adapter: adapter(),
+      query,
+      onState: setState,
+      signal: controller.signal,
+    });
+    if (searchController === controller) searchController = undefined;
   };
 
   const refineLine = async (routeId: RouteId, constraint: LineConstraint["_tag"]) => {
@@ -88,13 +133,13 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
     await search(setLineConstraint({ query, routeId, constraint }));
   };
 
-  const lockLeg = async (journey: Journey, leg: TransitLeg, legIndex: number) => {
+  const lockLeg = async (_journey: Journey, leg: TransitLeg, _legIndex: number) => {
     const query = currentQuery();
     if (query === undefined) return;
     await search(
       setLockedLeg({
         query,
-        lockedLeg: { journeyId: journey.id, routeId: leg.routeId, legIndex },
+        lockedLeg: leg.lock,
       }),
     );
   };
@@ -102,6 +147,14 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
   const selectedJourneyId = () => {
     const current = state();
     return current._tag === "Results" ? current.selectedJourneyId : undefined;
+  };
+
+  const selectedJourneyGeometry = () => {
+    const current = state();
+    if (current._tag !== "Results") return [];
+    return (
+      current.journeys.find((journey) => journey.id === current.selectedJourneyId)?.geometry ?? []
+    );
   };
 
   return (
@@ -149,9 +202,26 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
 
           <Show when={activeEndpoint() !== undefined}>
             <div {...stylex.props(styles.suggestions)}>
-              <p {...stylex.props(styles.suggestionLabel)}>Nearby stops</p>
+              <label {...stylex.props(styles.stopSearchLabel)}>
+                Search stops
+                <input
+                  type="search"
+                  value={stopQuery()}
+                  onInput={(event) => setStopQuery(event.currentTarget.value)}
+                  placeholder="Try Tosari or Bundaran HI"
+                  autocomplete="off"
+                  {...stylex.props(styles.stopSearchInput)}
+                />
+              </label>
+              <p aria-live="polite" {...stylex.props(styles.suggestionLabel)}>
+                {stopSearchState()._tag === "Searching"
+                  ? "Searching…"
+                  : stopQuery().trim() === ""
+                    ? "Suggested stops"
+                    : `${suggestions().length} matching stops`}
+              </p>
               <ul {...stylex.props(styles.suggestionList)}>
-                <For each={fixtureStops}>
+                <For each={suggestions()}>
                   {(stop) => (
                     <li>
                       <button
@@ -166,7 +236,14 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
                   )}
                 </For>
               </ul>
-              <p {...stylex.props(styles.mapHint)}>Or tap a precise point on the map.</p>
+              <Show when={stopSearchState()._tag === "Ready" && suggestions().length === 0}>
+                <p {...stylex.props(styles.mapHint)}>No stops match that search.</p>
+              </Show>
+              <Show when={stopSearchState()._tag === "Failed"}>
+                <p role="alert" {...stylex.props(styles.mapHint)}>
+                  Stop search is unavailable. Try again.
+                </p>
+              </Show>
             </div>
           </Show>
 
@@ -211,7 +288,9 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
                 props.mapStyleUrl ?? import.meta.env.VITE_MAP_STYLE_URL ?? defaultMapStyleUrl
               }
               selectedJourneyId={selectedJourneyId()}
-              onMapEndpoint={selectMapPoint}
+              selectedGeometry={selectedJourneyGeometry()}
+              origin={coordinateForEndpoint(origin())}
+              destination={coordinateForEndpoint(destination())}
             />
           </Suspense>
         </div>
@@ -592,6 +671,30 @@ const styles = stylex.create({
     letterSpacing: "0.12em",
     margin: "0 0 0.45rem",
     textTransform: "uppercase",
+  },
+  stopSearchLabel: {
+    display: "flex",
+    flexDirection: "column",
+    fontSize: "0.68rem",
+    fontWeight: 900,
+    gap: "0.35rem",
+    letterSpacing: "0.1em",
+    marginBottom: "0.7rem",
+    textTransform: "uppercase",
+  },
+  stopSearchInput: {
+    backgroundColor: "#fffdf5",
+    border: "1px solid #152c3d",
+    borderRadius: 0,
+    color: "#152c3d",
+    font: "inherit",
+    fontSize: "0.82rem",
+    fontWeight: 650,
+    letterSpacing: 0,
+    padding: "0.7rem 0.75rem",
+    textTransform: "none",
+    width: "100%",
+    ":focus-visible": { outline: "3px solid #f5c542", outlineOffset: "2px" },
   },
   suggestionList: {
     display: "grid",
