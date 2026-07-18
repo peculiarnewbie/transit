@@ -39,7 +39,7 @@ Phase 3 (parallel, after required Phase 1 merges)
   lane/projection 009 Publish curated train graph
 
 Phase 4 (serial)
-  010 Add multimodal routing and production performance gates
+  010 Add multimodal routing and choose the production routing runtime
 ```
 
 Phase 1 plans intentionally own disjoint directories. They must not add
@@ -50,18 +50,18 @@ generated-route conflict.
 
 ## Execution order and status
 
-| Plan | Title                                                | Priority | Effort | Depends on      | Status |
-| ---- | ---------------------------------------------------- | -------: | -----: | --------------- | ------ |
-| 001  | Establish the Effect application foundation          |       P0 |      M | scaffold commit | DONE   |
-| 002  | Compile TransJakarta GTFS into a canonical snapshot  |       P1 |      L | 001             | DONE   |
-| 003  | Implement constrained bus routing and alternatives   |       P1 |      L | 001             | TODO   |
-| 004  | Build the low-bandwidth passenger map shell          |       P1 |      L | 001             | TODO   |
-| 005  | Migrate official train-source adapters               |       P1 |      L | 001             | TODO   |
-| 006  | Build revisioned curation persistence                |       P1 |      L | 001             | TODO   |
-| 007  | Integrate the bus-routing vertical slice             |       P1 |      L | 002, 003, 004   | TODO   |
-| 008  | Build the protected station/topology editor          |       P1 |      L | 004, 006, 007   | TODO   |
-| 009  | Project imported and curated trains into the network |       P1 |      L | 005, 006        | TODO   |
-| 010  | Add multimodal routing and performance gates         |       P2 |      L | 007, 008, 009   | TODO   |
+| Plan | Title                                                 | Priority | Effort | Depends on      | Status |
+| ---- | ----------------------------------------------------- | -------: | -----: | --------------- | ------ |
+| 001  | Establish the Effect application foundation           |       P0 |      M | scaffold commit | DONE   |
+| 002  | Compile TransJakarta GTFS into a canonical snapshot   |       P1 |      L | 001             | DONE   |
+| 003  | Implement constrained bus routing and alternatives    |       P1 |      L | 001             | DONE   |
+| 004  | Build the low-bandwidth passenger map shell           |       P1 |      L | 001             | DONE   |
+| 005  | Migrate official train-source adapters                |       P1 |      L | 001             | DONE   |
+| 006  | Build revisioned curation persistence                 |       P1 |      L | 001             | TODO   |
+| 007  | Integrate the bus-routing vertical slice              |       P1 |      L | 002, 003, 004   | TODO   |
+| 008  | Build the protected station/topology editor           |       P1 |      L | 004, 006, 007   | TODO   |
+| 009  | Project imported and curated trains into the network  |       P1 |      L | 005, 006        | TODO   |
+| 010  | Add multimodal routing and choose the routing runtime |       P2 |     XL | 007, 008, 009   | TODO   |
 
 Status values: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED: <reason>`, or
 `REJECTED: <reason>`.
@@ -88,6 +88,14 @@ Status values: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED: <reason>`, or
   serves the static app shell and API/server routes; page content is not SSR'd.
 - Bus routing ships before multimodal routing, while shared contracts remain
   mode-neutral.
+- Plan 007 ships routing in an ordinary Cloudflare Worker first. Plan 010 then
+  measures that baseline against a browser Web Worker using the same TypeScript
+  core; a Cloudflare Container is the fallback only when both ordinary Worker
+  and client-device gates fail.
+- Browser routing, if selected, downloads one compact versioned topology graph
+  after the first journey interaction and caches it by content hash. Geometry
+  remains separate and lazy; query-specific graph fragments are rejected
+  because they can omit valid transfer paths.
 - Incomplete train schedules are represented explicitly as `Scheduled`,
   `FrequencyOnly`, or `TopologyOnly` instead of inventing precision.
 - Effect `Schema` validates every untrusted boundary; services use
@@ -100,8 +108,11 @@ Keep the existing `tanstackStart({ spa: { enabled: true } })` and
 `defaultSsr: false` configuration. Do not add route-level SSR, server-rendered
 map placeholders, hydration-time data loaders, or browser-global workarounds.
 Passenger and admin pages render on the client; MapLibre is dynamically imported
-after mount. Cloudflare Workers remain responsible for typed API routes,
-artifact delivery, scheduled/import work, and authentication boundaries.
+after mount. Cloudflare Workers initially remain responsible for typed API
+routes, artifact delivery, scheduled/import work, and authentication boundaries.
+Plan 010 may move only the routing calculation into a browser Web Worker after
+measured first-use and low-end-device gates pass; the page remains SPA-only
+either way.
 
 The app shell should be cacheable so repeat visits can open controls quickly,
 but routing results and unpublished admin state must follow their own cache and
