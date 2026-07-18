@@ -14,9 +14,14 @@ export type JourneyExecutor = (
   input: unknown,
 ) => Promise<Awaited<ReturnType<typeof ApplicationRuntime.runJourneys>>>;
 
+const runJourneysFromAssets: JourneyExecutor = async (manifestUrl, input) => {
+  const { env } = await import("cloudflare:workers");
+  return ApplicationRuntime.runJourneys(manifestUrl, input, env.ASSETS.fetch.bind(env.ASSETS));
+};
+
 export const handleJourneyRequest = async (
   request: Request,
-  execute: JourneyExecutor = ApplicationRuntime.runJourneys,
+  execute: JourneyExecutor = runJourneysFromAssets,
 ) => {
   if (!request.headers.get("content-type")?.toLowerCase().startsWith("application/json"))
     return errorResponse(415, "INVALID_REQUEST", "Send the request as application/json.");

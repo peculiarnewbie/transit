@@ -27,28 +27,40 @@ export const layer = (defaultManifestUrl: string) =>
 export const layerWith = (options: LayerOptions) =>
   layerFromArtifacts(ArtifactStore.layer(options));
 
-const makeRuntime = (manifestUrl: string) => ManagedRuntime.make(layer(manifestUrl));
+const makeRuntime = (manifestUrl: string, fetcher: typeof globalThis.fetch) =>
+  ManagedRuntime.make(layerWith({ manifestUrl, fetch: fetcher }));
 type ApplicationRuntime = ReturnType<typeof makeRuntime>;
 
 // The Worker isolate owns one immutable application runtime for its lifecycle.
 // It never contains request-scoped or user data.
 let applicationRuntime: ApplicationRuntime | undefined;
 
-export const runtime = (manifestUrl: string): ApplicationRuntime => {
-  applicationRuntime ??= makeRuntime(manifestUrl);
+export const runtime = (
+  manifestUrl: string,
+  fetcher: typeof globalThis.fetch = globalThis.fetch,
+): ApplicationRuntime => {
+  applicationRuntime ??= makeRuntime(manifestUrl, fetcher);
   return applicationRuntime;
 };
 
-export const runJourneys = (manifestUrl: string, input: unknown) =>
-  runtime(manifestUrl).runPromise(
+export const runJourneys = (
+  manifestUrl: string,
+  input: unknown,
+  fetcher: typeof globalThis.fetch = globalThis.fetch,
+) =>
+  runtime(manifestUrl, fetcher).runPromise(
     Effect.gen(function* () {
       const query = yield* RouteQuery.Service;
       return yield* query.journeys(input);
     }),
   );
 
-export const runStopSearch = (manifestUrl: string, input: unknown) =>
-  runtime(manifestUrl).runPromise(
+export const runStopSearch = (
+  manifestUrl: string,
+  input: unknown,
+  fetcher: typeof globalThis.fetch = globalThis.fetch,
+) =>
+  runtime(manifestUrl, fetcher).runPromise(
     Effect.gen(function* () {
       const query = yield* RouteQuery.Service;
       return yield* query.searchStops(input);

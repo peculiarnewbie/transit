@@ -8,11 +8,16 @@ export type StopSearchExecutor = (
   input: unknown,
 ) => Promise<Awaited<ReturnType<typeof ApplicationRuntime.runStopSearch>>>;
 
+const runStopSearchFromAssets: StopSearchExecutor = async (manifestUrl, input) => {
+  const { env } = await import("cloudflare:workers");
+  return ApplicationRuntime.runStopSearch(manifestUrl, input, env.ASSETS.fetch.bind(env.ASSETS));
+};
+
 const numberParameter = (value: string | null) => (value === null ? undefined : Number(value));
 
 export const handleStopRequest = async (
   request: Request,
-  execute: StopSearchExecutor = ApplicationRuntime.runStopSearch,
+  execute: StopSearchExecutor = runStopSearchFromAssets,
 ) => {
   try {
     const url = new URL(request.url);
