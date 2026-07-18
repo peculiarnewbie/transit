@@ -52,7 +52,7 @@ generated-route conflict.
 
 | Plan | Title | Priority | Effort | Depends on | Status |
 |---|---|---:|---:|---|---|
-| 001 | Establish the Effect application foundation | P0 | M | scaffold commit | TODO |
+| 001 | Establish the Effect application foundation | P0 | M | scaffold commit | DONE |
 | 002 | Compile TransJakarta GTFS into a canonical snapshot | P1 | L | 001 | TODO |
 | 003 | Implement constrained bus routing and alternatives | P1 | L | 001 | TODO |
 | 004 | Build the low-bandwidth passenger map shell | P1 | L | 001 | TODO |
