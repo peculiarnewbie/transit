@@ -1,7 +1,12 @@
 import { renderToString } from "solid-js/web";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
-import { EndpointButton, JourneyResults } from "./PassengerExplorer.js";
+import {
+  EndpointButton,
+  JourneyResults,
+  endpointSearchText,
+  scheduleStopSearch,
+} from "./PassengerExplorer.js";
 import { fixtureStops, searchFixtureJourneys } from "./fixtures.js";
 import type { PassengerState, RouteQuery } from "./types.js";
 
@@ -27,6 +32,7 @@ const renderResults = (state: PassengerState) =>
       onLockLeg={noOp}
       onRetry={noOp}
       onClearRules={noOp}
+      onChangeStops={noOp}
     />
   ));
 
@@ -41,6 +47,11 @@ describe("passenger components", () => {
 
     expect(html).toContain("Choose from");
     expect(html).toContain("Choose to");
+  });
+
+  it("keeps the selected stop name when reopening an endpoint", () => {
+    expect(endpointSearchText({ _tag: "Stop", stop: fixtureStop(0) })).toBe(fixtureStop(0).name);
+    expect(endpointSearchText(undefined)).toBe("");
   });
 
   it("renders journey cards and every line action without map readiness", () => {
@@ -60,6 +71,8 @@ describe("passenger components", () => {
     expect(visibleText).toContain("Require 1");
     expect(visibleText).toContain("Avoid 1");
     expect(visibleText).toContain("Lock this leg");
+    expect(html).toContain('aria-label="Journey options"');
+    expect(html).toContain('tabindex="0"');
   });
 
   it("renders loading without replacing the journey region", () => {
@@ -70,8 +83,32 @@ describe("passenger components", () => {
 
   it("renders no-route recovery", () => {
     const html = renderResults({ _tag: "NoRoute", query });
-    expect(html).toContain("No route fits those rules");
-    expect(html).toContain("Clear route rules");
+    expect(html).toContain("No route found between these stops");
+    expect(html).toContain("Choose another stop");
+  });
+
+  it("debounces stop input so only the final query is searched", () => {
+    vi.useFakeTimers();
+    try {
+      const searched: Array<string> = [];
+      const cancelFirst = scheduleStopSearch({
+        query: "sema",
+        onSearch: (query) => searched.push(query),
+      });
+      vi.advanceTimersByTime(200);
+      cancelFirst();
+      scheduleStopSearch({
+        query: "semanggi",
+        onSearch: (query) => searched.push(query),
+      });
+
+      vi.advanceTimersByTime(349);
+      expect(searched).toEqual([]);
+      vi.advanceTimersByTime(1);
+      expect(searched).toEqual(["semanggi"]);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it("renders offline-like request failure without mentioning the map", () => {

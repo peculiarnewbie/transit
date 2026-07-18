@@ -19,8 +19,17 @@ npx tsx scripts/gtfs/compile.ts \
 ```
 
 The compiler validates the canonical snapshot and writes both `network.json`
-and `network.geometry.json`. Run the routing and runtime acceptance tests before
-publishing:
+and `network.geometry.json`. Generate the compact map overlay separately so the
+browser never needs the full topology artifact:
+
+```bash
+npx tsx scripts/gtfs/route-overview.ts \
+  --snapshot var/transit/compiled/network.json \
+  --geometry var/transit/compiled/network.geometry.json \
+  --output var/transit/compiled/network.routes.geojson
+```
+
+Run the routing and runtime acceptance tests before publishing:
 
 ```bash
 npm test -- src/import/gtfs src/routing src/runtime
@@ -30,10 +39,10 @@ npm test -- src/import/gtfs src/routing src/runtime
 
 1. Give the validated pair a never-reused version name, preferably including
    the compiler's reported SHA-256 content hash.
-2. Copy both files to `public/artifacts/` under that version. Do not overwrite a
+2. Copy all three files to `public/artifacts/` under that version. Do not overwrite a
    previously published version.
-3. Update `public/artifacts/active.json` so its `snapshotUrl` and `geometryUrl`
-   reference that exact pair.
+3. Update `public/artifacts/active.json` so its `snapshotUrl`, `geometryUrl`, and
+   `routeMapUrl` reference that exact set.
 4. Run `npm run build`, verify `file_gtfs.zip` is absent from `dist/`, and deploy
    the Worker once. Cloudflare activates the static assets and Worker version as
    one deployment.

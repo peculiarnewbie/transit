@@ -37,7 +37,10 @@ export interface PassengerRoutingAdapter {
   ) => Promise<ReadonlyArray<Journey>>;
   readonly searchStops?: (
     query?: string,
-    options?: { readonly signal?: AbortSignal },
+    options?: {
+      readonly signal?: AbortSignal;
+      readonly reachableFromStopId?: StopSuggestion["id"];
+    },
   ) => Promise<ReadonlyArray<StopSuggestion>>;
 }
 

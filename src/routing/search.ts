@@ -32,6 +32,66 @@ interface Destination {
   readonly walkSeconds: number;
 }
 
+const compareStates = (left: State, right: State) =>
+  left.time - right.time ||
+  left.boardings - right.boardings ||
+  left.walkingSeconds - right.walkingSeconds ||
+  `${left.stopId}|${left.routeIds.join(",")}`.localeCompare(
+    `${right.stopId}|${right.routeIds.join(",")}`,
+  );
+
+class MinHeap<Value> {
+  readonly values: Array<Value> = [];
+
+  constructor(
+    values: ReadonlyArray<Value>,
+    readonly compare: (left: Value, right: Value) => number,
+  ) {
+    for (const value of values) this.push(value);
+  }
+
+  get length() {
+    return this.values.length;
+  }
+
+  push(value: Value) {
+    this.values.push(value);
+    let index = this.values.length - 1;
+    while (index > 0) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      const parent = this.values[parentIndex];
+      if (parent === undefined || this.compare(parent, value) <= 0) break;
+      this.values[index] = parent;
+      index = parentIndex;
+    }
+    this.values[index] = value;
+  }
+
+  pop(): Value | undefined {
+    const first = this.values[0];
+    const last = this.values.pop();
+    if (first === undefined || last === undefined || this.values.length === 0) return first;
+
+    let index = 0;
+    while (true) {
+      const leftIndex = index * 2 + 1;
+      const rightIndex = leftIndex + 1;
+      const left = this.values[leftIndex];
+      const right = this.values[rightIndex];
+      const childIndex =
+        right !== undefined && (left === undefined || this.compare(right, left) < 0)
+          ? rightIndex
+          : leftIndex;
+      const child = this.values[childIndex];
+      if (child === undefined || this.compare(last, child) <= 0) break;
+      this.values[index] = child;
+      index = childIndex;
+    }
+    this.values[index] = last;
+    return first;
+  }
+}
+
 const weekdayNames = [
   "Sunday",
   "Monday",
@@ -75,6 +135,33 @@ const nextFrequencyDeparture = (
   const runStart = window.startSeconds + steps * window.headwaySeconds;
   if (runStart >= window.endSeconds) return undefined;
   return { departure: runStart + offset, runStart };
+};
+
+export const hasBoardableDeparture = (
+  pattern: RoutePattern,
+  trip: Trip,
+  boardingStopId: StopId,
+  earliestTime: number,
+) => {
+  if (trip.availability._tag !== "Scheduled") return false;
+  const stopTimes = trip.availability.stopTimes;
+  for (let boardingIndex = 0; boardingIndex < pattern.stopIds.length; boardingIndex += 1) {
+    if (pattern.stopIds[boardingIndex] !== boardingStopId) continue;
+    const boarding = stopTimes[boardingIndex];
+    if (boarding === undefined) continue;
+    if (trip.availability.frequencyWindows.length === 0) {
+      if (boarding.departureSeconds >= earliestTime) return true;
+      continue;
+    }
+    if (
+      trip.availability.frequencyWindows.some(
+        (window) =>
+          nextFrequencyDeparture(stopTimes, window, boardingIndex, earliestTime) !== undefined,
+      )
+    )
+      return true;
+  }
+  return false;
 };
 
 const transitOptions = (
@@ -166,7 +253,16 @@ const dominates = (left: State, right: State): boolean =>
     left.walkingSeconds < right.walkingSeconds ||
     left.boardings < right.boardings);
 
-const stateKey = (state: State): string => `${state.stopId}|${state.routeIds.join(",")}`;
+const equivalent = (left: State, right: State): boolean =>
+  left.time === right.time &&
+  left.walkingSeconds === right.walkingSeconds &&
+  left.boardings === right.boardings;
+
+const routeSequenceKey = (routeIds: ReadonlyArray<RouteId>): string =>
+  routeIds.filter((routeId, index) => index === 0 || routeId !== routeIds[index - 1]).join(">");
+
+const stateKey = (state: State): string =>
+  `${state.stopId}|first-route:${state.routeIds[0] ?? "walking"}`;
 
 export const search = (
   index: RoutingIndexInterface,
@@ -178,57 +274,62 @@ export const search = (
       .filter((candidate) => candidate.walkSeconds <= query.maximumAccessWalkSeconds)
       .map((candidate) => [candidate.stopId, candidate.walkSeconds]),
   );
-  const queue: Array<State> = query.origins
-    .filter(
-      (candidate) =>
-        candidate.walkSeconds <= query.maximumAccessWalkSeconds &&
-        query.departureSeconds + candidate.walkSeconds <= 604_800,
-    )
-    .map((candidate) => ({
-      stopId: candidate.stopId,
-      time: query.departureSeconds + candidate.walkSeconds,
-      walkingSeconds: candidate.walkSeconds,
-      boardings: 0,
-      legs: [
-        WalkLeg.make({
-          from: RoutingPoint.cases.Origin.make({}),
-          to: RoutingPoint.cases.Stop.make({ stopId: candidate.stopId }),
-          departureSeconds: query.departureSeconds,
-          arrivalSeconds: seconds(query.departureSeconds + candidate.walkSeconds),
-          durationSeconds: candidate.walkSeconds,
+  const queue = new MinHeap<State>(
+    query.origins
+      .filter(
+        (candidate) =>
+          candidate.walkSeconds <= query.maximumAccessWalkSeconds &&
+          query.departureSeconds + candidate.walkSeconds <= 604_800,
+      )
+      .map(
+        (candidate): State => ({
+          stopId: candidate.stopId,
+          time: query.departureSeconds + candidate.walkSeconds,
+          walkingSeconds: candidate.walkSeconds,
+          boardings: 0,
+          legs: [
+            WalkLeg.make({
+              from: RoutingPoint.cases.Origin.make({}),
+              to: RoutingPoint.cases.Stop.make({ stopId: candidate.stopId }),
+              departureSeconds: query.departureSeconds,
+              arrivalSeconds: seconds(query.departureSeconds + candidate.walkSeconds),
+              durationSeconds: candidate.walkSeconds,
+            }),
+          ],
+          routeIds: [],
         }),
-      ],
-      routeIds: [],
-    }));
+      ),
+    compareStates,
+  );
   const labels = new Map<string, Array<State>>();
   const found: Array<Destination> = [];
+  const foundRouteSequences = new Set<string>();
+  const maximumCandidates = Math.min(query.maximumResults * 4, 32);
   let expansions = 0;
 
-  while (queue.length > 0 && expansions < 50_000) {
-    queue.sort(
-      (left, right) =>
-        left.time - right.time ||
-        left.boardings - right.boardings ||
-        left.walkingSeconds - right.walkingSeconds ||
-        stateKey(left).localeCompare(stateKey(right)),
-    );
-    const state = queue.shift();
+  while (queue.length > 0 && foundRouteSequences.size < maximumCandidates && expansions < 50_000) {
+    const state = queue.pop();
     if (state === undefined) break;
     expansions += 1;
-
-    const key = stateKey(state);
-    const existing = labels.get(key) ?? [];
-    if (existing.some((label) => dominates(label, state))) continue;
-    labels.set(key, [...existing.filter((label) => !dominates(state, label)), state].slice(0, 8));
 
     const egress = destinations.get(state.stopId);
     if (
       egress !== undefined &&
       state.boardings > 0 &&
       state.time + egress <= 604_800 &&
-      found.length < 512
-    )
-      found.push({ state, walkSeconds: egress });
+      requiredRoutesPresent(constraint, state.routeIds)
+    ) {
+      const routeSequence = routeSequenceKey(state.routeIds);
+      if (!foundRouteSequences.has(routeSequence)) {
+        foundRouteSequences.add(routeSequence);
+        found.push({ state, walkSeconds: egress });
+      }
+    }
+
+    const key = stateKey(state);
+    const existing = labels.get(key) ?? [];
+    if (existing.some((label) => equivalent(label, state) || dominates(label, state))) continue;
+    labels.set(key, [...existing.filter((label) => !dominates(state, label)), state].slice(0, 8));
 
     const transfersUsed = Math.max(0, state.boardings - 1);
     if (transfersUsed < query.maximumTransfers + 1) {
@@ -274,6 +375,20 @@ export const search = (
         routeIds: state.routeIds,
       });
     }
+
+    const stop = index.stopsById.get(state.stopId);
+    const stationId =
+      stop?.parentStopId ??
+      (index.childStopIdsByParent.has(state.stopId) ? state.stopId : undefined);
+    if (stationId !== undefined) {
+      for (const stationStopId of [
+        stationId,
+        ...(index.childStopIdsByParent.get(stationId) ?? []),
+      ]) {
+        if (stationStopId === state.stopId) continue;
+        queue.push({ ...state, stopId: stationStopId });
+      }
+    }
   }
 
   const itineraries = found
@@ -316,24 +431,9 @@ export const search = (
         left.boardedRouteIds.join(",").localeCompare(right.boardedRouteIds.join(",")),
     );
 
-  const pareto = itineraries.filter(
-    (candidate, candidateIndex) =>
-      !itineraries.some(
-        (other, otherIndex) =>
-          candidateIndex !== otherIndex &&
-          other.arrivalSeconds <= candidate.arrivalSeconds &&
-          other.transferCount <= candidate.transferCount &&
-          other.walkingSeconds <= candidate.walkingSeconds &&
-          other.score.preferencePenalty <= candidate.score.preferencePenalty &&
-          (other.arrivalSeconds < candidate.arrivalSeconds ||
-            other.transferCount < candidate.transferCount ||
-            other.walkingSeconds < candidate.walkingSeconds ||
-            other.score.preferencePenalty < candidate.score.preferencePenalty),
-      ),
-  );
   const unique = new Map<string, Itinerary>();
-  for (const itinerary of pareto) {
-    const key = itinerary.boardedRouteIds.join(">");
+  for (const itinerary of itineraries) {
+    const key = routeSequenceKey(itinerary.boardedRouteIds);
     if (!unique.has(key)) unique.set(key, itinerary);
   }
   return [...unique.values()].slice(0, query.maximumResults);

@@ -28,6 +28,13 @@ export const handleStopRequest = async (
     const input = {
       ...(url.searchParams.has("q") ? { query: url.searchParams.get("q") ?? "" } : {}),
       ...(coordinate === undefined ? {} : { coordinate }),
+      ...(url.searchParams.has("from")
+        ? { reachableFromStopId: url.searchParams.get("from") ?? "" }
+        : {}),
+      ...(url.searchParams.has("date") ? { serviceDate: url.searchParams.get("date") ?? "" } : {}),
+      ...(url.searchParams.has("departure")
+        ? { departureSeconds: numberParameter(url.searchParams.get("departure")) }
+        : {}),
       limit: numberParameter(url.searchParams.get("limit")) ?? 8,
     };
     const manifestUrl = new URL("/artifacts/active.json", request.url).href;

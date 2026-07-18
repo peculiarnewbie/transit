@@ -38,12 +38,32 @@ export interface PassengerExplorerProps {
 
 type StopSearchState =
   | { readonly _tag: "Idle" }
+  | { readonly _tag: "WaitingForInput" }
   | { readonly _tag: "Searching" }
   | { readonly _tag: "Ready" }
   | { readonly _tag: "Failed" };
 
+const stopSearchDebounceMilliseconds = 350;
+
+export const scheduleStopSearch = ({
+  query,
+  onSearch,
+}: {
+  readonly query: string;
+  readonly onSearch: (query: string) => void;
+}) => {
+  const timeout = setTimeout(
+    () => onSearch(query),
+    query === "" ? 0 : stopSearchDebounceMilliseconds,
+  );
+  return () => clearTimeout(timeout);
+};
+
 const coordinateForEndpoint = (endpoint: JourneyEndpoint | undefined): Coordinate | undefined =>
   endpoint?._tag === "Stop" ? endpoint.stop.coordinate : endpoint?.coordinate;
+
+export const endpointSearchText = (endpoint: JourneyEndpoint | undefined): string =>
+  endpoint === undefined ? "" : endpointLabel(endpoint);
 
 export default function PassengerExplorer(props: PassengerExplorerProps) {
   const adapter = () => props.adapter ?? apiPassengerAdapter;
@@ -58,6 +78,7 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
   const [stopSearchState, setStopSearchState] = createSignal<StopSearchState>({ _tag: "Idle" });
   let searchController: AbortController | undefined;
   let statusHeading: HTMLHeadingElement | undefined;
+  let stopSearchInput: HTMLInputElement | undefined;
 
   const canSearch = createMemo(() => origin() !== undefined && destination() !== undefined);
   const currentQuery = (): RouteQuery | undefined => {
@@ -77,29 +98,53 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
   });
 
   createEffect(() => {
-    if (activeEndpoint() === undefined || adapter().searchStops === undefined) return;
+    const endpointKind = activeEndpoint();
+    const searchStops = adapter().searchStops;
+    if (endpointKind === undefined || searchStops === undefined) return;
     const query = stopQuery().trim();
+    if (query.length === 1) {
+      setSuggestions([]);
+      setStopSearchState({ _tag: "WaitingForInput" });
+      return;
+    }
     const controller = new AbortController();
-    setStopSearchState({ _tag: "Searching" });
-    void adapter()
-      .searchStops?.(query, { signal: controller.signal })
-      .then((stops) => {
-        if (controller.signal.aborted) return;
-        setSuggestions(stops);
-        setStopSearchState({ _tag: "Ready" });
-      })
-      .catch(() => {
-        if (!controller.signal.aborted) setStopSearchState({ _tag: "Failed" });
-      });
-    onCleanup(() => controller.abort());
+    const selectedOrigin = origin();
+    const reachableFromStopId =
+      endpointKind === "destination" && selectedOrigin?._tag === "Stop"
+        ? selectedOrigin.stop.id
+        : undefined;
+    const cancelScheduled = scheduleStopSearch({
+      query,
+      onSearch: (scheduledQuery) => {
+        setStopSearchState({ _tag: "Searching" });
+        void searchStops(scheduledQuery, { signal: controller.signal, reachableFromStopId })
+          .then((stops) => {
+            if (controller.signal.aborted) return;
+            setSuggestions(stops);
+            setStopSearchState({ _tag: "Ready" });
+          })
+          .catch(() => {
+            if (!controller.signal.aborted) setStopSearchState({ _tag: "Failed" });
+          });
+      },
+    });
+    onCleanup(() => {
+      cancelScheduled();
+      controller.abort();
+    });
   });
 
   onCleanup(() => searchController?.abort());
 
   const chooseEndpoint = (kind: EndpointKind) => {
-    setStopQuery("");
+    const endpoint = kind === "origin" ? origin() : destination();
+    setStopQuery(endpointSearchText(endpoint));
     setActiveEndpoint(kind);
     setState({ _tag: "ChoosingEndpoint", endpoint: kind });
+    queueMicrotask(() => {
+      stopSearchInput?.focus();
+      if (endpoint !== undefined) stopSearchInput?.select();
+    });
   };
 
   const selectStop = (stop: StopSuggestion) => {
@@ -157,6 +202,54 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
     );
   };
 
+  const selectedJourneyColor = () => {
+    const current = state();
+    if (current._tag !== "Results") return "#31556f";
+    return (
+      current.journeys
+        .find((journey) => journey.id === current.selectedJourneyId)
+        ?.legs.find((leg) => leg._tag === "Transit")?.color ?? "#31556f"
+    );
+  };
+
+  const mapSelectionKind = (): EndpointKind | undefined =>
+    activeEndpoint() ??
+    (origin() === undefined ? "origin" : destination() === undefined ? "destination" : undefined);
+
+  const selectMapStop = async (stop: StopSuggestion) => {
+    const kind = mapSelectionKind();
+    if (kind === undefined) return;
+    const selectedOrigin = origin();
+    const searchStops = adapter().searchStops;
+    if (kind === "destination" && selectedOrigin?._tag === "Stop" && searchStops !== undefined) {
+      let matching: ReadonlyArray<StopSuggestion>;
+      try {
+        matching = await searchStops(stop.name, {
+          reachableFromStopId: selectedOrigin.stop.id,
+        });
+      } catch {
+        setStopQuery(stop.name);
+        setSuggestions([]);
+        setStopSearchState({ _tag: "Failed" });
+        setActiveEndpoint("destination");
+        setState({ _tag: "ChoosingEndpoint", endpoint: "destination" });
+        return;
+      }
+      const validStop = matching.find((candidate) => candidate.id === stop.id);
+      if (validStop === undefined) {
+        setStopQuery(stop.name);
+        setSuggestions([]);
+        setStopSearchState({ _tag: "Ready" });
+        setActiveEndpoint("destination");
+        setState({ _tag: "ChoosingEndpoint", endpoint: "destination" });
+        return;
+      }
+      setEndpoint("destination", { _tag: "Stop", stop: validStop });
+      return;
+    }
+    setEndpoint(kind, { _tag: "Stop", stop });
+  };
+
   return (
     <main {...stylex.props(styles.page)}>
       <header {...stylex.props(styles.masthead)}>
@@ -205,20 +298,25 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
               <label {...stylex.props(styles.stopSearchLabel)}>
                 Search stops
                 <input
+                  ref={(element) => (stopSearchInput = element)}
                   type="search"
                   value={stopQuery()}
                   onInput={(event) => setStopQuery(event.currentTarget.value)}
                   placeholder="Try Tosari or Bundaran HI"
                   autocomplete="off"
+                  maxlength={80}
+                  spellcheck={false}
                   {...stylex.props(styles.stopSearchInput)}
                 />
               </label>
               <p aria-live="polite" {...stylex.props(styles.suggestionLabel)}>
-                {stopSearchState()._tag === "Searching"
-                  ? "Searching…"
-                  : stopQuery().trim() === ""
-                    ? "Suggested stops"
-                    : `${suggestions().length} matching stops`}
+                {stopSearchState()._tag === "WaitingForInput"
+                  ? "Type at least 2 characters"
+                  : stopSearchState()._tag === "Searching"
+                    ? "Searching…"
+                    : stopQuery().trim() === ""
+                      ? "Suggested stops"
+                      : `${suggestions().length} matching ${suggestions().length === 1 ? "stop" : "stops"}`}
               </p>
               <ul {...stylex.props(styles.suggestionList)}>
                 <For each={suggestions()}>
@@ -273,6 +371,7 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
               if (query !== undefined)
                 void search({ ...query, lineConstraints: [], lockedLeg: undefined });
             }}
+            onChangeStops={() => chooseEndpoint("destination")}
           />
         </section>
 
@@ -289,8 +388,11 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
               }
               selectedJourneyId={selectedJourneyId()}
               selectedGeometry={selectedJourneyGeometry()}
+              selectedColor={selectedJourneyColor()}
               origin={coordinateForEndpoint(origin())}
               destination={coordinateForEndpoint(destination())}
+              selectionKind={mapSelectionKind()}
+              onStopSelect={(stop) => void selectMapStop(stop)}
             />
           </Suspense>
         </div>
@@ -340,6 +442,7 @@ export function JourneyResults(props: {
   readonly onLockLeg: (journey: Journey, leg: TransitLeg, index: number) => void;
   readonly onRetry: () => void;
   readonly onClearRules: () => void;
+  readonly onChangeStops: () => void;
 }) {
   const results = () => (props.state._tag === "Results" ? props.state : undefined);
 
@@ -358,13 +461,25 @@ export function JourneyResults(props: {
       </Show>
 
       <Show when={props.state._tag === "NoRoute"}>
-        <EmptyState
-          heading="No route fits those rules"
-          body="Keep your stops and remove line rules to see more options."
-          action="Clear route rules"
-          headingRef={props.headingRef}
-          onAction={props.onClearRules}
-        />
+        {(() => {
+          const hasRules =
+            props.state._tag === "NoRoute" && props.state.query.lineConstraints.length > 0;
+          return (
+            <EmptyState
+              heading={
+                hasRules ? "No route fits those line rules" : "No route found between these stops"
+              }
+              body={
+                hasRules
+                  ? "Your stops are unchanged. Remove the line rules to see more options."
+                  : "No service is available between these stops at this time. Choose another nearby stop or try again later."
+              }
+              action={hasRules ? "Clear route rules" : "Choose another stop"}
+              headingRef={props.headingRef}
+              onAction={hasRules ? props.onClearRules : props.onChangeStops}
+            />
+          );
+        })()}
       </Show>
 
       <Show when={props.state._tag === "Failed"}>
@@ -383,7 +498,7 @@ export function JourneyResults(props: {
 
       <Show when={results()}>
         {(result) => (
-          <section aria-label="Route alternatives">
+          <section aria-label="Journey options" tabIndex={0} {...stylex.props(styles.routeOptions)}>
             <div {...stylex.props(styles.resultHeading)}>
               <h2 ref={props.headingRef} tabIndex={-1}>
                 Choose a route
@@ -601,12 +716,14 @@ const styles = stylex.create({
     maxWidth: "90rem",
     padding: "1.25rem clamp(1rem, 4vw, 3rem) 0",
     "@media (max-width: 840px)": { display: "flex", flexDirection: "column" },
+    "@media (max-width: 520px)": { gap: "0.85rem", padding: "0.75rem 0.75rem 0" },
   },
   sheet: {
     backgroundColor: "#fff8e8",
     border: "1px solid #152c3d",
     boxShadow: "6px 6px 0 #152c3d",
     padding: "clamp(1rem, 3vw, 1.5rem)",
+    "@media (max-width: 520px)": { boxShadow: "3px 3px 0 #152c3d", padding: "1rem" },
   },
   sheetHeading: { alignItems: "center", display: "flex", gap: "0.75rem", marginBottom: "1.25rem" },
   stepNumber: {
@@ -739,6 +856,16 @@ const styles = stylex.create({
     ":focus-visible": { outline: "3px solid #f5c542", outlineOffset: "2px" },
   },
   results: { marginTop: "1.6rem" },
+  routeOptions: {
+    maxHeight: "min(38rem, calc(100dvh - 19rem))",
+    outline: "none",
+    overflowY: "auto",
+    overscrollBehavior: "contain",
+    paddingRight: "0.4rem",
+    scrollbarGutter: "stable",
+    ":focus-visible": { outline: "3px solid #f5c542", outlineOffset: "3px" },
+    "@media (max-width: 840px)": { maxHeight: "26rem" },
+  },
   loadingState: {
     borderTop: "1px solid #152c3d",
     display: "flex",
@@ -872,8 +999,7 @@ const styles = stylex.create({
     display: "flex",
     flexDirection: "column",
     minHeight: "calc(100dvh - 9rem)",
-    "@media (max-width: 840px)": { minHeight: "22rem", order: -1 },
-    "@media (max-width: 520px)": { minHeight: "18rem" },
+    "@media (max-width: 840px)": { minHeight: "18rem" },
   },
   mapLabel: {
     alignItems: "center",

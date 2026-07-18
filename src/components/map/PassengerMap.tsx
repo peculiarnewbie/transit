@@ -1,7 +1,7 @@
 import { lazy, onMount, Show, Suspense, createSignal } from "solid-js";
 import * as stylex from "@stylexjs/stylex";
 
-import type { Coordinate } from "../../features/passenger/types.js";
+import type { Coordinate, EndpointKind, StopSuggestion } from "../../features/passenger/types.js";
 
 const LazyMapCanvas = lazy(() => import("./MapCanvas.js"));
 
@@ -9,8 +9,11 @@ export interface PassengerMapProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
   readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
+  readonly selectedColor: string;
   readonly origin?: Coordinate;
   readonly destination?: Coordinate;
+  readonly selectionKind?: EndpointKind;
+  readonly onStopSelect: (stop: StopSuggestion) => void;
 }
 
 export default function PassengerMap(props: PassengerMapProps) {
@@ -34,15 +37,25 @@ export default function PassengerMap(props: PassengerMapProps) {
             styleUrl={props.styleUrl}
             selectedJourneyId={props.selectedJourneyId}
             selectedGeometry={props.selectedGeometry}
+            selectedColor={props.selectedColor}
             origin={props.origin}
             destination={props.destination}
+            selectionKind={props.selectionKind}
+            onStopSelect={props.onStopSelect}
             onReady={() => setStatus("ready")}
             onFailure={() => setStatus("failed")}
           />
         </Suspense>
       </Show>
+      <Show when={props.selectionKind}>
+        {(kind) => (
+          <p {...stylex.props(styles.mapInstruction)}>
+            Zoom in, then choose {kind() === "origin" ? "From" : "To"} on the map
+          </p>
+        )}
+      </Show>
       <p {...stylex.props(styles.attribution)}>
-        © OpenStreetMap contributors · Selected stops appear on the map
+        © OpenStreetMap contributors · Published routes and selected stops
       </p>
     </section>
   );
@@ -96,6 +109,20 @@ const styles = stylex.create({
     margin: 0,
     padding: "0.35rem 0.5rem",
     position: "absolute",
+    zIndex: 3,
+  },
+  mapInstruction: {
+    backgroundColor: "#f5c542",
+    border: "1px solid #152c3d",
+    boxShadow: "2px 2px 0 #152c3d",
+    color: "#152c3d",
+    fontSize: "0.72rem",
+    fontWeight: 800,
+    left: "0.6rem",
+    margin: 0,
+    padding: "0.4rem 0.55rem",
+    position: "absolute",
+    top: "0.6rem",
     zIndex: 3,
   },
 });

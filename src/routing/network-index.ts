@@ -16,6 +16,7 @@ import { MalformedNetwork } from "./model.js";
 export interface Interface {
   readonly snapshot: NetworkSnapshot;
   readonly stopsById: ReadonlyMap<StopId, Stop>;
+  readonly childStopIdsByParent: ReadonlyMap<StopId, ReadonlyArray<StopId>>;
   readonly patternsByStop: ReadonlyMap<StopId, ReadonlyArray<RoutePattern>>;
   readonly tripsByPattern: ReadonlyMap<RoutePatternId, ReadonlyArray<Trip>>;
   readonly transfersByStop: ReadonlyMap<StopId, ReadonlyArray<Transfer>>;
@@ -43,6 +44,7 @@ export const make = Effect.fn("RoutingIndex.make")(function* (input: unknown) {
   const tripIds = new Set(snapshot.trips.map((trip) => trip.id));
   const serviceIds = new Set(snapshot.calendars.map((calendar) => calendar.id));
   const stopsById = new Map(snapshot.stops.map((stop) => [stop.id, stop]));
+  const childStopIdsByParent = new Map<StopId, Array<StopId>>();
   const patternsByStop = new Map<StopId, Array<RoutePattern>>();
   const tripsByPattern = new Map<RoutePatternId, Array<Trip>>();
   const transfersByStop = new Map<StopId, Array<Transfer>>();
@@ -63,6 +65,7 @@ export const make = Effect.fn("RoutingIndex.make")(function* (input: unknown) {
   for (const stop of snapshot.stops) {
     if (stop.parentStopId !== undefined && !stopIds.has(stop.parentStopId))
       return yield* Effect.fail(malformed(`Stop ${stop.id} references a missing parent stop`));
+    if (stop.parentStopId !== undefined) pushMap(childStopIdsByParent, stop.parentStopId, stop.id);
   }
   for (const route of snapshot.routes) {
     if (!agencyIds.has(route.agencyId))
@@ -131,6 +134,7 @@ export const make = Effect.fn("RoutingIndex.make")(function* (input: unknown) {
   return Service.of({
     snapshot,
     stopsById,
+    childStopIdsByParent,
     patternsByStop,
     tripsByPattern,
     transfersByStop,

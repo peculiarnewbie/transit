@@ -1,31 +1,87 @@
 import { readFileSync } from "node:fs";
 
 import { renderToString } from "solid-js/web";
-import { ConfigProvider, Effect, Layer, ManagedRuntime, Result } from "effect";
+import { ConfigProvider, Effect, Layer, ManagedRuntime, Result, Schema } from "effect";
 import { describe, expect, it } from "vitest";
 
 import { JourneyResults } from "../features/passenger/PassengerExplorer.js";
+import { NetworkSnapshot, StopId } from "../domain/transit/index.js";
 import { RouteQuery } from "./route-query.js";
 import { ApplicationRuntime } from "./application.js";
 import { ArtifactStore } from "./artifact-store.js";
 
 const baseUrl = "https://transit.test/artifacts/";
 const manifestUrl = `${baseUrl}active.json`;
+const activeArtifactVersion = "bus-transjakarta-20260629-v1";
 const manifest = readFileSync("public/artifacts/active.json", "utf8");
 const snapshot = readFileSync("public/artifacts/bus-demo-20260718-v1.network.json", "utf8");
 const geometry = readFileSync("public/artifacts/bus-demo-20260718-v1.geometry.json", "utf8");
+
+const groupedStationSnapshot = (() => {
+  const decoded = Schema.decodeUnknownSync(NetworkSnapshot)(JSON.parse(snapshot));
+  const platform = decoded.stops.find((stop) => stop.id === "tj:bundaran-hi");
+  if (platform === undefined) throw new Error("Missing Bundaran HI fixture platform");
+  const stationId = StopId.make("tj:bundaran-hi-station");
+  const secondPlatformId = StopId.make("tj:bundaran-hi-platform-2");
+  return JSON.stringify(
+    Schema.encodeUnknownSync(NetworkSnapshot)({
+      ...decoded,
+      stops: [
+        ...decoded.stops.map((stop) =>
+          stop.id === platform.id ? { ...stop, parentStopId: stationId } : stop,
+        ),
+        { ...platform, id: stationId },
+        { ...platform, id: secondPlatformId, parentStopId: stationId },
+      ],
+    }),
+  );
+})();
+
+const transferOnlySnapshot = (() => {
+  const decoded = Schema.decodeUnknownSync(NetworkSnapshot)(JSON.parse(snapshot));
+  const template = decoded.stops.find((stop) => stop.id === "tj:gbk");
+  if (template === undefined) throw new Error("Missing GBK fixture stop");
+  const transferOnlyStopId = StopId.make("tj:transfer-only");
+  return JSON.stringify(
+    Schema.encodeUnknownSync(NetworkSnapshot)({
+      ...decoded,
+      stops: [...decoded.stops, { ...template, id: transferOnlyStopId, name: "Transfer Only" }],
+      patterns: decoded.patterns.map((pattern) =>
+        pattern.id === "pattern:tj:9C:west"
+          ? { ...pattern, stopIds: ["tj:semanggi", transferOnlyStopId] }
+          : pattern,
+      ),
+      trips: decoded.trips.map((trip) =>
+        trip.patternId === "pattern:tj:9C:west" && trip.availability._tag === "Scheduled"
+          ? {
+              ...trip,
+              availability: {
+                ...trip.availability,
+                stopTimes: trip.availability.stopTimes.map((stopTime) =>
+                  stopTime.stopId === "tj:gbk"
+                    ? { ...stopTime, stopId: transferOnlyStopId }
+                    : stopTime,
+                ),
+              },
+            }
+          : trip,
+      ),
+    }),
+  );
+})();
 
 const artifactFetch =
   (
     loaded: Array<string>,
     geometryBody = geometry,
     manifestBody = manifest,
+    snapshotBody = snapshot,
   ): typeof globalThis.fetch =>
   async (input) => {
     const url = String(input);
     loaded.push(url);
     if (url === manifestUrl) return new Response(manifestBody);
-    if (url.endsWith(".network.json")) return new Response(snapshot);
+    if (url.endsWith(".network.json")) return new Response(snapshotBody);
     if (url.endsWith(".geometry.json")) return new Response(geometryBody);
     return new Response("not found", { status: 404 });
   };
@@ -99,7 +155,7 @@ describe("bus vertical slice", () => {
     const runtime = ManagedRuntime.make(configuredLayer);
     try {
       const artifacts = await runtime.runPromise(ArtifactStore.Service);
-      expect(artifacts.version).toBe("bus-demo-20260718-v1");
+      expect(artifacts.version).toBe(activeArtifactVersion);
       expect(loaded[0]).toBe(manifestUrl);
     } finally {
       await runtime.dispose();
@@ -126,12 +182,103 @@ describe("bus vertical slice", () => {
       expect(result.value.unavailable.failure._tag).toBe("Routing.NoRoute");
   });
 
+  it("returns one station result for child platforms and routes through the station", async () => {
+    const runtime = ManagedRuntime.make(
+      ApplicationRuntime.layerWith({
+        manifestUrl,
+        fetch: artifactFetch([], geometry, manifest, groupedStationSnapshot),
+      }),
+    );
+    try {
+      const result = await runtime.runPromise(
+        Effect.gen(function* () {
+          const service = yield* RouteQuery.Service;
+          const stops = yield* service.searchStops({ query: "Bundaran HI", limit: 8 });
+          const routed = yield* service.journeys(
+            request({
+              origin: { _tag: "Stop", stopId: "tj:bundaran-hi-station" },
+            }),
+          );
+          return { stops, routed };
+        }),
+      );
+
+      expect(result.stops.stops).toHaveLength(1);
+      expect(result.stops.stops[0]?.id).toBe("tj:bundaran-hi-station");
+      expect(result.routed.journeys.length).toBeGreaterThan(0);
+    } finally {
+      await runtime.dispose();
+    }
+  });
+
+  it("only suggests destinations reachable without changing buses", async () => {
+    const runtime = ManagedRuntime.make(
+      ApplicationRuntime.layerWith({
+        manifestUrl,
+        fetch: artifactFetch([], geometry, manifest, transferOnlySnapshot),
+      }),
+    );
+    try {
+      const result = await runtime.runPromise(
+        Effect.gen(function* () {
+          const service = yield* RouteQuery.Service;
+          const direct = yield* service.searchStops({
+            query: "Semanggi",
+            reachableFromStopId: "tj:bundaran-hi",
+            serviceDate: "2026-07-18",
+            departureSeconds: 28_800,
+            limit: 8,
+          });
+          const transferOnly = yield* service.searchStops({
+            query: "Transfer Only",
+            reachableFromStopId: "tj:bundaran-hi",
+            serviceDate: "2026-07-18",
+            departureSeconds: 28_800,
+            limit: 8,
+          });
+          const unavailable = yield* service.searchStops({
+            query: "Semanggi",
+            reachableFromStopId: "tj:bundaran-hi",
+            serviceDate: "2031-01-01",
+            departureSeconds: 28_800,
+            limit: 8,
+          });
+          return { direct, transferOnly, unavailable };
+        }),
+      );
+
+      expect(result.direct.stops.map((stop) => stop.name)).toContain("Semanggi");
+      expect(result.transferOnly.stops).toEqual([]);
+      expect(result.unavailable.stops).toEqual([]);
+    } finally {
+      await runtime.dispose();
+    }
+  });
+
+  it("clips journey geometry to the boarded section of a route", async () => {
+    const result = await withRuntime((runtime) =>
+      journeys(
+        runtime,
+        request({
+          origin: { _tag: "Stop", stopId: "tj:tosari" },
+          destination: { _tag: "Stop", stopId: "tj:semanggi" },
+        }),
+      ),
+    );
+
+    expect(result.value.journeys[0]?.geometry).toEqual([
+      [106.8232, -6.1989],
+      [106.8228, -6.2057],
+      [106.8096, -6.2195],
+    ]);
+  });
+
   it("rejects an activation that mixes topology and geometry generations", async () => {
     const loaded: Array<string> = [];
     const first = await Effect.runPromise(
       ArtifactStore.load({ manifestUrl, fetch: artifactFetch(loaded) }),
     );
-    const nextManifest = manifest.replace("bus-demo-20260718-v1", "bus-demo-20260718-v2");
+    const nextManifest = manifest.replace(activeArtifactVersion, `${activeArtifactVersion}-next`);
     const nextGeometry = geometry.replace("2026-07-18T00:00:00.000Z", "2026-07-19T00:00:00.000Z");
     const switched = await Effect.runPromise(
       Effect.result(
@@ -142,7 +289,7 @@ describe("bus vertical slice", () => {
       ),
     );
 
-    expect(first.version).toBe("bus-demo-20260718-v1");
+    expect(first.version).toBe(activeArtifactVersion);
     expect(Result.isFailure(switched)).toBe(true);
     if (Result.isFailure(switched))
       expect(switched.failure.reason).toContain("different compilation runs");
@@ -179,6 +326,9 @@ describe("bus vertical slice", () => {
     });
 
     expect(result.value.direct.journeys[0]?.label).toContain("1");
+    expect(result.value.direct.journeys[0]?.legs.find((leg) => leg._tag === "Transit")).toEqual(
+      expect.objectContaining({ color: "#c6312c" }),
+    );
     expect(result.value.transfer.journeys[0]?.transfers).toBe(1);
     expect(
       result.value.excluded.journeys
@@ -221,6 +371,7 @@ describe("bus vertical slice", () => {
         onLockLeg={() => undefined}
         onRetry={() => undefined}
         onClearRules={() => undefined}
+        onChangeStops={() => undefined}
       />
     ));
 

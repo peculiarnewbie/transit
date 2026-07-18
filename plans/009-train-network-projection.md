@@ -1,7 +1,7 @@
 # Plan 009: Publish imported and curated trains as a canonical network
 
 > **Executor instructions**: This plan may run in parallel with Plan 008 after
-> Plans 005 and 006 merge. It must not add file routes or edit
+> Plans 005, 006, and 016 merge. It must not add file routes or edit
 > `src/routeTree.gen.ts`.
 > A projection of one hand-picked route or one train system is not completion.
 > The implementation must process every supported imported system (KRL, MRT,
@@ -15,7 +15,7 @@
 - **Priority**: P1
 - **Effort**: L
 - **Risk**: HIGH
-- **Depends on**: Plans 005, 006
+- **Depends on**: Plans 005, 006, 016
 - **Category**: feature / data projection / correctness
 - **Planned at**: commit `07703bb`, 2026-07-18
 

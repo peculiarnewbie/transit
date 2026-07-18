@@ -63,6 +63,9 @@ export interface StopSuggestion extends Schema.Schema.Type<typeof StopSuggestion
 export const StopSearchRequest = Schema.Struct({
   query: Schema.optionalKey(Schema.String.check(Schema.isMaxLength(80))),
   coordinate: Schema.optionalKey(Coordinate),
+  reachableFromStopId: Schema.optionalKey(StopId),
+  serviceDate: Schema.optionalKey(ServiceDate),
+  departureSeconds: Schema.optionalKey(ServiceDaySeconds),
   limit: Schema.Int.check(Schema.isBetween({ minimum: 1, maximum: 20 })),
 });
 export interface StopSearchRequest extends Schema.Schema.Type<typeof StopSearchRequest> {}
@@ -75,6 +78,7 @@ export const TransitJourneyLeg = Schema.TaggedStruct("Transit", {
   minutes: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
   stops: Schema.Int.check(Schema.isGreaterThanOrEqualTo(1)),
   tone: Schema.Literals(["red", "blue", "yellow", "green"]),
+  color: Schema.String.check(Schema.isPattern(/^#[0-9a-f]{6}$/i)),
   lock: LockedLeg,
 });
 export interface TransitJourneyLeg extends Schema.Schema.Type<typeof TransitJourneyLeg> {}

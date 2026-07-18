@@ -69,6 +69,12 @@ export const createApiPassengerAdapter = (
   },
   searchStops: async (query = "", options) => {
     const parameters = new URLSearchParams({ q: query, limit: "8" });
+    if (options?.reachableFromStopId !== undefined) {
+      const clock = jakartaClock(now());
+      parameters.set("from", options.reachableFromStopId);
+      parameters.set("date", clock.serviceDate);
+      parameters.set("departure", String(clock.departureSeconds));
+    }
     const response = await fetcher(`/api/stops?${parameters}`, { signal: options?.signal });
     if (!response.ok) throw new Error(await messageFromResponse(response));
     const decoded = await Effect.runPromise(

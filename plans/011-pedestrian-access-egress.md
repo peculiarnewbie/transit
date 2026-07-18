@@ -1,14 +1,15 @@
 # Plan 011: Add street-routed pedestrian access and egress
 
 > **Executor instructions**: Start only after Plan 010 has shipped the
-> station-to-station bus/train product. Preserve that workflow as a complete,
-> independent fallback. This plan may add arbitrary-coordinate endpoints only
+> place-aware bus/train product. Preserve its transit guidance and Plan 016's
+> static bus helper as complete, independent fallbacks. This plan may add
+> routable coordinate access/egress only
 > through a real pedestrian street graph; it must never estimate a user-facing
 > walk from straight-line distance.
 > Do not call this plan complete from one successful pedestrian route or a
 > provider demo. Completion requires the reviewed Jakarta correctness corpus,
-> failure and cost behavior, both access and egress, and the station-to-station
-> fallback to pass against the selected production runtime.
+> failure and cost behavior, both access and egress, and the transit-only route-
+> helper fallback to pass against the selected production runtime.
 >
 > **Drift check**: `git diff --stat HEAD -- src/domain src/street-routing src/runtime src/routes/api src/features/passenger src/components/map performance wrangler.jsonc`
 
@@ -18,19 +19,18 @@
 - **Effort**: XL
 - **Risk**: HIGH
 - **Depends on**: Plan 010
-- **Category**: optional feature / provider integration / cost / correctness
-- **Planned at**: post-V1
+- **Category**: final product capability / provider integration / cost / correctness
+- **Planned at**: after Plan 010
 
 ## Why this matters
 
-The station-to-station product is useful without pretending to replace an
-established map application. Door-to-door planning can still remove a major
-piece of passenger effort later, but Jakarta makes geometric walking estimates
-untrustworthy: rivers, toll roads, railway corridors, gates, barriers, missing
-crossings, and station entrances can turn a nearby stop into an impossible or
-unsafe access path.
+The place-aware transit-only product is useful without pretending that a nearby
+choice is a walkable path. Door-to-door planning completes the passenger task,
+but Jakarta makes geometric walking estimates untrustworthy: rivers, toll
+roads, railway corridors, gates, barriers, missing crossings, and station
+entrances can turn a nearby stop into an impossible or unsafe access path.
 
-This plan adds optional origin-to-stop and stop-to-destination pedestrian legs
+This plan adds routed origin-to-stop and stop-to-destination pedestrian legs
 using an OSM-derived street graph. It does not change how the transit router
 chooses bus/train legs or how curated transfers connect systems.
 
@@ -38,7 +38,8 @@ chooses bus/train legs or how curated transfers connect systems.
 
 After Plan 010:
 
-- passengers select explicit transit stops or stations as both endpoints;
+- passengers can select ordinary places and nearby transit choices, but those
+  choices carry only honest geographic proximity—not pedestrian routes;
 - the canonical transit network contains only published, reviewed walking
   transfers;
 - the routing core already accepts bounded origin/destination stop candidates
@@ -46,7 +47,8 @@ After Plan 010:
   selected stop at each end;
 - no street-routing provider, arbitrary-coordinate journey DTO, provider budget,
   or street-routing failure UX exists;
-- station-to-station routing works without an external street service.
+- place discovery and transit-only guidance work without an external street
+  service.
 
 ## Commands
 
@@ -63,7 +65,7 @@ After Plan 010:
 - `src/street-routing/**` provider-neutral contracts, service, fixtures, and
   adapters
 - minimal shared journey-contract changes required to distinguish selected
-  transit endpoints from arbitrary coordinates
+  passenger places, transit candidates, and routed endpoint coordinates
 - `src/runtime/**` explicit street-router layer wiring
 - passenger journey API and UI extensions for coordinate access/egress
 - map rendering for returned pedestrian geometry
@@ -80,8 +82,8 @@ After Plan 010:
 - Using street routing to invent or bypass curated stop-to-stop transfers
 - Straight-line, radius/speed, or crow-flies walking estimates in passenger
   results
-- Address/POI geocoding; arbitrary endpoints enter through a map point, device
-  location, or already-resolved coordinates
+- New address/POI geocoding; reuse Plan 014's selected places, with map/device
+  coordinates when a precise walking endpoint is required
 - Bicycle, motorcycle, car, taxi, parking, pickup/drop-off, traffic, or other
   vehicle connector behavior
 - Google APIs or SDKs
@@ -92,15 +94,18 @@ After Plan 010:
 ## Git workflow
 
 - Branch: `work/011-pedestrian-access-egress`
-- Suggested commit: `feat(routing): add optional pedestrian access and egress`
+- Suggested commit: `feat(routing): add pedestrian access and egress`
 
 ## Steps
 
 ### Step 1: Define provider-neutral pedestrian contracts
 
-Add boundary schemas that distinguish a selected transit endpoint from an
-arbitrary coordinate. Model journey and street-routing variants as tagged
-unions rather than optional coordinate/stop fields or interacting booleans.
+Add boundary schemas that distinguish a selected passenger place, its precise
+walking coordinate, and the transit candidates considered. Model journey and
+street-routing variants as tagged unions rather than optional coordinate/stop
+fields or interacting booleans. For a broad area without a truthful entrance
+point, require the passenger to refine the walking endpoint instead of routing
+from an arbitrary centroid.
 
 Define a `StreetRouter` Effect service whose named methods accept one coordinate
 and a bounded set of candidate transit stops, then return feasible pedestrian
@@ -155,14 +160,14 @@ transfer-only transit interchange.
 
 ### Step 4: Add an explicit door-to-door passenger mode
 
-Keep station-to-station selection as the default complete workflow. Add an
-explicit optional mode that accepts map/device coordinates, explains that
-pedestrian routing depends on mapped paths, and renders routed access/egress
-legs separately from transit and curated-transfer legs. Do not add address
-search in this plan.
+Keep the Plan 014 place-selection and transit-only guidance as the complete
+fallback. Add routed access/egress for precise landmark, map, or device
+coordinates, explain that pedestrian routing depends on mapped paths, and
+render those legs separately from transit and curated-transfer legs. Reuse
+existing place search; do not add another geocoder in this plan.
 
 If street routing is unavailable, over budget, or returns no path, retain the
-user's inputs and offer station-to-station planning. Never silently substitute
+user's inputs and offer transit-only guidance. Never silently substitute
 a straight line, zero-duration connector, or nearest stop. Ensure screen-reader
 text distinguishes the app-covered transit journey from the access/egress
 estimate.
@@ -210,15 +215,15 @@ is enabled by default.
 Extend `npm run perf` with cold/warm end-to-end journey searches, weak-mobile
 response/rendering measurements, provider/container failure injection, and a
 machine-readable cost projection. Roll out behind an explicit feature flag or
-bounded cohort while station-to-station remains universally available.
+bounded cohort while transit-only guidance remains universally available.
 
 Define operational thresholds for provider failure rate, no-path rate, latency,
 credit/container spend, and automatic disabling of only door-to-door mode. A
-street-router incident must not take down stop search or station-to-station
-journeys.
+street-router incident must not take down place search or transit-only
+guidance.
 
 **Verify**: failure injection disables/degrades only coordinate access/egress,
-and the full station-to-station acceptance corpus remains unchanged.
+and the full Plan 012 route-helper acceptance corpus remains unchanged.
 
 ## Test plan
 
@@ -226,13 +231,15 @@ At minimum cover tagged endpoint/connector schemas, invalid coordinates, snap
 rejection, bounded stop shortlisting, inaccessible nearby stops, route geometry,
 provider malformed responses, typed provider failures, timeout/circuit behavior,
 credit ceilings, cache/licensing configuration, redacted telemetry, runtime
-equivalence on the Jakarta corpus, and station-only fallback. Use explicit test
+equivalence on the Jakarta corpus, and transit-only fallback. Use explicit test
 layers and no live provider calls in ordinary CI.
 
 ## Done criteria
 
-- [ ] Station-to-station planning remains the default and works independently.
-- [ ] Arbitrary coordinates are accepted only in explicit door-to-door mode.
+- [ ] Place discovery and transit-only guidance remain available and work
+      independently of the street router.
+- [ ] Precise endpoint coordinates are routed only through explicit
+      door-to-door behavior.
 - [ ] Every displayed access/egress duration and geometry comes from an accepted
       pedestrian street graph; no straight-line fallback exists.
 - [ ] Street routing cannot invent stop-to-stop or cross-system transfers.
@@ -246,7 +253,7 @@ layers and no live provider calls in ordinary CI.
       passes.
 - [ ] The completion report publishes corpus coverage and pass/fail results for
       every barrier category, both access and egress, provider failures, budget
-      exhaustion, and station-to-station fallback.
+      exhaustion, and transit-only fallback.
 - [ ] Evidence comes from the selected runtime and versioned pedestrian graph
       or provider, not only mocks or one successful route.
 - [ ] A completion report satisfies the repository completion integrity
@@ -264,7 +271,7 @@ layers and no live provider calls in ordinary CI.
   runtime before implementation.
 - A Cloudflare Container graph exceeds measured image, memory, disk, startup, or
   cost gates; do not increase scope to Indonesia-wide infrastructure.
-- Door-to-door failure cannot be isolated from station-to-station routing.
+- Door-to-door failure cannot be isolated from transit-only guidance.
 
 ## Maintenance notes
 

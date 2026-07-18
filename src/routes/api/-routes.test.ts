@@ -98,7 +98,9 @@ describe("passenger API routes", () => {
   it("parses and bounds stop search parameters", async () => {
     const execute = vi.fn(async () => ({ stops: fixtureStops.slice(0, 2) }));
     const response = await handleStopRequest(
-      new Request("https://transit.test/api/stops?q=tosari&lat=-6.2&lng=106.8&limit=2"),
+      new Request(
+        "https://transit.test/api/stops?q=tosari&lat=-6.2&lng=106.8&from=tj%3Abundaran-hi&date=2026-07-18&departure=28800&limit=2",
+      ),
       execute,
     );
 
@@ -106,6 +108,9 @@ describe("passenger API routes", () => {
     expect(execute).toHaveBeenCalledWith("https://transit.test/artifacts/active.json", {
       query: "tosari",
       coordinate: { latitude: -6.2, longitude: 106.8 },
+      reachableFromStopId: "tj:bundaran-hi",
+      serviceDate: "2026-07-18",
+      departureSeconds: 28_800,
       limit: 2,
     });
     expect(response.headers.get("cache-control")).toContain("max-age=60");

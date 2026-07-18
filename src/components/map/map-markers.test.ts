@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { endpointFeatureCollection } from "./map-markers.js";
+import { endpointFeatureCollection, stopSuggestionFromMapFeature } from "./map-markers.js";
 
 describe("endpoint map markers", () => {
   it("places selected origin and destination coordinates on the map", () => {
@@ -23,5 +23,19 @@ describe("endpoint map markers", () => {
 
   it("omits endpoints that have not been selected", () => {
     expect(endpointFeatureCollection({}).features).toEqual([]);
+  });
+
+  it("decodes a published stop feature into an endpoint suggestion", () => {
+    expect(
+      stopSuggestionFromMapFeature({
+        properties: { kind: "stop", id: "tj:tosari", name: "Tosari", area: "Jakarta" },
+        geometry: { type: "Point", coordinates: [106.8232, -6.1989] },
+      }),
+    ).toEqual({
+      id: "tj:tosari",
+      name: "Tosari",
+      area: "Jakarta",
+      coordinate: { longitude: 106.8232, latitude: -6.1989 },
+    });
   });
 });

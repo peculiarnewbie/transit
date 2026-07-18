@@ -1,8 +1,9 @@
 # Plan 010: Add multimodal routing and choose the production routing runtime
 
-> **Executor instructions**: Start only after bus routing, admin publication,
-> and train projection are complete. Keep the Plan 007 Worker-hosted router as
-> the baseline until measurements justify a runtime change. This is an
+> **Executor instructions**: Start only after the usable bus route helper,
+> admin publication, and train projection are complete. Preserve Plan 016's
+> static bus helper as a complete fallback. Keep the Worker-hosted router as the
+> baseline until measurements justify a runtime change. This is an
 > integration and hardening plan, not permission to redesign working source
 > lanes or maintain two routing implementations.
 > Do not mark this plan complete from one bus/train interchange or one golden
@@ -17,7 +18,7 @@
 - **Priority**: P2
 - **Effort**: XL
 - **Risk**: HIGH
-- **Depends on**: Plans 007, 008, 009
+- **Depends on**: Plans 008, 009, 016
 - **Category**: integration / performance / runtime decision / feature
 - **Planned at**: commit `07703bb`, 2026-07-18
 
@@ -28,12 +29,12 @@ priority: usefulness on weak mobile connections. Multimodal routing should add
 explicit curated transfers and honest schedule precision without increasing the
 initial client payload or delaying the bus experience.
 
-Plan 007 deliberately ships the straightforward architecture first: route in a
-Cloudflare Worker behind a typed HTTP API. This plan measures that deployed
-baseline before deciding whether routing should remain in Workers, move into a
-browser Web Worker with a versioned cached graph, or fall back to a Cloudflare
-Container. The decision must be based on cold and warm behavior on realistic
-devices and production-like infrastructure, not assumed from artifact size.
+Plan 016 deliberately qualifies the straightforward Worker-hosted bus product
+first. This plan measures that deployed baseline before deciding whether
+multimodal routing should remain in Workers, move into a browser Web Worker
+with a versioned cached graph, or fall back to a Cloudflare Container. The
+decision must be based on cold and warm behavior on realistic devices and
+production-like infrastructure, not assumed from artifact size.
 
 ## Current state
 
@@ -85,7 +86,7 @@ After prerequisites:
 - Full offline city-map download
 - Sending query-specific graph fragments that can omit valid transfer paths
 - Maintaining separate browser and server routing algorithms
-- Moving routing into the browser before the Plan 007 server baseline is
+- Moving routing into the browser before the Plan 016 server baseline is
   measured
 - Building a custom OSM tile pipeline unless measurements show it is necessary
 - Journey fares or real-time vehicle prediction
@@ -113,11 +114,12 @@ Preserve existing line exclusion/preference/requirement/locking across modes.
 Score `Scheduled`, `FrequencyOnly`, and `TopologyOnly` legs differently and
 surface uncertainty rather than turning it into fake exact times.
 
-Every V1 journey still begins and ends at an explicitly selected transit stop
-or station. Walking legs represent only published, reviewed transfer edges;
-geographic proximity must not create a transfer or walking estimate. Retain
-transfer direction, minimum duration, accessibility information, notes, and
-verification provenance in the composed network and returned journey.
+Every journey begins with Plan 014's selected passenger place and bounded
+nearby transit choices. It may combine bus and train only through explicit
+published transfers. Endpoint proximity remains geographic selection evidence,
+not a walking leg, duration, feasibility claim, or transfer. Retain transfer
+direction, minimum duration, accessibility information, notes, and verification
+provenance in the composed network and returned journey.
 
 **Verify**: tests cover bus→train, train→bus, two transfers, directionality,
 unavailable service, excluded train line, and no inferred nearby transfer.
@@ -126,8 +128,9 @@ unavailable service, excluded train line, and no inferred nearby transfer.
 
 Return mode, provenance/freshness, uncertainty, station/boarding-point names,
 and transfer walking notes. The UI must explain when a train time is approximate
-or unavailable. It must also state the selected start and end stop/station so it
-does not imply door-to-door coverage. Keep geometry detail lazy and bounded.
+or unavailable. It must state the selected passenger places and chosen transit
+boarding/alighting places so it does not imply door-to-door coverage. Keep
+geometry detail lazy and bounded.
 
 **Verify**: accessibility tests confirm uncertainty is conveyed in text, not
 color/icon alone.
@@ -139,7 +142,7 @@ Measure on a throttled mobile profile:
 - initial HTML/CSS/JS bytes and time to usable journey controls;
 - lazy MapLibre chunk size;
 - requests/bytes for initial Jakarta viewport;
-- stop search and journey API response sizes/latency;
+- place search, route-guide, and multimodal API response sizes/latency;
 - Worker snapshot fetch, decode, index-build, and peak-memory cost;
 - Worker cold and warm routing latency and CPU time;
 - interaction/rendering with all alternatives and one selected geometry.
@@ -180,7 +183,7 @@ Measure on representative low-end mobile profiles:
 - correctness equivalence with the server runtime.
 
 This step is an experiment behind the existing passenger adapter. The
-production UI continues to call the Plan 007 API until Step 6 selects another
+production UI continues to call the Plan 016 API until Step 6 selects another
 runtime.
 
 **Verify**: every server golden query has a byte-equivalent browser result, and

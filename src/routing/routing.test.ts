@@ -1,6 +1,7 @@
 import { Effect, Result, Schema } from "effect";
 import { describe, expect } from "vitest";
 
+import { StopId } from "../domain/transit/index.js";
 import { itEffect } from "../testing/effect.js";
 import {
   InvalidConstraint,
@@ -111,6 +112,21 @@ describe("validated routing index", () => {
   );
 
   itEffect(
+    "indexes child platforms by their parent station",
+    Effect.gen(function* () {
+      const snapshot = cloneNetwork();
+      const parent = first(snapshot.stops);
+      const platformId = StopId.make("stop:A:platform");
+      const input = {
+        ...snapshot,
+        stops: [...snapshot.stops, { ...parent, id: platformId, parentStopId: parent.id }],
+      };
+      const index = yield* RoutingIndex.make(input);
+      expect(index.childStopIdsByParent.get(StopId.make(parent.id))).toEqual([platformId]);
+    }),
+  );
+
+  itEffect(
     "rejects trip stop times that disagree with pattern order",
     Effect.gen(function* () {
       const snapshot = cloneNetwork();
@@ -148,6 +164,21 @@ describe("routing behavior", () => {
   );
 
   itEffect(
+    "returns the best journey for each distinct route sequence",
+    Effect.gen(function* () {
+      const result = yield* route(queryFixture());
+      const routeSequences = result.itineraries.map((itinerary) => itinerary.boardedRouteIds);
+      expect(routeSequences).toContainEqual(["route:fast"]);
+      expect(routeSequences).toContainEqual(["route:slow"]);
+      expect(
+        routeSequences.some((routeIds) =>
+          routeIds.some((routeId, index) => index > 0 && routeId === routeIds[index - 1]),
+        ),
+      ).toBe(false);
+    }),
+  );
+
+  itEffect(
     "finds a one-transfer journey",
     Effect.gen(function* () {
       const result = yield* route(
@@ -162,6 +193,87 @@ describe("routing behavior", () => {
         "route:connector",
       ]);
       expect(first(result.itineraries).transferCount).toBe(1);
+    }),
+  );
+
+  itEffect(
+    "uses a parent-station transfer to reach a linked platform",
+    Effect.gen(function* () {
+      const base = cloneNetwork();
+      const origin = first(base.stops.filter((stop) => stop.id === "stop:E"));
+      const destination = first(base.stops.filter((stop) => stop.id === "stop:D"));
+      const snapshot = {
+        ...base,
+        stops: [
+          ...base.stops.map((stop) =>
+            stop.id === origin.id ? { ...stop, parentStopId: "station:E" } : stop,
+          ),
+          { ...origin, id: "station:E" },
+          { ...origin, id: "station:linked" },
+          { ...origin, id: "stop:linked-platform", parentStopId: "station:linked" },
+        ],
+        patterns: [
+          ...base.patterns,
+          {
+            id: "pattern:linked",
+            routeId: "route:fast",
+            sourceRefs: [],
+            stopIds: ["stop:linked-platform", destination.id],
+          },
+        ],
+        trips: [
+          ...base.trips,
+          {
+            id: "trip:linked",
+            patternId: "pattern:linked",
+            serviceId: "service:weekday",
+            sourceRefs: [],
+            availability: {
+              _tag: "Scheduled",
+              stopTimes: [
+                {
+                  stopId: "stop:linked-platform",
+                  sequence: 0,
+                  arrivalSeconds: 28_800,
+                  departureSeconds: 28_800,
+                },
+                {
+                  stopId: destination.id,
+                  sequence: 1,
+                  arrivalSeconds: 30_000,
+                  departureSeconds: 30_000,
+                },
+              ],
+              frequencyWindows: [],
+            },
+          },
+        ],
+        transfers: [
+          ...base.transfers,
+          {
+            fromStopId: "station:E",
+            toStopId: "station:linked",
+            sourceRefs: [],
+            kind: "Recommended",
+          },
+        ],
+      };
+      const result = yield* route(
+        queryFixture({
+          origins: [{ stopId: origin.id, walkSeconds: 0 }],
+          maximumTransfers: 0,
+          lineConstraint: { _tag: "Required", routeIds: ["route:fast"] },
+        }),
+        snapshot,
+      );
+      expect(first(result.itineraries).boardedRouteIds).toEqual(["route:fast"]);
+      expect(first(result.itineraries).legs).toContainEqual(
+        expect.objectContaining({
+          _tag: "Walk",
+          from: { _tag: "Stop", stopId: "station:E" },
+          to: { _tag: "Stop", stopId: "station:linked" },
+        }),
+      );
     }),
   );
 

@@ -45,7 +45,7 @@ describe("passenger API adapter", () => {
       receivedSignal = init?.signal;
       return Response.json({ error: { code: "NO_ROUTE", message: "No route" } }, { status: 404 });
     };
-    const adapter = createApiPassengerAdapter(fetcher);
+    const adapter = createApiPassengerAdapter(fetcher, () => new Date("2026-07-18T01:00:00.000Z"));
     const controller = new AbortController();
 
     const journeys = await adapter.search(query, { signal: controller.signal });
@@ -60,12 +60,16 @@ describe("passenger API adapter", () => {
       requestedUrl = input instanceof Request ? input.url : String(input);
       return Response.json({ stops: fixtureStops.slice(0, 2) });
     };
-    const adapter = createApiPassengerAdapter(fetcher);
+    const adapter = createApiPassengerAdapter(fetcher, () => new Date("2026-07-18T01:00:00.000Z"));
 
-    const stops = await adapter.searchStops?.("tosari");
+    const stops = await adapter.searchStops?.("tosari", {
+      reachableFromStopId: fixtureStop(0).id,
+    });
 
     expect(stops).toHaveLength(2);
     expect(stops?.[0]?.name).toBe("Bundaran HI Astra");
-    expect(requestedUrl).toBe("/api/stops?q=tosari&limit=8");
+    expect(requestedUrl).toBe(
+      `/api/stops?q=tosari&limit=8&from=${encodeURIComponent(fixtureStop(0).id)}&date=2026-07-18&departure=28800`,
+    );
   });
 });

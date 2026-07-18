@@ -3,6 +3,10 @@
 > **Executor instructions**: Merge Plans 002, 003, and 004 first. This plan owns
 > runtime composition, passenger API routes, generated route-tree changes, and
 > replacing UI fixtures with the real adapter.
+> This plan is now a technical baseline, not the public passenger release gate.
+> Plans 012–016 supersede its stop-only/timetable product assumptions and own
+> the usable, place-aware, time-independent bus midpoint. Preserve completed
+> technical work so Plan 016 can reconcile it deliberately.
 >
 > **Drift check**: `git diff --stat 07703bb..HEAD -- src/routes src/runtime src/features/passenger src/routeTree.gen.ts wrangler.jsonc`
 
@@ -18,10 +22,11 @@
 
 ## Why this matters
 
-This is the first deployable product slice: choose two Jakarta transit stops,
-receive TransJakarta alternatives, constrain actual lines, and inspect the
-result on the map. It is also the gate that proves compiler, router, and UI
-contracts agree before train complexity enters.
+This establishes the first deployable technical slice: canonical artifacts,
+routing, typed APIs, runtime composition, and real adapter wiring. It proves
+that compiler, router, and UI contracts can integrate, but its stop-only,
+date/time-oriented flow is not the first public product. Plans 012–016 use this
+baseline to ship the usable bus route helper before train complexity enters.
 
 ## Current state
 
@@ -143,6 +148,8 @@ map-independent itinerary rendering.
 - [ ] Passenger UI uses the real adapter in production.
 - [ ] Production journeys begin and end at explicitly selected transit stops;
       no arbitrary-coordinate or inferred access/egress path is exposed.
+      This is a technical-slice criterion only; Plan 016 supersedes it for the
+      public midpoint with place-aware endpoint discovery.
 - [ ] TanStack Start remains in SPA mode with `defaultSsr: false`.
 - [ ] Snapshot activation is atomic and versioned.
 - [ ] Generated route tree is current.

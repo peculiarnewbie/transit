@@ -7,6 +7,7 @@ export const ArtifactManifest = Schema.Struct({
   version: Schema.String.check(Schema.isNonEmpty()),
   snapshotUrl: Schema.String.check(Schema.isNonEmpty()),
   geometryUrl: Schema.String.check(Schema.isNonEmpty()),
+  routeMapUrl: Schema.optionalKey(Schema.String.check(Schema.isNonEmpty())),
 });
 export interface ArtifactManifest extends Schema.Schema.Type<typeof ArtifactManifest> {}
 

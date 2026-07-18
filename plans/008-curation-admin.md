@@ -1,6 +1,6 @@
 # Plan 008: Build the protected station and topology editor
 
-> **Executor instructions**: Merge Plans 004, 006, and 007 first. This plan owns
+> **Executor instructions**: Merge Plans 004, 006, and 016 first. This plan owns
 > all `/admin` routes, admin APIs, and route-tree generation. It edits curation
 > through the service from Plan 006; it never edits imported JSON.
 > Do not call this plan complete after implementing only one editor screen or
@@ -15,7 +15,7 @@
 - **Priority**: P1
 - **Effort**: L
 - **Risk**: HIGH
-- **Depends on**: Plans 004, 006, 007
+- **Depends on**: Plans 004, 006, 016
 - **Category**: internal tooling / security / feature
 - **Planned at**: commit `07703bb`, 2026-07-18
 
@@ -29,8 +29,9 @@ accidental publication.
 ## Current state
 
 Plan 006 provides draft/revision/publish services and D1 persistence. Plan 004
-provides reusable MapLibre patterns. Plan 007 owns the existing passenger
-routes. No authentication convention exists in the scaffold.
+provides reusable MapLibre patterns. Plan 016 owns the released passenger
+routes and has qualified the bus midpoint. No authentication convention exists
+in the scaffold.
 
 ## Commands
 

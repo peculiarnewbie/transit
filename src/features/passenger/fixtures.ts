@@ -98,6 +98,7 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 17,
         stops: 6,
         tone: "red",
+        color: "#e0442e",
         lock: lock({
           routeId: fixtureRouteIds.one,
           key: "one",
@@ -133,6 +134,7 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 11,
         stops: 4,
         tone: "blue",
+        color: "#31556f",
         lock: lock({
           routeId: fixtureRouteIds.sixB,
           key: "six-b",
@@ -151,6 +153,7 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 9,
         stops: 3,
         tone: "yellow",
+        color: "#f5c542",
         lock: lock({
           routeId: fixtureRouteIds.nineC,
           key: "nine-c",
@@ -184,6 +187,7 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 9,
         stops: 3,
         tone: "blue",
+        color: "#31556f",
         lock: lock({
           routeId: fixtureRouteIds.sixB,
           key: "six-b-north",
@@ -202,6 +206,7 @@ const journeys: ReadonlyArray<Journey> = [
         minutes: 22,
         stops: 7,
         tone: "red",
+        color: "#e0442e",
         lock: lock({
           routeId: fixtureRouteIds.one,
           key: "one-south",
