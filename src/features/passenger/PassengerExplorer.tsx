@@ -36,6 +36,15 @@ export interface PassengerExplorerProps {
   readonly mapStyleUrl?: string;
 }
 
+type StopSearchState =
+  | { readonly _tag: "Idle" }
+  | { readonly _tag: "Searching" }
+  | { readonly _tag: "Ready" }
+  | { readonly _tag: "Failed" };
+
+const coordinateForEndpoint = (endpoint: JourneyEndpoint | undefined): Coordinate | undefined =>
+  endpoint?._tag === "Stop" ? endpoint.stop.coordinate : endpoint?.coordinate;
+
 export default function PassengerExplorer(props: PassengerExplorerProps) {
   const adapter = () => props.adapter ?? apiPassengerAdapter;
   const [origin, setOrigin] = createSignal<JourneyEndpoint>();
@@ -45,6 +54,8 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
   const [suggestions, setSuggestions] = createSignal<ReadonlyArray<StopSuggestion>>(
     props.adapter === undefined ? [] : fixtureStops,
   );
+  const [stopQuery, setStopQuery] = createSignal("");
+  const [stopSearchState, setStopSearchState] = createSignal<StopSearchState>({ _tag: "Idle" });
   let searchController: AbortController | undefined;
   let statusHeading: HTMLHeadingElement | undefined;
 
@@ -67,33 +78,32 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
 
   createEffect(() => {
     if (activeEndpoint() === undefined || adapter().searchStops === undefined) return;
+    const query = stopQuery().trim();
     const controller = new AbortController();
+    setStopSearchState({ _tag: "Searching" });
     void adapter()
-      .searchStops?.("", { signal: controller.signal })
-      .then(setSuggestions)
-      .catch(() => undefined);
+      .searchStops?.(query, { signal: controller.signal })
+      .then((stops) => {
+        if (controller.signal.aborted) return;
+        setSuggestions(stops);
+        setStopSearchState({ _tag: "Ready" });
+      })
+      .catch(() => {
+        if (!controller.signal.aborted) setStopSearchState({ _tag: "Failed" });
+      });
     onCleanup(() => controller.abort());
   });
 
   onCleanup(() => searchController?.abort());
 
   const chooseEndpoint = (kind: EndpointKind) => {
+    setStopQuery("");
     setActiveEndpoint(kind);
     setState({ _tag: "ChoosingEndpoint", endpoint: kind });
   };
 
   const selectStop = (stop: StopSuggestion) => {
     setEndpoint(activeEndpoint() ?? "origin", { _tag: "Stop", stop });
-  };
-
-  const selectMapPoint = (coordinate: Coordinate) => {
-    const kind = activeEndpoint();
-    if (kind === undefined) return;
-    setEndpoint(kind, {
-      _tag: "MapPoint",
-      coordinate,
-      label: `Pinned at ${coordinate.latitude.toFixed(4)}, ${coordinate.longitude.toFixed(4)}`,
-    });
   };
 
   const setEndpoint = (kind: EndpointKind, endpoint: JourneyEndpoint) => {
@@ -192,7 +202,24 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
 
           <Show when={activeEndpoint() !== undefined}>
             <div {...stylex.props(styles.suggestions)}>
-              <p {...stylex.props(styles.suggestionLabel)}>Nearby stops</p>
+              <label {...stylex.props(styles.stopSearchLabel)}>
+                Search stops
+                <input
+                  type="search"
+                  value={stopQuery()}
+                  onInput={(event) => setStopQuery(event.currentTarget.value)}
+                  placeholder="Try Tosari or Bundaran HI"
+                  autocomplete="off"
+                  {...stylex.props(styles.stopSearchInput)}
+                />
+              </label>
+              <p aria-live="polite" {...stylex.props(styles.suggestionLabel)}>
+                {stopSearchState()._tag === "Searching"
+                  ? "Searching…"
+                  : stopQuery().trim() === ""
+                    ? "Suggested stops"
+                    : `${suggestions().length} matching stops`}
+              </p>
               <ul {...stylex.props(styles.suggestionList)}>
                 <For each={suggestions()}>
                   {(stop) => (
@@ -209,7 +236,14 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
                   )}
                 </For>
               </ul>
-              <p {...stylex.props(styles.mapHint)}>Or tap a precise point on the map.</p>
+              <Show when={stopSearchState()._tag === "Ready" && suggestions().length === 0}>
+                <p {...stylex.props(styles.mapHint)}>No stops match that search.</p>
+              </Show>
+              <Show when={stopSearchState()._tag === "Failed"}>
+                <p role="alert" {...stylex.props(styles.mapHint)}>
+                  Stop search is unavailable. Try again.
+                </p>
+              </Show>
             </div>
           </Show>
 
@@ -255,7 +289,8 @@ export default function PassengerExplorer(props: PassengerExplorerProps) {
               }
               selectedJourneyId={selectedJourneyId()}
               selectedGeometry={selectedJourneyGeometry()}
-              onMapEndpoint={selectMapPoint}
+              origin={coordinateForEndpoint(origin())}
+              destination={coordinateForEndpoint(destination())}
             />
           </Suspense>
         </div>
@@ -636,6 +671,30 @@ const styles = stylex.create({
     letterSpacing: "0.12em",
     margin: "0 0 0.45rem",
     textTransform: "uppercase",
+  },
+  stopSearchLabel: {
+    display: "flex",
+    flexDirection: "column",
+    fontSize: "0.68rem",
+    fontWeight: 900,
+    gap: "0.35rem",
+    letterSpacing: "0.1em",
+    marginBottom: "0.7rem",
+    textTransform: "uppercase",
+  },
+  stopSearchInput: {
+    backgroundColor: "#fffdf5",
+    border: "1px solid #152c3d",
+    borderRadius: 0,
+    color: "#152c3d",
+    font: "inherit",
+    fontSize: "0.82rem",
+    fontWeight: 650,
+    letterSpacing: 0,
+    padding: "0.7rem 0.75rem",
+    textTransform: "none",
+    width: "100%",
+    ":focus-visible": { outline: "3px solid #f5c542", outlineOffset: "2px" },
   },
   suggestionList: {
     display: "grid",

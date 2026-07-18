@@ -55,13 +55,17 @@ describe("passenger API adapter", () => {
   });
 
   it("loads bounded stop suggestions from the real stop endpoint", async () => {
-    const fetcher: typeof globalThis.fetch = async () =>
-      Response.json({ stops: fixtureStops.slice(0, 2) });
+    let requestedUrl: string | undefined;
+    const fetcher: typeof globalThis.fetch = async (input) => {
+      requestedUrl = input instanceof Request ? input.url : String(input);
+      return Response.json({ stops: fixtureStops.slice(0, 2) });
+    };
     const adapter = createApiPassengerAdapter(fetcher);
 
     const stops = await adapter.searchStops?.("tosari");
 
     expect(stops).toHaveLength(2);
     expect(stops?.[0]?.name).toBe("Bundaran HI Astra");
+    expect(requestedUrl).toBe("/api/stops?q=tosari&limit=8");
   });
 });

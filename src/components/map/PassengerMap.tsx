@@ -9,7 +9,8 @@ export interface PassengerMapProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
   readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
-  readonly onMapEndpoint: (coordinate: Coordinate) => void;
+  readonly origin?: Coordinate;
+  readonly destination?: Coordinate;
 }
 
 export default function PassengerMap(props: PassengerMapProps) {
@@ -33,14 +34,15 @@ export default function PassengerMap(props: PassengerMapProps) {
             styleUrl={props.styleUrl}
             selectedJourneyId={props.selectedJourneyId}
             selectedGeometry={props.selectedGeometry}
-            onMapEndpoint={props.onMapEndpoint}
+            origin={props.origin}
+            destination={props.destination}
             onReady={() => setStatus("ready")}
             onFailure={() => setStatus("failed")}
           />
         </Suspense>
       </Show>
       <p {...stylex.props(styles.attribution)}>
-        © OpenStreetMap contributors · Select “From” or “To”, then tap the map
+        © OpenStreetMap contributors · Selected stops appear on the map
       </p>
     </section>
   );
