@@ -103,7 +103,7 @@ describe("place endpoint state", () => {
     ]);
   });
 
-  it("keeps an exact stop usable while local graph entry points resolve", () => {
+  it("keeps an exact stop as the sole routing endpoint", () => {
     const endpoint = selectPlaceResult(
       {
         ...placeResult,
@@ -114,7 +114,29 @@ describe("place endpoint state", () => {
     );
 
     expect(endpoint.nearby._tag).toBe("Loading");
-    expect(candidatesForEndpoint(endpoint)).toEqual([]);
+    expect(candidatesForEndpoint(endpoint)).toEqual([
+      {
+        transitPlaceId: "tp:grogol",
+        primaryName: "Menteng",
+        geographicDistanceMeters: 0,
+      },
+    ]);
+
+    expect(
+      candidatesForEndpoint({
+        ...endpoint,
+        nearby: {
+          _tag: "Ready",
+          choices: [choice("tp:nearby", "Nearby stop", 169)],
+        },
+      }),
+    ).toEqual([
+      {
+        transitPlaceId: "tp:grogol",
+        primaryName: "Menteng",
+        geographicDistanceMeters: 0,
+      },
+    ]);
 
     expect(
       candidatesForEndpoint({ ...endpoint, nearby: { _tag: "Failed", message: "offline" } }),

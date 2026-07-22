@@ -72,19 +72,16 @@ export const reverseEndpoints = (pair: EndpointPair): EndpointPair => ({
 export const candidatesForEndpoint = (
   endpoint: PlaceEndpointState,
 ): ReadonlyArray<TransitEndpointCandidate> => {
-  if (endpoint.nearby._tag === "Loading") return [];
-  if (endpoint.nearby._tag !== "Ready") {
-    const transitPlaceId = endpoint.selected?.transitPlaceId;
-    return transitPlaceId === undefined
-      ? []
-      : [
-          {
-            transitPlaceId,
-            primaryName: endpoint.selected?.displayLabel ?? endpoint.typedText,
-            geographicDistanceMeters: 0,
-          },
-        ];
-  }
+  const selected = endpoint.selected;
+  if (selected?.transitPlaceId !== undefined)
+    return [
+      {
+        transitPlaceId: selected.transitPlaceId,
+        primaryName: selected.displayLabel,
+        geographicDistanceMeters: 0,
+      },
+    ];
+  if (endpoint.nearby._tag !== "Ready") return [];
   return endpoint.nearby.choices.map((choice) => ({
     transitPlaceId: choice.transitPlaceId,
     primaryName: choice.primaryName,

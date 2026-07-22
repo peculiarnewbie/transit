@@ -131,7 +131,7 @@ export const routeGuideRequestFor = (
     networkArtifactVersion: versions.networkArtifactVersion,
     placesArtifactVersion: versions.placesArtifactVersion,
     maximumTransfers: 3,
-    maximumAlternatives: 4,
+    maximumAlternatives: 8,
   };
 };
 
@@ -512,6 +512,9 @@ export default function PlaceRouteHelper(props: PlaceRouteHelperProps) {
     );
   });
   const selectedGuideSegments = createMemo(() => selectedAlternative()?.rideSegments ?? []);
+  const selectedGuideWalkSegments = createMemo(
+    () => selectedAlternative()?.straightLineWalkSegments ?? [],
+  );
   const routingStatus = createMemo(() => {
     const pair = endpoints();
     if (pair.origin.selected === undefined || pair.destination.selected === undefined)
@@ -530,6 +533,7 @@ export default function PlaceRouteHelper(props: PlaceRouteHelperProps) {
             styleUrl={props.mapStyleUrl ?? import.meta.env.VITE_MAP_STYLE_URL ?? defaultMapStyleUrl}
             selectedGeometry={[]}
             selectedGuideSegments={selectedGuideSegments()}
+            selectedGuideWalkSegments={selectedGuideWalkSegments()}
             selectedColor="#31556f"
             origin={endpointCoordinate(endpoints().origin)}
             destination={endpointCoordinate(endpoints().destination)}

@@ -184,6 +184,7 @@ describe("route-helper API routes", () => {
           color: "#31556f",
         },
       ],
+      straightLineWalkSegments: [],
       alternative: {
         id: "guide:1",
         origin: { transitPlaceId: "tp:a", placeName: "A" },

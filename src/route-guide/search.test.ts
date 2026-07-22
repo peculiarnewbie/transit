@@ -45,8 +45,31 @@ describe("route-guide search", () => {
       expect(result._tag).toBe("GuidesFound");
       if (result._tag !== "GuidesFound") return;
       expect(result.alternatives[0]?.metrics.transferCount).toBe(0);
-      expect(result.alternatives[0]?.rideSteps[0]?.lineOptions[0]?.passengerLineName).toBe("1");
+      expect(result.alternatives[0]?.rideSteps).toHaveLength(1);
       expect(result.expandedStates).toBeLessThan(50);
+    }),
+  );
+
+  itEffect(
+    "keeps a distinct transfer strategy alongside a shorter direct ride",
+    Effect.gen(function* () {
+      const graph = yield* compileGraph();
+      const result = yield* searchGuidePaths(
+        graph,
+        queryFor(graph, "stop:choice-origin", "stop:choice-destination", {
+          maximumTransfers: 1,
+        }),
+      );
+      expect(result._tag).toBe("GuidesFound");
+      if (result._tag !== "GuidesFound") return;
+      const lineSequences = result.alternatives.map((alternative) =>
+        alternative.rideSteps
+          .map((step) => step.lineOptions.map((option) => option.passengerLineName).join("/"))
+          .join(">"),
+      );
+      expect(lineSequences).toContain("CD");
+      expect(lineSequences).toContain("CA>CB");
+      expect(result.alternatives[0]?.rideSteps).toHaveLength(1);
     }),
   );
 
@@ -97,6 +120,23 @@ describe("route-guide search", () => {
   );
 
   itEffect(
+    "suppresses a circuit that returns to the boarding place before the same destination place",
+    Effect.gen(function* () {
+      const graph = yield* compileGraph();
+      const result = yield* searchGuidePaths(
+        graph,
+        queryFor(graph, "stop:detour-origin-fast", "stop:detour-destination-fast", {
+          maximumTransfers: 0,
+        }),
+      );
+      expect(result._tag).toBe("GuidesFound");
+      if (result._tag !== "GuidesFound") return;
+      expect(result.alternatives).toHaveLength(1);
+      expect(result.alternatives[0]?.rideSteps[0]?.lineOptions[0]?.passengerLineName).toBe("D1");
+    }),
+  );
+
+  itEffect(
     "finds an explicit named transfer path",
     Effect.gen(function* () {
       const graph = yield* compileGraph();
@@ -114,6 +154,32 @@ describe("route-guide search", () => {
         ),
       );
       expect(named).toBeDefined();
+    }),
+  );
+
+  itEffect(
+    "uses a bounded straight-line walk only as a disclosed transfer",
+    Effect.gen(function* () {
+      const graph = yield* compileGraph();
+      const result = yield* searchGuidePaths(
+        graph,
+        queryFor(graph, "stop:walk-origin", "stop:walk-destination", {
+          maximumTransfers: 1,
+        }),
+      );
+      expect(result._tag).toBe("GuidesFound");
+      if (result._tag !== "GuidesFound") return;
+      const first = result.alternatives[0];
+      expect(first?.rideSteps.map((step) => step.lineOptions[0]?.passengerLineName)).toEqual([
+        "WI",
+        "WO",
+      ]);
+      expect(first?.transfers[0]?.evidence._tag).toBe("StraightLineWalk");
+      expect(first?.metrics.straightLineWalkDistanceMeters).toBeGreaterThan(250);
+      expect(first?.metrics.straightLineWalkDistanceMeters).toBeLessThanOrEqual(400);
+      expect(first?.metrics.journeyDistanceMeters).toBeGreaterThan(
+        first?.metrics.straightLineWalkDistanceMeters ?? 0,
+      );
     }),
   );
 

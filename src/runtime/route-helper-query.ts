@@ -6,7 +6,12 @@ import { TransitPlaceProjection } from "../discovery/transit/index.js";
 import { NetworkSnapshot, type Stop } from "../domain/transit/index.js";
 import type { GuideGraph } from "../route-guide/graph.js";
 import { projectInstructions } from "../route-guide/instructions.js";
-import type { GuideAlternative, RouteGuideError, RouteGuideResult } from "../route-guide/model.js";
+import type {
+  GuideAlternative,
+  RouteGuideError,
+  RouteGuideQuery,
+  RouteGuideResult,
+} from "../route-guide/model.js";
 import { RouteGuide } from "../route-guide/index.js";
 import { ArtifactStore } from "./artifact-store.js";
 import { PlaceArtifactStore } from "./place-artifact-store.js";
@@ -17,6 +22,8 @@ import {
   type PassengerGuideAlternative,
   type PlaceSearchResponse,
   type RouteGuideResponse,
+  type SelectedPlace,
+  type TransitEndpointCandidate,
   NearbyTransitRequest as NearbyTransitRequestSchema,
   PlaceSearchRequest as PlaceSearchRequestSchema,
   RouteGuideRequest as RouteGuideRequestSchema,
@@ -92,6 +99,21 @@ export const distinctPassengerAlternatives = (
   }
   return [...byJourney.values()];
 };
+
+const guideCandidatesFor = (
+  candidates: ReadonlyArray<TransitEndpointCandidate>,
+): RouteGuideQuery["origins"] =>
+  candidates.map((candidate) => ({
+    transitPlaceId: candidate.transitPlaceId,
+    ...(candidate.geographicDistanceMeters === undefined
+      ? {}
+      : { geographicDistanceMeters: candidate.geographicDistanceMeters }),
+  }));
+
+const exactGuideCandidateFor = (place: SelectedPlace): RouteGuideQuery["origins"] | undefined =>
+  place.transitPlaceId === undefined
+    ? undefined
+    : [{ transitPlaceId: place.transitPlaceId, geographicDistanceMeters: 0 }];
 
 const placedCoordinate = (stop: Stop): readonly [number, number] | undefined =>
   stop.location._tag === "Placed" ? [stop.location.longitude, stop.location.latitude] : undefined;
@@ -183,6 +205,35 @@ const rideSegmentsFor = (
       : [{ coordinates: segment, color: routeColorById.get(option.routeId) ?? "#31556f" }];
   });
 
+const straightLineWalkSegmentsFor = (graph: GuideGraph, alternative: GuideAlternative) => {
+  const walks = [
+    alternative.originWalk,
+    ...alternative.transfers.flatMap((transfer) =>
+      transfer.evidence._tag === "StraightLineWalk"
+        ? [
+            {
+              from: transfer.leavePlace,
+              to: transfer.boardNextPlace,
+              distanceMeters: transfer.evidence.distanceMeters,
+            },
+          ]
+        : [],
+    ),
+    alternative.destinationWalk,
+  ].filter((walk): walk is NonNullable<typeof walk> => walk !== undefined);
+
+  return walks.flatMap((walk) => {
+    const fromStopId = walk.from.member?.stopId;
+    const toStopId = walk.to.member?.stopId;
+    const from = fromStopId === undefined ? undefined : graph.stopsById.get(fromStopId);
+    const to = toStopId === undefined ? undefined : graph.stopsById.get(toStopId);
+    const fromCoordinate = from === undefined ? undefined : placedCoordinate(from);
+    const toCoordinate = to === undefined ? undefined : placedCoordinate(to);
+    if (fromCoordinate === undefined || toCoordinate === undefined) return [];
+    return [{ coordinates: [fromCoordinate, toCoordinate], distanceMeters: walk.distanceMeters }];
+  });
+};
+
 const toPassengerAlternative = (
   alternative: GuideAlternative,
   index: number,
@@ -193,6 +244,7 @@ const toPassengerAlternative = (
 ): PassengerGuideAlternative => {
   const instructions = projectInstructions(alternative);
   const rideSegments = rideSegmentsFor(graph, geometryById, routeColorById, alternative);
+  const straightLineWalkSegments = straightLineWalkSegmentsFor(graph, alternative);
   return {
     id: alternative.id,
     differenceSummary: differenceSummary(alternative, index, all),
@@ -234,6 +286,9 @@ const toPassengerAlternative = (
           ? {}
           : { nextDirectionLabel: instruction.nextDirectionLabel }),
         platformDetailKnown: instruction.platformDetailKnown,
+        ...(instruction.straightLineWalkDistanceMeters === undefined
+          ? {}
+          : { straightLineWalkDistanceMeters: instruction.straightLineWalkDistanceMeters }),
         leavePlace: transfer.leavePlace,
         boardNextPlace: transfer.boardNextPlace,
         evidence: transfer.evidence,
@@ -242,6 +297,11 @@ const toPassengerAlternative = (
     metrics: alternative.metrics,
     rideGeometry: rideSegments.map((segment) => segment.coordinates),
     rideSegments,
+    ...(alternative.originWalk === undefined ? {} : { originWalk: alternative.originWalk }),
+    ...(alternative.destinationWalk === undefined
+      ? {}
+      : { destinationWalk: alternative.destinationWalk }),
+    straightLineWalkSegments,
     alternative,
   };
 };
@@ -286,7 +346,12 @@ export const make = Effect.fn("RouteHelperQuery.make")(function* () {
     networkArtifactVersion: network.version,
     placesArtifactVersion: places.version,
     attribution: places.attribution,
-    freshnessNote: `Data bus ${network.version}; tempat penumpang ${places.version}. Hanya TransJakarta bus, tanpa jadwal.`,
+    freshnessNote:
+      "Data bus " +
+      network.version +
+      "; tempat penumpang " +
+      places.version +
+      ". Hanya TransJakarta bus, tanpa jadwal; sambungan jalan terbatas ditampilkan sebagai garis lurus.",
   });
 
   const versions = Effect.fn("RouteHelperQuery.versions")(() =>
@@ -299,6 +364,34 @@ export const make = Effect.fn("RouteHelperQuery.make")(function* () {
       coverage: coverage(),
     } satisfies ArtifactVersionsResponse),
   );
+
+  const searchGuideCandidates = Effect.fn("RouteHelperQuery.searchGuideCandidates")(function* (
+    origins: RouteGuideQuery["origins"],
+    destinations: RouteGuideQuery["destinations"],
+    transferCeiling: number,
+    maximumAlternatives: number,
+  ) {
+    let result: RouteGuideResult | undefined;
+    for (let maximumTransfers = 0; maximumTransfers <= transferCeiling; maximumTransfers += 1) {
+      result = yield* guideService.guide({
+        origins,
+        destinations,
+        maximumTransfers,
+        maximumOriginCandidates: Math.min(12, origins.length),
+        maximumDestinationCandidates: Math.min(12, destinations.length),
+        maximumAlternatives,
+        maximumExpandedStates: 100_000,
+      });
+      if (result._tag === "InvalidCandidateSet") break;
+      // A search at one transfer already includes its direct routes. Continue
+      // past a direct-only result once, so it can contribute interchange
+      // choices; then stop at the first viable transfer ceiling.
+      if (result._tag === "GuidesFound" && maximumTransfers > 0) break;
+    }
+    if (result === undefined)
+      return yield* Effect.die("Route-guide iterative search did not execute");
+    return result;
+  });
 
   const searchPlaces = Effect.fn("RouteHelperQuery.searchPlaces")(function* (input: unknown) {
     const decoded = yield* Schema.decodeUnknownEffect(PlaceSearchRequestSchema)(input).pipe(
@@ -398,34 +491,23 @@ export const make = Effect.fn("RouteHelperQuery.make")(function* () {
       } satisfies RouteGuideResponse;
     }
 
-    const origins = decoded.originCandidates.map((candidate) => ({
-      transitPlaceId: candidate.transitPlaceId,
-      ...(candidate.geographicDistanceMeters === undefined
-        ? {}
-        : { geographicDistanceMeters: candidate.geographicDistanceMeters }),
-    }));
-    const destinations = decoded.destinationCandidates.map((candidate) => ({
-      transitPlaceId: candidate.transitPlaceId,
-      ...(candidate.geographicDistanceMeters === undefined
-        ? {}
-        : { geographicDistanceMeters: candidate.geographicDistanceMeters }),
-    }));
+    const origins = guideCandidatesFor(decoded.originCandidates);
+    const destinations = guideCandidatesFor(decoded.destinationCandidates);
+    const exactOrigins = exactGuideCandidateFor(decoded.origin);
+    const exactDestinations = exactGuideCandidateFor(decoded.destination);
+    // A selected transit place is an explicit passenger choice, not a geographic
+    // hint. Never replace it with a nearby stop: that can change both the
+    // boarding stop and the direction of travel without telling the passenger.
+    const routableOrigins = exactOrigins ?? origins;
+    const routableDestinations = exactDestinations ?? destinations;
     const transferCeiling = decoded.maximumTransfers ?? 3;
-    let result: RouteGuideResult | undefined;
-    for (let maximumTransfers = 0; maximumTransfers <= transferCeiling; maximumTransfers += 1) {
-      result = yield* guideService.guide({
-        origins,
-        destinations,
-        maximumTransfers,
-        maximumOriginCandidates: Math.min(12, decoded.originCandidates.length),
-        maximumDestinationCandidates: Math.min(12, decoded.destinationCandidates.length),
-        maximumAlternatives: decoded.maximumAlternatives ?? 6,
-        maximumExpandedStates: 100_000,
-      });
-      if (result._tag === "GuidesFound" || result._tag === "InvalidCandidateSet") break;
-    }
-    if (result === undefined)
-      return yield* Effect.die("Route-guide iterative search did not execute");
+    const maximumAlternatives = decoded.maximumAlternatives ?? 6;
+    const result = yield* searchGuideCandidates(
+      routableOrigins,
+      routableDestinations,
+      transferCeiling,
+      maximumAlternatives,
+    );
 
     if (result._tag === "GuidesFound") {
       const alternatives = distinctPassengerAlternatives(result.alternatives);

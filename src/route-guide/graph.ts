@@ -58,8 +58,20 @@ export interface TransferEdge {
     | {
         readonly _tag: "PublishedTransfer";
         readonly kind: "Recommended" | "Timed" | "MinimumTime";
-      };
+      }
+    | { readonly _tag: "StraightLineWalk"; readonly distanceMeters: number };
 }
+
+/**
+ * We expose only a small walking-link radius until pedestrian-network routing
+ * is available. Distances are geographic straight lines, not walkable paths.
+ */
+export const MAX_STRAIGHT_LINE_WALK_METERS = 400;
+// Closely adjacent, separately named stops can be valid entry points to very
+// different lines (for example, a station stop beside a feeder stop). Exclude
+// only zero-distance duplicates, which would add no passenger action.
+const MIN_STRAIGHT_LINE_WALK_METERS = 1;
+const WALK_GRID_DEGREES = 0.004;
 
 export interface GuideGraphValidationFinding {
   readonly _tag:
@@ -165,6 +177,84 @@ const buildSiblingIndex = (stops: ReadonlyArray<Stop>) => {
 
 const transferAllowed = (transfer: Transfer) =>
   transfer.kind === "Recommended" || transfer.kind === "Timed" || transfer.kind === "MinimumTime";
+
+const stopDistanceMeters = (left: Stop, right: Stop): number | undefined => {
+  if (left.location._tag !== "Placed" || right.location._tag !== "Placed") return undefined;
+  const radians = (degrees: number) => (degrees * Math.PI) / 180;
+  const latitudeDelta = radians(right.location.latitude - left.location.latitude);
+  const longitudeDelta = radians(right.location.longitude - left.location.longitude);
+  const latitudeLeft = radians(left.location.latitude);
+  const latitudeRight = radians(right.location.latitude);
+  const haversine =
+    Math.sin(latitudeDelta / 2) ** 2 +
+    Math.cos(latitudeLeft) * Math.cos(latitudeRight) * Math.sin(longitudeDelta / 2) ** 2;
+  return 6_371_000 * 2 * Math.asin(Math.min(1, Math.sqrt(haversine)));
+};
+
+const walkingCellKey = (latitude: number, longitude: number) =>
+  `${Math.floor(latitude / WALK_GRID_DEGREES)}:${Math.floor(longitude / WALK_GRID_DEGREES)}`;
+
+/**
+ * Build bounded local links with a spatial grid rather than comparing every
+ * stop pair. Different transit places only: platform and published transfers
+ * retain their more trustworthy evidence.
+ */
+const addStraightLineWalkEdges = (
+  transferEdgesFrom: Map<string, Array<TransferEdge>>,
+  stops: ReadonlyArray<Stop>,
+  placeIdByStopId: ReadonlyMap<string, string>,
+) => {
+  const placedStops = stops.filter((stop) => stop.location._tag === "Placed");
+  const stopsByCell = new Map<string, Array<Stop>>();
+  for (const stop of placedStops) {
+    const location = stop.location;
+    if (location._tag !== "Placed") continue;
+    pushMap(stopsByCell, walkingCellKey(location.latitude, location.longitude), stop);
+  }
+
+  for (const stop of placedStops) {
+    const location = stop.location;
+    if (location._tag !== "Placed") continue;
+    const latitudeCell = Math.floor(location.latitude / WALK_GRID_DEGREES);
+    const longitudeCell = Math.floor(location.longitude / WALK_GRID_DEGREES);
+    for (let latitudeOffset = -1; latitudeOffset <= 1; latitudeOffset += 1) {
+      for (let longitudeOffset = -1; longitudeOffset <= 1; longitudeOffset += 1) {
+        const candidates =
+          stopsByCell.get(`${latitudeCell + latitudeOffset}:${longitudeCell + longitudeOffset}`) ??
+          [];
+        for (const other of candidates) {
+          if (stop.id.localeCompare(other.id) >= 0) continue;
+          const stopPlaceId = placeIdByStopId.get(stop.id);
+          const otherPlaceId = placeIdByStopId.get(other.id);
+          if (
+            stopPlaceId === undefined ||
+            otherPlaceId === undefined ||
+            stopPlaceId === otherPlaceId
+          )
+            continue;
+          const distance = stopDistanceMeters(stop, other);
+          if (
+            distance === undefined ||
+            distance < MIN_STRAIGHT_LINE_WALK_METERS ||
+            distance > MAX_STRAIGHT_LINE_WALK_METERS
+          )
+            continue;
+          const distanceMeters = Math.round(distance);
+          pushMap(transferEdgesFrom, stop.id, {
+            fromStopId: stop.id,
+            toStopId: other.id,
+            evidence: { _tag: "StraightLineWalk", distanceMeters },
+          });
+          pushMap(transferEdgesFrom, other.id, {
+            fromStopId: other.id,
+            toStopId: stop.id,
+            evidence: { _tag: "StraightLineWalk", distanceMeters },
+          });
+        }
+      }
+    }
+  }
+};
 
 export interface CompileGuideGraphOptions {
   readonly snapshot: unknown;
@@ -366,6 +456,17 @@ export const compileGuideGraph = Effect.fn("RouteGuide.compileGuideGraph")(funct
     }
   }
 
+  const placeIdByStopId = new Map(Object.entries(places.placeIdByStopId));
+  addStraightLineWalkEdges(transferEdgesFrom, snapshot.stops, placeIdByStopId);
+
+  for (const edges of transferEdgesFrom.values()) {
+    edges.sort(
+      (left, right) =>
+        left.toStopId.localeCompare(right.toStopId) ||
+        left.evidence._tag.localeCompare(right.evidence._tag),
+    );
+  }
+
   const predecessorRouteIdsByRouteId = new Map<string, Set<string>>();
   for (const [fromStopId, edges] of transferEdgesFrom) {
     const fromRoutes = alightableRouteIdsByStopId.get(fromStopId) ?? new Set<string>();
@@ -387,7 +488,7 @@ export const compileGuideGraph = Effect.fn("RouteGuide.compileGuideGraph")(funct
     places,
     stopsById,
     routesById,
-    placeIdByStopId: new Map(Object.entries(places.placeIdByStopId)),
+    placeIdByStopId,
     placesById: new Map(Object.entries(places.placesById)),
     patterns: guidePatterns,
     patternsByStopId,

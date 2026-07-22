@@ -14,6 +14,7 @@ import {
   GuideMetrics,
   LineOption,
   PlaceRef,
+  StraightLineWalk,
   TransferEvidence,
 } from "../route-guide/model.js";
 import { Coordinate } from "./api-contracts.js";
@@ -166,6 +167,9 @@ export const GuideTransferStepInstruction = Schema.Struct({
   nextLineBadges: Schema.Array(Schema.String.check(Schema.isNonEmpty())).check(Schema.isNonEmpty()),
   nextDirectionLabel: Schema.optionalKey(Schema.String.check(Schema.isNonEmpty())),
   platformDetailKnown: Schema.Boolean,
+  straightLineWalkDistanceMeters: Schema.optionalKey(
+    Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
+  ),
   leavePlace: PlaceRef,
   boardNextPlace: PlaceRef,
   evidence: TransferEvidence,
@@ -182,6 +186,8 @@ export const PassengerGuideAlternative = Schema.Struct({
   transferCount: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
   rideSteps: Schema.Array(GuideRideStepInstruction).check(Schema.isNonEmpty()),
   transfers: Schema.Array(GuideTransferStepInstruction),
+  originWalk: Schema.optionalKey(StraightLineWalk),
+  destinationWalk: Schema.optionalKey(StraightLineWalk),
   metrics: GuideMetrics,
   /** Exact bus geometry between boarding and alighting for each ride step. */
   rideGeometry: Schema.Array(Schema.Array(GeometryCoordinate).check(Schema.isMinLength(2))),
@@ -190,6 +196,13 @@ export const PassengerGuideAlternative = Schema.Struct({
     Schema.Struct({
       coordinates: Schema.Array(GeometryCoordinate).check(Schema.isMinLength(2)),
       color: Schema.String.check(Schema.isPattern(/^#[0-9a-f]{6}$/i)),
+    }),
+  ),
+  /** Bounded geographic links, rendered as dashed lines instead of bus routes. */
+  straightLineWalkSegments: Schema.Array(
+    Schema.Struct({
+      coordinates: Schema.Array(GeometryCoordinate).check(Schema.isMinLength(2)),
+      distanceMeters: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
     }),
   ),
   /** Raw structured alternative for clients that need full Plan 015 shape. */

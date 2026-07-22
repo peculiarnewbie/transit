@@ -118,4 +118,20 @@ describe("route-guide graph", () => {
       ).toBe(true);
     }),
   );
+
+  itEffect(
+    "links separately named stops even when they are only metres apart",
+    Effect.gen(function* () {
+      const graph = yield* compileGuideGraph({
+        snapshot: topologyNetwork,
+        sourceArtifactVersion: "fixture-topology-v1",
+      });
+      const edges = graph.transferEdgesFrom.get("stop:walk-origin") ?? [];
+      expect(
+        edges.some(
+          (edge) => edge.toStopId === "stop:walk-near" && edge.evidence._tag === "StraightLineWalk",
+        ),
+      ).toBe(true);
+    }),
+  );
 });

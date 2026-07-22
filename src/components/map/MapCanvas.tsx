@@ -19,6 +19,7 @@ export interface MapCanvasProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
   readonly selectedGuideSegments?: PassengerGuideAlternative["rideSegments"];
+  readonly selectedGuideWalkSegments?: PassengerGuideAlternative["straightLineWalkSegments"];
   readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
   readonly selectedColor: string;
   readonly origin?: Coordinate;
@@ -230,6 +231,21 @@ export default function MapCanvas(props: MapCanvasProps) {
             "line-width": 6.5,
           },
         });
+        map.addSource("selected-guide-walk", {
+          type: "geojson",
+          data: guideWalkFeatureCollection(props.selectedGuideWalkSegments ?? []),
+        });
+        map.addLayer({
+          id: "selected-guide-walk",
+          type: "line",
+          source: "selected-guide-walk",
+          paint: {
+            "line-color": "#a37500",
+            "line-dasharray": [1.2, 1.4],
+            "line-opacity": 0.95,
+            "line-width": 4,
+          },
+        });
         map.addSource("selected-endpoints", {
           type: "geojson",
           data: endpointFeatureCollection({
@@ -293,8 +309,15 @@ export default function MapCanvas(props: MapCanvasProps) {
   createEffect(() => {
     if (!mapReady()) return;
     const segments = props.selectedGuideSegments ?? [];
+    const walkSegments = props.selectedGuideWalkSegments ?? [];
     map?.getSource<GeoJSONSource>("selected-guide")?.setData(guideFeatureCollection(segments));
-    const coordinates = segments.flatMap((segment) => segment.coordinates);
+    map
+      ?.getSource<GeoJSONSource>("selected-guide-walk")
+      ?.setData(guideWalkFeatureCollection(walkSegments));
+    const coordinates = [
+      ...segments.flatMap((segment) => segment.coordinates),
+      ...walkSegments.flatMap((segment) => segment.coordinates),
+    ];
     if (coordinates.length < 2) return;
     const longitudes = coordinates.map(([longitude]) => longitude);
     const latitudes = coordinates.map(([, latitude]) => latitude);
@@ -359,6 +382,20 @@ const guideFeatureCollection = (segments: PassengerGuideAlternative["rideSegment
   features: segments.map((segment) => ({
     type: "Feature" as const,
     properties: { color: segment.color },
+    geometry: {
+      type: "LineString" as const,
+      coordinates: segment.coordinates.map(([longitude, latitude]) => [longitude, latitude]),
+    },
+  })),
+});
+
+const guideWalkFeatureCollection = (
+  segments: PassengerGuideAlternative["straightLineWalkSegments"],
+) => ({
+  type: "FeatureCollection" as const,
+  features: segments.map((segment) => ({
+    type: "Feature" as const,
+    properties: { distanceMeters: segment.distanceMeters },
     geometry: {
       type: "LineString" as const,
       coordinates: segment.coordinates.map(([longitude, latitude]) => [longitude, latitude]),

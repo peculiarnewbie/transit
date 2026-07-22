@@ -10,6 +10,7 @@ export interface PassengerMapProps {
   readonly styleUrl: string;
   readonly selectedJourneyId?: string;
   readonly selectedGuideSegments?: PassengerGuideAlternative["rideSegments"];
+  readonly selectedGuideWalkSegments?: PassengerGuideAlternative["straightLineWalkSegments"];
   readonly selectedGeometry: ReadonlyArray<readonly [number, number]>;
   readonly selectedColor: string;
   readonly origin?: Coordinate;
@@ -40,6 +41,7 @@ export default function PassengerMap(props: PassengerMapProps) {
             styleUrl={props.styleUrl}
             selectedJourneyId={props.selectedJourneyId}
             selectedGuideSegments={props.selectedGuideSegments}
+            selectedGuideWalkSegments={props.selectedGuideWalkSegments}
             selectedGeometry={props.selectedGeometry}
             selectedColor={props.selectedColor}
             origin={props.origin}

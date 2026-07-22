@@ -198,7 +198,7 @@ describe("route-helper production composition", () => {
     await runtime.dispose();
   }, 120_000);
 
-  it("uses nearby candidates and minimum-transfer search for Grogol to Semanggi", async () => {
+  it("keeps an exact Grogol selection from silently switching to Grogol Reformasi", async () => {
     const runtime = ManagedRuntime.make(
       ApplicationRuntime.helperLayerWith({
         networkManifestUrl,
@@ -277,36 +277,187 @@ describe("route-helper production composition", () => {
     expect(result.forward._tag).toBe("GuidesFound");
     if (result.forward._tag === "GuidesFound") {
       const first = result.forward.alternatives[0]!;
-      expect(first.transferCount).toBe(0);
-      expect(first.origin.placeName).toBe("Grogol Reformasi");
+      expect(first.origin.placeName).toBe("Grogol");
       expect(first.destination.placeName).toBe("Semanggi");
-      expect(first.rideSteps).toHaveLength(1);
-      expect(first.rideSteps[0]?.lineBadges).toEqual(["9", "9A"]);
-      expect(first.metrics.originCandidateDistanceMeters).toBeGreaterThan(170);
-      expect(first.metrics.originCandidateDistanceMeters).toBeLessThan(180);
-      expect(first.rideGeometry).toHaveLength(1);
-      expect(first.rideSegments).toHaveLength(1);
+      expect(first.metrics.originCandidateDistanceMeters).toBe(0);
+      expect(
+        result.forward.alternatives.every(
+          (alternative) =>
+            alternative.origin.placeName === "Grogol" &&
+            alternative.destination.placeName === "Semanggi",
+        ),
+      ).toBe(true);
+      expect(
+        result.forward.alternatives.some(
+          (alternative) => alternative.origin.placeName === "Grogol Reformasi",
+        ),
+      ).toBe(false);
+      expect(first.rideGeometry.length).toBeGreaterThan(0);
+      expect(first.rideSegments.length).toBeGreaterThan(0);
       expect(first.rideSegments[0]?.color).toMatch(/^#[0-9a-f]{6}$/i);
-      expect(first.rideGeometry[0]!.length).toBeGreaterThan(2);
-      expect(Math.min(...first.rideGeometry[0]!.map(([, latitude]) => latitude))).toBeGreaterThan(
-        -6.25,
-      );
-      expect(Math.max(...first.rideGeometry[0]!.map(([, latitude]) => latitude))).toBeLessThan(
-        -6.14,
-      );
     }
     expect(result.reverse._tag).toBe("GuidesFound");
     if (result.reverse._tag === "GuidesFound") {
-      const first = result.reverse.alternatives[0]!;
-      expect(first.transferCount).toBe(0);
-      expect(first.origin.placeName).toBe("Semanggi");
-      expect(first.destination.placeName).toBe("Grogol Reformasi");
-      expect(first.rideSteps).toHaveLength(1);
-      expect(first.rideSteps[0]?.lineBadges).toContain("9");
-      expect(first.metrics.destinationCandidateDistanceMeters).toBeGreaterThan(170);
-      expect(first.metrics.destinationCandidateDistanceMeters).toBeLessThan(180);
-      expect(first.rideGeometry).toHaveLength(1);
-      expect(first.rideGeometry[0]!.length).toBeGreaterThan(2);
+      expect(
+        result.reverse.alternatives.every(
+          (alternative) =>
+            alternative.origin.placeName === "Semanggi" &&
+            alternative.destination.placeName === "Grogol",
+        ),
+      ).toBe(true);
+      expect(result.reverse.alternatives[0]?.metrics.destinationCandidateDistanceMeters).toBe(0);
+    }
+    await runtime.dispose();
+  }, 120_000);
+
+  it("keeps exact stops and ranks the shorter Grogol bus path first", async () => {
+    const runtime = ManagedRuntime.make(
+      ApplicationRuntime.helperLayerWith({
+        networkManifestUrl,
+        placesManifestUrl,
+        fetch: productionFetch,
+      }),
+    );
+    const result = await runtime.runPromise(
+      Effect.gen(function* () {
+        const query = yield* RouteHelperQuery.Service;
+        return yield* query.guide({
+          origin: {
+            placeId: "place:transit-ref:place:source:gtfs:transjakarta:stop:H00071P",
+            displayLabel: "Grogol Reformasi",
+            resultKind: "TransitPlace",
+            artifactVersion: "places-jabodetabek-20260718-v1",
+            transitPlaceId: "place:source:gtfs:transjakarta:stop:H00071P",
+          },
+          destination: {
+            placeId: "place:transit-ref:place:source:gtfs:transjakarta:stop:H00014P",
+            displayLabel: "Blok M",
+            resultKind: "TransitPlace",
+            artifactVersion: "places-jabodetabek-20260718-v1",
+            transitPlaceId: "place:source:gtfs:transjakarta:stop:H00014P",
+          },
+          originCandidates: [
+            {
+              transitPlaceId: "place:source:gtfs:transjakarta:stop:H00071P",
+              primaryName: "Grogol Reformasi",
+              geographicDistanceMeters: 0,
+            },
+            {
+              transitPlaceId: "place:standalone:gtfs:transjakarta:stop:B05843P",
+              primaryName: "Univ. Trisakti",
+              geographicDistanceMeters: 169,
+            },
+          ],
+          destinationCandidates: [
+            {
+              transitPlaceId: "place:source:gtfs:transjakarta:stop:H00014P",
+              primaryName: "Blok M",
+              geographicDistanceMeters: 0,
+            },
+          ],
+          networkArtifactVersion: "bus-transjakarta-20260630-v2",
+          placesArtifactVersion: "places-jabodetabek-20260718-v1",
+          maximumTransfers: 3,
+          maximumAlternatives: 6,
+        });
+      }),
+    );
+
+    expect(result._tag).toBe("GuidesFound");
+    if (result._tag === "GuidesFound") {
+      expect(
+        result.alternatives.every(
+          (alternative) =>
+            alternative.origin.placeName === "Grogol Reformasi" &&
+            alternative.destination.placeName === "Blok M" &&
+            alternative.metrics.originCandidateDistanceMeters === 0 &&
+            alternative.metrics.destinationCandidateDistanceMeters === 0,
+        ),
+      ).toBe(true);
+      const first = result.alternatives[0]!;
+      expect(first.origin.placeName).toBe("Grogol Reformasi");
+      expect(first.destination.placeName).toBe("Blok M");
+      expect(first.transferCount).toBe(1);
+      expect(first.rideSteps).toHaveLength(2);
+      expect(first.rideSteps[0]?.lineBadges).toEqual(["3F"]);
+      expect(first.rideSteps[1]?.lineBadges).toEqual(["1"]);
+      expect(first.metrics.journeyDistanceMeters).toBeGreaterThan(0);
+      const passengerJourneys = result.alternatives.map((alternative) =>
+        JSON.stringify(
+          alternative.rideSteps.map((step) => ({
+            lines: [...step.lineBadges].sort(),
+            directions: [...step.directionSummaries].sort(),
+          })),
+        ),
+      );
+      expect(new Set(passengerJourneys).size).toBe(passengerJourneys.length);
+    }
+    await runtime.dispose();
+  }, 120_000);
+
+  it("keeps Polda Metro Jaya to Blok M alternatives passenger-distinct", async () => {
+    const runtime = ManagedRuntime.make(
+      ApplicationRuntime.helperLayerWith({
+        networkManifestUrl,
+        placesManifestUrl,
+        fetch: productionFetch,
+      }),
+    );
+    const result = await runtime.runPromise(
+      Effect.gen(function* () {
+        const query = yield* RouteHelperQuery.Service;
+        return yield* query.guide({
+          origin: {
+            placeId: "place:transit-ref:place:source:gtfs:transjakarta:stop:H00176P",
+            displayLabel: "Polda Metro Jaya",
+            resultKind: "TransitPlace",
+            artifactVersion: "places-jabodetabek-20260718-v1",
+            transitPlaceId: "place:source:gtfs:transjakarta:stop:H00176P",
+          },
+          destination: {
+            placeId: "place:transit-ref:place:source:gtfs:transjakarta:stop:H00014P",
+            displayLabel: "Blok M",
+            resultKind: "TransitPlace",
+            artifactVersion: "places-jabodetabek-20260718-v1",
+            transitPlaceId: "place:source:gtfs:transjakarta:stop:H00014P",
+          },
+          originCandidates: [
+            {
+              transitPlaceId: "place:source:gtfs:transjakarta:stop:H00176P",
+              primaryName: "Polda Metro Jaya",
+              geographicDistanceMeters: 0,
+            },
+          ],
+          destinationCandidates: [
+            {
+              transitPlaceId: "place:source:gtfs:transjakarta:stop:H00014P",
+              primaryName: "Blok M",
+              geographicDistanceMeters: 0,
+            },
+          ],
+          networkArtifactVersion: "bus-transjakarta-20260630-v2",
+          placesArtifactVersion: "places-jabodetabek-20260718-v1",
+          maximumTransfers: 3,
+          maximumAlternatives: 6,
+        });
+      }),
+    );
+
+    expect(result._tag).toBe("GuidesFound");
+    if (result._tag === "GuidesFound") {
+      expect(result.alternatives[0]?.rideSteps).toHaveLength(1);
+      expect(result.alternatives[0]?.rideSteps[0]?.lineBadges).toEqual(["1"]);
+      expect(result.alternatives[0]?.rideSteps[0]?.boardingPlaceName).toBe("Polda Metro Jaya");
+      expect(result.alternatives[0]?.rideSteps[0]?.alightingPlaceName).toBe("Blok M");
+      const passengerJourneys = result.alternatives.map((alternative) =>
+        JSON.stringify(
+          alternative.rideSteps.map((step) => ({
+            lines: [...step.lineBadges].sort(),
+            directions: [...step.directionSummaries].sort(),
+          })),
+        ),
+      );
+      expect(new Set(passengerJourneys).size).toBe(passengerJourneys.length);
     }
     await runtime.dispose();
   }, 120_000);

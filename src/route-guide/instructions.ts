@@ -22,6 +22,7 @@ export interface TransferStepInstruction {
   readonly nextDirectionLabel: string | undefined;
   readonly platformDetailKnown: boolean;
   readonly preservesDistinctEndpointNames: boolean;
+  readonly straightLineWalkDistanceMeters: number | undefined;
 }
 
 export interface GuideInstructions {
@@ -99,8 +100,12 @@ const transferInstruction = (transfer: TransferInstruction): TransferStepInstruc
         ? ""
         : " (platform detail unknown)";
   const distinctNames = leaveName !== boardName;
+  const straightLineWalkDistanceMeters =
+    transfer.evidence._tag === "StraightLineWalk" ? transfer.evidence.distanceMeters : undefined;
   const placePhrase = distinctNames
-    ? `Leave ${leaveName} and board ${lines}${direction} at ${boardName}${platform}.`
+    ? straightLineWalkDistanceMeters === undefined
+      ? `Leave ${leaveName} and board ${lines}${direction} at ${boardName}${platform}.`
+      : `Walk a straight-line ${straightLineWalkDistanceMeters} m from ${leaveName} to ${boardName}; pedestrian access is not verified. Then board ${lines}${direction}${platform}.`
     : `Transfer at ${leaveName} to ${lines}${direction}${platform}.`;
 
   return {
@@ -111,6 +116,7 @@ const transferInstruction = (transfer: TransferInstruction): TransferStepInstruc
     nextDirectionLabel: transfer.nextDirectionLabel,
     platformDetailKnown: transfer.platformDetailKnown,
     preservesDistinctEndpointNames: distinctNames,
+    straightLineWalkDistanceMeters,
   };
 };
 

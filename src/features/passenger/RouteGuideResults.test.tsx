@@ -108,6 +108,56 @@ describe("passenger route-guide presentation", () => {
     expect(html).toContain("langsung tanpa pindah bus");
   });
 
+  it("labels an unverified straight-line walk separately from bus travel", () => {
+    const walkingResult = {
+      ...result,
+      alternatives: result.alternatives.map((alternative) => ({
+        ...alternative,
+        transfers: [
+          {
+            summary: "Walk a straight-line 301 m.",
+            leavePlaceName: "Semanggi",
+            boardNextPlaceName: "Polda Metro Jaya",
+            nextLineBadges: ["1"],
+            platformDetailKnown: false,
+            leavePlace: { transitPlaceId: "tp:semanggi", placeName: "Semanggi" },
+            boardNextPlace: {
+              transitPlaceId: "tp:polda",
+              placeName: "Polda Metro Jaya",
+            },
+            evidence: {
+              _tag: "StraightLineWalk",
+              fromStopId: "stop:semanggi",
+              toStopId: "stop:polda",
+              distanceMeters: 301,
+            },
+            straightLineWalkDistanceMeters: 301,
+          },
+        ],
+        metrics: {
+          transferCount: 1,
+          boardingCount: 2,
+          intermediateStopCount: 4,
+          straightLineWalkDistanceMeters: 301,
+          directionAmbiguityCount: 0,
+          routeComplexity: 1,
+          transferHubPenalty: 0,
+          variantLinePenalty: 0,
+        },
+      })),
+    } as unknown as RouteGuideFound;
+    const html = renderToString(() => (
+      <RouteGuideResults result={walkingResult} selectedAlternativeId="guide:9-9a" />
+    ));
+    const text = html.replaceAll(/<!--[^>]*-->/g, "");
+
+    expect(text).toContain("Jalan lurus ± 301 m");
+    expect(text).toContain("Semanggi, menuju Polda Metro Jaya");
+    expect(text).toContain("akses pejalan kaki belum diverifikasi");
+    expect(text).toContain("Naik di Cawang");
+    expect(text).not.toMatch(/walkMinutes|walkingSeconds/i);
+  });
+
   it("collapses a selected alternative to a map-first route summary", () => {
     const html = renderToString(() => (
       <RouteGuideResults result={result} selectedAlternativeId="guide:9-9a" compact />

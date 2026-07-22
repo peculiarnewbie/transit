@@ -6,6 +6,7 @@ import type {
   PassengerGuideAlternative,
   RouteGuideFound,
 } from "../../runtime/route-helper-contracts.js";
+import type { StraightLineWalk } from "../../route-guide/model.js";
 
 const directionCopy = (step: GuideRideStepInstruction): string =>
   step.directionSummaries.length === 0
@@ -77,6 +78,26 @@ export function RideStep(props: {
   );
 }
 
+function StraightLineWalkStep(props: {
+  readonly walk: StraightLineWalk;
+  readonly position: "awal" | "pindah" | "akhir";
+}) {
+  const distance = () => Math.round(props.walk.distanceMeters);
+  const action = () =>
+    props.position === "awal"
+      ? "Dari " + props.walk.from.placeName + ", menuju " + props.walk.to.placeName
+      : props.position === "akhir"
+        ? "Dari " + props.walk.from.placeName + ", menuju tujuan di " + props.walk.to.placeName
+        : "Dari " + props.walk.from.placeName + ", menuju " + props.walk.to.placeName;
+  return (
+    <li {...stylex.props(styles.walkStep)}>
+      <strong>Jalan lurus ± {distance()} m</strong>
+      <span>{action()}.</span>
+      <small>Garis lurus saja—akses pejalan kaki belum diverifikasi.</small>
+    </li>
+  );
+}
+
 export function GuideAlternativeCard(props: {
   readonly alternative: PassengerGuideAlternative;
   readonly index: number;
@@ -87,6 +108,25 @@ export function GuideAlternativeCard(props: {
   readonly onSelect?: () => void;
 }) {
   const orderedLines = () => props.alternative.rideSteps.map((step) => step.linePhrase).join(" → ");
+  const boardingPlaceName = () =>
+    props.alternative.rideSteps[0]?.boardingPlaceName ?? props.alternative.origin.placeName;
+  const alightingPlaceName = () =>
+    props.alternative.rideSteps.at(-1)?.alightingPlaceName ??
+    props.alternative.destination.placeName;
+  const boardingSummary = () =>
+    props.alternative.originWalk === undefined
+      ? "Naik di " + boardingPlaceName()
+      : "Mulai di " +
+        props.alternative.origin.placeName +
+        "; jalan lurus ke " +
+        boardingPlaceName();
+  const destinationSummary = () =>
+    props.alternative.destinationWalk === undefined
+      ? "turun di " + alightingPlaceName()
+      : "turun di " +
+        alightingPlaceName() +
+        "; lalu jalan lurus ke " +
+        props.alternative.destination.placeName;
   const directions = () =>
     props.alternative.rideSteps
       .flatMap((step) => step.directionSummaries)
@@ -144,12 +184,19 @@ export function GuideAlternativeCard(props: {
               {orderedLines()} · {directions() || "arah perlu dikonfirmasi"}
             </p>
             <p {...stylex.props(styles.decisionSummary)}>
-              Naik di {props.alternative.origin.placeName} ·{" "}
+              {boardingSummary()} ·{" "}
               {props.alternative.transferCount === 0
                 ? "langsung tanpa pindah bus"
                 : `${props.alternative.transferCount} kali pindah bus`}{" "}
-              · turun di {props.alternative.destination.placeName}
+              · {destinationSummary()}
             </p>
+            <Show when={props.alternative.metrics?.straightLineWalkDistanceMeters !== undefined}>
+              <p {...stylex.props(styles.walkSummary)}>
+                Termasuk ±{" "}
+                {Math.round(props.alternative.metrics?.straightLineWalkDistanceMeters ?? 0)} m jalan
+                garis lurus; cek akses pejalan kaki.
+              </p>
+            </Show>
             <Show when={originConnector() || destinationConnector()}>
               <p {...stylex.props(styles.connectorNote)}>
                 Titik sekitar:{" "}
@@ -165,30 +212,48 @@ export function GuideAlternativeCard(props: {
           aria-label={`Langkah ${props.alternative.differenceSummary}`}
           {...stylex.props(styles.steps)}
         >
+          <Show when={props.alternative.originWalk}>
+            {(walk) => <StraightLineWalkStep walk={walk()} position="awal" />}
+          </Show>
           <For each={props.alternative.rideSteps}>
             {(step, index) => (
               <>
                 <RideStep step={step} index={index()} />
                 <Show when={props.alternative.transfers[index()]}>
                   {(transfer) => (
-                    <li {...stylex.props(styles.transferStep)}>
-                      <strong>Pindah di {transfer().leavePlaceName}</strong>
-                      <span>
-                        Lanjut naik di {transfer().boardNextPlaceName} dengan jalur{" "}
-                        {transfer().nextLineBadges.join(" atau ")}
-                        {transfer().nextDirectionLabel === undefined
-                          ? ". Arah berikutnya perlu dikonfirmasi."
-                          : ` arah ${transfer().nextDirectionLabel}.`}
-                      </span>
-                      <Show when={!transfer().platformDetailKnown}>
-                        <small>Titik pindah spesifik belum diketahui.</small>
+                    <>
+                      <Show when={transfer().straightLineWalkDistanceMeters !== undefined}>
+                        <StraightLineWalkStep
+                          walk={{
+                            from: transfer().leavePlace,
+                            to: transfer().boardNextPlace,
+                            distanceMeters: transfer().straightLineWalkDistanceMeters ?? 0,
+                          }}
+                          position="pindah"
+                        />
                       </Show>
-                    </li>
+                      <li {...stylex.props(styles.transferStep)}>
+                        <strong>Pindah di {transfer().leavePlaceName}</strong>
+                        <span>
+                          Lanjut naik di {transfer().boardNextPlaceName} dengan jalur{" "}
+                          {transfer().nextLineBadges.join(" atau ")}
+                          {transfer().nextDirectionLabel === undefined
+                            ? ". Arah berikutnya perlu dikonfirmasi."
+                            : ` arah ${transfer().nextDirectionLabel}.`}
+                        </span>
+                        <Show when={!transfer().platformDetailKnown}>
+                          <small>Titik pindah spesifik belum diketahui.</small>
+                        </Show>
+                      </li>
+                    </>
                   )}
                 </Show>
               </>
             )}
           </For>
+          <Show when={props.alternative.destinationWalk}>
+            {(walk) => <StraightLineWalkStep walk={walk()} position="akhir" />}
+          </Show>
         </ol>
       </Show>
     </article>
@@ -219,8 +284,8 @@ export default function RouteGuideResults(props: {
       </Show>
       <Show when={!props.compact}>
         <p {...stylex.props(styles.intro)}>
-          Pilih rute untuk menampilkannya pada peta. Tidak ada perkiraan jadwal atau perjalanan
-          kaki.
+          Pilih rute untuk menampilkannya pada peta. Tidak ada perkiraan jadwal. Jalan yang
+          ditampilkan hanya garis lurus, bukan petunjuk pedestrian.
         </p>
       </Show>
       <ol aria-label="Pilihan rute bus" {...stylex.props(styles.alternatives)}>
@@ -302,6 +367,7 @@ const styles = stylex.create({
   },
   orLabel: { fontSize: "0.7rem", fontWeight: 800 },
   decisionSummary: { fontSize: "0.75rem", margin: 0 },
+  walkSummary: { color: "#735c00", fontSize: "0.74rem", fontWeight: 800, margin: 0 },
   compactSummary: { fontSize: "0.78rem", fontWeight: 800, margin: 0 },
   connectorNote: {
     backgroundColor: "#e7e0cf",
@@ -339,6 +405,16 @@ const styles = stylex.create({
   transferStep: {
     backgroundColor: "#e7e0cf",
     borderLeft: "3px solid #e0442e",
+    display: "flex",
+    flexDirection: "column",
+    fontSize: "0.74rem",
+    gap: "0.2rem",
+    margin: "0 0 0.8rem 2rem",
+    padding: "0.6rem",
+  },
+  walkStep: {
+    backgroundColor: "#fff2bd",
+    borderLeft: "3px dashed #a37500",
     display: "flex",
     flexDirection: "column",
     fontSize: "0.74rem",
