@@ -53,6 +53,7 @@ export const RouteGuideQualificationReport = Schema.Struct({
     transferEdgeEndpointCount: Schema.Int,
     indexTimeMs: Schema.Number,
     duplicateSequenceCollapseCount: Schema.Int,
+    maximumExpandedStates: Schema.Int,
     findingCounts: Schema.Record(Schema.String, Schema.Int),
   }),
   directionEvidence: Schema.Struct({
@@ -282,6 +283,7 @@ export const qualifyRouteGuide = Effect.fn("RouteGuide.qualify")(function* (
   const caseResults: Array<QualificationCaseResult> = [];
   const latencies: Array<number> = [];
   let interchangeableGroupCount = 0;
+  let maximumExpandedStates = 0;
   const memberLineExamples: Array<ReadonlyArray<string>> = [];
 
   const aliases = options.placeLabelAliases ?? [];
@@ -328,6 +330,7 @@ export const qualifyRouteGuide = Effect.fn("RouteGuide.qualify")(function* (
     });
     const latencyMs = Date.now() - started;
     latencies.push(latencyMs);
+    maximumExpandedStates = Math.max(maximumExpandedStates, result.expandedStates ?? 0);
 
     if (result._tag !== "GuidesFound") {
       caseResults.push({
@@ -447,6 +450,7 @@ export const qualifyRouteGuide = Effect.fn("RouteGuide.qualify")(function* (
       transferEdgeEndpointCount: graph.transferEdgesFrom.size,
       indexTimeMs,
       duplicateSequenceCollapseCount: graph.duplicateSequenceCollapseCount,
+      maximumExpandedStates,
       findingCounts,
     },
     directionEvidence: { authoritative, reviewed, fallback, ambiguous },

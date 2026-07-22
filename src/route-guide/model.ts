@@ -100,8 +100,28 @@ export const TransferEvidence = Schema.TaggedUnion({
     toStopId: StopId,
     kind: Schema.Literals(["Recommended", "Timed", "MinimumTime"]),
   },
+  /**
+   * A bounded geographic link, not verified pedestrian routing. It is shown to
+   * the passenger as a straight line and must never imply a walking duration.
+   */
+  StraightLineWalk: {
+    fromStopId: StopId,
+    toStopId: StopId,
+    distanceMeters: NonNegativeInt,
+  },
 });
 export type TransferEvidence = typeof TransferEvidence.Type;
+
+/**
+ * A passenger-visible, straight-line walking connection between two transit
+ * places. This is intentionally distance-only: it is not a street route.
+ */
+export const StraightLineWalk = Schema.Struct({
+  from: PlaceRef,
+  to: PlaceRef,
+  distanceMeters: NonNegativeInt,
+});
+export interface StraightLineWalk extends Schema.Schema.Type<typeof StraightLineWalk> {}
 
 export const TransferInstruction = Schema.Struct({
   leavePlace: PlaceRef,
@@ -119,6 +139,10 @@ export const GuideMetrics = Schema.Struct({
   transferCount: NonNegativeInt,
   boardingCount: NonNegativeInt,
   intermediateStopCount: NonNegativeInt,
+  /** Bus spans plus every disclosed straight-line walking connection. */
+  journeyDistanceMeters: Schema.optionalKey(NonNegativeInt),
+  /** Sum of disclosed straight-line links; not a pedestrian route distance. */
+  straightLineWalkDistanceMeters: Schema.optionalKey(NonNegativeInt),
   originCandidateDistanceMeters: Schema.optionalKey(NonNegativeNumber),
   destinationCandidateDistanceMeters: Schema.optionalKey(NonNegativeNumber),
   directionAmbiguityCount: NonNegativeInt,
@@ -136,6 +160,8 @@ export const GuideAlternative = Schema.Struct({
   destination: PlaceRef,
   rideSteps: Schema.Array(InterchangeableRideStep).check(Schema.isNonEmpty()),
   transfers: Schema.Array(TransferInstruction),
+  originWalk: Schema.optionalKey(StraightLineWalk),
+  destinationWalk: Schema.optionalKey(StraightLineWalk),
   metrics: GuideMetrics,
 });
 export interface GuideAlternative extends Schema.Schema.Type<typeof GuideAlternative> {}
@@ -143,17 +169,21 @@ export interface GuideAlternative extends Schema.Schema.Type<typeof GuideAlterna
 export const RouteGuideResult = Schema.TaggedUnion({
   GuidesFound: {
     alternatives: Schema.Array(GuideAlternative).check(Schema.isNonEmpty()),
+    expandedStates: Schema.optionalKey(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))),
   },
   NoTopologicalRoute: {
     originPlaceIds: Schema.Array(TransitPlaceId).check(Schema.isNonEmpty()),
     destinationPlaceIds: Schema.Array(TransitPlaceId).check(Schema.isNonEmpty()),
     reason: Schema.String.check(Schema.isNonEmpty()),
+    expandedStates: Schema.optionalKey(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))),
   },
   InvalidCandidateSet: {
     reason: Schema.String.check(Schema.isNonEmpty()),
+    expandedStates: Schema.optionalKey(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))),
   },
   DataValidationFailure: {
     reason: Schema.String.check(Schema.isNonEmpty()),
+    expandedStates: Schema.optionalKey(Schema.Int.check(Schema.isGreaterThanOrEqualTo(0))),
   },
 });
 export type RouteGuideResult = typeof RouteGuideResult.Type;

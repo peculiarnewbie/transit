@@ -9,6 +9,7 @@ import {
 } from "./PassengerExplorer.js";
 import { fixtureStops, searchFixtureJourneys } from "./fixtures.js";
 import type { PassengerState, RouteQuery } from "./types.js";
+import PlaceRouteHelper from "./PlaceRouteHelper.js";
 
 const fixtureStop = (index: number) => {
   const stop = fixtureStops[index];
@@ -37,6 +38,19 @@ const renderResults = (state: PassengerState) =>
   ));
 
 describe("passenger components", () => {
+  it("renders the place-first route helper over the required map", () => {
+    const html = renderToString(() => <PlaceRouteHelper />);
+    expect(html).toContain("Mau ke mana?");
+    expect(html).toContain('id="origin-place"');
+    expect(html).toContain('id="destination-place"');
+    expect(html).toContain("Tukar tempat asal dan tujuan");
+    expect(html).toContain("Memuat peta");
+    expect(html).not.toContain("Buka peta (opsional)");
+    expect(html).not.toContain("Tampilkan rute bus");
+    expect(html).not.toContain("Naik dari sekitar asal");
+    expect(html).not.toContain("departure");
+  });
+
   it("renders endpoint controls independently of map readiness", () => {
     const html = renderToString(() => (
       <>

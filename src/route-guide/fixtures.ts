@@ -98,6 +98,22 @@ export const topologyNetwork = {
     stop("stop:loop-a", "Loop A"),
     stop("stop:loop-b", "Loop B"),
     stop("stop:loop-c", "Loop C"),
+    stop("stop:detour-origin", "Detour Origin", { locationKind: "Station" }),
+    stop("stop:detour-origin-fast", "Detour Origin Fast", {
+      parentStopId: "stop:detour-origin",
+    }),
+    stop("stop:detour-origin-loop", "Detour Origin Loop", {
+      parentStopId: "stop:detour-origin",
+    }),
+    stop("stop:detour-destination", "Detour Destination", { locationKind: "Station" }),
+    stop("stop:detour-destination-fast", "Detour Destination Fast", {
+      parentStopId: "stop:detour-destination",
+    }),
+    stop("stop:detour-destination-loop", "Detour Destination Loop", {
+      parentStopId: "stop:detour-destination",
+    }),
+    stop("stop:detour-away", "Detour Away"),
+    stop("stop:detour-turn", "Detour Turn"),
     stop("stop:forbid-board", "No Board"),
     stop("stop:forbid-alight", "No Alight"),
     stop("stop:group-x", "Grouped X", { latitude: -6.21, longitude: 106.81 }),
@@ -118,6 +134,15 @@ export const topologyNetwork = {
     }),
     stop("stop:lookalike-b", "Lookalike B"),
     stop("stop:lookalike-c", "Lookalike C"),
+    stop("stop:walk-origin", "Walk Origin", { latitude: -6.25, longitude: 106.8 }),
+    stop("stop:walk-near", "Walk Near", { latitude: -6.2502, longitude: 106.8 }),
+    stop("stop:walk-from", "Walk From", { latitude: -6.247, longitude: 106.8 }),
+    stop("stop:walk-to", "Walk To", { latitude: -6.2442, longitude: 106.8 }),
+    stop("stop:walk-destination", "Walk Destination", { latitude: -6.241, longitude: 106.8 }),
+    stop("stop:choice-origin", "Choice Origin", { latitude: -6.31, longitude: 106.8 }),
+    stop("stop:choice-fast", "Choice Fast", { latitude: -6.3, longitude: 106.8 }),
+    stop("stop:choice-transfer", "Choice Transfer", { latitude: -6.305, longitude: 106.815 }),
+    stop("stop:choice-destination", "Choice Destination", { latitude: -6.29, longitude: 106.8 }),
   ],
   routes: [
     route("route:1", "1"),
@@ -126,10 +151,17 @@ export const topologyNetwork = {
     route("route:9A", "9A"),
     route("route:branch", "B"),
     route("route:loop", "L"),
+    route("route:detour-direct", "D1"),
+    route("route:detour-circuit", "D2"),
     route("route:forbid", "F"),
     route("route:look-1", "L1"),
     route("route:look-2", "L2"),
     route("route:dup", "D"),
+    route("route:walk-in", "WI"),
+    route("route:walk-out", "WO"),
+    route("route:choice-direct", "CD"),
+    route("route:choice-first", "CA"),
+    route("route:choice-second", "CB"),
   ],
   patterns: [
     // Direct Alpha → Delta via Bravo, Charlie
@@ -147,6 +179,19 @@ export const topologyNetwork = {
       "stop:loop-b",
       "stop:loop-c",
       "stop:loop-a",
+    ]),
+    // A direct option and a circuit that passes the boarding stop again before
+    // reaching the same destination complex. The guide must suppress the detour.
+    pattern("pattern:detour-direct", "route:detour-direct", [
+      "stop:detour-origin-fast",
+      "stop:detour-destination-fast",
+    ]),
+    pattern("pattern:detour-circuit", "route:detour-circuit", [
+      "stop:detour-origin-loop",
+      "stop:detour-away",
+      "stop:detour-turn",
+      "stop:detour-origin-loop",
+      "stop:detour-destination-loop",
     ]),
     // Forbidden pickup at first usable, forbidden drop at end
     pattern("pattern:forbid", "route:forbid", [
@@ -180,6 +225,24 @@ export const topologyNetwork = {
     // Grouped-but-not-transferable (no parent, separate places unless override)
     pattern("pattern:group-x", "route:1", ["stop:group-x", "stop:A"]),
     pattern("pattern:group-y", "route:2", ["stop:group-y", "stop:F"]),
+    // A short geographic gap with no published transfer. The guide can expose
+    // this as an explicitly unverified straight-line walk.
+    pattern("pattern:walk-in", "route:walk-in", ["stop:walk-origin", "stop:walk-from"]),
+    pattern("pattern:walk-out", "route:walk-out", ["stop:walk-to", "stop:walk-destination"]),
+    // A shorter direct option and a longer, valid line-and-transfer strategy.
+    pattern("pattern:choice-direct", "route:choice-direct", [
+      "stop:choice-origin",
+      "stop:choice-fast",
+      "stop:choice-destination",
+    ]),
+    pattern("pattern:choice-first", "route:choice-first", [
+      "stop:choice-origin",
+      "stop:choice-transfer",
+    ]),
+    pattern("pattern:choice-second", "route:choice-second", [
+      "stop:choice-transfer",
+      "stop:choice-destination",
+    ]),
   ],
   trips: [
     scheduled("trip:1", "pattern:1", ["stop:A", "stop:B", "stop:C", "stop:D"], "Delta"),
@@ -198,6 +261,24 @@ export const topologyNetwork = {
       "pattern:loop",
       ["stop:loop-a", "stop:loop-b", "stop:loop-c", "stop:loop-a"],
       "Loop",
+    ),
+    scheduled(
+      "trip:detour-direct",
+      "pattern:detour-direct",
+      ["stop:detour-origin-fast", "stop:detour-destination-fast"],
+      "Detour Destination",
+    ),
+    scheduled(
+      "trip:detour-circuit",
+      "pattern:detour-circuit",
+      [
+        "stop:detour-origin-loop",
+        "stop:detour-away",
+        "stop:detour-turn",
+        "stop:detour-origin-loop",
+        "stop:detour-destination-loop",
+      ],
+      "Detour Destination via circuit",
     ),
     scheduled(
       "trip:forbid",
@@ -242,6 +323,36 @@ export const topologyNetwork = {
     scheduled("trip:dup-b", "pattern:dup-b", ["stop:A", "stop:B", "stop:D"], "Delta Dup"),
     scheduled("trip:group-x", "pattern:group-x", ["stop:group-x", "stop:A"], "Alpha"),
     scheduled("trip:group-y", "pattern:group-y", ["stop:group-y", "stop:F"], "Foxtrot"),
+    scheduled(
+      "trip:walk-in",
+      "pattern:walk-in",
+      ["stop:walk-origin", "stop:walk-from"],
+      "Walk From",
+    ),
+    scheduled(
+      "trip:walk-out",
+      "pattern:walk-out",
+      ["stop:walk-to", "stop:walk-destination"],
+      "Walk Destination",
+    ),
+    scheduled(
+      "trip:choice-direct",
+      "pattern:choice-direct",
+      ["stop:choice-origin", "stop:choice-fast", "stop:choice-destination"],
+      "Choice Destination",
+    ),
+    scheduled(
+      "trip:choice-first",
+      "pattern:choice-first",
+      ["stop:choice-origin", "stop:choice-transfer"],
+      "Choice Transfer",
+    ),
+    scheduled(
+      "trip:choice-second",
+      "pattern:choice-second",
+      ["stop:choice-transfer", "stop:choice-destination"],
+      "Choice Destination",
+    ),
   ],
   calendars: [
     {

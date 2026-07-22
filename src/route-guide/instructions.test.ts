@@ -33,7 +33,7 @@ describe("route-guide instructions", () => {
       expect(instructions.transfers).toHaveLength(0);
       expect(instructions.rideSteps[0]?.summary).toContain("Board at");
       expect(instructions.rideSteps[0]?.summary).toContain("alight at");
-      expect(instructions.sharedLinePhrase[0]).toMatch(/1/);
+      expect(instructions.sharedLinePhrase[0]).toBe("D");
       expect(instructions.transfers).toHaveLength(0);
     }),
   );

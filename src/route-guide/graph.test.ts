@@ -69,6 +69,20 @@ describe("route-guide graph", () => {
   );
 
   itEffect(
+    "indexes route-level transfer predecessors for destination pruning",
+    Effect.gen(function* () {
+      const graph = yield* compileGuideGraph({
+        snapshot: topologyNetwork,
+        sourceArtifactVersion: "fixture-topology-v1",
+      });
+
+      expect(graph.boardableRouteIdsByStopId.get("stop:A")?.has("route:1")).toBe(true);
+      expect(graph.alightableRouteIdsByStopId.get("stop:F")?.has("route:2")).toBe(true);
+      expect(graph.predecessorRouteIdsByRouteId.get("route:2")?.has("route:1")).toBe(true);
+    }),
+  );
+
+  itEffect(
     "does not treat reviewed grouping alone as a transfer edge",
     Effect.gen(function* () {
       const graph = yield* compileGuideGraph({
@@ -100,6 +114,22 @@ describe("route-guide graph", () => {
       expect(
         edges.some(
           (edge) => edge.toStopId === "stop:plat-2" && edge.evidence._tag === "SourceStation",
+        ),
+      ).toBe(true);
+    }),
+  );
+
+  itEffect(
+    "links separately named stops even when they are only metres apart",
+    Effect.gen(function* () {
+      const graph = yield* compileGuideGraph({
+        snapshot: topologyNetwork,
+        sourceArtifactVersion: "fixture-topology-v1",
+      });
+      const edges = graph.transferEdgesFrom.get("stop:walk-origin") ?? [];
+      expect(
+        edges.some(
+          (edge) => edge.toStopId === "stop:walk-near" && edge.evidence._tag === "StraightLineWalk",
         ),
       ).toBe(true);
     }),

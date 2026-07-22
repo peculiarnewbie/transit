@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/solid-router";
 
-import PassengerExplorer from "../features/passenger/PassengerExplorer.js";
+import PlaceRouteHelper from "../features/passenger/PlaceRouteHelper.js";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  return <PassengerExplorer />;
+  return <PlaceRouteHelper />;
 }

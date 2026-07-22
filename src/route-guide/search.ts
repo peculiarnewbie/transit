@@ -19,6 +19,7 @@ import {
   type PlaceRef,
   type RouteGuideQuery,
   type RouteGuideResult,
+  type StraightLineWalk,
   type TransferEvidence,
   type TransferInstruction,
   type TransitPlaceCandidate,
@@ -38,13 +39,19 @@ export interface RawPath {
   readonly destinationPlaceId: string;
   readonly originDistance?: number;
   readonly destinationDistance?: number;
+  readonly originWalk?: TransferEdge;
+  readonly destinationWalk?: TransferEdge;
   readonly legs: ReadonlyArray<RawRideLeg>;
   readonly transferEdges: ReadonlyArray<TransferEdge>;
 }
 
 interface SearchState {
   readonly stopId: StopId;
+  readonly originPlaceId: string;
+  readonly originDistance?: number;
+  readonly originWalk?: TransferEdge;
   readonly transfersUsed: number;
+  readonly straightLineWalksUsed: number;
   readonly legs: ReadonlyArray<RawRideLeg>;
   readonly transferEdges: ReadonlyArray<TransferEdge>;
   readonly boardedRouteIds: ReadonlyArray<string>;
@@ -117,6 +124,14 @@ const transferEvidence = (edge: TransferEdge): TransferEvidence => {
       toStopId: edge.toStopId,
     };
   }
+  if (edge.evidence._tag === "StraightLineWalk") {
+    return {
+      _tag: "StraightLineWalk",
+      fromStopId: edge.fromStopId,
+      toStopId: edge.toStopId,
+      distanceMeters: edge.evidence.distanceMeters,
+    };
+  }
   return {
     _tag: "PublishedTransfer",
     fromStopId: edge.fromStopId,
@@ -125,14 +140,78 @@ const transferEvidence = (edge: TransferEdge): TransferEvidence => {
   };
 };
 
+const isStraightLineWalk = (
+  edge: TransferEdge,
+): edge is TransferEdge & {
+  readonly evidence: { readonly _tag: "StraightLineWalk"; readonly distanceMeters: number };
+} => edge.evidence._tag === "StraightLineWalk";
+
+const straightLineWalkFor = (
+  graph: GuideGraph,
+  edge: TransferEdge | undefined,
+): StraightLineWalk | undefined => {
+  if (edge === undefined || !isStraightLineWalk(edge)) return undefined;
+  const from = placeRef(graph, edge.fromStopId);
+  const to = placeRef(graph, edge.toStopId);
+  if (from === undefined || to === undefined) return undefined;
+  return { from, to, distanceMeters: edge.evidence.distanceMeters };
+};
+
+const stopToStopDistanceMeters = (
+  graph: GuideGraph,
+  leftStopId: StopId,
+  rightStopId: StopId,
+): number | undefined => {
+  const left = graph.stopsById.get(leftStopId);
+  const right = graph.stopsById.get(rightStopId);
+  if (left?.location._tag !== "Placed" || right?.location._tag !== "Placed") return undefined;
+  const radians = (degrees: number) => (degrees * Math.PI) / 180;
+  const latitudeDelta = radians(right.location.latitude - left.location.latitude);
+  const longitudeDelta = radians(right.location.longitude - left.location.longitude);
+  const latitudeLeft = radians(left.location.latitude);
+  const latitudeRight = radians(right.location.latitude);
+  const haversine =
+    Math.sin(latitudeDelta / 2) ** 2 +
+    Math.cos(latitudeLeft) * Math.cos(latitudeRight) * Math.sin(longitudeDelta / 2) ** 2;
+  return 6_371_000 * 2 * Math.asin(Math.min(1, Math.sqrt(haversine)));
+};
+
+const journeyDistanceMeters = (graph: GuideGraph, path: RawPath): number | undefined => {
+  let distanceMeters = 0;
+  for (const leg of path.legs) {
+    for (let sequence = leg.boardSequence; sequence < leg.alightSequence; sequence += 1) {
+      const distance = stopToStopDistanceMeters(
+        graph,
+        leg.pattern.stopIds[sequence]!,
+        leg.pattern.stopIds[sequence + 1]!,
+      );
+      if (distance === undefined) return undefined;
+      distanceMeters += distance;
+    }
+  }
+  for (const edge of [path.originWalk, ...path.transferEdges, path.destinationWalk]) {
+    if (edge !== undefined && isStraightLineWalk(edge))
+      distanceMeters += edge.evidence.distanceMeters;
+  }
+  return Math.round(distanceMeters);
+};
+
+const straightLineWalkDistanceMeters = (path: RawPath): number =>
+  [path.originWalk, ...path.transferEdges, path.destinationWalk].reduce(
+    (distanceMeters, edge) =>
+      edge !== undefined && isStraightLineWalk(edge)
+        ? distanceMeters + edge.evidence.distanceMeters
+        : distanceMeters,
+    0,
+  );
+
 const metricsFor = (
   graph: GuideGraph,
   path: RawPath,
   rideSteps: ReadonlyArray<InterchangeableRideStep>,
 ): GuideMetrics => {
-  const intermediateStopCount = rideSteps.reduce(
-    (sum, step) =>
-      sum + Math.max(0, ...step.lineOptions.map((option) => option.intermediatePlaces.length)),
+  const intermediateStopCount = path.legs.reduce(
+    (sum, leg) => sum + leg.intermediateStopIds.length,
     0,
   );
   const directionAmbiguityCount = rideSteps.reduce(
@@ -158,10 +237,16 @@ const metricsFor = (
       sum + step.lineOptions.filter((option) => /[A-Za-z]$/.test(option.passengerLineName)).length,
     0,
   );
+  const journeyDistance = journeyDistanceMeters(graph, path);
+  const straightLineWalkDistance = straightLineWalkDistanceMeters(path);
   return {
     transferCount: Math.max(0, rideSteps.length - 1),
     boardingCount: rideSteps.length,
     intermediateStopCount,
+    ...(journeyDistance === undefined ? {} : { journeyDistanceMeters: journeyDistance }),
+    ...(straightLineWalkDistance === 0
+      ? {}
+      : { straightLineWalkDistanceMeters: straightLineWalkDistance }),
     ...(path.originDistance === undefined
       ? {}
       : { originCandidateDistanceMeters: path.originDistance }),
@@ -179,6 +264,9 @@ const metricsFor = (
 export const compareAlternatives = (left: GuideAlternative, right: GuideAlternative): number =>
   left.metrics.transferCount - right.metrics.transferCount ||
   left.metrics.boardingCount - right.metrics.boardingCount ||
+  (left.metrics.journeyDistanceMeters ?? Number.MAX_SAFE_INTEGER) -
+    (right.metrics.journeyDistanceMeters ?? Number.MAX_SAFE_INTEGER) ||
+  left.metrics.intermediateStopCount - right.metrics.intermediateStopCount ||
   left.metrics.routeComplexity - right.metrics.routeComplexity ||
   left.metrics.transferHubPenalty - right.metrics.transferHubPenalty ||
   left.metrics.variantLinePenalty - right.metrics.variantLinePenalty ||
@@ -186,9 +274,82 @@ export const compareAlternatives = (left: GuideAlternative, right: GuideAlternat
     (right.metrics.originCandidateDistanceMeters ?? 0) ||
   (left.metrics.destinationCandidateDistanceMeters ?? 0) -
     (right.metrics.destinationCandidateDistanceMeters ?? 0) ||
-  left.metrics.intermediateStopCount - right.metrics.intermediateStopCount ||
   left.metrics.directionAmbiguityCount - right.metrics.directionAmbiguityCount ||
   left.id.localeCompare(right.id);
+
+/** Reject a pattern that passes the boarding or destination complex before the stated alighting. */
+const loopsBackPastRideBoundary = (graph: GuideGraph, leg: RawRideLeg): boolean => {
+  const boardPlaceId = placeIdForStop(graph, leg.boardStopId);
+  const alightPlaceId = placeIdForStop(graph, leg.alightStopId);
+  return leg.intermediateStopIds.some((stopId) => {
+    const placeId = placeIdForStop(graph, stopId);
+    return placeId !== undefined && (placeId === boardPlaceId || placeId === alightPlaceId);
+  });
+};
+
+/** Keep the shortest range when one line has multiple published variants for the same action. */
+const sameRouteAction = (graph: GuideGraph, candidate: RawPath, alternative: RawPath) =>
+  candidate.legs.length === alternative.legs.length &&
+  walkingPathKey(candidate) === walkingPathKey(alternative) &&
+  candidate.legs.every((candidateLeg, index) => {
+    const alternativeLeg = alternative.legs[index];
+    return (
+      alternativeLeg !== undefined &&
+      candidateLeg.pattern.routeId === alternativeLeg.pattern.routeId &&
+      candidateLeg.boardStopId === alternativeLeg.boardStopId &&
+      placeIdForStop(graph, candidateLeg.alightStopId) ===
+        placeIdForStop(graph, alternativeLeg.alightStopId)
+    );
+  });
+
+const transferEdgeKey = (edge: TransferEdge | undefined) =>
+  edge === undefined
+    ? ""
+    : `${edge.fromStopId}>${edge.toStopId}:${edge.evidence._tag}${
+        edge.evidence._tag === "StraightLineWalk" ? `:${edge.evidence.distanceMeters}` : ""
+      }`;
+
+const walkingPathKey = (path: RawPath) =>
+  [path.originWalk, ...path.transferEdges, path.destinationWalk]
+    .filter((edge): edge is TransferEdge => edge !== undefined && isStraightLineWalk(edge))
+    .map(transferEdgeKey)
+    .join("|");
+
+const withoutLongerSameRoutePaths = (graph: GuideGraph, paths: ReadonlyArray<RawPath>) =>
+  paths.filter((alternative) => {
+    const alternativeDistance = journeyDistanceMeters(graph, alternative);
+    return !paths.some((candidate) => {
+      if (!sameRouteAction(graph, candidate, alternative)) return false;
+      const candidateDistance = journeyDistanceMeters(graph, candidate);
+      return (
+        candidateDistance !== undefined &&
+        alternativeDistance !== undefined &&
+        candidateDistance < alternativeDistance
+      );
+    });
+  });
+
+/**
+ * Several nearby boarding members can produce the same line-and-direction
+ * decision, especially when straight-line access is available. Retain the
+ * first ranked representative before applying the result cap so those copies
+ * cannot hide a distinct transfer strategy.
+ */
+const distinctPassengerActions = (alternatives: ReadonlyArray<GuideAlternative>) => {
+  const seen = new Set<string>();
+  return alternatives.filter((alternative) => {
+    const key = JSON.stringify(
+      alternative.rideSteps.map((step) =>
+        step.lineOptions
+          .map((option) => `${option.passengerLineName}:${option.directionLabel}`)
+          .sort(),
+      ),
+    );
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+};
 
 const stablePathId = (path: RawPath): string => {
   const legKey = path.legs
@@ -197,7 +358,7 @@ const stablePathId = (path: RawPath): string => {
         `${leg.pattern.routeId}@${leg.boardStopId}->${leg.alightStopId}:${leg.pattern.patternId}`,
     )
     .join("|");
-  return `guide:${path.originPlaceId}>${path.destinationPlaceId}:${legKey}`;
+  return `guide:${path.originPlaceId}>${path.destinationPlaceId}:${walkingPathKey(path)}:${legKey}`;
 };
 
 const groupingKeyForLeg = (
@@ -212,13 +373,16 @@ const groupingKeyForLeg = (
       ? "FINISH"
       : `${placeIdForStop(graph, next.boardStopId) ?? next.boardStopId}|${next.pattern.routeId}`;
   // Boarding member must match; alighting is place-level so sibling platforms
-  // (e.g. 9/9A at Grogol Reformasi) can form one interchangeable step.
-  return `${leg.boardStopId}|${boardPlace}|${alightPlace}|${nextBoard}`;
+  // (e.g. 9/9A at Grogol Reformasi) can form one interchangeable step. The
+  // range keeps distinct routes separate; variants of one route are collapsed
+  // before this grouping step.
+  const span = leg.alightSequence - leg.boardSequence;
+  return `${leg.boardStopId}|${boardPlace}|${alightPlace}|${span}|${nextBoard}`;
 };
 
 /**
  * Group interchangeable line options when board member, alight place/member,
- * and next action match. Intermediate stops may differ per option.
+ * route span, and next action match. Intermediate stops may differ per option.
  */
 export const groupInterchangeablePaths = (
   graph: GuideGraph,
@@ -226,9 +390,10 @@ export const groupInterchangeablePaths = (
 ): ReadonlyArray<GuideAlternative> => {
   const bySignature = new Map<string, Array<RawPath>>();
   for (const path of paths) {
-    const signature = path.legs
-      .map((leg, index) => groupingKeyForLeg(leg, path.legs[index + 1], graph))
-      .join("::");
+    const signature = [
+      walkingPathKey(path),
+      ...path.legs.map((leg, index) => groupingKeyForLeg(leg, path.legs[index + 1], graph)),
+    ].join("::");
     const bucket = bySignature.get(signature) ?? [];
     bucket.push(path);
     bySignature.set(signature, bucket);
@@ -305,12 +470,18 @@ export const groupInterchangeablePaths = (
     }
 
     if (rideSteps.length === 0) continue;
-    const origin = placeRef(graph, representative.legs[0]!.boardStopId);
+    const origin = placeRef(
+      graph,
+      representative.originWalk?.fromStopId ?? representative.legs[0]!.boardStopId,
+    );
     const destination = placeRef(
       graph,
-      representative.legs[representative.legs.length - 1]!.alightStopId,
+      representative.destinationWalk?.toStopId ??
+        representative.legs[representative.legs.length - 1]!.alightStopId,
     );
     if (origin === undefined || destination === undefined) continue;
+    const originWalk = straightLineWalkFor(graph, representative.originWalk);
+    const destinationWalk = straightLineWalkFor(graph, representative.destinationWalk);
 
     const idSeed = [
       representative.originPlaceId,
@@ -330,6 +501,8 @@ export const groupInterchangeablePaths = (
       destination,
       rideSteps,
       transfers,
+      ...(originWalk === undefined ? {} : { originWalk }),
+      ...(destinationWalk === undefined ? {} : { destinationWalk }),
       metrics: metricsFor(graph, representative, rideSteps),
     });
   }
@@ -337,40 +510,17 @@ export const groupInterchangeablePaths = (
   return alternatives.sort(compareAlternatives);
 };
 
-const buildTransferHubs = (graph: GuideGraph): ReadonlySet<string> => {
-  const routeCountByStop = new Map<string, Set<string>>();
-  for (const pattern of graph.patterns) {
-    for (const stopId of pattern.stopIds) {
-      const routes = routeCountByStop.get(stopId) ?? new Set<string>();
-      routes.add(pattern.routeId);
-      routeCountByStop.set(stopId, routes);
-    }
-  }
-  const hubs = new Set<string>();
-  for (const [stopId, routes] of routeCountByStop) {
-    if (routes.size >= 2) hubs.add(stopId);
-  }
-  for (const [fromStopId, edges] of graph.transferEdgesFrom) {
-    for (const edge of edges) {
-      if (edge.evidence._tag === "PublishedTransfer" || edge.evidence._tag === "SourceStation") {
-        hubs.add(fromStopId);
-        hubs.add(edge.toStopId);
-      }
-    }
-  }
-  return hubs;
-};
-
 const expandRidesFromStop = (
   graph: GuideGraph,
   stopId: StopId,
   excludeRouteIds: ReadonlySet<string>,
+  allowedRouteIds: ReadonlySet<string>,
   alightTargets: ReadonlySet<string>,
 ): ReadonlyArray<RawRideLeg> => {
   const patterns = graph.patternsByStopId.get(stopId) ?? [];
   const rides: Array<RawRideLeg> = [];
   for (const pattern of patterns) {
-    if (excludeRouteIds.has(pattern.routeId)) continue;
+    if (excludeRouteIds.has(pattern.routeId) || !allowedRouteIds.has(pattern.routeId)) continue;
     for (let boardSequence = 0; boardSequence < pattern.stopIds.length; boardSequence += 1) {
       if (pattern.stopIds[boardSequence] !== stopId) continue;
       if (!canBoard(pattern, boardSequence)) continue;
@@ -394,6 +544,47 @@ const expandRidesFromStop = (
     }
   }
   return rides;
+};
+
+const routeSearchBounds = (
+  graph: GuideGraph,
+  destinationStopIds: ReadonlySet<string>,
+  maximumTransfers: number,
+) => {
+  const destinationRouteIds = new Set<string>();
+  for (const stopId of destinationStopIds) {
+    for (const routeId of graph.alightableRouteIdsByStopId.get(stopId) ?? [])
+      destinationRouteIds.add(routeId);
+  }
+
+  const allowedRoutesByTransfersRemaining: Array<ReadonlySet<string>> = [destinationRouteIds];
+  for (let remaining = 1; remaining <= maximumTransfers; remaining += 1) {
+    const routes = new Set(allowedRoutesByTransfersRemaining[remaining - 1]);
+    for (const routeId of allowedRoutesByTransfersRemaining[remaining - 1] ?? []) {
+      for (const predecessor of graph.predecessorRouteIdsByRouteId.get(routeId) ?? [])
+        routes.add(predecessor);
+    }
+    allowedRoutesByTransfersRemaining.push(routes);
+  }
+
+  const alightTargetsByTransfersRemaining: Array<ReadonlySet<string>> = [destinationStopIds];
+  for (let remaining = 1; remaining <= maximumTransfers; remaining += 1) {
+    const targets = new Set<string>(destinationStopIds);
+    const allowedNextRoutes = allowedRoutesByTransfersRemaining[remaining - 1]!;
+    for (const [fromStopId, edges] of graph.transferEdgesFrom) {
+      if (
+        edges.some((edge) =>
+          [...(graph.boardableRouteIdsByStopId.get(edge.toStopId) ?? [])].some((routeId) =>
+            allowedNextRoutes.has(routeId),
+          ),
+        )
+      )
+        targets.add(fromStopId);
+    }
+    alightTargetsByTransfersRemaining.push(targets);
+  }
+
+  return { allowedRoutesByTransfersRemaining, alightTargetsByTransfersRemaining };
 };
 
 const memberStopIdsForPlaces = (
@@ -426,7 +617,7 @@ const memberStopIdsForPlaces = (
 };
 
 const stateKey = (state: SearchState): string =>
-  `${state.stopId}|${state.transfersUsed}|${state.boardedRouteIds.join(",")}`;
+  `${state.originPlaceId}|${transferEdgeKey(state.originWalk)}|${state.stopId}|${state.transfersUsed}|${state.straightLineWalksUsed}|${state.boardedRouteIds.join(",")}`;
 
 export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(function* (
   graph: GuideGraph,
@@ -445,6 +636,7 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     return yield* Effect.succeed({
       _tag: "InvalidCandidateSet" as const,
       reason: "Origin and destination resolve to the same transit place; no ride is required",
+      expandedStates: 0,
     } satisfies RouteGuideResult);
   }
 
@@ -458,6 +650,7 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     return yield* Effect.succeed({
       _tag: "InvalidCandidateSet" as const,
       reason: "No known transit-place members for the supplied candidates",
+      expandedStates: 0,
     } satisfies RouteGuideResult);
   }
 
@@ -465,21 +658,17 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
   const destinationPlaceByStop = new Map(
     destinationMembers.map((member) => [member.stopId, member]),
   );
-  const originDistanceByPlace = new Map(
-    originMembers
-      .filter((member) => member.distance !== undefined)
-      .map((member) => [member.placeId, member.distance as number]),
-  );
   const destinationDistanceByPlace = new Map(
     destinationMembers
       .filter((member) => member.distance !== undefined)
       .map((member) => [member.placeId, member.distance as number]),
   );
 
-  const hubs = buildTransferHubs(graph);
-  const alightTargets = new Set<string>([...destinationStopIds, ...hubs]);
+  const { allowedRoutesByTransfersRemaining, alightTargetsByTransfersRemaining } =
+    routeSearchBounds(graph, destinationStopIds, query.maximumTransfers);
 
   const queue: Array<SearchState> = [];
+  let queueIndex = 0;
   const bestAt = new Map<string, number>();
   let expandedStates = 0;
   const foundPaths: Array<RawPath> = [];
@@ -487,35 +676,74 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
   for (const origin of originMembers) {
     queue.push({
       stopId: origin.stopId,
+      originPlaceId: origin.placeId,
+      ...(origin.distance === undefined ? {} : { originDistance: origin.distance }),
       transfersUsed: 0,
+      straightLineWalksUsed: 0,
       legs: [],
       transferEdges: [],
       boardedRouteIds: [],
     });
+    for (const edge of graph.transferEdgesFrom.get(origin.stopId) ?? []) {
+      if (!isStraightLineWalk(edge)) continue;
+      queue.push({
+        stopId: edge.toStopId,
+        originPlaceId: origin.placeId,
+        ...(origin.distance === undefined ? {} : { originDistance: origin.distance }),
+        originWalk: edge,
+        transfersUsed: 0,
+        straightLineWalksUsed: 0,
+        legs: [],
+        transferEdges: [],
+        boardedRouteIds: [],
+      });
+    }
   }
 
-  while (queue.length > 0) {
-    const state = queue.shift()!;
+  // Path discovery is breadth-first, so a very small cap can let one noisy
+  // platform family crowd out a geographically different interchange.
+  const maximumFoundPaths = Math.max(2_048, query.maximumAlternatives * 256);
+  while (queueIndex < queue.length) {
+    const state = queue[queueIndex++]!;
     expandedStates += 1;
     if (expandedStates > query.maximumExpandedStates) break;
 
-    if (state.legs.length > 0 && destinationStopIds.has(state.stopId)) {
+    if (state.legs.length > 0) {
       const dest = destinationPlaceByStop.get(state.stopId);
-      const originPlaceId = placeIdForStop(graph, state.legs[0]!.boardStopId);
-      if (dest !== undefined && originPlaceId !== undefined) {
+      if (dest !== undefined) {
         foundPaths.push({
-          originPlaceId,
+          originPlaceId: state.originPlaceId,
           destinationPlaceId: dest.placeId,
-          ...(originDistanceByPlace.has(originPlaceId)
-            ? { originDistance: originDistanceByPlace.get(originPlaceId) }
-            : {}),
+          ...(state.originDistance === undefined ? {} : { originDistance: state.originDistance }),
           ...(destinationDistanceByPlace.has(dest.placeId)
             ? { destinationDistance: destinationDistanceByPlace.get(dest.placeId) }
             : {}),
+          ...(state.originWalk === undefined ? {} : { originWalk: state.originWalk }),
           legs: state.legs,
           transferEdges: state.transferEdges,
         });
+        if (foundPaths.length >= maximumFoundPaths) break;
       }
+
+      for (const edge of graph.transferEdgesFrom.get(state.stopId) ?? []) {
+        if (!isStraightLineWalk(edge)) continue;
+        const walkedDestination = destinationPlaceByStop.get(edge.toStopId);
+        if (walkedDestination === undefined) continue;
+        foundPaths.push({
+          originPlaceId: state.originPlaceId,
+          destinationPlaceId: walkedDestination.placeId,
+          ...(state.originDistance === undefined ? {} : { originDistance: state.originDistance }),
+          ...(destinationDistanceByPlace.has(walkedDestination.placeId)
+            ? { destinationDistance: destinationDistanceByPlace.get(walkedDestination.placeId) }
+            : {}),
+          ...(state.originWalk === undefined ? {} : { originWalk: state.originWalk }),
+          destinationWalk: edge,
+          legs: state.legs,
+          transferEdges: state.transferEdges,
+        });
+        if (foundPaths.length >= maximumFoundPaths) break;
+      }
+      if (foundPaths.length >= maximumFoundPaths) break;
     }
 
     const key = stateKey(state);
@@ -526,11 +754,22 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     if (state.legs.length >= query.maximumTransfers + 1) continue;
 
     if (state.legs.length === 0) {
-      const targets = query.maximumTransfers === 0 ? destinationStopIds : alightTargets;
-      for (const ride of expandRidesFromStop(graph, state.stopId, new Set(), targets)) {
+      const allowedRoutes = allowedRoutesByTransfersRemaining[query.maximumTransfers]!;
+      const targets = alightTargetsByTransfersRemaining[query.maximumTransfers]!;
+      for (const ride of expandRidesFromStop(
+        graph,
+        state.stopId,
+        new Set(),
+        allowedRoutes,
+        targets,
+      )) {
         queue.push({
           stopId: ride.alightStopId,
+          originPlaceId: state.originPlaceId,
+          ...(state.originDistance === undefined ? {} : { originDistance: state.originDistance }),
+          ...(state.originWalk === undefined ? {} : { originWalk: state.originWalk }),
           transfersUsed: 0,
+          straightLineWalksUsed: 0,
           legs: [ride],
           transferEdges: [],
           boardedRouteIds: [ride.pattern.routeId],
@@ -542,16 +781,28 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     if (state.transfersUsed >= query.maximumTransfers) continue;
 
     const remainingTransfers = query.maximumTransfers - state.transfersUsed - 1;
-    const nextTargets = remainingTransfers <= 0 ? destinationStopIds : alightTargets;
+    const nextTargets = alightTargetsByTransfersRemaining[remainingTransfers]!;
+    const allowedRoutes = allowedRoutesByTransfersRemaining[remainingTransfers]!;
     const excludeRoutes = new Set(state.boardedRouteIds);
     const edges = graph.transferEdgesFrom.get(state.stopId) ?? [];
 
     // Prefer continuing after alighting: require a route change via transfer edges.
     for (const edge of edges) {
-      for (const ride of expandRidesFromStop(graph, edge.toStopId, excludeRoutes, nextTargets)) {
+      if (isStraightLineWalk(edge) && state.straightLineWalksUsed >= 1) continue;
+      for (const ride of expandRidesFromStop(
+        graph,
+        edge.toStopId,
+        excludeRoutes,
+        allowedRoutes,
+        nextTargets,
+      )) {
         queue.push({
           stopId: ride.alightStopId,
+          originPlaceId: state.originPlaceId,
+          ...(state.originDistance === undefined ? {} : { originDistance: state.originDistance }),
+          ...(state.originWalk === undefined ? {} : { originWalk: state.originWalk }),
           transfersUsed: state.transfersUsed + 1,
+          straightLineWalksUsed: state.straightLineWalksUsed + (isStraightLineWalk(edge) ? 1 : 0),
           legs: [...state.legs, ride],
           transferEdges: [...state.transferEdges, edge],
           boardedRouteIds: [...state.boardedRouteIds, ride.pattern.routeId],
@@ -566,6 +817,7 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
       originPlaceIds: query.origins.map((candidate) => candidate.transitPlaceId),
       destinationPlaceIds: query.destinations.map((candidate) => candidate.transitPlaceId),
       reason: "No topological bus guide within transfer and expansion caps",
+      expandedStates,
     } satisfies RouteGuideResult);
   }
 
@@ -575,13 +827,21 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
     if (!unique.has(key)) unique.set(key, path);
   }
 
-  const alternatives = groupInterchangeablePaths(graph, [...unique.values()])
-    .filter((alternative) =>
-      alternative.rideSteps.every((step) =>
-        step.lineOptions.every((option) => option.directionLabelAuthority !== "Ambiguous"),
-      ),
-    )
-    .slice(0, query.maximumAlternatives);
+  const rideablePaths = [...unique.values()].filter((path) =>
+    path.legs.every((leg) => !loopsBackPastRideBoundary(graph, leg)),
+  );
+  const actionable = groupInterchangeablePaths(
+    graph,
+    withoutLongerSameRoutePaths(graph, rideablePaths),
+  ).filter((alternative) =>
+    alternative.rideSteps.every((step) =>
+      step.lineOptions.every((option) => option.directionLabelAuthority !== "Ambiguous"),
+    ),
+  );
+  // Exact duplicate routes and longer variants of the same passenger action
+  // have already been collapsed above. Keep the remaining line/transfer
+  // strategies so a faster direct bus does not erase valid alternatives.
+  const alternatives = distinctPassengerActions(actionable).slice(0, query.maximumAlternatives);
 
   if (alternatives.length === 0) {
     return yield* Effect.succeed({
@@ -589,11 +849,13 @@ export const searchGuidePaths = Effect.fn("RouteGuide.searchGuidePaths")(functio
       originPlaceIds: query.origins.map((candidate) => candidate.transitPlaceId),
       destinationPlaceIds: query.destinations.map((candidate) => candidate.transitPlaceId),
       reason: "Guide paths lacked actionable steps or a defensible direction label",
+      expandedStates,
     } satisfies RouteGuideResult);
   }
 
   return yield* Effect.succeed({
     _tag: "GuidesFound" as const,
     alternatives,
+    expandedStates,
   } satisfies RouteGuideResult);
 });

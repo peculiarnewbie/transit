@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1",
+  "generatedAt": "2026-07-18T17:48:52.796Z",
+  "artifacts": {
+    "networkVersion": "bus-transjakarta-20260630-v2",
+    "placesVersion": "places-jabodetabek-20260718-v1",
+    "checksums": {
+      "networkVersion": "bus-transjakarta-20260630-v2",
+      "placesVersion": "places-jabodetabek-20260718-v1",
+      "networkSnapshotChecksum": "2a1c634db6791f68b611d1bb895f676a8612690b456aa97d550f51c12fa5801d",
+      "networkGeometryChecksum": "37c0569e4b1840d3ab206620481151decc211735362f521636d4839c8fd8d49f",
+      "routeMapChecksum": "605593afdcde4025144d7731a38a39ef92508d48d96297afc29c6921d557fac3",
+      "placesArtifactChecksum": "1ef43a076ad143b3efb6e172afb54e615279d40cb45a5476adc6f525912ce007"
+    },
+    "attribution": "© OpenStreetMap contributors"
+  },
+  "corpus": {
+    "placeCases": 91,
+    "placePassed": 91,
+    "topResultAccepted": 70,
+    "routeCases": 57,
+    "supportedMatched": 51,
+    "knownGaps": [
+      {
+        "caseId": "route:gap-across-barrier",
+        "status": "ExpectedGap"
+      },
+      {
+        "caseId": "route:gap-airport-soetta",
+        "status": "UnresolvedPlace"
+      },
+      {
+        "caseId": "route:gap-incomplete-topology",
+        "status": "UnresolvedPlace"
+      },
+      {
+        "caseId": "route:gap-private-compound",
+        "status": "UnresolvedPlace"
+      },
+      {
+        "caseId": "route:gap-same-place",
+        "status": "ExpectedGap"
+      },
+      {
+        "caseId": "route:gap-ui-tanjung-priok",
+        "status": "ExpectedGap"
+      }
+    ]
+  },
+  "performance": {
+    "coldCompositionMs": 6263.474765999999,
+    "warmPlaceQueryP50Ms": 182.4585330000009,
+    "warmPlaceQueryP95Ms": 203.26547000000028,
+    "guideIndexMs": 4183,
+    "guideQueryMs": {
+      "p50": 71,
+      "p95": 122,
+      "max": 159
+    },
+    "maximumExpandedStates": 14180,
+    "apiLatencyP95Ms": 179.9503490000061
+  },
+  "payloads": {
+    "maximumPlaceResponseBytes": 5154,
+    "routeGuideResponseBytes": 26695,
+    "initialAssetsGzipBytes": 91966,
+    "lazyMapAssetsGzipBytes": 284126
+  },
+  "gates": {
+    "productionFixtureFallback": false,
+    "artifactCompatibility": true,
+    "attributionAndFreshness": true,
+    "timetableOrPedestrianFields": false,
+    "interchangeableNineNineAObserved": true,
+    "allBudgetsPassed": true
+  }
+}

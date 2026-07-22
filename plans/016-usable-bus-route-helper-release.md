@@ -18,6 +18,7 @@
 
 ## Status
 
+- **Status**: IN PROGRESS (Steps 1–7 complete; Step 8 unfamiliar-user acceptance pending)
 - **Priority**: P0
 - **Effort**: XL
 - **Risk**: HIGH
@@ -162,9 +163,9 @@ pixel-for-pixel trade dress:
   the mobile keyboard; constrain list height and scroll the list itself when
   necessary;
 - provide one obvious origin/destination reverse button between the inputs.
-  Reversal swaps stable selected IDs, typed labels, nearby-transit choices, and
-  endpoint-specific state atomically, then invalidates/recomputes the guide
-  without clearing either endpoint.
+  Reversal swaps stable selected IDs, typed labels, resolved transit candidates,
+  and endpoint-specific state atomically, then derives a fresh guide without
+  clearing either endpoint.
 
 The control must also:
 
@@ -174,14 +175,17 @@ The control must also:
 - show loading, empty, offline/failure, and retry states without clearing the
   other endpoint;
 - support editing either endpoint after a result while retaining the other;
-- optionally accept a map point or device coordinate only after an explicit
-  user action and permission;
-- work completely without opening the map or granting location permission.
+- keep the map visible as the required spatial context, while accepting a map
+  point or device coordinate only after an explicit user action and permission;
+- complete endpoint selection without requiring map interaction or location
+  permission, and retain text recovery when map tiles fail.
 
-After a geographic selection, show a small set of nearby transit choices when
-the choice materially changes boarding. Label distance as approximate
-geographic distance. Do not call it a walking distance/time or promise
-accessibility. Never hide a recognized place because the bus guide has no path.
+After a geographic selection, resolve a bounded set of nearby transit candidates
+silently and let the route result explain the boarding place that was actually
+chosen. Do not block the map or route request with a second nearby-stop chooser.
+Label connectors as approximate geographic distance. Do not call them walking
+distance/time or promise accessibility. Never hide a recognized place because
+the bus guide has no path.
 
 Keep line preference/require/lock controls out of the primary flow. If retained
 for expert use, place them in a clearly secondary advanced section and ensure
@@ -253,10 +257,10 @@ both. Test copy with passenger vocabulary rather than GTFS terms. Ensure focus
 movement and announcements make asynchronous search and result changes usable
 with assistive technology.
 
-Load the map and route geometry on demand after the text task is usable. Do not
-download or render the entire network overlay during initial interaction. Keep
-the existing client-only SPA constraint and dynamically import MapLibre after
-mount.
+Render the map as the full-viewport default context from first paint. Keep the
+existing client-only SPA constraint and dynamically import MapLibre after
+mount so endpoint controls remain usable while it initializes. A map or tile
+failure must leave the complete text task and recovery available.
 
 **Verify**: throttled-network tests prove search and text results remain usable;
 accessibility checks cover labels, focus order, announcements, contrast, touch
@@ -337,8 +341,8 @@ Stop and report instead of continuing if:
 
 - Plans 014 and 015 do not pass together on the same artifact versions;
 - the production runtime selects a curated demo fixture or live geocoder;
-- the primary task still requires a known GTFS stop name, line constraint,
-  map, timetable input, or presenter assistance;
+- the primary task still requires a known GTFS stop name, line constraint, map
+  interaction, timetable input, or presenter assistance;
 - a response implies a pedestrian path, walking time, or scheduled service;
 - a recognized endpoint is hidden because routing fails;
 - critical corpus or unfamiliar-user tasks fail; or
@@ -349,21 +353,146 @@ Stop and report instead of continuing if:
 
 - [ ] An unfamiliar passenger can route between ordinary Jakarta places
       without knowing stop names.
-- [ ] Areas, landmarks, transit places, map points, and device coordinates have
+- [x] Areas, landmarks, transit places, map points, and device coordinates have
       honest, recoverable selection paths.
-- [ ] Every successful leg clearly states line, direction, board/alight place,
+- [x] Every successful leg clearly states line, direction, board/alight place,
       intermediate stops, and transfers.
-- [ ] Phone and desktop endpoint controls follow the specified floating
+- [x] Phone and desktop endpoint controls follow the specified floating
       top/side interaction, with autocomplete directly below the active input
       and one obvious atomic reverse action.
-- [ ] Interchangeable lines such as 9/9A render as one ride step with explicit
+- [x] Interchangeable lines such as 9/9A render as one ride step with explicit
       “or” semantics and truthful option-specific detail.
-- [ ] Timetable, live, fare, and pedestrian-routing claims are absent.
-- [ ] Text guidance works without the map and under the agreed low-bandwidth
+- [x] Timetable, live, fare, and pedestrian-routing claims are absent.
+- [x] Text guidance works without the map and under the agreed low-bandwidth
       budgets.
-- [ ] Production artifacts, not demo fixtures, pass all acceptance cases.
+- [x] Production artifacts, not demo fixtures, pass all acceptance cases.
 - [ ] At least five unfamiliar-user sessions meet the agreed task thresholds.
-- [ ] Known gaps, artifact freshness, and bus-only coverage are visible.
-- [ ] The static bus helper is documented as a fallback for Plans 010–011.
-- [ ] `npm run check && npm test && npm run build` and release qualification
+- [x] Known gaps, artifact freshness, and bus-only coverage are visible.
+- [x] The static bus helper is documented as a fallback for Plans 010–011.
+- [x] `npm run check && npm test && npm run build` and release qualification
       all pass.
+
+## Steps 1–7 completion report (2026-07-18)
+
+The engineering release candidate is complete through Step 7. Step 8 remains
+open because its evidence must come from five unfamiliar human participants.
+
+### Passenger flow and presentation
+
+- The home route uses ordinary-place autocomplete for areas, landmarks,
+  transit places, map points, and explicitly permitted device coordinates.
+- The phone layout removes the decorative roundel and title, limits the initial
+  control to two compact fields and reverse, derives routing automatically once
+  both endpoints resolve, and presents route alternatives in a bounded bottom
+  sheet. Selecting an alternative collapses the sheet and highlights only its
+  ridden boarding-to-alighting segments on the required map.
+- Nearby choices use approximate straight-line metres and never claim a walk
+  route, duration, accessibility, timetable, fare, or live service.
+- Exact transit-place selections do not show a second nearby-stop chooser.
+  Their six bounded endpoint candidates are resolved silently so short terminal
+  connectors such as Grogol–Grogol Reformasi remain available to routing.
+- Guidance renders line/direction, board and alight places, member detail when
+  known, ordered intermediate places, transfers, and option-specific detail.
+- Interchangeable 9/9A service renders as one shared ride action with explicit
+  `atau` semantics rather than duplicate alternatives.
+- The full-viewport MapLibre surface is required and loads by default; the
+  complete textual task and recovery remain available while it loads or if it
+  fails.
+- A versioned local index of 7,731 stops and ordinary places is warmed on page
+  load and persisted with the browser Cache API. Local results appear first,
+  then authoritative server matches are merged and deduplicated.
+- Search, nearby-transit, and guide calls have bounded timeouts and stale calls
+  are cancelled by Solid-owned reactive cleanup. Route-guide
+  search uses a linear queue plus destination-aware board/alight indexes,
+  route-transfer predecessors, reverse reachability pruning, and iterative
+  minimum-transfer search. Nearby candidates are endpoint-derived routing input,
+  not passenger-facing selection state.
+
+### Production composition
+
+The release pair is pinned in `config/route-helper-release.json`:
+
+- network `bus-transjakarta-20260630-v2`;
+- places `places-jabodetabek-20260718-v1`;
+- SHA-256 checksums for topology, geometry, route-map, and place artifacts;
+- an explicit place-manifest compatibility reference to the network version.
+
+Production loading verifies checksums and rejects incompatible, fixture, or
+demo composition. The versions endpoint exposes detailed checksums for support
+while the passenger disclosure shows bus-only scope, freshness, versions, and
+attribution.
+
+### Release qualification
+
+`npm run qualify:route-helper` builds the deployable output, then runs the full
+production composition against every Plan 012 case and writes
+`docs/data/route-helper-release-qualification.json`.
+
+- place corpus: **91/91 passed**, 70 accepted as the first result;
+- route corpus: **51/51 Supported matched**;
+- known gaps: six retained and classified, with no unexpected success or
+  supported regression;
+- cold composition: 6.80 s;
+- warm place query: 184 ms p50 / 203 ms p95;
+- guide index: 4.15 s;
+- guide query: 76 ms p50 / 124 ms p95 / 193 ms max;
+- worst expanded state count: 14,180 of the 100,000 emergency cap;
+- maximum place response: 5,154 bytes;
+- representative route-guide response: 19,807 bytes;
+- initial application assets: 90,984 bytes gzip;
+- lazy map assets: 284,128 bytes gzip.
+
+Plan 012 did not contain the numeric budgets referenced by Step 7. Plan 016
+therefore records explicit release-candidate ceilings in
+`config/route-helper-release.json`; qualification fails when any is exceeded.
+
+### Responsive audit
+
+The production build was exercised in the collaborative browser at 1280×800
+and 390×844. The desktop control remains a floating side panel. On the phone,
+the initial control is 374×128 px (15% of viewport height), with no title or
+roundel and no horizontal overflow; the map remains 390×844 behind it.
+Autocomplete stays anchored below the active input and scrolls internally.
+No selection shows a nearby-stop panel: bounded candidates resolve silently for
+both exact stops and ordinary geographic places. Route results open in an
+edge-to-edge sheet capped at 388 px (46dvh); selecting a route collapses it to
+119 px, preserves the chosen summary, hides the full network overview, renders
+only the exact ridden geometry, and fits that segment on the map. The
+qualification command asserts the phone
+media rule, keyboard-constrained autocomplete, and bottom-sheet height are in
+the initial shell CSS.
+
+The latest corrected release was deployed as Cloudflare Worker version
+`1041cb27-e58d-486c-a8a3-82c39f061d99`. Production verification confirmed the
+v2 offline index was present in Cache Storage, local results appeared before
+the server response, and all 7,618 offline transit entries retained canonical
+transit-place IDs. Grogol–Semanggi evaluates six bounded endpoint candidates
+and returns one direct `9 atau 9A` ride from Grogol Reformasi to Semanggi. The
+reverse Semanggi–Grogol case likewise returns route 9/9A to Grogol Reformasi.
+In both directions the ≈173 m connector is shown separately as straight-line
+geographic distance, never as a walking leg or bus transfer. The mobile smoke
+test issued exactly one guide request after the second endpoint resolved, with
+no submit button or nearby-choice panel. Selecting the alternative collapsed
+the result to 116 px; its exact ridden geometry replaces the full network
+overview on the map. A 20-second client deadline preserves selections and
+offers retry if an isolate cannot answer in time.
+
+Route-guide transport failures use passenger-safe recovery copy and never
+surface an HTTP status as a no-route result. A compact animated loading chip is
+shown while the derived guide request is pending, without covering the map or
+adding a submit button.
+
+Each endpoint owns independent Solid reactive state. Resolving or editing one
+endpoint therefore cannot abort the other endpoint's nearby-transit request.
+The nearby and guide requests are named, cancellation-aware Effects with
+bounded retry schedules. Production smoke tests confirmed Tosari–Semanggi and
+Tosari–Damai each made one completed nearby request per selected endpoint and
+one completed guide request, with no cancelled request loop.
+
+Guide requests are keyed by their actual selected places, candidate sets, and
+artifact versions, so reopening an input cannot reroute or steal focus from
+that input. Loading begins immediately after the second endpoint selection,
+while local state prepares endpoint candidates. Passenger-visible alternatives
+deduplicate graph/platform variants and retain the closest representative for
+the same line and direction sequence. Selected map segments preserve each
+published route color, including across transfers.
